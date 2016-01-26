@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,7 +28,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -256,6 +256,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)ThirdParty\*.*" "$(TargetDir)ThirdParty" /y /e /i
+copy "$(SolutionDir)LICENSE" "$(TargetDir)ThemeEditor.LICENSE"
+copy "$(SolutionDir)Readme.md" "$(TargetDir)Readme.txt"
 W:\Tools\InsertIcons.exe  "$(TargetPath)" "$(ProjectDir)Resources\Icons\iconlist.txt"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

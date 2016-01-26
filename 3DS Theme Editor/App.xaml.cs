@@ -2,11 +2,8 @@
 // 3DS Theme Editor - App.xaml.cs
 // --------------------------------------------------
 
-using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Windows;
-using System.Windows.Markup;
 
 namespace ThemeEditor.WPF
 {
@@ -42,11 +39,13 @@ namespace ThemeEditor.WPF
                 mainWindow.NewThemeCommandWrapper.Command.Execute(null);
 
 #else
-    // Create main application window, starting minimized if specified
+            // Create main application window, starting minimized if specified
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            if (File.Exists(e.Args[0]))
+            if (e.Args.Length > 0 && File.Exists(e.Args[0]))
                 mainWindow.LoadThemeCommandWrapper.Command.Execute(e.Args[0]);
+            else
+                mainWindow.NewThemeCommandWrapper.Command.Execute(null);
 #endif
         }
     }
