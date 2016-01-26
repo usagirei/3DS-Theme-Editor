@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeEditor.Common", "Theme
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FF712B2C-AD87-40E2-8B10-6089C76132AB}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
