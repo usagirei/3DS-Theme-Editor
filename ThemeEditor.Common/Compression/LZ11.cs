@@ -9,6 +9,12 @@ namespace ThemeEditor.Common.Compression
 {
     //  Taken from YATA Project
     //  https://github.com/Reisyukaku/YATA/blob/master/LZ11.cs
+    //  That may have been taken from pk3DS
+    //  https://github.com/kwsch/pk3DS/blob/master/pk3DS/3DS/LZSS.cs
+    //  That was a possible port of the DSDecmp Code
+    //  https://github.com/Barubary/dsdecmp/tree/master/CSharp/DSDecmp
+    //  Credits for all those guys
+
     public class LZ11 // LZ11 (de)compression
     {
         public static int Compress(string infile, string outfile)

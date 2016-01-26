@@ -41,10 +41,14 @@ Object Oriented, Standalone Library for Handling the Theme Files
 #### Credits
 
 * **Halley Comet Software** - [vgmstream] - BGM Preview
-* **Reisyukaku** - [YATA] - LZ11 Compression, Texture Decoding
+* **Reisyukaku** - [YATA] - LZ11 De/Compression, Texture Decoding
+* **kwsch** - [pk3DS] - LZ11 De/Compression
+* **Barubary** - [DSDecmp] - LZ11 De/Compression
 * **3DBrew WIKI** - [WIKI] - File Formats Specification
 
 [vgmstream]:https://www.hcs64.com/vgmstream.html
+[DSDecmp]:https://github.com/Barubary/dsdecmp/tree/master/CSharp/DSDecmp
+[pk3DS]:https://github.com/kwsch/pk3DS/blob/master/pk3DS/3DS/LZSS.cs
 [YATA]:https://github.com/Reisyukaku/YATA
 [WIKI]:https://www.3dbrew.org/wiki/
 [DITHERING]:http://i.imgur.com/W6wcvhS.png
