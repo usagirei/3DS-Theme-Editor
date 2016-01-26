@@ -40,9 +40,9 @@ Object Oriented, Standalone Library for Handling the Theme Files
 ---
 #### Credits
 
-**Halley Comet Software** - [vgmstream] - BGM Preview
-**Reisyukaku** - [YATA] - LZ11 Compression, Texture Decoding
-**3DBrew WIKI** - [WIKI] - File Formats Specification
+* **Halley Comet Software** - [vgmstream] - BGM Preview
+* **Reisyukaku** - [YATA] - LZ11 Compression, Texture Decoding
+* **3DBrew WIKI** - [WIKI] - File Formats Specification
 
 [vgmstream]:https://www.hcs64.com/vgmstream.html
 [YATA]:https://github.com/Reisyukaku/YATA
