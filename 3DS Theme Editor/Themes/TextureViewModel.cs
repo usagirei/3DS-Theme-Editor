@@ -39,12 +39,20 @@ namespace ThemeEditor.WPF.Themes
 
         public int Width => Model.Width;
 
-        public TextureViewModel(RawTexture model) : base(model) {}
+        public TextureViewModel(RawTexture model, string tag) : base(model, tag) {}
 
         public void ClearTexture()
         {
             Model.Encode(null, 0, 0, RawTexture.DataFormat.Invalid);
             Invalidate();
+        }
+
+        public override void Dispose()
+        {
+            _src = null;
+            _palette = null;
+
+            base.Dispose();
         }
 
         public void EncodeTexture(BitmapSource bitmap, RawTexture.DataFormat targetFormat)

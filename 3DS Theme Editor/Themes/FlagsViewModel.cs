@@ -401,6 +401,6 @@ namespace ThemeEditor.WPF.Themes
             }
         }
 
-        public FlagsViewModel(Flags model) : base(model) {}
+        public FlagsViewModel(Flags model, string tag) : base(model, tag) {}
     }
 }

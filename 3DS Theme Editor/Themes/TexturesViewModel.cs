@@ -16,15 +16,28 @@ namespace ThemeEditor.WPF.Themes
         public TextureViewModel Top { get; }
         public TextureViewModel TopAlt { get; }
 
-        public TexturesViewModel(Textures model) : base(model)
+        public override void Dispose()
         {
-            Top = new TextureViewModel(model.Top);
-            TopAlt = new TextureViewModel(model.TopExt);
-            Bottom = new TextureViewModel(model.Bottom);
-            FolderClosed = new TextureViewModel(model.FolderClosed);
-            FolderOpen = new TextureViewModel(model.FolderOpen);
-            FileLarge = new TextureViewModel(model.FileLarge);
-            FileSmall = new TextureViewModel(model.FileSmall);
+            Bottom.Dispose();
+            FileLarge.Dispose();
+            FileSmall.Dispose();
+            FolderClosed.Dispose();
+            FolderOpen.Dispose();
+            Top.Dispose();
+            TopAlt.Dispose();
+
+            base.Dispose();
+        }
+
+        public TexturesViewModel(Textures model, string tag) : base(model, tag)
+        {
+            Top = new TextureViewModel(model.Top, tag);
+            TopAlt = new TextureViewModel(model.TopExt, tag);
+            Bottom = new TextureViewModel(model.Bottom, tag);
+            FolderClosed = new TextureViewModel(model.FolderClosed, tag);
+            FolderOpen = new TextureViewModel(model.FolderOpen, tag);
+            FileLarge = new TextureViewModel(model.FileLarge, tag);
+            FileSmall = new TextureViewModel(model.FileSmall, tag);
 
             Top.PropertyChanged += (sender, args) =>
             {

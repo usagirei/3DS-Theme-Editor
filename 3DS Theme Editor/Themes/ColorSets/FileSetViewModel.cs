@@ -64,6 +64,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public FileSetViewModel(FileSet model) : base(model) {}
+        public FileSetViewModel(FileSet model, string tag) : base(model, tag) { }
     }
 }

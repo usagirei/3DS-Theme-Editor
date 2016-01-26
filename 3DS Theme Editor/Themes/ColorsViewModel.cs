@@ -90,24 +90,47 @@ namespace ThemeEditor.WPF.Themes
         [Description("Theme_Colors_Top_Corner_Desc", typeof(ThemeResources))]
         public TopCornerSetViewModel TopCorner { get; }
 
-        public ColorsViewModel(Colors colors) : base(colors)
+        public ColorsViewModel(Colors colors, string tag) : base(colors, tag)
         {
-            Arrow = new ArrowSetViewModel(colors.Arrow);
-            ArrowButton = new ArrowButtonSetViewModel(colors.ArrowButton);
-            BottomCorner = new BottomCornerSetViewModel(colors.BottomCornerButton);
-            BottomBackgroundOuter = new BottomOuterSetViewModel(colors.BottomBackgroundOuter);
-            BottomBackgroundInner = new BottomBackgroundInnerSetViewModel(colors.BottomBackgroundInner);
-            Close = new OpenCloseSetViewModel(colors.Close);
-            Cursor = new CursorSetViewModel(colors.Cursor);
-            DemoText = new DemoTextSetViewModel(colors.DemoText);
-            File = new FileSetViewModel(colors.File);
-            Folder = new FolderSetViewModel(colors.Folder);
-            FolderArrow = new FolderArrowSetViewModel(colors.FolderArrow);
-            FolderBackground = new BottomBackgroundInnerSetViewModel(colors.FolderBackground);
-            GameText = new GameTextSetViewModel(colors.GameText);
-            Open = new OpenCloseSetViewModel(colors.Open);
-            TopCorner = new TopCornerSetViewModel(colors.TopCornerButton);
-            TopBackground = new TopSolidSetViewModel(colors.TopBackground);
+            Arrow = new ArrowSetViewModel(colors.Arrow, tag);
+            ArrowButton = new ArrowButtonSetViewModel(colors.ArrowButton, tag);
+            BottomCorner = new BottomCornerSetViewModel(colors.BottomCornerButton, tag);
+            BottomBackgroundOuter = new BottomOuterSetViewModel(colors.BottomBackgroundOuter, tag);
+            BottomBackgroundInner = new BottomBackgroundInnerSetViewModel(colors.BottomBackgroundInner, tag);
+            Close = new OpenCloseSetViewModel(colors.Close, tag);
+            Cursor = new CursorSetViewModel(colors.Cursor, tag);
+            DemoText = new DemoTextSetViewModel(colors.DemoText, tag);
+            File = new FileSetViewModel(colors.File, tag);
+            Folder = new FolderSetViewModel(colors.Folder, tag);
+            FolderArrow = new FolderArrowSetViewModel(colors.FolderArrow, tag);
+            FolderBackground = new BottomBackgroundInnerSetViewModel(colors.FolderBackground, tag);
+            GameText = new GameTextSetViewModel(colors.GameText, tag);
+            Open = new OpenCloseSetViewModel(colors.Open, tag);
+            TopCorner = new TopCornerSetViewModel(colors.TopCornerButton, tag);
+            TopBackground = new TopSolidSetViewModel(colors.TopBackground, tag);
+        }
+
+        public override void Dispose()
+        {
+            Arrow.Dispose();
+            ArrowButton.Dispose();
+            BottomCorner.Dispose();
+            BottomBackgroundOuter.Dispose();
+            BottomBackgroundInner.Dispose();
+            Close.Dispose();
+            Cursor.Dispose();
+            DemoText.Dispose();
+            File.Dispose();
+            Folder.Dispose();
+            FolderArrow.Dispose();
+            FolderBackground.Dispose();
+            GameText.Dispose();
+            Open.Dispose();
+            TopCorner.Dispose();
+            TopBackground.Dispose();
+
+
+            base.Dispose();
         }
     }
 }

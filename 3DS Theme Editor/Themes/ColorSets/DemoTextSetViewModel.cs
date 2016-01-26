@@ -47,6 +47,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public DemoTextSetViewModel(DemoTextSet model) : base(model) {}
+        public DemoTextSetViewModel(DemoTextSet model, string tag) : base(model, tag) { }
     }
 }

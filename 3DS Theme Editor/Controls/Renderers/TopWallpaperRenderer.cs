@@ -53,7 +53,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
             var bgrData = defTopAlt.GetBgr24Data();
             RawTexture rTex = new RawTexture(defTopAlt.PixelWidth, defTopAlt.PixelHeight, RawTexture.DataFormat.A8);
             rTex.Encode(bgrData);
-            DefaultTopSquares = new TextureViewModel(rTex);
+            DefaultTopSquares = new TextureViewModel(rTex, null);
 
             RenderToolFactory.RegisterTool<PenTool, Pen>
                 (key => new Pen(new SolidColorBrush(key.Color)
@@ -342,7 +342,10 @@ namespace ThemeEditor.WPF.Controls.Renderers
 
         private void ViewModelBaseOnViewModelChanged(ViewModelBase.ViewModelChangedArgs args)
         {
-            InvalidateVisual();
+            if (Theme == null)
+                return;
+            if (args.ViewModel.GetTag() == Theme.GetTag())
+                InvalidateVisual();
         }
     }
 }

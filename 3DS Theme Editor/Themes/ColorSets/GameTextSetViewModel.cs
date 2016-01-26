@@ -47,6 +47,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public GameTextSetViewModel(GameTextSet model) : base(model) {}
+        public GameTextSetViewModel(GameTextSet model, string tag) : base(model, tag) { }
     }
 }

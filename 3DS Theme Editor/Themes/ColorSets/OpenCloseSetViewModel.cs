@@ -116,6 +116,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public OpenCloseSetViewModel(OpenCloseSet model) : base(model) {}
+        public OpenCloseSetViewModel(OpenCloseSet model, string tag) : base(model, tag) { }
     }
 }

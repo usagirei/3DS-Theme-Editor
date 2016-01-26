@@ -64,6 +64,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public BottomOuterSetViewModel(BottomBackgroundOuterSet model) : base(model) {}
+        public BottomOuterSetViewModel(BottomBackgroundOuterSet model, string tag) : base(model, tag) { }
     }
 }

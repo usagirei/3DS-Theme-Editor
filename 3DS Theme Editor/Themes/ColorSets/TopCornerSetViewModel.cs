@@ -47,6 +47,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public TopCornerSetViewModel(TopCornerSet model) : base(model) {}
+        public TopCornerSetViewModel(TopCornerSet model, string tag) : base(model, tag) { }
     }
 }

@@ -98,6 +98,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
 
         private new BottomCorner Model => (BottomCorner) base.Model;
 
-        public BottomCornerSetViewModel(BottomCorner model) : base(model) {}
+        public BottomCornerSetViewModel(BottomCorner model, string tag) : base(model, tag) { }
     }
 }

@@ -2,8 +2,11 @@
 // 3DS Theme Editor - App.xaml.cs
 // --------------------------------------------------
 
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace ThemeEditor.WPF
 {

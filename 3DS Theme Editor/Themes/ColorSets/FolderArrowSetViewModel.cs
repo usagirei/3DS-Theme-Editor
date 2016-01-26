@@ -135,6 +135,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public FolderArrowSetViewModel(FolderArrowSet model) : base(model) {}
+        public FolderArrowSetViewModel(FolderArrowSet model, string tag) : base(model, tag) { }
     }
 }

@@ -2,6 +2,7 @@
 // 3DS Theme Editor - MainWindow.xaml.cs
 // --------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
@@ -23,7 +24,12 @@ namespace ThemeEditor.WPF
             = DependencyProperty.Register(nameof(ViewModel),
                 typeof(ThemeViewModel),
                 typeof(MainWindow),
-                new PropertyMetadata(default(ThemeViewModel)));
+                new PropertyMetadata(default(ThemeViewModel), OnThemePropertyChangedCallback));
+
+        private static void OnThemePropertyChangedCallback(DependencyObject elem, DependencyPropertyChangedEventArgs args)
+        {
+            ((ThemeViewModel)args.OldValue)?.Dispose();
+        }
 
         private string _busyText;
 

@@ -56,7 +56,8 @@ namespace ThemeEditor.WPF
             int s = w * 3;
             var bgr24Data = new byte[h * s];
 
-            var bgr24Bmp = new FormatConvertedBitmap(bmp, PixelFormats.Bgr24, null, 0);
+            var pbgr32Bmp = new FormatConvertedBitmap(bmp, PixelFormats.Pbgra32, null, 0);
+            var bgr24Bmp = new FormatConvertedBitmap(pbgr32Bmp, PixelFormats.Bgr24, null, 0);
 
             bgr24Bmp.CopyPixels(bgr24Data, s, 0);
 

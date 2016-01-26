@@ -28,7 +28,7 @@ namespace ThemeEditor.WPF.Themes
 
         partial void SetupRules()
         {
-            Rules = new ViewModelRules();
+            Rules = new ViewModelRules(Tag);
 
             Rules.AddRule<FlagsViewModel, bool>
                 (nameof(FlagsViewModel.BottomBackgroundOuterColor), Validate_BottomBackgroundOuterColor);

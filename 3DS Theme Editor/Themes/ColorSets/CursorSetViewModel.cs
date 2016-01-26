@@ -64,6 +64,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public CursorSetViewModel(CursorSet model) : base(model) {}
+        public CursorSetViewModel(CursorSet model, string tag) : base(model, tag) { }
     }
 }

@@ -333,7 +333,10 @@ namespace ThemeEditor.WPF.Controls.Renderers
 
         private void ViewModelBaseOnViewModelChanged(ViewModelBase.ViewModelChangedArgs args)
         {
-            InvalidateVisual();
+            if (Theme == null)
+                return;
+            if (args.ViewModel.GetTag() == Theme.GetTag())
+                InvalidateVisual();
         }
     }
 }

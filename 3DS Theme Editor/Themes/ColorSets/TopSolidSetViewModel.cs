@@ -64,6 +64,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public TopSolidSetViewModel(TopBackgroundSet model) : base(model) {}
+        public TopSolidSetViewModel(TopBackgroundSet model, string tag) : base(model, tag) { }
     }
 }

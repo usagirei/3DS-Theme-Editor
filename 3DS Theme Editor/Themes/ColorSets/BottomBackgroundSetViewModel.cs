@@ -81,6 +81,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public BottomBackgroundInnerSetViewModel(BottomBackgroundInnerSet model) : base(model) {}
+        public BottomBackgroundInnerSetViewModel(BottomBackgroundInnerSet model, string tag) : base(model, tag) { }
     }
 }

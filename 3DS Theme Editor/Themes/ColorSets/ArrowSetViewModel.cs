@@ -64,6 +64,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public ArrowSetViewModel(ArrowSet model) : base(model) {}
+        public ArrowSetViewModel(ArrowSet model, string tag) : base(model, tag) {}
     }
 }

@@ -33,6 +33,7 @@ namespace ThemeEditor.WPF
         public GestureCommandWrapper NewThemeCommandWrapper { get; private set; }
 
         public ICommand ReloadBGMCommand { get; private set; }
+
         public GestureCommandWrapper SaveAsThemeCommandWrapper { get; private set; }
         public GestureCommandWrapper SaveThemeCommandWrapper { get; private set; }
 

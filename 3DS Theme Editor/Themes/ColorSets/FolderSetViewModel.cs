@@ -47,6 +47,6 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public FolderSetViewModel(FolderSet model) : base(model) {}
+        public FolderSetViewModel(FolderSet model, string tag) : base(model, tag) { }
     }
 }

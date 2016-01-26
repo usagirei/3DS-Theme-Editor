@@ -12,6 +12,10 @@ namespace ThemeEditor.WPF.Themes
     {
         public delegate void ViewModelChangedHandler(ViewModelChangedArgs args);
 
+        protected string Tag { get; set; }
+
+        public string GetTag() => Tag;
+
         private object _model;
 
         protected object Model
@@ -25,11 +29,12 @@ namespace ThemeEditor.WPF.Themes
             }
         }
 
-        protected ViewModelBase(object model)
+        protected ViewModelBase(object model, string tag)
         {
             if (model == null)
                 throw new ArgumentNullException("Model Can't be null", nameof(model));
             Model = model;
+            Tag = tag;
 
             ViewModelChanged += OnViewModelChanged;
         }
@@ -56,7 +61,7 @@ namespace ThemeEditor.WPF.Themes
             CommandManager.InvalidateRequerySuggested();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             ViewModelChanged -= OnViewModelChanged;
         }
