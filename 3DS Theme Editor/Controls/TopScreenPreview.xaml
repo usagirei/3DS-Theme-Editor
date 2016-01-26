@@ -1,0 +1,302 @@
+﻿<UserControl x:Class="ThemeEditor.WPF.Controls.TopScreenPreview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ThemeEditor.WPF"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:controls="clr-namespace:ThemeEditor.WPF.Controls"
+             xmlns:renderers="clr-namespace:ThemeEditor.WPF.Controls.Renderers"
+             mc:Ignorable="d"
+             d:DesignHeight="240" d:DesignWidth="412">
+    <UserControl.Resources>
+        <local:Ticker x:Key="Ticker" />
+        <SolidColorBrush x:Key="BrushInternet" Color="#27b7eb" />
+        <LinearGradientBrush x:Key="GradientInternet" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#31aadf" Offset="0" />
+            <GradientStop Color="#59c3f3" Offset="0.5" />
+            <GradientStop Color="#31aadf" Offset="0.5" />
+            <GradientStop Color="#59c3f3" Offset="1" />
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="SystemBarText" Color="#3d3d3d" />
+        <SolidColorBrush x:Key="SystemBarStroke" Color="White" />
+
+        <GeometryGroup x:Key="WifiGeometry">
+            <EllipseGeometry Center="4,4" RadiusX="2.5" RadiusY="2.5" />
+            <RectangleGeometry Rect="3,7,3,10" />
+            <RectangleGeometry Rect="7,12,5,5" />
+            <RectangleGeometry Rect="12,7,5,10" />
+            <RectangleGeometry Rect="17,2,5,15" />
+        </GeometryGroup>
+        <GeometryGroup x:Key="CoinGeometry">
+            <EllipseGeometry Center="8,8" RadiusX="6" RadiusY="6" />
+            <RectangleGeometry Rect="6,5,4,3" />
+            <RectangleGeometry Rect="6,8,4,3" />
+        </GeometryGroup>
+        <LinearGradientBrush x:Key="BatteryGradient"
+                             EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Orange" Offset="0" />
+            <GradientStop Color="White" Offset="0.25" />
+            <GradientStop Color="#FFCD8040" Offset="0.4" />
+            <GradientStop Color="Orange" Offset="0.55" />
+        </LinearGradientBrush>
+        <Style TargetType="{x:Type Path}" x:Key="TopCornerForeground">
+            <Style.Setters>
+                <Setter Property="Fill" Value="#3d3d3d" />
+                <Setter Property="Stroke" Value="#3d3d3d" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Flags.TopCornerButtonColor}"
+                             Value="True">
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.TopCorner.Text}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Stroke">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.TopCorner.Text}" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type controls:TextPath}" x:Key="TopCornerForegroundText">
+            <Style.Setters>
+                <Setter Property="Fill" Value="#3D3D3D" />
+                <Setter Property="Stroke" Value="#3D3D3D" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Flags.TopCornerButtonColor}"
+                             Value="True">
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.TopCorner.Text}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Stroke">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.TopCorner.Text}" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Path}" x:Key="TopCornerBackground">
+            <Style.Setters>
+                <Setter Property="Fill" Value="White" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Flags.TopCornerButtonColor}"
+                             Value="True">
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.TopCorner.Main}" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <PathGeometry x:Key="TopCornerGeometry">
+            <PathGeometry.Figures>
+                M 0 23
+                L 0 0
+                L 76 0
+                Q 88 0  90 10
+                L 92 23
+
+                L 200 23
+
+                L 320 23
+                L 323 10
+                Q 326 0  334 0
+                L 412 0
+                L 412 23
+
+                L 0 23
+                Z
+            </PathGeometry.Figures>
+        </PathGeometry>
+        <PathGeometry x:Key="LeftCameraGeometryA">
+            <PathGeometry.Figures>
+                M 9 12
+                L 2 12
+                Q 0 12 0 10
+                L 0 2
+                Q 0 0 2 0
+                L 15 0
+                Q 17 0 17 2
+            </PathGeometry.Figures>
+        </PathGeometry>
+        <GeometryGroup x:Key="LeftCameraGeometryB">
+            <CombinedGeometry GeometryCombineMode="Union">
+                <CombinedGeometry.Geometry1>
+                    <RectangleGeometry Rect="11,6,12,8" RadiusX="1.5" RadiusY="1.5" />
+                </CombinedGeometry.Geometry1>
+                <CombinedGeometry.Geometry2>
+                    <RectangleGeometry Rect="14,4,6,4" RadiusX="3" RadiusY="3" />
+                </CombinedGeometry.Geometry2>
+            </CombinedGeometry>
+            <EllipseGeometry Center="17,10" RadiusY="2.5" RadiusX="2.5" />
+        </GeometryGroup>
+        <GeometryGroup x:Key="RightCameraGeometry">
+            <CombinedGeometry GeometryCombineMode="Union">
+                <CombinedGeometry.Geometry1>
+                    <RectangleGeometry Rect="0,2,16,12" RadiusX="1.5" RadiusY="1.5" />
+                </CombinedGeometry.Geometry1>
+                <CombinedGeometry.Geometry2>
+                    <RectangleGeometry Rect="4,0,8,4" RadiusX="3" RadiusY="3" />
+                </CombinedGeometry.Geometry2>
+            </CombinedGeometry>
+            <EllipseGeometry Center="8,8" RadiusY="3" RadiusX="3" />
+        </GeometryGroup>
+    </UserControl.Resources>
+    <Canvas ClipToBounds="True"
+            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Theme}"
+            Width="412px" Height="240px">
+        <!-- Background -->
+        <renderers:TopWallpaperRenderer Theme="{Binding Path=.}" IsEnabled="True" />
+        <!-- System Bar -->
+        <Canvas Width="412px" Height="20px">
+            <!-- Left Anchor -->
+            <!-- Net Icon -->
+            <Path Fill="{StaticResource BrushInternet}" Stroke="White" StrokeThickness="1"
+                  Canvas.Left="6" Canvas.Top="2"
+                  RenderOptions.EdgeMode="Aliased" Data="{StaticResource WifiGeometry}" />
+            <!-- Internet -->
+            <Border Width="110px" Height="17px"
+                    Canvas.Left="31px" Canvas.Top="2px"
+                    CornerRadius="2" BorderBrush="White" BorderThickness="0.75"
+                    Background="{StaticResource GradientInternet}">
+                <TextBlock Text="Internet" Foreground="White" FontFamily="Segoe UI"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-1,0,0" />
+            </Border>
+            <!-- Coins -->
+            <Canvas Canvas.Left="150" Canvas.Top="3">
+                <Ellipse Width="16" Height="16"
+                         Fill="#D5C500" Stroke="White" StrokeThickness="0.5" />
+                <Path Stroke="White" StrokeThickness="1" Data="{StaticResource CoinGeometry}" />
+            </Canvas>
+            <controls:TextPath Canvas.Left="170" Text="300"
+                               FontSize="15" FontWeight="ExtraBold" FontFamily="Segoe UI"
+                               Fill="{StaticResource SystemBarText}" Stroke="{StaticResource SystemBarStroke}"
+                               StrokeThickness="1" />
+            <!-- Right Anchor -->
+            <!-- Battery -->
+            <Path Canvas.Right="7" Canvas.Top="2"
+                  Fill="Black" StrokeThickness="1" Stroke="White">
+                <Path.Data>
+                    <CombinedGeometry GeometryCombineMode="Union">
+                        <CombinedGeometry.Geometry1>
+                            <RectangleGeometry RadiusY="2" RadiusX="2" Rect="2,0,27,17" />
+                        </CombinedGeometry.Geometry1>
+                        <CombinedGeometry.Geometry2>
+                            <RectangleGeometry Rect="0,5,2,8" />
+                        </CombinedGeometry.Geometry2>
+                    </CombinedGeometry>
+                </Path.Data>
+            </Path>
+            <Rectangle Canvas.Right="11" Canvas.Top="5"
+                       Fill="{StaticResource BatteryGradient}" StrokeThickness="1" Stroke="White"
+                       Width="21" Height="11" />
+            <!-- Clock -->
+            <Grid Canvas.Right="43">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="7" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!-- Hour -->
+                <controls:TextPath Grid.Column="0" HorizontalAlignment="Left"
+                                   Text="{Binding Source={StaticResource Ticker}, Path=HourString, Mode=OneWay}"
+                                   FontSize="15px" FontWeight="ExtraBold" FontFamily="Segoe UI"
+                                   Fill="{StaticResource SystemBarText}" Stroke="{StaticResource SystemBarStroke}"
+                                   StrokeThickness="1" />
+                <!-- Ticker -->
+                <controls:TextPath Grid.Column="1" HorizontalAlignment="Center"
+                                   Text="{Binding Source={StaticResource Ticker}, Path=SepString, Mode=OneWay}"
+                                   FontSize="15px" FontWeight="ExtraBold" FontFamily="Segoe UI" Margin="0,-1,0,0"
+                                   Fill="{StaticResource SystemBarText}" Stroke="{StaticResource SystemBarStroke}"
+                                   StrokeThickness="1" />
+
+                <controls:TextPath Grid.Column="2" HorizontalAlignment="Right"
+                                   Text="{Binding Source={StaticResource Ticker}, Path=MinString, Mode=OneWay}"
+                                   FontSize="15px" FontWeight="ExtraBold" FontFamily="Segoe UI"
+                                   Fill="{StaticResource SystemBarText}" Stroke="{StaticResource SystemBarStroke}"
+                                   StrokeThickness="1" />
+            </Grid>
+            <!-- Date -->
+
+            <controls:TextPath Text="{Binding Source={StaticResource Ticker}, Path=DateString, Mode=OneWay}"
+                               FontSize="15px" FontWeight="ExtraBold" FontFamily="Segoe UI"
+                               Fill="{StaticResource SystemBarText}" Stroke="White" StrokeThickness="1"
+                               Canvas.Right="95" />
+        </Canvas>
+        <!-- Bottom Bar -->
+        <Canvas Canvas.Left="0" Canvas.Bottom="23"
+                Width="412" Opacity="0.9">
+            <Path Canvas.Left="0" Style="{StaticResource TopCornerBackground}"
+                  Data="{StaticResource TopCornerGeometry}">
+                <Path.Effect>
+                    <DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="3" Opacity="0.5" />
+                </Path.Effect>
+            </Path>
+            <!-- Left  Camera -->
+            <Canvas Canvas.Left="22" Canvas.Top="5">
+                <Path Style="{StaticResource TopCornerForeground}" StrokeThickness="2" Fill="Transparent"
+                      Data="{StaticResource LeftCameraGeometryA}" />
+                <Path Style="{StaticResource TopCornerForeground}" StrokeThickness="0"
+                      Data="{StaticResource LeftCameraGeometryB}" />
+            </Canvas>
+            <Canvas Canvas.Left="52" Canvas.Top="3">
+                <Path Style="{StaticResource TopCornerForeground}" Fill="Transparent" StrokeThickness="2">
+                    <Path.Data>
+                        <EllipseGeometry Center="8,8" RadiusY="8" RadiusX="8" />
+                    </Path.Data>
+                </Path>
+                <controls:TextPath Canvas.Left="5" Canvas.Top="0" Text="Y"
+                                   Style="{StaticResource TopCornerForegroundText}" />
+            </Canvas>
+            <!-- Right Camera -->
+            <Canvas Canvas.Right="80" Canvas.Top="5">
+                <Path Style="{StaticResource TopCornerForeground}" StrokeThickness="0"
+                      Data="{StaticResource RightCameraGeometry}" />
+            </Canvas>
+            <Canvas Canvas.Right="60" Canvas.Top="5">
+                <Path Style="{StaticResource TopCornerForeground}" StrokeThickness="1.5" Fill="Transparent">
+                    <Path.Data>
+                        <PathGeometry>
+                            M 0 13
+                            Q 2 0 3 0
+                            L 16 0
+                            Q 15 2 13 13
+                            Z
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <controls:TextPath Text="L" Canvas.Left="4" Canvas.Top="-2" StrokeThickness="0.7"
+                                   Style="{StaticResource TopCornerForegroundText}" />
+            </Canvas>
+            <!-- R -->
+            <Canvas Canvas.Right="32" Canvas.Top="5">
+                <Path Style="{StaticResource TopCornerForeground}" StrokeThickness="1.5" Fill="Transparent">
+                    <Path.Data>
+                        <PathGeometry>
+                            M 16 13
+                            Q 14 0 13 0
+                            L 0 0
+                            Q 1 2 3 13
+                            Z
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <controls:TextPath Text="R" Canvas.Left="5" Canvas.Top="-2" StrokeThickness="0.7"
+                                   Style="{StaticResource TopCornerForegroundText}" />
+            </Canvas>
+            <controls:TextPath Text="+" Canvas.Right="35" Canvas.Top="3"
+                               Style="{StaticResource TopCornerForegroundText}" />
+
+        </Canvas>
+    </Canvas>
+
+</UserControl>
