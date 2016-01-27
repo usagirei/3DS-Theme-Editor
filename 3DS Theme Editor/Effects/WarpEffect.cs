@@ -64,7 +64,7 @@ namespace ThemeEditor.WPF.Effects
         {
             // Associate _pixelShader with our compiled pixel shader
             Shader.UriSource
-                = new Uri(@"pack://application:,,,/ThemeEditor.WPF;component/Effects/Bin/WarpEffect.ps");
+                = new Uri(@"pack://application:,,,/ThemeEditor.WPF;component/Effects/FxBin/WarpEffect.ps");
         }
 
         public WarpEffect()

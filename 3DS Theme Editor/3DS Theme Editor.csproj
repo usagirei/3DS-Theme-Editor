@@ -66,7 +66,15 @@
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AudioPlayer.cs" />
+    <Compile Include="Controls\BottomFolderPreview.xaml.cs">
+      <DependentUpon>BottomFolderPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Renderers\BottomFolderRenderer.cs" />
+    <Compile Include="Controls\BottomScreenOverlays.xaml.cs">
+      <DependentUpon>BottomScreenOverlays.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IconExtension.cs" />
+    <Compile Include="Templating\BooleanConverter.cs" />
     <Compile Include="Templating\ColorPickerSharedData.cs" />
     <Compile Include="DropBehaviour.cs" />
     <Compile Include="ImageSize.cs" />
@@ -156,7 +164,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\BottomFolderPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\BottomScreenPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BottomScreenOverlays.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,14 +227,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Resource Include="Effects\Bin\WarpEffect.ps" />
+    <Resource Include="Effects\FxBin\WarpEffect.ps" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Effects\Bin\WarpEffect.fx" />
+    <None Include="Effects\FxBin\WarpEffect.fx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -253,7 +269,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>"C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe" /T ps_2_0 /E main /Fo"$(ProjectDir)Effects\Bin\WarpEffect.ps" "$(ProjectDir)Effects\Bin\WarpEffect.fx"</PreBuildEvent>
+    <PreBuildEvent>"C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe" /T ps_2_0 /E main /Fo"$(ProjectDir)Effects\Bin\WarpEffect.ps" "$(ProjectDir)Effects\FxBin\WarpEffect.fx"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)ThirdParty\*.*" "$(TargetDir)ThirdParty" /y /e /i

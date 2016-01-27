@@ -15,13 +15,23 @@ namespace ThemeEditor.WPF.Controls
     /// </summary>
     public partial class BottomScreenPreview : UserControl
     {
+        public static readonly DependencyProperty HideCursorProperty = DependencyProperty.Register(
+                                                                                                   nameof(HideCursor),
+            typeof(bool),
+            typeof(BottomScreenPreview),
+            new PropertyMetadata(default(bool)));
+
         public static readonly DependencyProperty ThemeProperty
             = DependencyProperty.Register(nameof(Theme),
                 typeof(ThemeViewModel),
                 typeof(BottomScreenPreview),
                 new PropertyMetadata(default(ThemeViewModel)));
 
-        private bool _isListening = false;
+        public bool HideCursor
+        {
+            get { return (bool) GetValue(HideCursorProperty); }
+            set { SetValue(HideCursorProperty, value); }
+        }
 
         public ThemeViewModel Theme
         {

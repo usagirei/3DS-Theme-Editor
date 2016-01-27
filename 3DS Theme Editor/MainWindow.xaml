@@ -12,7 +12,8 @@
         xmlns:themes="clr-namespace:ThemeEditor.WPF.Themes"
 
         SnapsToDevicePixels="True" UseLayoutRounding="True"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
+
 
         Loaded="MainWindow_OnLoaded"
 
@@ -268,8 +269,7 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="About"
-                    Command="{Binding Path=AboutCommand}"
-                ></MenuItem>
+                          Command="{Binding Path=AboutCommand}" />
             </Menu>
             <TabControl Grid.Row="1">
                 <TabItem Header="{x:Static locale:MainResources.Tab_Colors}">
@@ -342,9 +342,26 @@
             <Border Grid.Row="3" AllowDrop="True"
                     local:DragDropBehaviour.DragEnterCommand="{Binding Path=DragImageCommand}"
                     local:DragDropBehaviour.DragDropCommand="{Binding Path=DropBottomImageCommand}">
-                <controls:BottomScreenPreview x:Name="pre_BottomScreen"
-                                              Theme="{Binding Path=ViewModel}"
-                                              IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}" />
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="320" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="3">
+                        <ToggleButton x:Name="chk_FolderView" Content="Folder" Padding="3" />
+                    </StackPanel>
+                    <Canvas Grid.Column="1" x:Name="pre_BottomScreen">
+                        <controls:BottomScreenPreview HideCursor="{Binding ElementName=chk_FolderView, Path=IsChecked}"
+                                                      Theme="{Binding Path=ViewModel}"
+                                                      IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}" />
+                        <controls:BottomFolderPreview ShowFolder="{Binding ElementName=chk_FolderView, Path=IsChecked}"
+                                                      Theme="{Binding Path=ViewModel}"
+                                                      IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}" />
+                        <controls:BottomOverlaysPreview Theme="{Binding Path=ViewModel}"
+                                                        IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}" />
+                    </Canvas>
+                </Grid>
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="0" BlurRadius="6" />
                 </Border.Effect>
