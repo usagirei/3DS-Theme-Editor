@@ -14,7 +14,7 @@
             <TextBlock Text="{Binding Path=Name, StringFormat='\{0\}:'}"
                        Padding="3" FontSize="10" Width="125"
                        TextTrimming="CharacterEllipsis" />
-            <xctk:ColorPicker
+            <xctk:ColorPicker 
                 AdvancedButtonHeader="{x:Static locale:MainResources.Control_ColorPicker_Advanced}"
                 StandardButtonHeader="{x:Static locale:MainResources.Control_ColorPicker_Standard}"
                 ShowRecentColors="True"
@@ -22,6 +22,14 @@
                 RecentColors="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=RecentColors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 RecentColorsHeader="{x:Static locale:MainResources.Control_ColorPicker_Recent}"
                 Width="125" SelectedColor="{Binding Path=Value}">
+                <xctk:ColorPicker.InputBindings>
+                    <KeyBinding Modifiers="Control" Key="C"
+                                Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=CopyCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=xctk:ColorPicker}}" />
+                    <KeyBinding Modifiers="Control" Key="V"
+                                Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=PasteCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=xctk:ColorPicker}}" />
+                </xctk:ColorPicker.InputBindings>
                 <xctk:ColorPicker.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="{x:Static locale:MainResources.Menu_Copy}"
