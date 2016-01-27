@@ -8,6 +8,7 @@ namespace ThemeEditor.Common.Themes.Enums
     {
         FastScroll = 0,
         Single = 1,
-        SlowScroll = 2,
+        Invalid = 2,
+        SlowScroll = 3,
     }
 }
