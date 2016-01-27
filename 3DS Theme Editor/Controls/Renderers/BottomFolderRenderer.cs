@@ -181,7 +181,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 innerMain = Theme.Colors.FolderBackground.Main;
                 innerEdge = Theme.Colors.FolderBackground.Border;
                 innerGlow = Theme.Colors.FolderBackground.Highlight;
-                innerShadow = Theme.Colors.FolderBackground.Shadow;
+                innerShadow = Theme.Colors.FolderBackground.Glow;
             }
 
             OnRender_BackgroundColor(dc, innerMain, innerEdge, innerGlow, innerShadow);

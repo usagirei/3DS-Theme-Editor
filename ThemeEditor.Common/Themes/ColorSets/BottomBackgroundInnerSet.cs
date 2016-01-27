@@ -13,7 +13,7 @@ namespace ThemeEditor.Common.Themes.ColorSets
         public ColorRgb888 Border;
         public ColorRgb888 Highlight;
         public ColorRgb888 Main;
-        public ColorArgb8888 Shadow; // Shadow Related ? Maybe Opacity / Color
+        public ColorArgb8888 Glow; // Shadow Related ? Maybe Opacity / Color
 
         public static BottomBackgroundInnerSet Read(BinaryReader br)
         {
@@ -22,7 +22,7 @@ namespace ThemeEditor.Common.Themes.ColorSets
                 Highlight = ColorRgb888.Read(br),
                 Main = ColorRgb888.Read(br),
                 Border = ColorRgb888.Read(br),
-                Shadow = ColorArgb8888.Read(br)
+                Glow = ColorArgb8888.Read(br)
             };
         }
 
@@ -31,7 +31,7 @@ namespace ThemeEditor.Common.Themes.ColorSets
             Highlight.Write(bw);
             Main.Write(bw);
             Border.Write(bw);
-            Shadow.Write(bw);
+            Glow.Write(bw);
         }
     }
 }

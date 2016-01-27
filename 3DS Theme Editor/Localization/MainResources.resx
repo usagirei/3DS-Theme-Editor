@@ -136,16 +136,16 @@
     <value>Saving Theme...</value>
   </data>
   <data name="Control_AudioPlayer_Pause" xml:space="preserve">
-    <value>Pause BGM</value>
+    <value>Pause</value>
   </data>
   <data name="Control_AudioPlayer_Play" xml:space="preserve">
-    <value>Play BGM</value>
+    <value>Play</value>
   </data>
   <data name="Control_AudioPlayer_Reload" xml:space="preserve">
-    <value>(Re)Load BGM</value>
+    <value>Load</value>
   </data>
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
-    <value>Stop BGM</value>
+    <value>Stop</value>
   </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>Advanced</value>
@@ -245,7 +245,7 @@
   <data name="Menu_Paste" xml:space="preserve">
     <value>_Paste</value>
   </data>
-  <data name="Preview_Animate" xml:space="preserve">
+  <data name="Control_Preview_Animate" xml:space="preserve">
     <value>Animate</value>
   </data>
   <data name="Tab_Colors" xml:space="preserve">
@@ -253,5 +253,14 @@
   </data>
   <data name="Tab_Flags" xml:space="preserve">
     <value>Flags</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
   </data>
 </root>

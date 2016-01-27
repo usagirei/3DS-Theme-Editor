@@ -13,10 +13,10 @@
         <templating:BooleanConverter x:Key="FolderVisibilityConverter"
                                      TrueValue="{x:Static Visibility.Visible}"
                                      FalseValue="{x:Static Visibility.Hidden}" />
-        <!-- Rows 16 Base-->
+        <!-- Rows Base-->
         <system:Double x:Key="Row1">110</system:Double>
         <system:Double x:Key="Row2">164</system:Double>
-        <!-- Columns 1 Base-->
+        <!-- Columns Base-->
         <system:Double x:Key="Column1">54</system:Double>
         <system:Double x:Key="Column2">107</system:Double>
         <system:Double x:Key="Column3">160</system:Double>
@@ -145,14 +145,93 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <!-- Back Button -->
+        <RectangleGeometry x:Key="BackButtonGeometry" Rect="27,47,66,30" RadiusY="8" RadiusX="8" />
+        <Style x:Key="BackButtonStyle" TargetType="{x:Type Path}">
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#8c8781" Offset="0" />
+                        <GradientStop Color="#4e4b44" Offset="0.3" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="2" Direction="-90" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Stroke" Value="#2b2d2a" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Flags.FolderArrowColor}" Value="True">
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="{Binding Path=Colors.FolderArrow.Highlight}" Offset="0" />
+                                <GradientStop Color="{Binding Path=Colors.FolderArrow.Main}" Offset="0.3" />
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Stroke">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.Shading}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="{Binding Path=Colors.FolderArrow.Glow}" BlurRadius="8"
+                                              ShadowDepth="2" Direction="-90" Opacity="0.5" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!-- Back Arrow -->
+        <PathGeometry x:Key="BackArrowGeometry">
+            <PathGeometry.Figures>
+                M 7 4
+                L 10 4
+                A 6,6 0 1 1 10,16
+                L 7,16 7,13 10,13
+                A 3,3 0 1 0 10,7
+                L 7,7 7,10 0,5.5 7,0
+                Z
+            </PathGeometry.Figures>
+        </PathGeometry>
+        <Style x:Key="BackArrowStyle" TargetType="{x:Type Path}">
+            <Setter Property="Fill" Value="#ffffff" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#2b2d2a" BlurRadius="2" ShadowDepth="1" Direction="-90" Opacity="1" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Flags.FolderArrowColor}" Value="True">
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.ArrowUnpressed}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="{Binding Path=Colors.FolderArrow.ArrowGlow}" BlurRadius="2"
+                                              ShadowDepth="1" Direction="-90" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Canvas ClipToBounds="True"
             Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=ShowFolder, Converter={StaticResource FolderVisibilityConverter}}"
             DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Theme}"
             Width="320px" Height="240px">
-        <renderers:BottomFolderRenderer Theme="{Binding Path=.}" />
         <!-- Cursor -->
-        <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row1}" >
+        <Path Data="{StaticResource BackButtonGeometry}" Style="{StaticResource BackButtonStyle}" />
+        <Path Data="{StaticResource BackArrowGeometry}" Style="{StaticResource BackArrowStyle}"
+              Canvas.Left="51" Canvas.Top="50" />
+        <renderers:BottomFolderRenderer Theme="{Binding Path=.}" />
+        <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row1}">
             <Path Style="{StaticResource CursorStyleSolid}" Data="{StaticResource CursorGeometry}" />
             <Path Style="{StaticResource CursorStyleGlow}" Data="{StaticResource CursorGeometry}" />
         </Canvas>

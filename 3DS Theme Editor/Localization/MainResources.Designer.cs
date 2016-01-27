@@ -115,7 +115,16 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pause BGM.
+        ///   Looks up a localized string similar to BGM.
+        /// </summary>
+        public static string Control_AudioPlayer_Label {
+            get {
+                return ResourceManager.GetString("Control_AudioPlayer_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause.
         /// </summary>
         public static string Control_AudioPlayer_Pause {
             get {
@@ -124,7 +133,7 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play BGM.
+        ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string Control_AudioPlayer_Play {
             get {
@@ -133,7 +142,7 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (Re)Load BGM.
+        ///   Looks up a localized string similar to Load.
         /// </summary>
         public static string Control_AudioPlayer_Reload {
             get {
@@ -142,7 +151,7 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stop BGM.
+        ///   Looks up a localized string similar to Stop.
         /// </summary>
         public static string Control_AudioPlayer_Stop {
             get {
@@ -192,6 +201,33 @@ namespace ThemeEditor.WPF.Localization {
         public static string Control_ColorPicker_TopPalette {
             get {
                 return ResourceManager.GetString("Control_ColorPicker_TopPalette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Animate.
+        /// </summary>
+        public static string Control_Preview_Animate {
+            get {
+                return ResourceManager.GetString("Control_Preview_Animate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string Control_Preview_Folder {
+            get {
+                return ResourceManager.GetString("Control_Preview_Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string Control_Preview_Label {
+            get {
+                return ResourceManager.GetString("Control_Preview_Label", resourceCulture);
             }
         }
         
@@ -431,15 +467,6 @@ namespace ThemeEditor.WPF.Localization {
         public static string Menu_Paste {
             get {
                 return ResourceManager.GetString("Menu_Paste", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Animate.
-        /// </summary>
-        public static string Preview_Animate {
-            get {
-                return ResourceManager.GetString("Preview_Animate", resourceCulture);
             }
         }
         

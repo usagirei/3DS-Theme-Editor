@@ -363,7 +363,9 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Canvas Width="320" Height="240">
+    <Canvas
+        DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Theme}"
+        Width="320" Height="240">
         <!-- Open_Close -->
         <Canvas Canvas.Top="240" Canvas.Left="0">
             <Path Data="{StaticResource OpenButtonGeometry}"

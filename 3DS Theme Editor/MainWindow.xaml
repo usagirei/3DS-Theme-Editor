@@ -160,7 +160,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="428" />
+            <ColumnDefinition Width="450" />
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
@@ -298,37 +298,6 @@
                 <RowDefinition Height="240" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-                <ToggleButton x:Name="chk_AnimatePreview"
-                              Content="{x:Static locale:MainResources.Preview_Animate}"
-                              Padding="5" Margin="3" />
-                <Separator Height="20" />
-            </StackPanel>
-            <StackPanel Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Content="{x:Static locale:MainResources.Control_AudioPlayer_Reload}" Padding="5" Margin="3"
-                        Command="{Binding Path=ReloadBGMCommand}" />
-                <Button Padding="5" Margin="3"
-                        Command="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=PlayCommand}">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Content" Value="{x:Static locale:MainResources.Control_AudioPlayer_Play}" />
-                            <Style.Triggers>
-                                <DataTrigger
-                                    Binding="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=IsPlaying, UpdateSourceTrigger=PropertyChanged}"
-                                    Value="True">
-                                    <Setter Property="Content"
-                                            Value="{x:Static locale:MainResources.Control_AudioPlayer_Pause}" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                <Button Content="{x:Static locale:MainResources.Control_AudioPlayer_Stop}" Padding="5" Margin="3"
-                        Command="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=StopCommand}" />
-                <Slider Value="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=Volume}"
-                        VerticalAlignment="Center" Width="100" Maximum="1" Minimum="0"
-                        SmallChange="0.05" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" />
-            </StackPanel>
             <Border Grid.Row="1" AllowDrop="True"
                     local:DragDropBehaviour.DragEnterCommand="{Binding Path=DragImageCommand}"
                     local:DragDropBehaviour.DragDropCommand="{Binding Path=DropTopImageCommand}">
@@ -348,8 +317,17 @@
                         <ColumnDefinition Width="320" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="3">
-                        <ToggleButton x:Name="chk_FolderView" Content="Folder" Padding="3" />
+                    <StackPanel Grid.Column="0" Margin="6,0">
+                        <TextBlock
+                            Foreground="White" HorizontalAlignment="Center"
+                            Text="{x:Static locale:MainResources.Control_Preview_Label}" />
+                        <ToggleButton x:Name="chk_AnimatePreview"
+                                      Content="{x:Static locale:MainResources.Control_Preview_Animate}"
+
+                                      Padding="3" Margin="0,3" />
+                        <ToggleButton x:Name="chk_FolderView"
+                                      Content="{x:Static locale:MainResources.Control_Preview_Folder}"
+                                      Padding="3" Margin="0,3" />
                     </StackPanel>
                     <Canvas Grid.Column="1" x:Name="pre_BottomScreen">
                         <controls:BottomScreenPreview HideCursor="{Binding ElementName=chk_FolderView, Path=IsChecked}"
@@ -361,6 +339,37 @@
                         <controls:BottomOverlaysPreview Theme="{Binding Path=ViewModel}"
                                                         IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}" />
                     </Canvas>
+                    <StackPanel Grid.Column="2" Margin="6,0">
+                        <TextBlock Text="BGM" Foreground="White" HorizontalAlignment="Center" />
+                        <Button Padding="3" Margin="0,3"
+                                Content="{x:Static locale:MainResources.Control_AudioPlayer_Reload}"
+                                Command="{Binding Path=ReloadBGMCommand}" />
+                        <Button Padding="3" Margin="0,3"
+                                Command="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=PlayCommand}">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Content"
+                                            Value="{x:Static locale:MainResources.Control_AudioPlayer_Play}" />
+                                    <Style.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=IsPlaying, UpdateSourceTrigger=PropertyChanged}"
+                                            Value="True">
+                                            <Setter Property="Content"
+                                                    Value="{x:Static locale:MainResources.Control_AudioPlayer_Pause}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Padding="3" Margin="0,3"
+                                Content="{x:Static locale:MainResources.Control_AudioPlayer_Stop}"
+                                Command="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=StopCommand}" />
+                        <Slider Padding="3" Margin="0,3"
+                                Value="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=Volume}"
+                                HorizontalAlignment="Center" Height="100" Maximum="1" Minimum="0"
+                                Orientation="Vertical"
+                                SmallChange="0.05" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" />
+                    </StackPanel>
                 </Grid>
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="0" BlurRadius="6" />

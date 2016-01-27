@@ -11,12 +11,12 @@ namespace ThemeEditor.Common.Themes.ColorSets
     public class FolderArrowSet
     {
         public ColorArgb8888 _;
-        public ColorArgb8888 __;
+        public ColorRgb888 __;
         public ColorRgb888 ___;
         public ColorRgb888 ArrowGlow;
         public ColorRgb888 ArrowPressed;
         public ColorRgb888 ArrowUnpressed;
-        public ColorRgb888 Glow;
+        public ColorArgb8888 Glow;
         public ColorRgb888 Highlight;
         public ColorRgb888 Main;
         public ColorRgb888 Shading;
@@ -29,8 +29,8 @@ namespace ThemeEditor.Common.Themes.ColorSets
                 Shading = ColorRgb888.Read(br),
                 Main = ColorRgb888.Read(br),
                 Highlight = ColorRgb888.Read(br),
-                Glow = ColorRgb888.Read(br),
-                __ = ColorArgb8888.Read(br),
+                Glow = ColorArgb8888.Read(br),
+                __ = ColorRgb888.Read(br),
                 ArrowGlow = ColorRgb888.Read(br),
                 ArrowUnpressed = ColorRgb888.Read(br),
                 ArrowPressed = ColorRgb888.Read(br),

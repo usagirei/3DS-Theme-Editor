@@ -65,19 +65,19 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         private new BottomBackgroundInnerSet Model => (BottomBackgroundInnerSet) base.Model;
 
         [Order(3)]
-        [DisplayName("Theme_Sets_BottomInner_Shadow", typeof(ThemeResources))]
-        [Description("Theme_Sets_BottomInner_Shadow_Desc", typeof(ThemeResources))]
-        public Color Shadow
+        [DisplayName("Theme_Sets_BottomInner_Glow", typeof(ThemeResources))]
+        [Description("Theme_Sets_BottomInner_Glow_Desc", typeof(ThemeResources))]
+        public Color Glow
         {
-            get { return Model.Shadow.ToMediaColor(); }
+            get { return Model.Glow.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Shadow;
+                var oldValue = Model.Glow;
                 var newValue = value.ToColorRgb8888();
                 if (oldValue == newValue)
                     return;
-                Model.Shadow = newValue;
-                RaiseViewModelChanged(nameof(Shadow), oldValue, value);
+                Model.Glow = newValue;
+                RaiseViewModelChanged(nameof(Glow), oldValue, value);
             }
         }
 

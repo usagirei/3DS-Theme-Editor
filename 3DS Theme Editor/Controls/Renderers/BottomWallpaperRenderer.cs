@@ -293,7 +293,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 innerMain = Theme.Colors.BottomBackgroundInner.Main;
                 innerEdge = Theme.Colors.BottomBackgroundInner.Border;
                 innerGlow = Theme.Colors.BottomBackgroundInner.Highlight;
-                innerShadow = Theme.Colors.BottomBackgroundInner.Shadow;
+                innerShadow = Theme.Colors.BottomBackgroundInner.Glow;
             }
 
             if (outer)

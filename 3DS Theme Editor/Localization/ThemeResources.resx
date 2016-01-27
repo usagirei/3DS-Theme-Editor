@@ -559,11 +559,11 @@
   <data name="Theme_Sets_BottomInner_Main_Desc" xml:space="preserve">
     <value>Background Color</value>
   </data>
-  <data name="Theme_Sets_BottomInner_Shadow" xml:space="preserve">
-    <value>Shadow</value>
+  <data name="Theme_Sets_BottomInner_Glow" xml:space="preserve">
+    <value>Glow</value>
   </data>
-  <data name="Theme_Sets_BottomInner_Shadow_Desc" xml:space="preserve">
-    <value>Shadow Color</value>
+  <data name="Theme_Sets_BottomInner_Glow_Desc" xml:space="preserve">
+    <value>Glow Color</value>
   </data>
   <data name="Theme_Sets_BottomOuter_Glow" xml:space="preserve">
     <value>Glow</value>

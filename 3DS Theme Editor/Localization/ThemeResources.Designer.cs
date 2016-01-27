@@ -1411,6 +1411,24 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Glow.
+        /// </summary>
+        public static string Theme_Sets_BottomInner_Glow {
+            get {
+                return ResourceManager.GetString("Theme_Sets_BottomInner_Glow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Glow Color.
+        /// </summary>
+        public static string Theme_Sets_BottomInner_Glow_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Sets_BottomInner_Glow_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Highlight.
         /// </summary>
         public static string Theme_Sets_BottomInner_Highlight {
@@ -1443,24 +1461,6 @@ namespace ThemeEditor.WPF.Localization {
         public static string Theme_Sets_BottomInner_Main_Desc {
             get {
                 return ResourceManager.GetString("Theme_Sets_BottomInner_Main_Desc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Shadow.
-        /// </summary>
-        public static string Theme_Sets_BottomInner_Shadow {
-            get {
-                return ResourceManager.GetString("Theme_Sets_BottomInner_Shadow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Shadow Color.
-        /// </summary>
-        public static string Theme_Sets_BottomInner_Shadow_Desc {
-            get {
-                return ResourceManager.GetString("Theme_Sets_BottomInner_Shadow_Desc", resourceCulture);
             }
         }
         
