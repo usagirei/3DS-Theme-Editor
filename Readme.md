@@ -1,5 +1,7 @@
 ### Usagi 3DS Theme Editor
 
+Support/Discussion Topic at [GBATemp](https://gbatemp.net/threads/412233/)
+
 WPF Based, Theme Editor for Nintendo 3DS
 - Requires .NET Framework 4.5
 
