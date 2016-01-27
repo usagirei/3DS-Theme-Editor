@@ -95,16 +95,16 @@ namespace ThemeEditor.WPF
                 {
                     TargetImage.Top, new List<ImageSize>
                     {
-                        new ImageSize(64, 64, RawTexture.DataFormat.A8),
-                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
                         new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565),
+                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
+                        new ImageSize(64, 64, RawTexture.DataFormat.A8),
                     }
                 },
                 {
                     TargetImage.Bottom, new List<ImageSize>
                     {
-                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
                         new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565),
+                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
                     }
                 },
                 {
