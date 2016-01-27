@@ -77,9 +77,26 @@ namespace ThemeEditor.WPF
                 Close();
         }
 
+        private string _updateMessage;
+
+        public string UpdateMessage
+        {
+            get { return _updateMessage; }
+            set
+            {
+                if (value == _updateMessage)
+                    return;
+                _updateMessage = value;
+                OnPropertyChanged(nameof(UpdateMessage));
+            }
+        }
+
         private async void CheckLatestVersion()
         {
             OnlineVersion = await Task<Version>.Factory.StartNew(GetLatestVersion);
+            UpdateMessage = OnlineVersion > AppVersion
+                                ? "Update Available"
+                                : "You are Updated";
         }
 
         private Version GetLatestVersion()

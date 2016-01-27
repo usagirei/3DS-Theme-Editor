@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wpf="clr-namespace:ThemeEditor.WPF"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
 
         Loaded="AboutWindow_OnLoaded"
 
@@ -28,15 +29,16 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="22" />
+            <RowDefinition Height="22" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="22" />
+            <RowDefinition Height="22" />
+            <RowDefinition Height="22" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="7"
+        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="{x:Static system:Int32.MaxValue}"
                Source="{wpf:Icon Source='/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico', Size=256}"
                Height="200" />
 
@@ -66,7 +68,10 @@
             </Hyperlink>
         </TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="5"
-                   Text="{Binding Path=AppVersion, StringFormat='Latest Release: v{0}', TargetNullValue=''}"
+                   Text="{Binding Path=OnlineVersion, StringFormat='Latest Release: v{0}', TargetNullValue='Checking for Updates...'}"
+                   FontSize="16" />
+        <TextBlock Grid.Column="1" Grid.Row="6"
+                   Text="{Binding Path=UpdateMessage}"
                    FontSize="16" />
     </Grid>
 </Window>
