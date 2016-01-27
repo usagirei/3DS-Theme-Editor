@@ -73,7 +73,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             set
             {
                 var oldValue = Model.Glow;
-                var newValue = value.ToColorRgb8888();
+                var newValue = value.ToColorArgb8888();
                 if (oldValue == newValue)
                     return;
                 Model.Glow = newValue;

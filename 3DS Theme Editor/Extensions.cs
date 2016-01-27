@@ -87,7 +87,7 @@ namespace ThemeEditor.WPF
             return new ColorRgb888(c.R, c.G, c.B);
         }
 
-        public static ColorArgb8888 ToColorRgb8888(this Color c)
+        public static ColorArgb8888 ToColorArgb8888(this Color c)
         {
             return new ColorArgb8888(c.A, c.R, c.G, c.B);
         }
