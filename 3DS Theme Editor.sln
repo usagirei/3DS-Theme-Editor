@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DS Theme Editor", "3DS Theme Editor\3DS Theme Editor.csproj", "{4C33A76C-4B19-44EE-A90F-9F81FFF429AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeEditor.WPF", "ThemeEditor.WPF\ThemeEditor.WPF.csproj", "{4C33A76C-4B19-44EE-A90F-9F81FFF429AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeEditor.Common", "ThemeEditor.Common\ThemeEditor.Common.csproj", "{1BE625E8-F696-4DCB-858A-A6F66EA3BACE}"
 EndProject
