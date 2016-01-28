@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -333,21 +334,46 @@ namespace ThemeEditor.WPF
 
         private static void ColorPickerCopy_Execute(ColorPicker colorPicker)
         {
-            Clipboard.SetText(colorPicker.SelectedColorText);
+            try
+            {
+                if (!colorPicker.SelectedColor.HasValue)
+                    return;
+                var c = colorPicker.SelectedColor.Value;
+                var str = c.ToString();
+                Clipboard.SetText(str);
+            }
+            catch (COMException)
+            {
+                // Ignore
+            }
         }
 
         private static bool ColorPickerPaste_CanExecute(ColorPicker obj)
         {
-            var strColor = Clipboard.GetText();
-            return CanParseColor(strColor);
+            try
+            {
+                var strColor = Clipboard.GetText();
+                return CanParseColor(strColor);
+            }
+            catch (COMException)
+            {
+                return false;
+            }
         }
 
         private static void ColorPickerPaste_Execute(ColorPicker colorPicker)
         {
-            var strColor = Clipboard.GetText();
-            Color parsedColor;
-            if (TryParseColor(strColor, out parsedColor))
-                colorPicker.SelectedColor = parsedColor;
+            try
+            {
+                var strColor = Clipboard.GetText();
+                Color parsedColor;
+                if (TryParseColor(strColor, out parsedColor))
+                    colorPicker.SelectedColor = parsedColor;
+            }
+            catch (COMException)
+            {
+                // Ignore
+            }
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
