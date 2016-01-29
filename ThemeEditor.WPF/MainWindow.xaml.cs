@@ -2,13 +2,18 @@
 // 3DS Theme Editor - MainWindow.xaml.cs
 // --------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
+using Microsoft.Win32;
 
 using ThemeEditor.Common.Graphics;
+using ThemeEditor.WPF.Localization;
 using ThemeEditor.WPF.Themes;
 
 namespace ThemeEditor.WPF
@@ -26,11 +31,6 @@ namespace ThemeEditor.WPF
                 typeof(MainWindow),
                 new PropertyMetadata(default(ThemeViewModel), OnThemePropertyChangedCallback));
 
-        private static void OnThemePropertyChangedCallback(DependencyObject elem, DependencyPropertyChangedEventArgs args)
-        {
-            ((ThemeViewModel)args.OldValue)?.Dispose();
-        }
-
         private string _busyText;
 
         private bool _isBusy;
@@ -46,6 +46,8 @@ namespace ThemeEditor.WPF
                 OnPropertyChanged(nameof(BusyText));
             }
         }
+
+        public ICommand ExportPreviewCommand { get; }
 
         public bool IsBusy
         {
@@ -81,6 +83,8 @@ namespace ThemeEditor.WPF
                         Owner = this,
                         WindowStartupLocation = WindowStartupLocation.CenterOwner
                     }.ShowDialog());
+
+            ExportPreviewCommand = new RelayCommand<PreviewKind>(ExportPreview_Execute);
 
             SetupThemeCommands();
             SetupImageCommands();
@@ -140,6 +144,11 @@ namespace ThemeEditor.WPF
             };
         }
 
+        private static void OnThemePropertyChangedCallback(DependencyObject elem, DependencyPropertyChangedEventArgs args)
+        {
+            ((ThemeViewModel) args.OldValue)?.Dispose();
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -150,12 +159,114 @@ namespace ThemeEditor.WPF
             return ViewModel != null;
         }
 
+        private void ExportPreview_Execute(PreviewKind previewKind)
+        {
+            var svfl = new SaveFileDialog
+            {
+                Filter = "PNG Image|*.png",
+            };
+            var dlg = svfl.ShowDialog();
+            if (dlg.HasValue && !dlg.Value)
+                return;
+            var outPath = svfl.FileName;
+            var rendered = RenderPreview(previewKind);
+            if (rendered == null)
+                return;
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(rendered));
+            using (var fs = File.Open(outPath, FileMode.Create))
+                encoder.Save(fs);
+
+            MessageBox.Show(MainResources.Error_PreviewSaved,
+                WINDOW_TITLE,
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e) {}
 
         private void PreExecute_SetBusy()
         {
             IsBusy = true;
             BusyText = null;
+        }
+
+        private BitmapSource RenderPreview(PreviewKind kind)
+        {
+            bool wasPreviewing = chk_AnimatePreview.IsChecked.HasValue && chk_AnimatePreview.IsChecked.Value;
+
+            chk_AnimatePreview.IsChecked = false;
+
+            BitmapSource bmp;
+
+            switch (kind)
+            {
+                case PreviewKind.Top:
+                {
+                    bmp = RenderVisual(pre_TopScreen, 96, 96);
+                    break;
+                }
+                case PreviewKind.Bottom:
+                {
+                    bmp = RenderVisual(pre_BottomScreen, 96, 96);
+                    break;
+                }
+                case PreviewKind.Both:
+                {
+                    var topBmp = RenderVisual(pre_TopScreen, 96, 96);
+                    var botBmp = RenderVisual(pre_BottomScreen, 96, 96);
+
+                    DrawingVisual drawingVisual = new DrawingVisual();
+                    using (DrawingContext drawingContext = drawingVisual.RenderOpen())
+                    {
+                        var noiseBrush = FindResource("NoiseBackground") as Brush;
+                        drawingContext.DrawRectangle(noiseBrush, null, new Rect(0, 0, 412, 480));
+                        drawingContext.DrawImage(topBmp, new Rect(0, 0, 412, 240));
+                        const int X_OFF = (412 - 320) / 2;
+                        drawingContext.DrawImage(botBmp, new Rect(X_OFF, 240, 320, 240));
+                    }
+
+                    var rtbmp = new RenderTargetBitmap(412, 480, 96, 96, PixelFormats.Pbgra32);
+                    rtbmp.Render(drawingVisual);
+                    bmp = rtbmp;
+
+                    break;
+                }
+                default:
+                    return null;
+            }
+
+            chk_AnimatePreview.IsChecked = wasPreviewing;
+            bmp.Freeze();
+            return bmp;
+        }
+
+        private BitmapSource RenderVisual(Visual target, double dpiX, double dpiY)
+        {
+            if (target == null)
+            {
+                return null;
+            }
+
+            var bounds = VisualTreeHelper.GetDescendantBounds(target);
+
+            var rtb
+                = new RenderTargetBitmap((int) (bounds.Width * dpiX / 96.0),
+                    (int) (bounds.Height * dpiY / 96.0),
+                    dpiX,
+                    dpiY,
+                    PixelFormats.Pbgra32);
+
+            var dv = new DrawingVisual();
+            using (var dc = dv.RenderOpen())
+            {
+                var vb = new VisualBrush(target);
+                dc.DrawRectangle(vb, null, new Rect(new Point(), bounds.Size));
+            }
+
+            rtb.Render(dv);
+
+            return rtb;
         }
 
         partial void SetupImageCommands();

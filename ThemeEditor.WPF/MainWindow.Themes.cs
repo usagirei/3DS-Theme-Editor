@@ -238,62 +238,6 @@ namespace ThemeEditor.WPF
             IsBusy = false;
         }
 
-        private BitmapSource RenderPreview()
-        {
-            bool wasPreviewing = chk_AnimatePreview.IsChecked.HasValue && chk_AnimatePreview.IsChecked.Value;
-
-            chk_AnimatePreview.IsChecked = false;
-
-            var topBmp = RenderVisual(pre_TopScreen, 96, 96);
-
-            var botBmp = RenderVisual(pre_BottomScreen, 96, 96);
-
-            DrawingVisual drawingVisual = new DrawingVisual();
-            using (DrawingContext drawingContext = drawingVisual.RenderOpen())
-            {
-                var noiseBrush = FindResource("NoiseBackground") as Brush;
-                drawingContext.DrawRectangle(noiseBrush, null, new Rect(0, 0, 412, 480));
-                drawingContext.DrawImage(topBmp, new Rect(0, 0, 412, 240));
-                const int X_OFF = (412 - 320) / 2;
-                drawingContext.DrawImage(botBmp, new Rect(X_OFF, 240, 320, 240));
-            }
-
-            RenderTargetBitmap bmp = new RenderTargetBitmap(412, 480, 96, 96, PixelFormats.Pbgra32);
-            bmp.Render(drawingVisual);
-
-            chk_AnimatePreview.IsChecked = wasPreviewing;
-            bmp.Freeze();
-            return bmp;
-        }
-
-        private BitmapSource RenderVisual(Visual target, double dpiX, double dpiY)
-        {
-            if (target == null)
-            {
-                return null;
-            }
-
-            var bounds = VisualTreeHelper.GetDescendantBounds(target);
-
-            var rtb
-                = new RenderTargetBitmap((int) (bounds.Width * dpiX / 96.0),
-                    (int) (bounds.Height * dpiY / 96.0),
-                    dpiX,
-                    dpiY,
-                    PixelFormats.Pbgra32);
-
-            var dv = new DrawingVisual();
-            using (var dc = dv.RenderOpen())
-            {
-                var vb = new VisualBrush(target);
-                dc.DrawRectangle(vb, null, new Rect(new Point(), bounds.Size));
-            }
-
-            rtb.Render(dv);
-
-            return rtb;
-        }
-
         private Task<SaveThemeResults> SaveTheme_Execute(string path)
         {
             var viewModel = ViewModel;
@@ -355,7 +299,7 @@ namespace ThemeEditor.WPF
                 ThemePath = result.Path;
                 var themeDir = Path.GetDirectoryName(result.Path);
 
-                var bmp = RenderPreview();
+                var bmp = RenderPreview(PreviewKind.Both);
 
                 PngBitmapEncoder encoder = new PngBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(bmp));

@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -69,11 +70,16 @@
     <Compile Include="Controls\BottomFolderPreview.xaml.cs">
       <DependentUpon>BottomFolderPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Eyedropper.xaml.cs">
+      <DependentUpon>Eyedropper.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Renderers\BottomFolderRenderer.cs" />
     <Compile Include="Controls\BottomScreenOverlays.xaml.cs">
       <DependentUpon>BottomScreenOverlays.xaml</DependentUpon>
     </Compile>
     <Compile Include="IconExtension.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="PreviewKind.cs" />
     <Compile Include="Templating\BooleanConverter.cs" />
     <Compile Include="Templating\ColorPickerSharedData.cs" />
     <Compile Include="DropBehaviour.cs" />
@@ -176,6 +182,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Eyedropper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,6 +276,12 @@
   <ItemGroup>
     <Resource Include="Resources\empty_body_lz.bin" />
     <None Include="Resources\Icons\body_lz_icn.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Picker.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PICKER.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

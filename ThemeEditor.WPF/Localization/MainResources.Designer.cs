@@ -300,6 +300,15 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview Saved.
+        /// </summary>
+        public static string Error_PreviewSaved {
+            get {
+                return ResourceManager.GetString("Error_PreviewSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Theme Saved Successfully.
         /// </summary>
         public static string Error_ThemeSaved {
@@ -359,6 +368,42 @@ namespace ThemeEditor.WPF.Localization {
         public static string Menu_File_SaveAs {
             get {
                 return ResourceManager.GetString("Menu_File_SaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Preview.
+        /// </summary>
+        public static string Menu_File_SavePreview {
+            get {
+                return ResourceManager.GetString("Menu_File_SavePreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both.
+        /// </summary>
+        public static string Menu_File_SavePreview_Both {
+            get {
+                return ResourceManager.GetString("Menu_File_SavePreview_Both", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom.
+        /// </summary>
+        public static string Menu_File_SavePreview_Bottom {
+            get {
+                return ResourceManager.GetString("Menu_File_SavePreview_Bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top.
+        /// </summary>
+        public static string Menu_File_SavePreview_Top {
+            get {
+                return ResourceManager.GetString("Menu_File_SavePreview_Top", resourceCulture);
             }
         }
         

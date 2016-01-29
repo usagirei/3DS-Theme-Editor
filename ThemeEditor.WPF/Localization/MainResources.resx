@@ -263,4 +263,19 @@
   <data name="Control_AudioPlayer_Label" xml:space="preserve">
     <value>BGM</value>
   </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>Generate Preview</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="Error_PreviewSaved" xml:space="preserve">
+    <value>Preview Saved</value>
+  </data>
 </root>

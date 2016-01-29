@@ -176,12 +176,24 @@
                     <MenuItem Header="{x:Static locale:MainResources.Menu_File_Open}"
                               Command="{Binding Path=LoadThemeCommandWrapper.Command}"
                               InputGestureText="{Binding Path=LoadThemeCommandWrapper.GestureText}" />
+                    <Separator />
                     <MenuItem Header="{x:Static locale:MainResources.Menu_File_Save}"
                               Command="{Binding Path=SaveThemeCommandWrapper.Command}"
                               InputGestureText="{Binding Path=SaveThemeCommandWrapper.GestureText}" />
                     <MenuItem Header="{x:Static locale:MainResources.Menu_File_SaveAs}"
                               Command="{Binding Path=SaveAsThemeCommandWrapper.Command}"
                               InputGestureText="{Binding Path=SaveAsThemeCommandWrapper.GestureText}" />
+                    <MenuItem Header="{x:Static locale:MainResources.Menu_File_SavePreview}">
+                        <MenuItem Header="{x:Static locale:MainResources.Menu_File_SavePreview_Top}"
+                                  Command="{Binding Path=ExportPreviewCommand}"
+                                  CommandParameter="{x:Static local:PreviewKind.Top}" />
+                        <MenuItem Header="{x:Static locale:MainResources.Menu_File_SavePreview_Bottom}"
+                                  Command="{Binding Path=ExportPreviewCommand}"
+                                  CommandParameter="{x:Static local:PreviewKind.Bottom}" />
+                        <MenuItem Header="{x:Static locale:MainResources.Menu_File_SavePreview_Both}"
+                                  Command="{Binding Path=ExportPreviewCommand}"
+                                  CommandParameter="{x:Static local:PreviewKind.Both}" />
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="{x:Static locale:MainResources.Menu_Image}">
                     <MenuItem.Resources>
@@ -219,9 +231,9 @@
                         <MenuItem Style="{StaticResource ExportStyle}"
                                   CommandParameter="{x:Static local:TargetImage.Top}" />
                         <Separator />
-                        <MenuItem Header="1024x256 (1008x240)" IsEnabled="False"  />
-                        <MenuItem Header="512x256 (412x240)" IsEnabled="False"  />
-                        <MenuItem Header="64x64" IsEnabled="False"  />
+                        <MenuItem Header="1024x256 (1008x240)" IsEnabled="False" />
+                        <MenuItem Header="512x256 (412x240)" IsEnabled="False" />
+                        <MenuItem Header="64x64" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_TopStatic}">
                         <MenuItem Style="{StaticResource ImportStyle}"
@@ -231,7 +243,7 @@
                         <MenuItem Style="{StaticResource ExportStyle}"
                                   CommandParameter="{x:Static local:TargetImage.TopAlt}" />
                         <Separator />
-                        <MenuItem Header="64x64" IsEnabled="False"  />
+                        <MenuItem Header="64x64" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_Bottom}">
                         <MenuItem Style="{StaticResource ImportStyle}"
@@ -241,9 +253,9 @@
                         <MenuItem Style="{StaticResource ExportStyle}"
                                   CommandParameter="{x:Static local:TargetImage.Bottom}" />
                         <Separator />
-                        <MenuItem Header="1024x256 (1008x240)" IsEnabled="False"  />
-                        <MenuItem Header="1024x256 (960x240)" IsEnabled="False"  />
-                        <MenuItem Header="512x256 (320x240)" IsEnabled="False"  />
+                        <MenuItem Header="1024x256 (1008x240)" IsEnabled="False" />
+                        <MenuItem Header="1024x256 (960x240)" IsEnabled="False" />
+                        <MenuItem Header="512x256 (320x240)" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FileLarge}">
                         <MenuItem Style="{StaticResource ImportStyle}"
@@ -253,7 +265,7 @@
                         <MenuItem Style="{StaticResource ExportStyle}"
                                   CommandParameter="{x:Static local:TargetImage.FileLarge}" />
                         <Separator />
-                        <MenuItem Header="64x128 (36x72)" IsEnabled="False"  />
+                        <MenuItem Header="64x128 (36x72)" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FileSmall}">
                         <MenuItem Style="{StaticResource ImportStyle}"
@@ -263,7 +275,7 @@
                         <MenuItem Style="{StaticResource ExportStyle}"
                                   CommandParameter="{x:Static local:TargetImage.FileSmall}" />
                         <Separator />
-                        <MenuItem Header="32x64 (25x50)" IsEnabled="False"  />
+                        <MenuItem Header="32x64 (25x50)" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FolderOpen}">
                         <MenuItem Style="{StaticResource ImportStyle}"
@@ -273,7 +285,7 @@
                         <MenuItem Style="{StaticResource ExportStyle}"
                                   CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
                         <Separator />
-                        <MenuItem Header="64x128 (82x64)" IsEnabled="False"  />
+                        <MenuItem Header="64x128 (82x64)" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FolderClosed}">
                         <MenuItem Style="{StaticResource ImportStyle}"
@@ -283,7 +295,7 @@
                         <MenuItem Style="{StaticResource ExportStyle}"
                                   CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
                         <Separator />
-                        <MenuItem Header="64x128 (74x64)" IsEnabled="False"  />
+                        <MenuItem Header="64x128 (74x64)" IsEnabled="False" />
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="About"

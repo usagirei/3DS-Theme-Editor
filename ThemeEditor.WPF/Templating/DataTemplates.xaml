@@ -5,7 +5,8 @@
                     xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
                     xmlns:locale="clr-namespace:ThemeEditor.WPF.Localization"
                     xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System"
-                    xmlns:themes="clr-namespace:ThemeEditor.WPF.Themes">
+                    xmlns:themes="clr-namespace:ThemeEditor.WPF.Themes"
+                    xmlns:controls="clr-namespace:ThemeEditor.WPF.Controls">
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <!-- Colors -->
     <DataTemplate x:Key="ColorDataTemplate"
@@ -14,51 +15,57 @@
             <TextBlock Text="{Binding Path=Name, StringFormat='\{0\}:'}"
                        Padding="3" FontSize="10" Width="125"
                        TextTrimming="CharacterEllipsis" />
-            <xctk:ColorPicker 
-                AdvancedButtonHeader="{x:Static locale:MainResources.Control_ColorPicker_Advanced}"
-                StandardButtonHeader="{x:Static locale:MainResources.Control_ColorPicker_Standard}"
-                ShowRecentColors="True"
-                ColorMode="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=ColorMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                RecentColors="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=RecentColors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                RecentColorsHeader="{x:Static locale:MainResources.Control_ColorPicker_Recent}"
-                Width="125" SelectedColor="{Binding Path=Value}">
-                <xctk:ColorPicker.InputBindings>
-                    <KeyBinding Modifiers="Control" Key="C"
-                                Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=CopyCommand}"
-                                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=xctk:ColorPicker}}" />
-                    <KeyBinding Modifiers="Control" Key="V"
-                                Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=PasteCommand}"
-                                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=xctk:ColorPicker}}" />
-                </xctk:ColorPicker.InputBindings>
-                <xctk:ColorPicker.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="{x:Static locale:MainResources.Menu_Copy}"
-                                  Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=CopyCommand}"
-                                  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget}" />
-                        <MenuItem Header="{x:Static locale:MainResources.Menu_Paste}"
-                                  Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=PasteCommand}"
-                                  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget}" />
-                    </ContextMenu>
-                </xctk:ColorPicker.ContextMenu>
-                <xctk:ColorPicker.ToolTip>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="{Binding Path=Name}" />
-                        <TextBlock Grid.Row="1" FontStyle="Italic"
-                                   Text="{Binding Path=Description}" />
-                        <TextBlock Grid.Row="2" FontWeight="Bold" FontStyle="Italic"
-                                   Text="{Binding Path=Value}">
-                            <TextBlock.Foreground>
-                                <SolidColorBrush Color="{Binding Path=Value}" />
-                            </TextBlock.Foreground>
-                        </TextBlock>
-                    </Grid>
-                </xctk:ColorPicker.ToolTip>
-            </xctk:ColorPicker>
+            <StackPanel Orientation="Horizontal">
+                <xctk:ColorPicker x:Name="PART_PICKER"
+                                  AdvancedButtonHeader="{x:Static locale:MainResources.Control_ColorPicker_Advanced}"
+                                  StandardButtonHeader="{x:Static locale:MainResources.Control_ColorPicker_Standard}"
+                                  ShowRecentColors="True"
+                                  ColorMode="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=ColorMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  RecentColors="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=RecentColors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  RecentColorsHeader="{x:Static locale:MainResources.Control_ColorPicker_Recent}"
+                                  Width="101" SelectedColor="{Binding Path=Value}">
+                    <xctk:ColorPicker.InputBindings>
+                        <KeyBinding Modifiers="Control" Key="C"
+                                    Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=CopyCommand}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=xctk:ColorPicker}}" />
+                        <KeyBinding Modifiers="Control" Key="V"
+                                    Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=PasteCommand}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=xctk:ColorPicker}}" />
+                    </xctk:ColorPicker.InputBindings>
+                    <xctk:ColorPicker.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{x:Static locale:MainResources.Menu_Copy}"
+                                      Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=CopyCommand}"
+                                      CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget}" />
+                            <MenuItem Header="{x:Static locale:MainResources.Menu_Paste}"
+                                      Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=PasteCommand}"
+                                      CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget}" />
+                        </ContextMenu>
+                    </xctk:ColorPicker.ContextMenu>
+                    <xctk:ColorPicker.ToolTip>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" FontWeight="Bold" Text="{Binding Path=Name}" />
+                            <TextBlock Grid.Row="1" FontStyle="Italic"
+                                       Text="{Binding Path=Description}" />
+                            <TextBlock Grid.Row="2" FontWeight="Bold" FontStyle="Italic"
+                                       Text="{Binding Path=Value}">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{Binding Path=Value}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </Grid>
+                    </xctk:ColorPicker.ToolTip>
+                </xctk:ColorPicker>
+                <controls:Eyedropper x:Name="PART_EYEDROPPER"
+                                     Color="{Binding ElementName=PART_PICKER, Path=SelectedColor, Mode=OneWayToSource}"
+                                     Width="24" Height="24"
+                                     Margin="-1,0,0,0" />
+            </StackPanel>
         </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="FloatDataTemplate"
