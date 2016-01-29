@@ -232,7 +232,7 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable.
+        ///   Looks up a localized string similar to Disabled.
         /// </summary>
         public static string Control_Toggle_False {
             get {
@@ -241,7 +241,7 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable.
+        ///   Looks up a localized string similar to Enabled.
         /// </summary>
         public static string Control_Toggle_True {
             get {
@@ -314,6 +314,25 @@ namespace ThemeEditor.WPF.Localization {
         public static string Error_ThemeSaved {
             get {
                 return ResourceManager.GetString("Error_ThemeSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An Updated Version is Available:
+        ///Check the About Window for more Information.
+        /// </summary>
+        public static string Error_UpdateAvailable {
+            get {
+                return ResourceManager.GetString("Error_UpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string Menu_About {
+            get {
+                return ResourceManager.GetString("Menu_About", resourceCulture);
             }
         }
         

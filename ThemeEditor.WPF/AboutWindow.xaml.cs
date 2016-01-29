@@ -6,7 +6,6 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,7 +20,7 @@ namespace ThemeEditor.WPF
     /// </summary>
     public partial class AboutWindow : INotifyPropertyChanged
     {
-        private Version _onlineVersion;
+        private string _updateMessage;
         public string AppCompany => GetAttribute<AssemblyCompanyAttribute>(Assembly.GetEntryAssembly()).Company;
         public string AppCopyright => GetAttribute<AssemblyCopyrightAttribute>(Assembly.GetEntryAssembly()).Copyright;
         public string AppDescription => GetAttribute<AssemblyDescriptionAttribute>(Assembly.GetEntryAssembly()).Description;
@@ -32,6 +31,8 @@ namespace ThemeEditor.WPF
         public string AppName => Assembly.GetEntryAssembly().GetName().Name;
         public string AppTitle => GetAttribute<AssemblyTitleAttribute>(Assembly.GetEntryAssembly()).Title;
         public Version AppVersion => Assembly.GetEntryAssembly().GetName().Version;
+
+        private Version _onlineVersion;
 
         public Version OnlineVersion
         {
@@ -45,7 +46,17 @@ namespace ThemeEditor.WPF
             }
         }
 
-        public string UpdateUrl => @"https://github.com/usagirei/3DS-Theme-Editor/releases/latest";
+        public string UpdateMessage
+        {
+            get { return _updateMessage; }
+            set
+            {
+                if (value == _updateMessage)
+                    return;
+                _updateMessage = value;
+                OnPropertyChanged(nameof(UpdateMessage));
+            }
+        }
 
         public AboutWindow()
         {
@@ -77,47 +88,13 @@ namespace ThemeEditor.WPF
                 Close();
         }
 
-        private string _updateMessage;
-
-        public string UpdateMessage
-        {
-            get { return _updateMessage; }
-            set
-            {
-                if (value == _updateMessage)
-                    return;
-                _updateMessage = value;
-                OnPropertyChanged(nameof(UpdateMessage));
-            }
-        }
-
         private async void CheckLatestVersion()
         {
-            OnlineVersion = await Task<Version>.Factory.StartNew(GetLatestVersion);
-            UpdateMessage = OnlineVersion > AppVersion
+            bool hasUpdate = await Update.CheckUpdateAvailable();
+            OnlineVersion = Update.OnlineVersion;
+            UpdateMessage = hasUpdate
                                 ? "Update Available"
                                 : "You are Updated";
-        }
-
-        private Version GetLatestVersion()
-        {
-            var req = WebRequest.CreateHttp(UpdateUrl);
-            req.Method = "HEAD";
-            req.AllowAutoRedirect = true;
-
-
-            var myResp = (HttpWebResponse) req.GetResponse();
-            if (myResp.StatusCode == HttpStatusCode.OK)
-            {
-                var latestReleaseUrl = myResp.ResponseUri.ToString().TrimEnd('/');
-                var lastSlash = latestReleaseUrl.LastIndexOf('/');
-                var versionStr = latestReleaseUrl.Substring(lastSlash + 1);
-                versionStr = versionStr.StartsWith("v") ? versionStr.Substring(1) : versionStr;
-                Version version;
-                if (Version.TryParse(versionStr, out version))
-                    return version;
-            }
-            return null;
         }
 
         private void HandleLinkClick(object sender, RequestNavigateEventArgs e)

@@ -278,4 +278,11 @@
   <data name="Error_PreviewSaved" xml:space="preserve">
     <value>Preview Saved</value>
   </data>
+  <data name="Error_UpdateAvailable" xml:space="preserve">
+    <value>An Updated Version is Available:
+Check the About Window for more Information</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>About</value>
+  </data>
 </root>

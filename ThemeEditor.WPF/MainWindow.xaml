@@ -299,7 +299,7 @@
                         <MenuItem Header="64x128 (74x64)" IsEnabled="False" />
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="About"
+                <MenuItem Header="{x:Static locale:MainResources.Menu_About}"
                           Command="{Binding Path=AboutCommand}" />
             </Menu>
             <TabControl Grid.Row="1">

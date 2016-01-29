@@ -23,12 +23,16 @@ namespace ThemeEditor.WPF.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(XmlSettingsProvider))]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool CheckUpdatesStartup {
+        public bool CheckUpdatesOnStartup {
             get {
-                return ((bool)(this["CheckUpdatesStartup"]));
+                return ((bool)(this["CheckUpdatesOnStartup"]));
+            }
+            set {
+                this["CheckUpdatesOnStartup"] = value;
             }
         }
     }

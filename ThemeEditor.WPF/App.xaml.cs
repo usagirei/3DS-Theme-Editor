@@ -8,6 +8,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
 
+using ThemeEditor.WPF.Properties;
+
 namespace ThemeEditor.WPF
 {
     /// <summary>
@@ -50,6 +52,11 @@ namespace ThemeEditor.WPF
             else
                 mainWindow.NewThemeCommandWrapper.Command.Execute(null);
 #endif
+        }
+
+        private void App_OnExit(object sender, ExitEventArgs e)
+        {
+            Settings.Default.Save();
         }
     }
 }

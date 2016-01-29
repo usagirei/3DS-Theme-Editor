@@ -36,6 +36,7 @@
             <RowDefinition Height="22" />
             <RowDefinition Height="22" />
             <RowDefinition Height="22" />
+            <RowDefinition Height="22" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -55,8 +56,13 @@
         <TextBlock Grid.Row="2" Grid.Column="1"
                    Text="{Binding Path=AppCopyright, FallbackValue='Copyright © John Doe 20xx'}"
                    FontSize="14" />
-        <Separator Grid.Column="1" Grid.Row="3" />
-        <TextBlock Grid.Row="4" Grid.Column="1" FontSize="16">
+        <Separator Grid.Row="3" Grid.Column="1" />
+        <CheckBox Grid.Row="4" Grid.Column="1"
+        IsChecked="{markup:Setting Path=CheckUpdatesOnStartup}"
+                  VerticalAlignment="Center"
+                  Margin="3"
+                  Content="Check for Updates on Startup" />
+        <TextBlock Grid.Row="5" Grid.Column="1" FontSize="16">
             <Hyperlink NavigateUri="{Binding Path=UpdateUrl}" RequestNavigate="HandleLinkClick"
                        TextDecorations="">
                 <Hyperlink.Style>
@@ -68,10 +74,10 @@
                 Updates @GitHub
             </Hyperlink>
         </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="5"
+        <TextBlock Grid.Row="6" Grid.Column="1"
                    Text="{Binding Path=OnlineVersion, StringFormat='Latest Release: v{0}', TargetNullValue='Checking for Updates...'}"
                    FontSize="16" />
-        <TextBlock Grid.Column="1" Grid.Row="6"
+        <TextBlock Grid.Row="7" Grid.Column="1"
                    Text="{Binding Path=UpdateMessage}"
                    FontSize="16" />
     </Grid>

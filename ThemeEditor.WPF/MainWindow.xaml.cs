@@ -14,6 +14,7 @@ using Microsoft.Win32;
 
 using ThemeEditor.Common.Graphics;
 using ThemeEditor.WPF.Localization;
+using ThemeEditor.WPF.Properties;
 using ThemeEditor.WPF.Themes;
 
 namespace ThemeEditor.WPF
@@ -183,7 +184,18 @@ namespace ThemeEditor.WPF
                 MessageBoxImage.Information);
         }
 
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e) {}
+        private async void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (Settings.Default.CheckUpdatesOnStartup)
+            {
+                bool hasUpdates = await Update.CheckUpdateAvailable();
+                if (hasUpdates)
+                    MessageBox.Show(MainResources.Error_UpdateAvailable,
+                        WINDOW_TITLE,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+            }
+        }
 
         private void PreExecute_SetBusy()
         {

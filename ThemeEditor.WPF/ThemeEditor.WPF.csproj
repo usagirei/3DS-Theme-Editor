@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -77,6 +78,7 @@
     <Compile Include="Controls\BottomScreenOverlays.xaml.cs">
       <DependentUpon>BottomScreenOverlays.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XmlSettingsProvider.cs" />
     <Compile Include="Markup\IconExtension.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="PreviewKind.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="Controls\Renderers\TopWallpaperRenderer.cs" />
     <Compile Include="Localization\OrderAttribute.cs" />
     <Compile Include="Themes\ViewModelRules.cs" />
+    <Compile Include="Update.cs" />
     <Compile Include="WindowsMessage.cs" />
     <Page Include="AboutWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
