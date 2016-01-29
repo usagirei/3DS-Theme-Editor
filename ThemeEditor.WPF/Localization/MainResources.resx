@@ -163,10 +163,10 @@
     <value>Top Image Palette</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
-    <value>Disable</value>
+    <value>Disabled</value>
   </data>
   <data name="Control_Toggle_True" xml:space="preserve">
-    <value>Enable</value>
+    <value>Enabled</value>
   </data>
   <data name="Error_BackgroundMusicLoaded" xml:space="preserve">
     <value>The Background Music Flag was Enabled:
