@@ -62,7 +62,7 @@
                     </xctk:ColorPicker.ToolTip>
                 </xctk:ColorPicker>
                 <controls:Eyedropper x:Name="PART_EYEDROPPER"
-                                     Color="{Binding ElementName=PART_PICKER, Path=SelectedColor, Mode=OneWayToSource}"
+                                     Color="{Binding ElementName=PART_PICKER, Path=SelectedColor, Mode=TwoWay}"
                                      Width="24" Height="24"
                                      Margin="-1,0,0,0" />
             </StackPanel>
