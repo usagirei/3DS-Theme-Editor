@@ -10,6 +10,7 @@
         xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
         xmlns:locale="clr-namespace:ThemeEditor.WPF.Localization"
         xmlns:themes="clr-namespace:ThemeEditor.WPF.Themes"
+        xmlns:markup="clr-namespace:ThemeEditor.WPF.Markup"
 
         SnapsToDevicePixels="True" UseLayoutRounding="True"
         ResizeMode="CanMinimize"
@@ -29,7 +30,7 @@
         <templating:DynamicTemplateSelector x:Key="TemplateSelector" />
         <Style x:Key="PropertyListControlStyle" TargetType="ItemsControl">
             <Style.Resources>
-                <themes:ColorItemConverter x:Key="ColorItemConverter" />
+                <templating:ColorItemConverter x:Key="ColorItemConverter" />
                 <Style TargetType="{x:Type wpfx:ColorPicker}">
                     <Setter Property="AvailableColorsHeader"
                             Value="{x:Static locale:MainResources.Control_ColorPicker_TopPalette}" />
@@ -329,8 +330,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Border Grid.Row="1" AllowDrop="True"
-                    local:DragDropBehaviour.DragEnterCommand="{Binding Path=DragImageCommand}"
-                    local:DragDropBehaviour.DragDropCommand="{Binding Path=DropTopImageCommand}">
+                    markup:DragDropBehaviour.DragEnterCommand="{Binding Path=DragImageCommand}"
+                    markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropTopImageCommand}">
                 <controls:TopScreenPreview x:Name="pre_TopScreen"
                                            Theme="{Binding Path=ViewModel}"
                                            IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}" />
@@ -339,8 +340,8 @@
                 </Border.Effect>
             </Border>
             <Border Grid.Row="3" AllowDrop="True"
-                    local:DragDropBehaviour.DragEnterCommand="{Binding Path=DragImageCommand}"
-                    local:DragDropBehaviour.DragDropCommand="{Binding Path=DropBottomImageCommand}">
+                    markup:DragDropBehaviour.DragEnterCommand="{Binding Path=DragImageCommand}"
+                    markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropBottomImageCommand}">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

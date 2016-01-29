@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows.Markup;
 using System.Windows.Media.Imaging;
 
-namespace ThemeEditor.WPF
+namespace ThemeEditor.WPF.Markup
 {
     /// <summary>
     ///     Simple extension for ico, let you choose icon with specific size.

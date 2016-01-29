@@ -20,25 +20,25 @@
                                   AdvancedButtonHeader="{x:Static locale:MainResources.Control_ColorPicker_Advanced}"
                                   StandardButtonHeader="{x:Static locale:MainResources.Control_ColorPicker_Standard}"
                                   ShowRecentColors="True"
-                                  ColorMode="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=ColorMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  RecentColors="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=RecentColors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  ColorMode="{Binding Source={x:Static templating:ColorPickerSharedData.Instance}, Path=ColorMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  RecentColors="{Binding Source={x:Static templating:ColorPickerSharedData.Instance}, Path=RecentColors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   RecentColorsHeader="{x:Static locale:MainResources.Control_ColorPicker_Recent}"
                                   Width="101" SelectedColor="{Binding Path=Value}">
                     <xctk:ColorPicker.InputBindings>
                         <KeyBinding Modifiers="Control" Key="C"
-                                    Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=CopyCommand}"
+                                    Command="{Binding Source={x:Static templating:ColorPickerSharedData.Instance}, Path=CopyCommand}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=xctk:ColorPicker}}" />
                         <KeyBinding Modifiers="Control" Key="V"
-                                    Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=PasteCommand}"
+                                    Command="{Binding Source={x:Static templating:ColorPickerSharedData.Instance}, Path=PasteCommand}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=xctk:ColorPicker}}" />
                     </xctk:ColorPicker.InputBindings>
                     <xctk:ColorPicker.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="{x:Static locale:MainResources.Menu_Copy}"
-                                      Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=CopyCommand}"
+                                      Command="{Binding Source={x:Static templating:ColorPickerSharedData.Instance}, Path=CopyCommand}"
                                       CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget}" />
                             <MenuItem Header="{x:Static locale:MainResources.Menu_Paste}"
-                                      Command="{Binding Source={x:Static local:ColorPickerSharedData.Instance}, Path=PasteCommand}"
+                                      Command="{Binding Source={x:Static templating:ColorPickerSharedData.Instance}, Path=PasteCommand}"
                                       CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget}" />
                         </ContextMenu>
                     </xctk:ColorPicker.ContextMenu>

@@ -77,12 +77,13 @@
     <Compile Include="Controls\BottomScreenOverlays.xaml.cs">
       <DependentUpon>BottomScreenOverlays.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IconExtension.cs" />
+    <Compile Include="Markup\IconExtension.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="PreviewKind.cs" />
+    <Compile Include="Markup\SettingExtension.cs" />
     <Compile Include="Templating\BooleanConverter.cs" />
     <Compile Include="Templating\ColorPickerSharedData.cs" />
-    <Compile Include="DropBehaviour.cs" />
+    <Compile Include="Markup\DragDropBehaviour.cs" />
     <Compile Include="ImageSize.cs" />
     <Compile Include="Localization\DescriptionAttribute.cs" />
     <Compile Include="Localization\DisplayNameAttribute.cs" />
@@ -283,6 +284,7 @@
   <ItemGroup>
     <Resource Include="Resources\PICKER.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe" /T ps_2_0 /E main /Fo"$(ProjectDir)Effects\Bin\WarpEffect.ps" "$(ProjectDir)Effects\FxBin\WarpEffect.fx"</PreBuildEvent>

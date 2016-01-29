@@ -5,7 +5,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace ThemeEditor.WPF
+namespace ThemeEditor.WPF.Markup
 {
     public static class DragDropBehaviour
     {

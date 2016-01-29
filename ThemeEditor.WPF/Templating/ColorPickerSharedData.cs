@@ -15,7 +15,7 @@ using System.Windows.Media;
 
 using Xceed.Wpf.Toolkit;
 
-namespace ThemeEditor.WPF
+namespace ThemeEditor.WPF.Templating
 {
     public class ColorPickerSharedData : DependencyObject, INotifyPropertyChanged
     {

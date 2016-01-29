@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 using Xceed.Wpf.Toolkit;
 
-namespace ThemeEditor.WPF.Themes
+namespace ThemeEditor.WPF.Templating
 {
     public class ColorItemConverter : IValueConverter
     {

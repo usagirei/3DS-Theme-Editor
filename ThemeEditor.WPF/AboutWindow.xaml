@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wpf="clr-namespace:ThemeEditor.WPF"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:markup="clr-namespace:ThemeEditor.WPF.Markup"
 
         Loaded="AboutWindow_OnLoaded"
 
@@ -39,7 +40,7 @@
         </Grid.RowDefinitions>
 
         <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="{x:Static system:Int32.MaxValue}"
-               Source="{wpf:Icon Source='/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico', Size=256}"
+               Source="{markup:Icon Source='/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico', Size=256}"
                Height="200" />
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
