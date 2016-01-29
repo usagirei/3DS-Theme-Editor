@@ -279,17 +279,23 @@ namespace ThemeEditor.WPF.Controls.Renderers
 
             var scrollEnable = frameType == TopFrameType.SlowScroll || frameType == TopFrameType.FastScroll;
 
+            const int SCR_OFFSET = 1008 - (412 / 2);
+            const int OFFSET_3D = 6;
             if (scrollEnable)
             {
-                const int SCR_OFFSET = 1008 - (412 / 2);
                 var posMap = _isListening
-                                 ? (Math.Sin(CompositionTargetEx.SecondsFromStart / 3) + 1) * SCR_OFFSET - 6
+                                 ? (Math.Sin(CompositionTargetEx.SecondsFromStart / 3) + 1) * SCR_OFFSET
                                  : 0;
+                posMap -= OFFSET_3D;
 
+
+                if (posMap <= OFFSET_3D)
+                    dc.DrawImage(wallpaper, new Rect(-posMap - 1008, 0, wallpaper.Width, wallpaper.Height));
                 if (posMap < 1008)
                     dc.DrawImage(wallpaper, new Rect(-posMap, 0, wallpaper.Width, wallpaper.Height));
                 if (posMap + 412 > 1008)
                     dc.DrawImage(wallpaper, new Rect(-posMap + 1007, 0, wallpaper.Width, wallpaper.Height));
+       
             }
             else
             {
