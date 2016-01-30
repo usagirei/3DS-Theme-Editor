@@ -55,13 +55,15 @@ namespace ThemeEditor.WPF.Experimental.CWAV
 
         public static byte[] DecodeCwav(byte[] cwavData)
         {
+            if (cwavData.Length == 0)
+                return EmptyData;
+            if (!ThirdPartyTools.VgmStream.Present)
+                return EmptyData;
+
             using (var tf = new TempFile("bcwav"))
             using (var fs = File.Open(tf.FilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
             using (var ms = new MemoryStream())
             {
-                if (!ThirdPartyTools.VgmStream.Present)
-                    return EmptyData;
-
                 fs.Write(cwavData, 0, cwavData.Length);
                 fs.Flush();
                 try

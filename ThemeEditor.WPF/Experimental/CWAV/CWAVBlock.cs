@@ -127,11 +127,8 @@ namespace ThemeEditor.WPF.Experimental.CWAV
                             if (magic != "CWAV")
                                 break;
                             var cData = br.ReadBytes(sz);
-                            Sounds[kind] = new CwavFile(cData)
-                            {
-                                Tag = kind.ToString()
-                            };
-                            var x = Sounds[kind].WavData;
+                            Sounds[kind].CwavData = cData;
+                            Sounds[kind].Tag = kind.ToString();
                         }
                     }
                 }
@@ -175,57 +172,6 @@ namespace ThemeEditor.WPF.Experimental.CWAV
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
-    public partial class CwavBlock
-    {
-        public CwavFile Close
-        {
-            get { return Sounds[CwavKind.Close]; }
-            set { Sounds[CwavKind.Close] = value; }
-        }
-
-        public CwavFile Cursor
-        {
-            get { return Sounds[CwavKind.Cursor]; }
-            set { Sounds[CwavKind.Cursor] = value; }
-        }
-
-        public CwavFile Folder
-        {
-            get { return Sounds[CwavKind.Folder]; }
-            set { Sounds[CwavKind.Folder] = value; }
-        }
-
-        public CwavFile Frame0
-        {
-            get { return Sounds[CwavKind.Frame0]; }
-            set { Sounds[CwavKind.Frame0] = value; }
-        }
-
-        public CwavFile Frame1
-        {
-            get { return Sounds[CwavKind.Frame1]; }
-            set { Sounds[CwavKind.Frame1] = value; }
-        }
-
-        public CwavFile Frame2
-        {
-            get { return Sounds[CwavKind.Frame2]; }
-            set { Sounds[CwavKind.Frame2] = value; }
-        }
-
-        public CwavFile Launch
-        {
-            get { return Sounds[CwavKind.Launch]; }
-            set { Sounds[CwavKind.Launch] = value; }
-        }
-
-        public CwavFile OpenLid
-        {
-            get { return Sounds[CwavKind.OpenLid]; }
-            set { Sounds[CwavKind.OpenLid] = value; }
         }
     }
 }

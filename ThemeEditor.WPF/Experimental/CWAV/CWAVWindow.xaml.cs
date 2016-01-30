@@ -48,7 +48,12 @@ namespace ThemeEditor.WPF.Experimental.CWAV
 
         private void Remove_Execute(CwavKind obj)
         {
-            ViewModel.Sounds[obj].CwavData = CwavFile.EmptyData;
+            Import_PostExecute(new ImportResults()
+            {
+                CWAV = CwavFile.Empty(),
+                Target = obj,
+                Loaded = true
+            });
         }
 
         private void Replace_Execute(object obj)
