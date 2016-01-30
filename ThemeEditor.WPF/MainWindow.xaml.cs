@@ -174,7 +174,11 @@ namespace ThemeEditor.WPF
 
         private void CWavManager_Execute()
         {
-            var wnd = new CwavWindow();
+            var wnd = new CwavWindow()
+            {
+                Owner = this,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
 
             var block = new CwavBlock();
             bool imported = block.TryImport(ViewModel.CWavBytes);
