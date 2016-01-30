@@ -64,17 +64,12 @@ namespace ThemeEditor.WPF
                     Loaded = false
                 };
 
+               
+                if (!ThirdPartyTools.VgmStream.Present)
+                    return result;
                 var themeDir = Path.GetDirectoryName(ThemePath);
                 var bgmFile = Path.Combine(themeDir, BGM_FILE_NAME);
-                var vgmStream = new[]
-                {
-                    Environment.CurrentDirectory,
-                    "ThirdParty",
-                    "vgmstream",
-                    "test.exe"
-                }.Aggregate(Path.Combine);
-
-                if (!File.Exists(bgmFile) || !File.Exists(vgmStream))
+                if (!File.Exists(bgmFile))
                     return result;
 
                 using (var ms = new MemoryStream())
@@ -87,7 +82,7 @@ namespace ThemeEditor.WPF
                             UseShellExecute = false,
                             CreateNoWindow = true,
                             WindowStyle = ProcessWindowStyle.Hidden,
-                            FileName = vgmStream,
+                            FileName = ThirdPartyTools.VgmStream.Path,
                             Arguments = $"-P \"{bgmFile}\""
                         };
 

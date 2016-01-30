@@ -17,7 +17,7 @@ using ThemeEditor.Common.Themes.Offsets;
 
 namespace ThemeEditor.Common.Themes
 {
-    public struct Theme
+    public class Theme
     {
         public Flags Flags;
         public Textures Textures;

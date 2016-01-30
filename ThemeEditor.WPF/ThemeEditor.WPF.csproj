@@ -78,6 +78,15 @@
     <Compile Include="Controls\BottomScreenOverlays.xaml.cs">
       <DependentUpon>BottomScreenOverlays.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Experimental\CWAV\CWAVBlock.cs" />
+    <Compile Include="Experimental\CWAV\CWAVFile.cs" />
+    <Compile Include="Experimental\CWAV\CWAVKind.cs" />
+    <Compile Include="Experimental\CWAV\CWAVWindow.xaml.cs">
+      <DependentUpon>CWAVWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TempFile.cs" />
+    <Compile Include="Templating\ComparisonConverter.cs" />
+    <Compile Include="ThirdParty.cs" />
     <Compile Include="XmlSettingsProvider.cs" />
     <Compile Include="Markup\IconExtension.cs" />
     <Compile Include="NativeMethods.cs" />
@@ -190,6 +199,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Experimental\CWAV\CWAVWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +244,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\ThemeResources.pt-BR.resx">
       <DependentUpon>ThemeResources.resx</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\ThemeResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -18,12 +18,18 @@ namespace ThemeEditor.WPF.Themes
 
         public TexturesViewModel Textures { get; }
 
+        public byte[] CWavBytes
+        {
+            get { return Model.CWAV; }
+            set { Model.CWAV = value; }
+        }
+
         public ThemeViewModel(Theme model) : base(model, Guid.NewGuid().ToString())
         {
             Flags = new FlagsViewModel(model.Flags, Tag);
             Colors = new ColorsViewModel(model.Colors, Tag);
             Textures = new TexturesViewModel(model.Textures, Tag);
-
+            
             SetupRules();
         }
 

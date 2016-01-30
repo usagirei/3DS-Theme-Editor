@@ -35,5 +35,17 @@ namespace ThemeEditor.WPF.Properties {
                 this["CheckUpdatesOnStartup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EXP_ResampleWav {
+            get {
+                return ((bool)(this["EXP_ResampleWav"]));
+            }
+            set {
+                this["EXP_ResampleWav"] = value;
+            }
+        }
     }
 }

@@ -13,9 +13,13 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
 using ThemeEditor.Common.Graphics;
+using ThemeEditor.WPF.Experimental;
+using ThemeEditor.WPF.Experimental.CWAV;
 using ThemeEditor.WPF.Localization;
 using ThemeEditor.WPF.Properties;
 using ThemeEditor.WPF.Themes;
+
+using CwavWindow = ThemeEditor.WPF.Experimental.CWAV.CwavWindow;
 
 namespace ThemeEditor.WPF
 {
@@ -48,6 +52,8 @@ namespace ThemeEditor.WPF
             }
         }
 
+        public ICommand CWavManagerCommand { get; set; }
+
         public ICommand ExportPreviewCommand { get; }
 
         public bool IsBusy
@@ -77,13 +83,10 @@ namespace ThemeEditor.WPF
         {
             InitializeComponent();
 
-            AboutCommand =
-                new RelayCommand(
-                    () => new AboutWindow
-                    {
-                        Owner = this,
-                        WindowStartupLocation = WindowStartupLocation.CenterOwner
-                    }.ShowDialog());
+            AboutCommand = new RelayCommand(AboutCommand_Execute);
+
+            CWavManagerCommand
+                = new RelayCommand(CWavManager_Execute,CanExecute_ViewModelLoaded);
 
             ExportPreviewCommand = new RelayCommand<PreviewKind>(ExportPreview_Execute);
 
@@ -155,9 +158,38 @@ namespace ThemeEditor.WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void AboutCommand_Execute()
+        {
+            new AboutWindow
+            {
+                Owner = this,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            }.ShowDialog();
+        }
+
         private bool CanExecute_ViewModelLoaded()
         {
             return ViewModel != null;
+        }
+
+        private void CWavManager_Execute()
+        {
+            var wnd = new CwavWindow();
+
+            var block = new CwavBlock();
+            bool imported = block.TryImport(ViewModel.CWavBytes);
+            if (!imported)
+                MessageBox.Show("Unable to Parse Automatically CWAV Data\nPlease Re-assign the CWAVs Accordingly.");
+            wnd.ViewModel = block;
+            var dlg = wnd.ShowDialog();
+            if (dlg.HasValue && dlg.Value)
+            {
+                var data = wnd.ViewModel.Generate();
+                if (data.Length > 0x2DC00)
+                    MessageBox.Show("CWAV Data Too Big\nRe-assign the smaller CWAVs and try again.");
+                else
+                    ViewModel.CWavBytes = data;
+            }
         }
 
         private void ExportPreview_Execute(PreviewKind previewKind)

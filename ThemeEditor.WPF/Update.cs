@@ -20,20 +20,27 @@ namespace ThemeEditor.WPF
 
         public static Version GetLatestVersion()
         {
-            var req = WebRequest.CreateHttp(UpdateUrl);
-            req.Method = "HEAD";
-            req.AllowAutoRedirect = true;
-
-            var myResp = (HttpWebResponse) req.GetResponse();
-            if (myResp.StatusCode == HttpStatusCode.OK)
+            try
             {
-                var latestReleaseUrl = myResp.ResponseUri.ToString().TrimEnd('/');
-                var lastSlash = latestReleaseUrl.LastIndexOf('/');
-                var versionStr = latestReleaseUrl.Substring(lastSlash + 1);
-                versionStr = versionStr.StartsWith("v") ? versionStr.Substring(1) : versionStr;
-                Version version;
-                if (Version.TryParse(versionStr, out version))
-                    return version;
+                var req = WebRequest.CreateHttp(UpdateUrl);
+                req.Method = "HEAD";
+                req.AllowAutoRedirect = true;
+
+                var myResp = (HttpWebResponse) req.GetResponse();
+                if (myResp.StatusCode == HttpStatusCode.OK)
+                {
+                    var latestReleaseUrl = myResp.ResponseUri.ToString().TrimEnd('/');
+                    var lastSlash = latestReleaseUrl.LastIndexOf('/');
+                    var versionStr = latestReleaseUrl.Substring(lastSlash + 1);
+                    versionStr = versionStr.StartsWith("v") ? versionStr.Substring(1) : versionStr;
+                    Version version;
+                    if (Version.TryParse(versionStr, out version))
+                        return version;
+                }
+            }
+            catch
+            {
+                // Ignore
             }
             return null;
         }
