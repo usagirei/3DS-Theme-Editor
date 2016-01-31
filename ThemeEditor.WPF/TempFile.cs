@@ -17,7 +17,8 @@ namespace ThemeEditor.WPF
 
         public void Dispose()
         {
-            File.Delete(FilePath);
+            if (File.Exists(FilePath))
+                File.Delete(FilePath);
         }
     }
 }

@@ -61,11 +61,13 @@ namespace ThemeEditor.WPF.Experimental.CWAV
                 return EmptyData;
 
             using (var tf = new TempFile("bcwav"))
-            using (var fs = File.Open(tf.FilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
             using (var ms = new MemoryStream())
             {
-                fs.Write(cwavData, 0, cwavData.Length);
-                fs.Flush();
+                using (var fs = File.Open(tf.FilePath, FileMode.Create))
+                {
+                    fs.Write(cwavData, 0, cwavData.Length);
+                    fs.Flush();
+                }
                 try
                 {
                     var psi = new ProcessStartInfo
@@ -103,8 +105,7 @@ namespace ThemeEditor.WPF.Experimental.CWAV
             using (var tempWav = new TempFile("wav"))
                 //
             {
-                using (var tempWavStream
-                    = File.Open(tempWav.FilePath, FileMode.Create))
+                using (var tempWavStream = File.Open(tempWav.FilePath, FileMode.Create))
                 {
                     if (Settings.Default.EXP_ResampleWav)
                     {
