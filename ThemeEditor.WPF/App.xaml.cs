@@ -21,10 +21,12 @@ namespace ThemeEditor.WPF
     {
         private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
+#if !DEBUG
             args.Handled = true;
             var wnd = new CrashWindow(args.Exception);
             wnd.ShowDialog();
             Environment.Exit(1);
+#endif
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
@@ -59,7 +61,7 @@ namespace ThemeEditor.WPF
                 mainWindow.NewThemeCommandWrapper.Command.Execute(null);
 
 #else
-    // Create main application window, starting minimized if specified
+            // Create main application window, starting minimized if specified
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             if (e.Args.Length > 0 && File.Exists(e.Args[0]))
