@@ -2,11 +2,13 @@
 // 3DS Theme Editor - App.xaml.cs
 // --------------------------------------------------
 
+using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
+using System.Windows.Threading;
 
 using ThemeEditor.WPF.Properties;
 
@@ -17,6 +19,19 @@ namespace ThemeEditor.WPF
     /// </summary>
     public partial class App : Application
     {
+        private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs args)
+        {
+            args.Handled = true;
+            var wnd = new CrashWindow(args.Exception);
+            wnd.ShowDialog();
+            Environment.Exit(1);
+        }
+
+        private void App_OnExit(object sender, ExitEventArgs e)
+        {
+            Settings.Default.Save();
+        }
+
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
 #if DEBUG
@@ -44,7 +59,7 @@ namespace ThemeEditor.WPF
                 mainWindow.NewThemeCommandWrapper.Command.Execute(null);
 
 #else
-            // Create main application window, starting minimized if specified
+    // Create main application window, starting minimized if specified
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             if (e.Args.Length > 0 && File.Exists(e.Args[0]))
@@ -52,11 +67,6 @@ namespace ThemeEditor.WPF
             else
                 mainWindow.NewThemeCommandWrapper.Command.Execute(null);
 #endif
-        }
-
-        private void App_OnExit(object sender, ExitEventArgs e)
-        {
-            Settings.Default.Save();
         }
     }
 }

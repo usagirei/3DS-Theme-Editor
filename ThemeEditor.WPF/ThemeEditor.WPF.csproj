@@ -78,6 +78,9 @@
     <Compile Include="Controls\BottomScreenOverlays.xaml.cs">
       <DependentUpon>BottomScreenOverlays.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CrashWindow.xaml.cs">
+      <DependentUpon>CrashWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Experimental\CWAV\CWAVBlock.cs" />
     <Compile Include="Experimental\CWAV\CWAVFile.cs" />
     <Compile Include="Experimental\CWAV\CWAVKind.cs" />
@@ -198,6 +201,10 @@
     <Page Include="Controls\Eyedropper.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CrashWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Experimental\CWAV\CWAVWindow.xaml">
       <SubType>Designer</SubType>

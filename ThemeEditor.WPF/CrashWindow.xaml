@@ -1,0 +1,31 @@
+﻿<Window x:Class="ThemeEditor.WPF.CrashWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Application Has Crashed" Height="350" Width="500"
+        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" x:ClassModifier="internal">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Width="64" Height="64">
+            <!-- TODO: Add Error Icon Here -->
+        </Image>
+        <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Margin="6,6,3,3">
+            Oops! Somewhing went wrong.
+            <LineBreak />
+            Application will now exit, any unsaved changes will be lost.
+            <LineBreak />
+            Contact the Developer with the Text Provided Below:
+        </TextBlock>
+        <TextBox x:Name="ExceptionTextBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="3"
+                 TextWrapping="Wrap" />
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="3">
+            <Button Content="OK" Width="60" Click="OkButton_OnClick" />
+        </StackPanel>
+    </Grid>
+</Window>
