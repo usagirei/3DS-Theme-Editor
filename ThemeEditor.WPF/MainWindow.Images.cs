@@ -145,6 +145,7 @@ namespace ThemeEditor.WPF
                 var svfl = new SaveFileDialog
                 {
                     Filter = "PNG Files|*.png",
+                    FileName = targetImage.ToString().ToLower()
                 };
                 var dlg = svfl.ShowDialog();
                 SaveImageResults results = new SaveImageResults

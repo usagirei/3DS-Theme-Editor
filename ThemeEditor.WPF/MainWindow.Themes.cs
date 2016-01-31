@@ -252,6 +252,7 @@ namespace ThemeEditor.WPF
                     var svfl = new SaveFileDialog
                     {
                         Filter = "3DS Theme File|body_LZ.bin",
+                        FileName = "body_lz"
                     };
                     var dlg = svfl.ShowDialog();
                     if (dlg.HasValue && !dlg.Value)

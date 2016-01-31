@@ -20,16 +20,16 @@ namespace ThemeEditor.WPF.Experimental.CWAV
         private WaveFileReader _sfxProvider;
         private Stream _sfxStream;
 
+        public ICommand ExportSfxCommand { get; set; }
+
         public ICommand ImportCommand { get; set; }
 
         public ICommand PlaySfxCommand { get; }
-        public CwavBlock ViewModel { get; set; }
-
-        public ICommand ExportSfxCommand { get; set; }
 
         public ICommand RemoveSfxCommand { get; set; }
 
         public ICommand ReplaceSfxCommand { get; set; }
+        public CwavBlock ViewModel { get; set; }
 
         public CwavWindow()
         {
@@ -44,75 +44,6 @@ namespace ThemeEditor.WPF.Experimental.CWAV
                 Export_PostExecute);
             RemoveSfxCommand = new RelayCommand<CwavKind>(Remove_Execute, CanExecute_HasAudio);
             ReplaceSfxCommand = new RelayCommand<object>(Replace_Execute);
-        }
-
-        private void Remove_Execute(CwavKind obj)
-        {
-            Import_PostExecute(new ImportResults()
-            {
-                CWAV = CwavFile.Empty(),
-                Target = obj,
-                Loaded = true
-            });
-        }
-
-        private void Replace_Execute(object obj)
-        {
-            var arr = (object[]) obj;
-            Import_PostExecute(new ImportResults()
-            {
-                CWAV = (CwavFile) arr[0],
-                Target = (CwavKind) arr[1],
-                Loaded =  true
-            });
-        }
-
-        private void Export_PostExecute(ExportResults results)
-        {
-            if (!results.Saved)
-                return;
-            MessageBox.Show("SFX Exported");
-        }
-
-        private Task<ExportResults> Export_Execute(CwavKind arg)
-        {
-            var cWav = ViewModel.Sounds[arg];
-            return Task<ExportResults>.Factory.StartNew(() =>
-            {
-                var results = new ExportResults
-                {
-                    Saved = false
-                };
-                var svfd = new SaveFileDialog
-                {
-                    Filter = ThirdPartyTools.VgmStream.Present
-                                 ? "DSP ADPCM Audio|*.bcwav|PCM Audio|*.wav"
-                                 : "DSP ADPCM Audio|*.bcwav"
-                };
-                var dlg = svfd.ShowDialog();
-                if (dlg.HasValue && dlg.Value)
-                {
-                    try
-                    {
-                        switch (svfd.FilterIndex)
-                        {
-                            case 1:
-                                File.WriteAllBytes(svfd.FileName, cWav.CwavData);
-                                results.Saved = true;
-                                break;
-                            case 2:
-                                File.WriteAllBytes(svfd.FileName, cWav.WavData);
-                                results.Saved = true;
-                                break;
-                        }
-                    }
-                    catch
-                    {
-                        // Ignore
-                    }
-                }
-                return results;
-            });
         }
 
         public bool CanExecute_HasAudio(CwavKind cwavKind)
@@ -160,6 +91,56 @@ namespace ThemeEditor.WPF.Experimental.CWAV
         {
             _sfxPlayer?.Dispose();
             _sfxProvider?.Dispose();
+        }
+
+        private Task<ExportResults> Export_Execute(CwavKind arg)
+        {
+            var cWav = ViewModel.Sounds[arg];
+            return Task<ExportResults>.Factory.StartNew(() =>
+            {
+                var results = new ExportResults
+                {
+                    Saved = false
+                };
+                var svfd = new SaveFileDialog
+                {
+                    Filter = ThirdPartyTools.VgmStream.Present
+                                 ? "DSP ADPCM Audio|*.bcwav|PCM Audio|*.wav"
+                                 : "DSP ADPCM Audio|*.bcwav",
+                    FileName = arg.ToString().ToLower()
+                };
+
+                var dlg = svfd.ShowDialog();
+                if (dlg.HasValue && dlg.Value)
+                {
+                    try
+                    {
+                        switch (svfd.FilterIndex)
+                        {
+                            case 1:
+                                File.WriteAllBytes(svfd.FileName, cWav.CwavData);
+                                results.Saved = true;
+                                break;
+                            case 2:
+                                File.WriteAllBytes(svfd.FileName, cWav.WavData);
+                                results.Saved = true;
+                                break;
+                        }
+                    }
+                    catch
+                    {
+                        // Ignore
+                    }
+                }
+                return results;
+            });
+        }
+
+        private void Export_PostExecute(ExportResults results)
+        {
+            if (!results.Saved)
+                return;
+            MessageBox.Show("SFX Exported");
         }
 
         private Task<ImportResults> Import_Execute(CwavKind cwavKind)
@@ -230,6 +211,27 @@ namespace ThemeEditor.WPF.Experimental.CWAV
                 return;
 
             ViewModel.Sounds[results.Target].CwavData = results.CWAV.CwavData;
+        }
+
+        private void Remove_Execute(CwavKind obj)
+        {
+            Import_PostExecute(new ImportResults()
+            {
+                CWAV = CwavFile.Empty(),
+                Target = obj,
+                Loaded = true
+            });
+        }
+
+        private void Replace_Execute(object obj)
+        {
+            var arr = (object[]) obj;
+            Import_PostExecute(new ImportResults()
+            {
+                CWAV = (CwavFile) arr[0],
+                Target = (CwavKind) arr[1],
+                Loaded = true
+            });
         }
 
         private class ExportResults
