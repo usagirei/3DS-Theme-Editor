@@ -2,7 +2,6 @@
 // 3DS Theme Editor - MainWindow.xaml.cs
 // --------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -14,13 +13,10 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
 using ThemeEditor.Common.Graphics;
-using ThemeEditor.WPF.Experimental;
 using ThemeEditor.WPF.Experimental.CWAV;
 using ThemeEditor.WPF.Localization;
 using ThemeEditor.WPF.Properties;
 using ThemeEditor.WPF.Themes;
-
-using CwavWindow = ThemeEditor.WPF.Experimental.CWAV.CwavWindow;
 
 namespace ThemeEditor.WPF
 {
@@ -87,7 +83,7 @@ namespace ThemeEditor.WPF
             AboutCommand = new RelayCommand(AboutCommand_Execute);
 
             CWavManagerCommand
-                = new RelayCommand(CWavManager_Execute,CanExecute_ViewModelLoaded);
+                = new RelayCommand(CWavManager_Execute, CanExecute_ViewModelLoaded);
 
             ExportPreviewCommand = new RelayCommand<PreviewKind>(ExportPreview_Execute);
 
@@ -236,7 +232,10 @@ namespace ThemeEditor.WPF
             {
                 bool hasUpdates = await Update.CheckUpdateAvailable();
                 if (hasUpdates)
-                    MessageBox.Show(MainResources.Error_UpdateAvailable, WINDOW_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(MainResources.Error_UpdateAvailable,
+                        WINDOW_TITLE,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
             }
         }
 
@@ -305,7 +304,11 @@ namespace ThemeEditor.WPF
 
             var bounds = VisualTreeHelper.GetDescendantBounds(target);
 
-            var rtb = new RenderTargetBitmap((int) (bounds.Width * dpiX / 96.0), (int) (bounds.Height * dpiY / 96.0), dpiX, dpiY, PixelFormats.Pbgra32);
+            var rtb = new RenderTargetBitmap((int) (bounds.Width * dpiX / 96.0),
+                (int) (bounds.Height * dpiY / 96.0),
+                dpiX,
+                dpiY,
+                PixelFormats.Pbgra32);
 
             var dv = new DrawingVisual();
             using (var dc = dv.RenderOpen())
