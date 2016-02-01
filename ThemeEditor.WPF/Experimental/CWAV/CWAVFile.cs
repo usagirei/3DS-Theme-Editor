@@ -26,13 +26,27 @@ namespace ThemeEditor.WPF.Experimental.CWAV
                 _cwavData = value;
                 _wavData = null;
 
+                // Make Sure the Imported CWAV has a correct Size
+                // This may result in chopped audio
+                // However the file itself is broken in the first place for having the incorrect size header
+                EnsureSize();
+
                 OnPropertyChanged(nameof(CwavData));
                 OnPropertyChanged(nameof(WavData));
                 OnPropertyChanged(nameof(Size));
             }
         }
 
-        public int Size => CwavData?.Length > 0x10 ? BitConverter.ToInt32(CwavData, 0x0C) : 0;
+        private void EnsureSize()
+        {
+            if (Size == CwavData.Length)
+                return;
+            var bytes = BitConverter.GetBytes(_cwavData.Length);
+            Buffer.BlockCopy(bytes, 0, _cwavData, 0x0C, 4);
+            OnPropertyChanged(nameof(Size));
+        }
+
+        public int Size => CwavData?.Length > 0x10 ? BitConverter.ToInt32(_cwavData, 0x0C) : 0;
 
         public string Tag
         {
