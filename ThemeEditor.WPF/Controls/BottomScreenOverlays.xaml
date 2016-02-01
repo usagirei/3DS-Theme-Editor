@@ -35,6 +35,14 @@
         <Style x:Key="OpenStyleButtonGlow" TargetType="Path">
             <Setter Property="Clip" Value="{StaticResource OpenButtonGeometry}" />
             <Setter Property="StrokeThickness" Value="4" />
+            <Setter Property="OpacityMask">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.5">
+                        <GradientStop Color="#ff000000" Offset="0.4" />
+                        <GradientStop Color="#00000000" Offset="0.6" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Stroke" Value="#f0eeea" />
             <Setter Property="Effect">
                 <Setter.Value>
@@ -46,6 +54,25 @@
                     <Setter Property="Stroke">
                         <Setter.Value>
                             <SolidColorBrush Color="{Binding Path=Colors.Open.Glow}" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="OpenStyleButtonGlowBase" TargetType="Path">
+            <Setter Property="Clip" Value="{StaticResource OpenButtonGeometry}" />
+            <Setter Property="StrokeThickness" Value="6" />
+            <Setter Property="Stroke" Value="#bdb9b5" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <BlurEffect Radius="6" RenderingBias="Performance" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+                    <Setter Property="Stroke">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.Open.Unpressed}" />
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
@@ -150,9 +177,38 @@
         <Style x:Key="CornerButtonStyle" TargetType="Path">
             <Setter Property="Fill">
                 <Setter.Value>
+                    <SolidColorBrush Color="#e9e9ea" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Stroke" Value="#f3f3f3" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Flags.BottomCornerButtonColor}" Value="True">
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <SolidColorBrush
+                                Color="{Binding Path=Colors.BottomCorner.Main, UpdateSourceTrigger=PropertyChanged}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Stroke">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.BottomCorner.Highlight}" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CornerButtonGradientStyle" TargetType="Path">
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <SolidColorBrush Color="#f3f3f3" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="OpacityMask">
+                <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#f3f3f3" Offset="0" />
-                        <GradientStop Color="#e9e9ea" Offset="1" />
+                        <GradientStop Color="#7f000000" Offset="0" />
+                        <GradientStop Color="#00000000" Offset="1" />
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -162,14 +218,8 @@
                 <DataTrigger Binding="{Binding Path=Flags.BottomCornerButtonColor}" Value="True">
                     <Setter Property="Fill">
                         <Setter.Value>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop
-                                    Color="{Binding Path=Colors.BottomCorner.Highlight, UpdateSourceTrigger=PropertyChanged}"
-                                    Offset="0" />
-                                <GradientStop
-                                    Color="{Binding Path=Colors.BottomCorner.Main, UpdateSourceTrigger=PropertyChanged}"
-                                    Offset="1" />
-                            </LinearGradientBrush>
+                            <SolidColorBrush
+                                Color="{Binding Path=Colors.BottomCorner.Highlight, UpdateSourceTrigger=PropertyChanged}" />
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Stroke">
@@ -371,6 +421,8 @@
             <Path Data="{StaticResource OpenButtonGeometry}"
                   Style="{StaticResource OpenStyleButton}" />
             <Path Data="{StaticResource OpenButtonGeometry}"
+                  Style="{StaticResource OpenStyleButtonGlowBase}" />
+            <Path Data="{StaticResource OpenButtonGeometry}"
                   Style="{StaticResource OpenStyleButtonGlow}" />
             <Path Data="{StaticResource OpenButtonGeometry}"
                   Style="{StaticResource OpenStyleButtonStroke}" />
@@ -385,6 +437,8 @@
                   Data="{StaticResource CornerButtonGeometry}" Style="{StaticResource CornerButtonBorder}" />
             <Path Canvas.Left="0" Canvas.Top="0"
                   Data="{StaticResource CornerButtonGeometry}" Style="{StaticResource CornerButtonStyle}" />
+            <Path Canvas.Left="0" Canvas.Top="0"
+                  Data="{StaticResource CornerButtonGeometry}" Style="{StaticResource CornerButtonGradientStyle}" />
             <Line Canvas.Left="293" Canvas.Top="4"
                   Style="{StaticResource BottomSeparatorLineStyleA}" />
             <Line Canvas.Left="294" Canvas.Top="4"
