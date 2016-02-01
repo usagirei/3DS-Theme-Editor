@@ -116,17 +116,30 @@ namespace ThemeEditor.WPF.Experimental.CWAV
                         br.ReadInt32();
                         for (int i = 0; i <= 7; i++)
                         {
+                            if (ms.Position == ms.Length)
+                                break;
+
                             var kind = (CwavKind) i;
                             if (kind == CwavKind.Frame0)
                                 br.ReadBytes(44); // ExtData
+
                             var sz = br.ReadInt32();
                             var volume = br.ReadInt32();
                             if (sz == 0)
                                 continue;
+                            // Probably a Mismatch
+                            // Or an invalid CWAV File Header
+                            // Read to End of Block and pray
+                            if (ms.Position + sz > ms.Length)
+                            {
+                                retVal = false;
+                                sz = (int)(ms.Length - ms.Position);
+                            }
                             var magic = Encoding.ASCII.GetString(data, (int) ms.Position, 4);
                             if (magic != "CWAV")
                                 break;
                             var cData = br.ReadBytes(sz);
+                            
                             Sounds[kind].CwavData = cData;
                             Sounds[kind].Tag = kind.ToString();
                         }
@@ -149,6 +162,15 @@ namespace ThemeEditor.WPF.Experimental.CWAV
             foreach (int index in indexes)
             {
                 var sz = BitConverter.ToInt32(blockData, index + 0x0C);
+
+                // Probably a Mismatch
+                // Or an invalid CWAV File Header
+                // Read to End of Block and pray
+                if (index + sz > blockData.Length)
+                {
+                    sz = blockData.Length - index;
+                }
+
                 byte[] fileData = new byte[sz];
                 Buffer.BlockCopy(blockData, index, fileData, 0, sz);
                 var cwav = new CwavFile(fileData)

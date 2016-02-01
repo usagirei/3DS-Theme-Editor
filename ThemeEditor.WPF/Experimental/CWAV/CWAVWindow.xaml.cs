@@ -29,11 +29,13 @@ namespace ThemeEditor.WPF.Experimental.CWAV
         public ICommand RemoveSfxCommand { get; set; }
 
         public ICommand ReplaceSfxCommand { get; set; }
+
         public CwavBlock ViewModel { get; set; }
 
-        public CwavWindow()
+        public CwavWindow(CwavBlock block)
         {
             InitializeComponent();
+            ViewModel = block;
             _sfxPlayer = new WaveOut();
 
             PlaySfxCommand = new RelayCommand<CwavKind>(PlayAudio_Execute, CanExecute_HasAudio);

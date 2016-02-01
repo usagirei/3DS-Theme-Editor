@@ -171,17 +171,18 @@ namespace ThemeEditor.WPF
 
         private void CWavManager_Execute()
         {
-            var wnd = new CwavWindow()
+            var block = new CwavBlock();
+            bool imported = block.TryImport(ViewModel.CWavBytes);
+            if (!imported)
+                MessageBox.Show("One or more errors have ocurred while parsing the CWAV Data\n" +
+                                "Some data may have been recovered, however some issues may be present.");
+
+            var wnd = new CwavWindow(block)
             {
                 Owner = this,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
-            var block = new CwavBlock();
-            bool imported = block.TryImport(ViewModel.CWavBytes);
-            if (!imported)
-                MessageBox.Show("Unable to Parse Automatically CWAV Data\nPlease Re-assign the CWAVs Accordingly.");
-            wnd.ViewModel = block;
             var dlg = wnd.ShowDialog();
             if (dlg.HasValue && dlg.Value)
             {
