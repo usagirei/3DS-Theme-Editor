@@ -276,7 +276,7 @@
             </PathGeometry.Figures>
         </PathGeometry>
         <Style x:Key="ArrowButtonStyle" TargetType="Path">
-            <Setter Property="Opacity" Value="0.8" />
+            <Setter Property="Opacity" Value="0.9" />
             <Setter Property="Fill">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
