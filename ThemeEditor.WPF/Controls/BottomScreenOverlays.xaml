@@ -395,7 +395,7 @@
                   Data="{StaticResource SmallerIconGeometry}" Style="{StaticResource IconStyle}" />
             <Path Canvas.Left="13" Canvas.Top="5"
                   Data="{StaticResource HomeSettingsGeometry}" Style="{StaticResource IconStyle}" />
-            <Image Canvas.Left="64" Source="../Resources/BOT_ICON_ALL.png" />
+            <Image Canvas.Left="60" Source="../Resources/BOT_ICON_ALL.png" />
         </Canvas>
         <!-- R Arrow -->
         <Canvas Canvas.Right="0" Canvas.Top="123">
