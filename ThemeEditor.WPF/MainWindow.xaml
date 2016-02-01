@@ -18,7 +18,7 @@
 
         Loaded="MainWindow_OnLoaded"
 
-        mc:Ignorable="d" Height="600" Width="1024"
+        mc:Ignorable="d" Height="600" Width="1200"
         d:DataContext="{d:DesignInstance local:MainWindow}">
     <Window.Title>
         <Binding RelativeSource="{RelativeSource Self}" Path="ThemePath"
@@ -161,7 +161,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="450" />
+            <ColumnDefinition Width="500" />
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">

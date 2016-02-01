@@ -118,180 +118,171 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Busy_LoadingBGM" xml:space="preserve">
-    <value>Loading BGM...</value>
+    <value>Cargando Música de Fondo...</value>
   </data>
   <data name="Busy_LoadingTheme" xml:space="preserve">
-    <value>Loading Theme...</value>
+    <value>Cargando Tema...</value>
   </data>
   <data name="Busy_OpeningImage" xml:space="preserve">
-    <value>Loading Image...</value>
+    <value>Cargando Imagen...</value>
   </data>
   <data name="Busy_PickingFile" xml:space="preserve">
-    <value>Picking File</value>
+    <value>Seleccionando Archivo</value>
   </data>
   <data name="Busy_SavingImage" xml:space="preserve">
-    <value>Saving Image...</value>
+    <value>Guardando Imagen...</value>
   </data>
   <data name="Busy_SavingTheme" xml:space="preserve">
-    <value>Saving Theme...</value>
-  </data>
-  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
-    <value>Pause</value>
-  </data>
-  <data name="Control_AudioPlayer_Play" xml:space="preserve">
-    <value>Play</value>
-  </data>
-  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
-    <value>Load</value>
-  </data>
-  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
-    <value>Stop</value>
-  </data>
-  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
-    <value>Advanced</value>
-  </data>
-  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
-    <value>Bottom Image Palette</value>
-  </data>
-  <data name="Control_ColorPicker_Recent" xml:space="preserve">
-    <value>Recent Colors</value>
-  </data>
-  <data name="Control_ColorPicker_Standard" xml:space="preserve">
-    <value>Palette</value>
-  </data>
-  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
-    <value>Top Image Palette</value>
-  </data>
-  <data name="Control_Toggle_False" xml:space="preserve">
-    <value>Disabled</value>
-  </data>
-  <data name="Control_Toggle_True" xml:space="preserve">
-    <value>Enabled</value>
-  </data>
-  <data name="Error_BackgroundMusicLoaded" xml:space="preserve">
-    <value>The Background Music Flag was Enabled:
- - Make sure the BGM.BCSTM file is present on your device when before the Theme, otherwise it'll crash!</value>
-  </data>
-  <data name="Error_InvalidImageSize" xml:space="preserve">
-    <value>Invalid Image Size</value>
-  </data>
-  <data name="Error_InvalidImageSize_AllowedSizes" xml:space="preserve">
-    <value>Allowed Sizes</value>
-  </data>
-  <data name="Error_NoBackgroundMusicOnLoad" xml:space="preserve">
-    <value>The Background Music Flag was Disabled:
- - Background Music Flag is Checked, however no BGM.BCSTM File was found.
- - Place the BGM.BCSTM file alongside the Theme, then press the "Reload BGM" Button to enable it again.</value>
-  </data>
-  <data name="Error_NoBackgroundMusicOnSave" xml:space="preserve">
-    <value>The Background Music Flag is Set:
- - No BGM.BCSTM file is present on the saved path
- - Make sure the BGM.BCSTM file is present on your device before applying the Theme, otherwise it'll crash!</value>
-  </data>
-  <data name="Error_ThemeSaved" xml:space="preserve">
-    <value>Theme Saved Successfully</value>
-  </data>
-  <data name="Menu_Copy" xml:space="preserve">
-    <value>_Copy</value>
-  </data>
-  <data name="Menu_File" xml:space="preserve">
-    <value>_File</value>
-  </data>
-  <data name="Menu_File_New" xml:space="preserve">
-    <value>_New</value>
-  </data>
-  <data name="Menu_File_Open" xml:space="preserve">
-    <value>_Open</value>
-  </data>
-  <data name="Menu_File_Save" xml:space="preserve">
-    <value>_Save</value>
-  </data>
-  <data name="Menu_File_SaveAs" xml:space="preserve">
-    <value>Save _As...</value>
-  </data>
-  <data name="Menu_Image" xml:space="preserve">
-    <value>_Image</value>
-  </data>
-  <data name="Menu_Image_Any_Export" xml:space="preserve">
-    <value>_Export</value>
-  </data>
-  <data name="Menu_Image_Any_Load" xml:space="preserve">
-    <value>_Import</value>
-  </data>
-  <data name="Menu_Image_Any_Remove" xml:space="preserve">
-    <value>_Remove</value>
-  </data>
-  <data name="Menu_Image_Bottom" xml:space="preserve">
-    <value>_Bottom</value>
-  </data>
-  <data name="Menu_Image_FileLarge" xml:space="preserve">
-    <value>File (_Large)</value>
-  </data>
-  <data name="Menu_Image_FileSmall" xml:space="preserve">
-    <value>File (_Small)</value>
-  </data>
-  <data name="Menu_Image_FolderClosed" xml:space="preserve">
-    <value>Folder (_Closed)</value>
-  </data>
-  <data name="Menu_Image_FolderOpen" xml:space="preserve">
-    <value>Folder (_Open)</value>
-  </data>
-  <data name="Menu_Image_Top" xml:space="preserve">
-    <value>_Top</value>
-  </data>
-  <data name="Menu_Image_TopStatic" xml:space="preserve">
-    <value>Top (_Alternative)</value>
-  </data>
-  <data name="Menu_Paste" xml:space="preserve">
-    <value>_Paste</value>
-  </data>
-  <data name="Control_Preview_Animate" xml:space="preserve">
-    <value>Animate</value>
-  </data>
-  <data name="Tab_Colors" xml:space="preserve">
-    <value>Colors</value>
-  </data>
-  <data name="Tab_Flags" xml:space="preserve">
-    <value>Flags</value>
-  </data>
-  <data name="Control_Preview_Folder" xml:space="preserve">
-    <value>Folder</value>
-  </data>
-  <data name="Control_Preview_Label" xml:space="preserve">
-    <value>Preview</value>
+    <value>Guardando Tema...</value>
   </data>
   <data name="Control_AudioPlayer_Label" xml:space="preserve">
     <value>BGM</value>
   </data>
-  <data name="Menu_File_SavePreview" xml:space="preserve">
-    <value>Generate Preview</value>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>Pausa</value>
   </data>
-  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
-    <value>Top</value>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>Reproducir</value>
   </data>
-  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
-    <value>Bottom</value>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>Cargar</value>
   </data>
-  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
-    <value>Both</value>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>Detener</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>Avanzado</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>Paleta de la Imagen Inferior</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>Colores Recientes</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>Paleta</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>Paleta de la Imagen Superior</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>Animar</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>Carpeta</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>Vista Previa</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>Activado</value>
+  </data>
+  <data name="Error_BackgroundMusicLoaded" xml:space="preserve">
+    <value>La Música de Fondo ha sido Activada:
+ - Asegúrate de que el archivo BGM.BCSTM este presente en tu dispositivo antes de instalar el tema, de lo contrario se congelara!.</value>
+  </data>
+  <data name="Error_InvalidImageSize" xml:space="preserve">
+    <value>Tamaño de Imagen Invalido</value>
+  </data>
+  <data name="Error_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>Tamaños Permitidos</value>
+  </data>
+  <data name="Error_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>La Música de Fondo ha sido Desactivada:
+ - La Opción de "Música de fondo" ha sido activada, sin embargo, el archivo BGM.BCSTM no se ha encontrado.
+ - Coloca el archivo BGM.BCSTM junto al Tema, después presiona el botón "Recargar Música de Fondo" para activarlo de nuevo.</value>
+  </data>
+  <data name="Error_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>La Música de Fondo ha sido Fijada:
+ - El archivo BGM.BCSTM no esta presente en la ruta guardada.
+ - Asegúrate de que el archivo BGM.BCSTM este presente en tu dispositivo antes de instalar el tema, de lo contrario se congelara!.</value>
   </data>
   <data name="Error_PreviewSaved" xml:space="preserve">
-    <value>Preview Saved</value>
+    <value>Vista Previa Guardada</value>
+  </data>
+  <data name="Error_ThemeSaved" xml:space="preserve">
+    <value>Tema Guardado Exitosamente</value>
   </data>
   <data name="Error_UpdateAvailable" xml:space="preserve">
-    <value>An Updated Version is Available:
-Check the About Window for more Information</value>
+    <value>Hay una actualización disponible:
+Verifica la Ventana "Acerca de" para mas información</value>
   </data>
   <data name="Menu_About" xml:space="preserve">
-    <value>About</value>
+    <value>Acerca de</value>
   </data>
-  <data name="Preview_DateFormat" xml:space="preserve">
-    <value>M/dd (ddd)</value>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>_Copiar</value>
   </data>
-  <data name="Preview_HourFormat" xml:space="preserve">
-    <value>HH</value>
+  <data name="Menu_File" xml:space="preserve">
+    <value>_Archivo</value>
   </data>
-  <data name="Preview_MinFormat" xml:space="preserve">
-    <value>mm</value>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>_Nuevo</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>_Abrir</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>_Guardar</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>Guardar _Como...</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>Generar Vista Previa</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>Ambos</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>Inferior</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>Superior</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>_Imagen</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>_Exportar</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>_Importar</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>_Quitar</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>_Inferior</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>Archivo (_Grande)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>Archivo (_Pequeño)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>Carpeta (_Cerrada)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>Carpeta (_Abierta)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>_Superior</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>Superior (_Alternativo)</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>_Pegar</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>Colores</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>Opciones</value>
   </data>
 </root>

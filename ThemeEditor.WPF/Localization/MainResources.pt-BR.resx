@@ -285,4 +285,13 @@ Verifique a Janela "Sobre" para mais Informações.</value>
   <data name="Menu_About" xml:space="preserve">
     <value>Sobre</value>
   </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>ddd, dd/MM</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
 </root>

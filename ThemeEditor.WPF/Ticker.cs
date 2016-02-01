@@ -6,16 +6,18 @@ using System;
 using System.ComponentModel;
 using System.Timers;
 
+using ThemeEditor.WPF.Localization;
+
 namespace ThemeEditor.WPF
 {
     public class Ticker : INotifyPropertyChanged
     {
-        private const string FORMAT_DATE = "M/dd (ddd)";
-        private const string FORMAT_HOUR = "HH";
-        private const string FORMAT_MIN = "mm";
-        public string DateString => Now.ToString(FORMAT_DATE);
-        public string HourString => Now.ToString(FORMAT_HOUR);
-        public string MinString => Now.ToString(FORMAT_MIN);
+        //private const string FORMAT_DATE = "M/dd (ddd)";
+        //private const string FORMAT_HOUR = "HH";
+        //private const string FORMAT_MIN = "mm";
+        public string DateString => Now.ToString(MainResources.Preview_DateFormat);
+        public string HourString => Now.ToString(MainResources.Preview_HourFormat);
+        public string MinString => Now.ToString(MainResources.Preview_MinFormat);
         public DateTime Now => DateTime.Now;
 
         public bool SecModTwo => Now.Second % 2 == 0;

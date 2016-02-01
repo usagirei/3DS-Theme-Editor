@@ -535,6 +535,33 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to M/dd (ddd).
+        /// </summary>
+        public static string Preview_DateFormat {
+            get {
+                return ResourceManager.GetString("Preview_DateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HH.
+        /// </summary>
+        public static string Preview_HourFormat {
+            get {
+                return ResourceManager.GetString("Preview_HourFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mm.
+        /// </summary>
+        public static string Preview_MinFormat {
+            get {
+                return ResourceManager.GetString("Preview_MinFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Colors.
         /// </summary>
         public static string Tab_Colors {

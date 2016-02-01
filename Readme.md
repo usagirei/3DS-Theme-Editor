@@ -18,6 +18,7 @@ WPF Based, Theme Editor for Nintendo 3DS
 * **Top Screen Frame Types**: Fixed, Slow/Fast Scroll
 * **Bottom Screen Render Modes**: Fixed, Slow/Fast Scroll, Flip/Bounce Tiled
 * **Bottom Screen UI Elements**: Folder and Icon Borders, Solid Color and Textured
+* **Experimental CWAV Manager**: Add Sound Effects to your themes, optional support for ctr_WaveConverter (Required for Wav Conversion)
 
 #### Localization
 
@@ -25,6 +26,7 @@ Avaiable on the Following Languages:
 
 * English
 * Portuguese (Brazil)
+* Spanish (by dsoldier @ GBATemp)
 
 ---
 ### ThemeEditor Common

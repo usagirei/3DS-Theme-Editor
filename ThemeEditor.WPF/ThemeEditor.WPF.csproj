@@ -241,6 +241,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Localization\MainResources.es.resx" />
     <EmbeddedResource Include="Localization\MainResources.pt-BR.resx">
       <DependentUpon>MainResources.resx</DependentUpon>
     </EmbeddedResource>
@@ -249,6 +250,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ThemeResources.es.resx" />
     <EmbeddedResource Include="Localization\ThemeResources.pt-BR.resx">
       <DependentUpon>ThemeResources.resx</DependentUpon>
       <SubType>Designer</SubType>
