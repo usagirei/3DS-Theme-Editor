@@ -493,7 +493,7 @@
     <value>Botón de Flecha</value>
   </data>
   <data name="Theme_Colors_Arrow_Button_Desc" xml:space="preserve">
-    <value>Botón de Paginación con la Flecha </value>
+    <value>Botón de Paginación con la Flecha</value>
   </data>
   <data name="Theme_Colors_Arrow_Desc" xml:space="preserve">
     <value>Flecha en el Botón de Paginación</value>
@@ -574,7 +574,7 @@
     <value>Fondo de Pantalla Superior</value>
   </data>
   <data name="Theme_Colors_Top_Background_Desc" xml:space="preserve">
-    <value>Colore de Fondo de la Pantalla Superior</value>
+    <value>Color de Fondo de la Pantalla Superior</value>
   </data>
   <data name="Theme_Colors_Top_Corner" xml:space="preserve">
     <value>Botones en las Esquinas de la Pantalla Superior</value>
@@ -586,7 +586,7 @@
     <value>Color Inferior de la Flecha</value>
   </data>
   <data name="Theme_Flags_Arrow_Button_Color_Desc" xml:space="preserve">
-    <value>Habilita Colores Personalizados del Botón de Paginación </value>
+    <value>Habilita Colores Personalizados del Botón de Paginación</value>
   </data>
   <data name="Theme_Flags_Arrow_Color" xml:space="preserve">
     <value>Color de la Flecha</value>
@@ -622,7 +622,7 @@
     <value>Tipo de Renderizado de la Pantalla Inferior</value>
   </data>
   <data name="Theme_Flags_Bottom_Draw_Type_Desc" xml:space="preserve">
-    <value>Seleccionar el Tipo de Renderizado de la Pantalla Inferior </value>
+    <value>Seleccionar el Tipo de Renderizado de la Pantalla Inferior</value>
   </data>
   <data name="Theme_Flags_Bottom_Frame_Type" xml:space="preserve">
     <value>Tipo de Cuadro de la Pantalla Inferior</value>
