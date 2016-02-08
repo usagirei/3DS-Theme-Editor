@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Busy_LoadingBGM" xml:space="preserve">
+    <value>Caricamento Colonna sonora (BGM)...</value>
+  </data>
+  <data name="Busy_LoadingTheme" xml:space="preserve">
+    <value>Caricamento Tema...</value>
+  </data>
+  <data name="Busy_OpeningImage" xml:space="preserve">
+    <value>Caricamento Immagine...</value>
+  </data>
+  <data name="Busy_PickingFile" xml:space="preserve">
+    <value>Selezionando il File</value>
+  </data>
+  <data name="Busy_SavingImage" xml:space="preserve">
+    <value>Salvando l'immagine...</value>
+  </data>
+  <data name="Busy_SavingTheme" xml:space="preserve">
+    <value>Salvando il tema...</value>
+  </data>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>Carica</value>
+  </data>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>Avanzate</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>Palette immagine inferiore</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>Colori recenti</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>Palette immagine superiore</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>Disabilitato</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>Abilitato</value>
+  </data>
+  <data name="Error_BackgroundMusicLoaded" xml:space="preserve">
+    <value>Flag colonna sonora attivata:
+ - Accertati che il file "BGM.BCSTM" sia presente dentro al dispositivo prima di installare il tema, altrimenti crasherà!</value>
+  </data>
+  <data name="Error_InvalidImageSize" xml:space="preserve">
+    <value>Grandezza immagine errata</value>
+  </data>
+  <data name="Error_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>Grandezze accettate</value>
+  </data>
+  <data name="Error_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>Flag colonna sonora disabilitata:
+ -Flag colonna sonora verificata, tuttavia non è stato trovato nessun file "BGM.BCSTM".
+ -Posiziona il file "BGM.BCSTM" vicino al tema, poi premi il bottone "Ricarica BGM" per riabilitarlo.</value>
+  </data>
+  <data name="Error_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>Settato flag colonna sonora:
+ - Nessun file "BGM.BCSTM" trovato nella directory salvata.
+ - Accertati che il file "BGM.BCSTM" sia presente dentro al dispositivo prima di installare il tema, altrimenti crasherà!</value>
+  </data>
+  <data name="Error_ThemeSaved" xml:space="preserve">
+    <value>Tema salvato con successo</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>_Copia</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>_Nuovo</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>_Apri</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>_Salva</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>_Salva come...</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>_Immagine</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>_Esporta</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>_Importa</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>_Rimuovi</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>_Inferiore</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>File (_Grande)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>File (_Piccolo)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>Cartella (_Chiusa)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>Cartella (_Aperta)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>_Superiore</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>Superiore (_Alternativa)</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>_Incolla</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>Animazioni</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>Colore</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>Flag</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>Cartella</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>Anteprima</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>Genera Anteprima (preview.png)</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>Superiore</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>Inferiore</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>Entrambi</value>
+  </data>
+  <data name="Error_PreviewSaved" xml:space="preserve">
+    <value>Anteprima salvata</value>
+  </data>
+  <data name="Error_UpdateAvailable" xml:space="preserve">
+    <value>Una versione aggiornata sembra essere disponibile:
+Controlla nella finestra "Info" per altre informazioni.</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>M/dd (ddd)</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
+</root>
