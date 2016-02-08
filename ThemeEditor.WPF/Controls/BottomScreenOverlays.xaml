@@ -23,9 +23,11 @@
                 <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
                     <Setter Property="Fill">
                         <Setter.Value>
-                            <LinearGradientBrush StartPoint="0,0.25" EndPoint="0,1">
-                                <GradientStop Color="{Binding Path=Colors.Open.Unpressed}" Offset="0" />
-                                <GradientStop Color="{Binding Path=Colors.Open.Pressed}" Offset="1" />
+                            <LinearGradientBrush StartPoint="0,0.1" EndPoint="0,0.5">
+                                <GradientStop Color="{Binding Path=Colors.Open.Glow}" Offset="-0.5" />
+                                <GradientStop Color="{Binding Path=Colors.Open.Unpressed}" Offset="0.4" />
+                                <GradientStop Color="{Binding Path=Colors.Open.Unpressed}" Offset="0.5" />
+                                <GradientStop Color="{Binding Path=Colors.Open.Pressed}" Offset="1.5" />
                             </LinearGradientBrush>
                         </Setter.Value>
                     </Setter>
@@ -39,7 +41,7 @@
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.5">
                         <GradientStop Color="#ff000000" Offset="0.4" />
-                        <GradientStop Color="#00000000" Offset="0.6" />
+                        <GradientStop Color="#00000000" Offset="0.7" />
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
