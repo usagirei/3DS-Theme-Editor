@@ -27,7 +27,7 @@ Avaiable on the Following Languages:
 * English
 * Portuguese (Brazil)
 * Spanish (by dsoldier @ GBATemp)
-* Italian (by RayFirefis @ GBATemp)
+* Italian (by RayFirefist @ GBATemp)
 
 ---
 ### ThemeEditor Common
