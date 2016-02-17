@@ -4,7 +4,10 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
+
+using ThemeEditor.WPF.Localization;
 
 namespace ThemeEditor.WPF.Themes
 {
@@ -12,12 +15,22 @@ namespace ThemeEditor.WPF.Themes
     {
         public delegate void ViewModelChangedHandler(ViewModelChangedArgs args);
 
-        protected string Tag { get; set; }
-
-        public string GetTag() => Tag;
-
         private object _model;
+        private bool _enabled = true;
 
+        [Visible(false)]
+        public bool Enabled
+        {
+            get { return _enabled; }
+            set
+            {
+                var oldValue = _enabled;
+                _enabled = value;
+                RaiseViewModelChanged(nameof(Enabled), oldValue, value);
+            }
+        }
+
+        [Visible(false)]
         protected object Model
         {
             get { return _model; }
@@ -28,6 +41,9 @@ namespace ThemeEditor.WPF.Themes
                 RaiseViewModelChanged(nameof(Model), oldValue, value);
             }
         }
+
+        [Visible(false)]
+        public string Tag { get; protected set; }
 
         protected ViewModelBase(object model, string tag)
         {
@@ -48,6 +64,7 @@ namespace ThemeEditor.WPF.Themes
 
         protected void RaiseViewModelChanged(string property, object oldValue, object newValue)
         {
+            Debug.WriteLine($"ViewModelBase Property Changed: {property}: '{oldValue}' -> '{newValue}'");
             OnPropertyChanged(property);
             if (ViewModelChanged != null)
                 ViewModelChanged.Invoke(new ViewModelChangedArgs(this, property, oldValue, newValue));

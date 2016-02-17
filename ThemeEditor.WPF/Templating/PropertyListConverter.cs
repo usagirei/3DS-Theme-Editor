@@ -39,7 +39,7 @@ namespace ThemeEditor.WPF.Templating
         public class PropertyProxy : INotifyPropertyChanged, IDisposable
         {
             public PropertyInfo Property;
-            public object Target;
+            public object Target { get; }
 
             public bool CanRead => Property.CanRead;
             public bool CanWrite => Property.CanWrite;

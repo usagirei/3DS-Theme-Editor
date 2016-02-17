@@ -30,12 +30,62 @@ namespace ThemeEditor.WPF.Themes
         {
             Rules = new ViewModelRules(Tag);
 
+            SetupRules_FrameTypes();
+            SetupRules_Textures();
+            SetupRules_ColorToggles();
+
+            Rules.Apply(Flags);
+            Rules.Apply(Textures);
+            Rules.Apply(Colors);
+        }
+
+
+        private void SetupRules_ColorToggles()
+        {
             Rules.AddRule<FlagsViewModel, bool>
-                (nameof(FlagsViewModel.BottomBackgroundOuterColor), Validate_BottomBackgroundOuterColor);
+                (nameof(FlagsViewModel.TopBackgroundColor), (v, o, n) => Colors.TopBackground.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.TopCornerButtonColor), (v, o, n) => Colors.TopCorner.Enabled = n);
 
             Rules.AddRule<FlagsViewModel, bool>
-                (nameof(FlagsViewModel.BottomBackgroundInnerColor), Validate_BottomBackgroundInnerColor);
+                (nameof(FlagsViewModel.BottomBackgroundInnerColor), (v, o, n) =>
+                {
+                    Validate_Dependency_BottomBackgroundInnerColor(v, o, n);
+                    Colors.BottomBackgroundInner.Enabled = v.BottomBackgroundInnerColor;
+                });
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.BottomBackgroundOuterColor), (v, o, n) =>
+                {
+                    Validate_Dependency_BottomBackgroundOuterColor(v, o, n);
+                    Colors.BottomBackgroundOuter.Enabled = v.BottomBackgroundOuterColor;
+                });
 
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.BottomCornerButtonColor), (v, o, n) => Colors.BottomCorner.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.OpenCloseColor), (v, o, n) => Colors.Open.Enabled = Colors.Close.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.FolderBackgroundColor), (v, o, n) => Colors.FolderBackground.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.FolderColor), (v, o, n) => Colors.Folder.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.FolderArrowColor), (v, o, n) => Colors.FolderArrow.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.FileColor), (v, o, n) => Colors.File.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.CursorColor), (v, o, n) => Colors.Cursor.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.ArrowButtonColor), (v, o, n) => Colors.ArrowButton.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.ArrowColor), (v, o, n) => Colors.Arrow.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.GameTextColor), (v, o, n) => Colors.GameText.Enabled = n);
+            Rules.AddRule<FlagsViewModel, bool>
+                (nameof(FlagsViewModel.DemoTextColor), (v, o, n) => Colors.DemoText.Enabled = n);
+        }
+
+        private void SetupRules_FrameTypes()
+        {
             Rules.AddRule<FlagsViewModel, TopDrawType>
                 (nameof(FlagsViewModel.TopDrawType), Validate_TopDrawType);
 
@@ -47,27 +97,26 @@ namespace ThemeEditor.WPF.Themes
 
             Rules.AddRule<FlagsViewModel, BottomFrameType>
                 (nameof(FlagsViewModel.BottomFrameType), Validate_BottomFrameType);
+        }
 
+        private void SetupRules_Textures()
+        {
             Rules.AddRule<TexturesViewModel, TextureViewModel>
                 (nameof(TexturesViewModel.Top), Validate_Texture_Top);
 
             Rules.AddRule<TexturesViewModel, TextureViewModel>
                 (nameof(TexturesViewModel.Bottom), Validate_Texture_Bottom);
-
-            Rules.Apply(Flags);
-            Rules.Apply(Textures);
-            Rules.Apply(Colors);
         }
 
-        private void Validate_BottomBackgroundInnerColor(FlagsViewModel model, bool oldValue, bool newValue)
+        private void Validate_Dependency_BottomBackgroundInnerColor(FlagsViewModel model, bool oldValue, bool newValue)
         {
             model.BottomBackgroundInnerColor = newValue && model.BottomDrawType == BottomDrawType.SolidColor;
 
             // NOTE: Only Directly Call if Absolutely Sure no Recursion will Ensue!
-            Validate_BottomBackgroundOuterColor(model, model.BottomBackgroundOuterColor, model.BottomBackgroundOuterColor);
+            Validate_Dependency_BottomBackgroundOuterColor(model, model.BottomBackgroundOuterColor, model.BottomBackgroundOuterColor);
         }
 
-        private void Validate_BottomBackgroundOuterColor(FlagsViewModel model, bool oldValue, bool newValue)
+        private void Validate_Dependency_BottomBackgroundOuterColor(FlagsViewModel model, bool oldValue, bool newValue)
         {
             model.BottomBackgroundOuterColor = newValue
                                                && model.BottomBackgroundInnerColor
@@ -90,7 +139,7 @@ namespace ThemeEditor.WPF.Themes
             }
 
             // NOTE: Only Directly Call if Absolutely Sure no Recursion will Ensue!
-            Validate_BottomBackgroundInnerColor(model, model.BottomBackgroundInnerColor, model.BottomBackgroundInnerColor);
+            Validate_Dependency_BottomBackgroundInnerColor(model, model.BottomBackgroundInnerColor, model.BottomBackgroundInnerColor);
             // Inner will Also Validate Outer
             Validate_BottomFrameType(model, model.BottomFrameType, model.BottomFrameType);
         }

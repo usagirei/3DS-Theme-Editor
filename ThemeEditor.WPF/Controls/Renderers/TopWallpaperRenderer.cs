@@ -350,7 +350,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
         {
             if (Theme == null)
                 return;
-            if (args.ViewModel.GetTag() == Theme.GetTag())
+            if (args.ViewModel.Tag == Theme.Tag)
                 InvalidateVisual();
         }
     }

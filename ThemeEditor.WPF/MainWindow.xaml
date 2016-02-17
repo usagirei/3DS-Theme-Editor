@@ -26,6 +26,7 @@
                  StringFormat="{x:Static  local:MainWindow.WINDOW_TITLE_FORMAT}" />
     </Window.Title>
     <Window.Resources>
+        <templating:BooleanConverter FalseValue="0.5" TrueValue="1.0" x:Key="BooleanToOpacityConverter" />
         <templating:PropertyListConverter x:Key="ViewModelUnroller" />
         <templating:DynamicTemplateSelector x:Key="TemplateSelector" />
         <Style x:Key="PropertyListControlStyle" TargetType="ItemsControl">
@@ -81,7 +82,9 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate DataType="{x:Type templating:PropertyListConverter+PropertyProxy}">
-                        <StackPanel Margin="3,0">
+                        <StackPanel Margin="3,0"
+                                    
+                                    Opacity="{Binding Path=Value.Enabled, Converter={StaticResource BooleanToOpacityConverter}}">
                             <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" />
                             <TextBlock FontStyle="Italic" Text="{Binding Path=Description}" />
                             <StackPanel>

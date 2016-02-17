@@ -14,7 +14,7 @@ namespace ThemeEditor.WPF.Themes
 
         private readonly Dictionary<Type, Dictionary<string, Delegate>> _ruleSet;
 
-        private Stack<string> _validationStack = new Stack<string>(10);
+        private readonly Stack<string> _validationStack = new Stack<string>(10);
 
         public bool Paused { get; set; }
         public string Tag { get; }
@@ -63,7 +63,7 @@ namespace ThemeEditor.WPF.Themes
 
         private void ViewModelBaseOnViewModelChanged(ViewModelBase.ViewModelChangedArgs args)
         {
-            if (Tag != args.ViewModel.GetTag())
+            if (Tag != args.ViewModel.Tag)
                 return;
             // Prevent Self-Revalidation
             if (Paused || (_validationStack.Count > 0 && _validationStack.Peek() == args.Property))
