@@ -106,6 +106,10 @@ namespace ThemeEditor.Common.Themes
                         texes.TopExt = new RawTexture(64, 64, RawTexture.DataFormat.A8);
                         texes.TopExt.Read(s);
                     }
+                    else
+                    {
+                        texes.TopExt = new RawTexture();
+                    }
                 }
                 else
                 {
