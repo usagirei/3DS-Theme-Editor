@@ -18,12 +18,21 @@ namespace ThemeEditor.Common.SMDH
         public static SMDHMatchMakerID Read(Stream s)
         {
             SMDHMatchMakerID mmid = new SMDHMatchMakerID();
-            using (BinaryReader br = new BinaryReader(s, Encoding.ASCII, true))
+            using (var br = new BinaryReader(s, Encoding.ASCII, true))
             {
                 mmid.MatchMakerID = br.ReadInt32();
                 mmid.MatchMakerBitID = br.ReadInt64();
             }
             return mmid;
+        }
+
+        public static void Write(SMDHMatchMakerID mmid, Stream s)
+        {
+            using (var bw = new BinaryWriter(s, Encoding.ASCII, true))
+            {
+                bw.Write(mmid.MatchMakerID);
+                bw.Write(mmid.MatchMakerBitID);
+            }
         }
     }
 }

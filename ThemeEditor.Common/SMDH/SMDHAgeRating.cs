@@ -63,5 +63,10 @@ namespace ThemeEditor.Common.SMDH
                 Value = (byte) s.ReadByte()
             };
         }
+
+        public static void Write(SMDHAgeRating rating, Stream s)
+        {
+            s.WriteByte(rating.Value);
+        }
     }
 }

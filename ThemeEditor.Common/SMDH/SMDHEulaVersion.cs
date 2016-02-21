@@ -23,5 +23,11 @@ namespace ThemeEditor.Common.SMDH
             Minor = minor;
             Major = major;
         }
+
+        public static void Write(SMDHEulaVersion eula, Stream s)
+        {
+            s.WriteByte(eula.Minor);
+            s.WriteByte(eula.Major);
+        }
     }
 }

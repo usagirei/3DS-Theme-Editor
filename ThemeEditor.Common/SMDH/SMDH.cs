@@ -65,5 +65,23 @@ namespace ThemeEditor.Common.SMDH
             }
             return smdh;
         }
+
+        public static void Write(SMDH smdh, Stream s)
+        {
+            using (var bw = new BinaryWriter(s, Encoding.ASCII, true))
+            {
+                bw.Write(MAGIC);
+                bw.Write(smdh.Version);
+                bw.Write(smdh.Reserved_1);
+
+                for (int i = 0; i < 16; i++)
+                    SMDHTitle.Write(smdh.AppTitles[i], s);
+
+                SMDHSettings.Write(smdh.Settings, s);
+                bw.Write(smdh.Reserved_2);
+                bw.Write(smdh.SmallIcon.Data);
+                bw.Write(smdh.LargeIcon.Data);
+            }
+        }
     }
 }

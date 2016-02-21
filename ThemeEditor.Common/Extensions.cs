@@ -16,5 +16,13 @@ namespace ThemeEditor.Common
             var i = str.IndexOf('\0');
             return str.Remove(i);
         }
+
+        public static void WriteFixedSizeString(this BinaryWriter bw, string str, Encoding encoding, int bytes)
+        {
+            var buf = new byte[bytes];
+            var strData = encoding.GetBytes(str);
+            Buffer.BlockCopy(strData, 0, buf, 0, Math.Min(strData.Length, buf.Length));
+            bw.Write(buf);
+        }
     }
 }

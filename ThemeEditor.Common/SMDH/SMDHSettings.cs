@@ -52,5 +52,21 @@ namespace ThemeEditor.Common.SMDH
             }
             return sett;
         }
+
+        public static void Write(SMDHSettings sett, Stream s)
+        {
+            using (var bw = new BinaryWriter(s, Encoding.ASCII, true))
+            {
+                for (int i = 0; i < 16; i++)
+                    SMDHAgeRating.Write(sett.AgeRatings[i], s);
+                bw.Write((int) sett.RegionLock);
+                SMDHMatchMakerID.Write(sett.MatchMakerID, s);
+                bw.Write((int) sett.Flags);
+                SMDHEulaVersion.Write(sett.EULA, s);
+                bw.Write(sett.Reserved);
+                bw.Write(sett.OptimalBannerFrame);
+                bw.Write(sett.StreetPassID);
+            }
+        }
     }
 }

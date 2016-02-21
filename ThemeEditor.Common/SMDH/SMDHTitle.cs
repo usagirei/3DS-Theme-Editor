@@ -20,13 +20,23 @@ namespace ThemeEditor.Common.SMDH
 
         public static SMDHTitle Read(Stream s)
         {
-            using (BinaryReader br = new BinaryReader(s, Encoding.ASCII, true))
+            using (var br = new BinaryReader(s, Encoding.ASCII, true))
                 return new SMDHTitle(true)
                 {
                     ShortDesc = br.ReadFixedSizeString(Encoding.Unicode, 0x80),
                     LongDesc = br.ReadFixedSizeString(Encoding.Unicode, 0x100),
                     Publisher = br.ReadFixedSizeString(Encoding.Unicode, 0x80),
                 };
+        }
+
+        public static void Write(SMDHTitle title, Stream s)
+        {
+            using (var bw = new BinaryWriter(s, Encoding.ASCII, true))
+            {
+                bw.WriteFixedSizeString(title.ShortDesc, Encoding.Unicode, 0x80);
+                bw.WriteFixedSizeString(title.LongDesc, Encoding.Unicode, 0x100);
+                bw.WriteFixedSizeString(title.Publisher, Encoding.Unicode, 0x80);
+            }
         }
     }
 }
