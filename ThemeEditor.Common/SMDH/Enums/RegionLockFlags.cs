@@ -3,7 +3,7 @@ using System;
 namespace ThemeEditor.Common.SMDH
 {
     [Flags]
-    public enum SMDHRegionLockFlags {
+    public enum RegionLockFlags {
         Japan = 0x01,
         NorthAmerica = 0x02,
         Europe = 0x04,

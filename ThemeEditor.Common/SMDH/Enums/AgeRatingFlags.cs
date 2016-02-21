@@ -3,7 +3,7 @@ using System;
 namespace ThemeEditor.Common.SMDH
 {
     [Flags]
-    public enum SMDHAgeRatingFlags : byte
+    public enum AgeRatingFlags : byte
     {
         None = 0x00,
         Enable = 0x80,

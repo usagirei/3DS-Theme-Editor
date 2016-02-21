@@ -1,6 +1,6 @@
 namespace ThemeEditor.Common.SMDH
 {
-    public enum SMDHAgeRatingsEnum
+    public enum AgeRatingsEnum
     {
         CERO = 1, // Japan
         ESBR = 2, // USA 

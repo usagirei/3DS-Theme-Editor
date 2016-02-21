@@ -1,6 +1,6 @@
 ﻿namespace ThemeEditor.Common.SMDH
 {
-    public enum SMDHTitleEnum
+    public enum AppTitleEnum
     {
         /*
         1st: Japanese title name

@@ -3,25 +3,25 @@ using System.Text;
 
 namespace ThemeEditor.Common.SMDH
 {
-    public class SMDHTitle
+    public class AppTitle
     {
         public string LongDesc;
         public string Publisher;
         public string ShortDesc;
 
-        public SMDHTitle()
+        public AppTitle()
         {
             LongDesc = string.Empty;
             ShortDesc = string.Empty;
             Publisher = string.Empty;
         }
 
-        private SMDHTitle(bool inter) {}
+        private AppTitle(bool inter) {}
 
-        public static SMDHTitle Read(Stream s)
+        public static AppTitle Read(Stream s)
         {
             using (var br = new BinaryReader(s, Encoding.ASCII, true))
-                return new SMDHTitle(true)
+                return new AppTitle(true)
                 {
                     ShortDesc = br.ReadFixedSizeString(Encoding.Unicode, 0x80),
                     LongDesc = br.ReadFixedSizeString(Encoding.Unicode, 0x100),
@@ -29,7 +29,7 @@ namespace ThemeEditor.Common.SMDH
                 };
         }
 
-        public static void Write(SMDHTitle title, Stream s)
+        public static void Write(AppTitle title, Stream s)
         {
             using (var bw = new BinaryWriter(s, Encoding.ASCII, true))
             {

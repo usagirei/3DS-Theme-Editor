@@ -3,7 +3,7 @@ using System;
 namespace ThemeEditor.Common.SMDH
 {
     [Flags]
-    public enum SMDHSettingFlags
+    public enum SettingFlags
     {
         None = 0x00,
         Visible = 0x0001,

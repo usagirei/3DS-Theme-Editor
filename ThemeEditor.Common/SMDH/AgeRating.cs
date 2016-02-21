@@ -2,7 +2,7 @@
 
 namespace ThemeEditor.Common.SMDH
 {
-    public struct SMDHAgeRating
+    public struct AgeRating
     {
         public byte Value;
 
@@ -12,59 +12,59 @@ namespace ThemeEditor.Common.SMDH
             set { Value = (byte) ((Value & ~0x1F) | (value & 0x1F)); }
         }
 
-        public SMDHAgeRatingFlags Flags
+        public AgeRatingFlags Flags
         {
-            get { return (SMDHAgeRatingFlags) (Value & ~0x1F); }
+            get { return (AgeRatingFlags) (Value & ~0x1F); }
             set { Value = (byte) ((Value & 0x1F) | ((byte) value & ~0x1F)); }
         }
 
         /*
         public bool Enable
         {
-            get { return Flags.HasFlag(SMDHAgeRatingFlags.Enable); }
+            get { return Flags.HasFlag(AgeRatingFlags.Enable); }
             set
             {
                 if (value)
-                    Flags |= SMDHAgeRatingFlags.Enable;
+                    Flags |= AgeRatingFlags.Enable;
                 else
-                    Flags &= ~SMDHAgeRatingFlags.Enable;
+                    Flags &= ~AgeRatingFlags.Enable;
             }
         }
 
         public bool AllAges
         {
-            get { return Flags.HasFlag(SMDHAgeRatingFlags.AllAges); }
+            get { return Flags.HasFlag(AgeRatingFlags.AllAges); }
             set
             {
                 if (value)
-                    Flags |= SMDHAgeRatingFlags.AllAges;
+                    Flags |= AgeRatingFlags.AllAges;
                 else
-                    Flags &= ~SMDHAgeRatingFlags.AllAges;
+                    Flags &= ~AgeRatingFlags.AllAges;
             }
         }
 
         public bool RatingPending
         {
-            get { return Flags.HasFlag(SMDHAgeRatingFlags.RatingPending); }
+            get { return Flags.HasFlag(AgeRatingFlags.RatingPending); }
             set
             {
                 if (value)
-                    Flags |= SMDHAgeRatingFlags.RatingPending;
+                    Flags |= AgeRatingFlags.RatingPending;
                 else
-                    Flags &= ~SMDHAgeRatingFlags.RatingPending;
+                    Flags &= ~AgeRatingFlags.RatingPending;
             }
         }
         */
 
-        public static SMDHAgeRating Read(Stream s)
+        public static AgeRating Read(Stream s)
         {
-            return new SMDHAgeRating
+            return new AgeRating
             {
                 Value = (byte) s.ReadByte()
             };
         }
 
-        public static void Write(SMDHAgeRating rating, Stream s)
+        public static void Write(AgeRating rating, Stream s)
         {
             s.WriteByte(rating.Value);
         }

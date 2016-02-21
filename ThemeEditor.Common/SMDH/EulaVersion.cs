@@ -2,15 +2,15 @@ using System.IO;
 
 namespace ThemeEditor.Common.SMDH
 {
-    public struct SMDHEulaVersion
+    public struct EulaVersion
     {
-        public static SMDHEulaVersion Zero = new SMDHEulaVersion(0,0);
+        public static EulaVersion Zero = new EulaVersion(0,0);
         public byte Minor;
         public byte Major;
 
-        public static SMDHEulaVersion Read(Stream s)
+        public static EulaVersion Read(Stream s)
         {
-            var eula = new SMDHEulaVersion
+            var eula = new EulaVersion
             {
                 Minor = (byte) s.ReadByte(),
                 Major = (byte) s.ReadByte()
@@ -18,13 +18,13 @@ namespace ThemeEditor.Common.SMDH
             return eula;
         }
 
-        public SMDHEulaVersion(byte minor, byte major) : this()
+        public EulaVersion(byte minor, byte major) : this()
         {
             Minor = minor;
             Major = major;
         }
 
-        public static void Write(SMDHEulaVersion eula, Stream s)
+        public static void Write(EulaVersion eula, Stream s)
         {
             s.WriteByte(eula.Minor);
             s.WriteByte(eula.Major);

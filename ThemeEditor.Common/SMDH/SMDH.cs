@@ -13,11 +13,11 @@ namespace ThemeEditor.Common.SMDH
             0x53, 0x4D, 0x44, 0x48
         };
 
-        public SMDHTitle[] AppTitles;
+        public AppTitle[] AppTitles;
         public RawTexture LargeIcon;
         public short Reserved_1;
         public long Reserved_2;
-        public SMDHSettings Settings;
+        public AppSettings Settings;
         public RawTexture SmallIcon;
         public short Version;
 
@@ -27,13 +27,13 @@ namespace ThemeEditor.Common.SMDH
             Reserved_1 = 0;
             Reserved_2 = 0;
             for (int i = 0; i < 16; i++)
-                AppTitles[i] = new SMDHTitle();
-            Settings = new SMDHSettings();
+                AppTitles[i] = new AppTitle();
+            Settings = new AppSettings();
         }
 
         protected SMDH(bool inter)
         {
-            AppTitles = new SMDHTitle[16];
+            AppTitles = new AppTitle[16];
             SmallIcon = new RawTexture(24, 24, RawTexture.DataFormat.Bgr565);
             LargeIcon = new RawTexture(48, 48, RawTexture.DataFormat.Bgr565);
         }
@@ -53,11 +53,11 @@ namespace ThemeEditor.Common.SMDH
                 smdh.Version = br.ReadInt16();
                 smdh.Reserved_1 = br.ReadInt16();
 
-                smdh.AppTitles = new SMDHTitle[16];
+                smdh.AppTitles = new AppTitle[16];
                 for (int i = 0; i < 16; i++)
-                    smdh.AppTitles[i] = SMDHTitle.Read(s);
+                    smdh.AppTitles[i] = AppTitle.Read(s);
 
-                smdh.Settings = SMDHSettings.Read(s);
+                smdh.Settings = AppSettings.Read(s);
 
                 smdh.Reserved_2 = br.ReadInt64();
                 smdh.SmallIcon.Read(s);
@@ -75,9 +75,9 @@ namespace ThemeEditor.Common.SMDH
                 bw.Write(smdh.Reserved_1);
 
                 for (int i = 0; i < 16; i++)
-                    SMDHTitle.Write(smdh.AppTitles[i], s);
+                    AppTitle.Write(smdh.AppTitles[i], s);
 
-                SMDHSettings.Write(smdh.Settings, s);
+                AppSettings.Write(smdh.Settings, s);
                 bw.Write(smdh.Reserved_2);
                 bw.Write(smdh.SmallIcon.Data);
                 bw.Write(smdh.LargeIcon.Data);
