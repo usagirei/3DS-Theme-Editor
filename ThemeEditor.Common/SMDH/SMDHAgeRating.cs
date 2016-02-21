@@ -9,13 +9,13 @@ namespace ThemeEditor.Common.SMDH
         public byte Rating
         {
             get { return (byte) (Value & 0x1F); }
-            set { Value = (byte) (Value | (value & 0x1F)); }
+            set { Value = (byte) ((Value & ~0x1F) | (value & 0x1F)); }
         }
 
         public SMDHAgeRatingFlags Flags
         {
             get { return (SMDHAgeRatingFlags) (Value & ~0x1F); }
-            set { Value = (byte) (Value | ((byte) value & ~0x1F)); }
+            set { Value = (byte) ((Value & 0x1F) | ((byte) value & ~0x1F)); }
         }
 
         /*
