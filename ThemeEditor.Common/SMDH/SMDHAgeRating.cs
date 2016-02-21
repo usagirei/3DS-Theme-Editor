@@ -68,5 +68,10 @@ namespace ThemeEditor.Common.SMDH
         {
             s.WriteByte(rating.Value);
         }
+
+        public override string ToString()
+        {
+            return Flags + " - " + Rating;
+        }
     }
 }

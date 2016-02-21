@@ -38,5 +38,10 @@ namespace ThemeEditor.Common.SMDH
                 bw.WriteFixedSizeString(title.Publisher, Encoding.Unicode, 0x80);
             }
         }
+
+        public override string ToString()
+        {
+            return $"{LongDesc} ({ShortDesc}) - {Publisher}";
+        }
     }
 }

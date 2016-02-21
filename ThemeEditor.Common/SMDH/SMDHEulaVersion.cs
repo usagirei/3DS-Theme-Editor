@@ -29,5 +29,10 @@ namespace ThemeEditor.Common.SMDH
             s.WriteByte(eula.Minor);
             s.WriteByte(eula.Major);
         }
+
+        public override string ToString()
+        {
+            return Major + "." + Minor;
+        }
     }
 }

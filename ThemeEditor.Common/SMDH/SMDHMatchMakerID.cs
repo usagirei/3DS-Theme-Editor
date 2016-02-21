@@ -34,5 +34,10 @@ namespace ThemeEditor.Common.SMDH
                 bw.Write(mmid.MatchMakerBitID);
             }
         }
+
+        public override string ToString()
+        {
+            return $"{MatchMakerID:X8}-{MatchMakerBitID:X16}";
+        }
     }
 }
