@@ -54,7 +54,7 @@
             <Path Style="{StaticResource FolderStyleBackClosed}" Data="{StaticResource FolderGeometryBackClosed}" />
             <Canvas>
                 <Canvas.Clip>
-                    <RectangleGeometry Rect="-20,-22,40,8" />
+                    <RectangleGeometry Rect="-20,-23,40,9" />
                 </Canvas.Clip>
                 <Path Style="{StaticResource FolderItemStyleBack}" Data="{StaticResource FolderItemGeometry}" />
                 <Path Style="{StaticResource FolderItemStyleFore}" Data="{StaticResource FolderItemGeometry}" />
