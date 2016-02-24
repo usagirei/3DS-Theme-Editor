@@ -151,11 +151,7 @@
     </Style>
     <Style TargetType="{x:Type Path}" x:Key="NoCartStyleBack">
         <Setter Property="Fill" Value="#e0e0de" />
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="5" Opacity="0.35" />
-            </Setter.Value>
-        </Setter>
+
     </Style>
 
     <!-- File -->
@@ -163,11 +159,6 @@
     <RectangleGeometry x:Key="FileLabelGeometry" Rect="-19,-19,38,38" RadiusY="3" RadiusX="3" />
     <Style TargetType="{x:Type Path}" x:Key="FileStyleBack">
         <Setter Property="Fill" Value="#f6f6f6" />
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="5" Opacity="0.35" />
-            </Setter.Value>
-        </Setter>
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Flags.FileColor}" Value="True">
                 <Setter Property="Fill">
@@ -265,12 +256,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="5" Opacity="0.35" />
-            </Setter.Value>
-        </Setter>
-        <Setter Property="StrokeThickness" Value="2" />
+ <Setter Property="StrokeThickness" Value="2" />
         <Setter Property="Stroke">
             <Setter.Value>
                 <SolidColorBrush Color="{StaticResource FolderBaseColor}" />
@@ -505,5 +491,14 @@
                 </Setter>
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <!-- Caster-->
+    <Style TargetType="{x:Type FrameworkElement}" x:Key="PreviewItemShadowCaster">
+        <Setter Property="Effect">
+            <Setter.Value>
+                 <DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="5" Opacity="0.35" />
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

@@ -39,7 +39,9 @@
         <renderers:BottomFolderRenderer Theme="{Binding Path=.}" />
         <!-- Folder -->
         <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row1}">
-            <Path Style="{StaticResource FolderStyleBackOpen}" Data="{StaticResource FolderGeometryBackOpen}" />
+            <Canvas Style="{StaticResource PreviewItemShadowCaster}">
+                <Path Style="{StaticResource FolderStyleBackOpen}" Data="{StaticResource FolderGeometryBackOpen}" />
+            </Canvas>
             <Canvas>
                 <Canvas.Clip>
                     <RectangleGeometry Rect="-20,-23,40,17" />

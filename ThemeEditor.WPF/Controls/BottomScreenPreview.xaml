@@ -36,12 +36,16 @@
         <renderers:BottomWallpaperRenderer Theme="{Binding Path=.}" IsEnabled="True" />
         <!-- No Cart -->
         <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row1}">
-            <Path Style="{StaticResource NoCartStyleBack}" Data="{StaticResource FileGeometry}" />
-            <Path Style="{StaticResource NoCartStyleFore}" Data="{StaticResource NoCartGeometryFore}" />
+            <Canvas Style="{StaticResource PreviewItemShadowCaster}">
+                <Path Style="{StaticResource NoCartStyleBack}" Data="{StaticResource FileGeometry}" />
+                <Path Style="{StaticResource NoCartStyleFore}" Data="{StaticResource NoCartGeometryFore}" />
+            </Canvas>
         </Canvas>
         <!-- File -->
         <Canvas Canvas.Left="{StaticResource Column2}" Canvas.Top="{StaticResource Row1}">
-            <Path Style="{StaticResource FileStyleBack}" Data="{StaticResource FileGeometry}" />
+            <Canvas Style="{StaticResource PreviewItemShadowCaster}">
+                <Path Style="{StaticResource FileStyleBack}" Data="{StaticResource FileGeometry}" />
+            </Canvas>
             <Path Style="{StaticResource FileStyleFore}" Data="{StaticResource FileGeometry}" />
             <Path Data="{StaticResource FileLabelGeometry}">
                 <Path.Fill>
@@ -51,7 +55,10 @@
         </Canvas>
         <!-- Folder -->
         <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row2}">
-            <Path Style="{StaticResource FolderStyleBackClosed}" Data="{StaticResource FolderGeometryBackClosed}" />
+            <Canvas Style="{StaticResource PreviewItemShadowCaster}">
+                <Path Style="{StaticResource FolderStyleBackClosed}" Data="{StaticResource FolderGeometryBackClosed}" />
+            </Canvas>
+
             <Canvas>
                 <Canvas.Clip>
                     <RectangleGeometry Rect="-20,-23,40,9" />
