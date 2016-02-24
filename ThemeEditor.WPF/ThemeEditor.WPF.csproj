@@ -88,6 +88,7 @@
       <DependentUpon>CWAVWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TempFile.cs" />
+    <Compile Include="Templating\ColorBlendConverter.cs" />
     <Compile Include="Templating\ComparisonConverter.cs" />
     <Compile Include="ThirdParty.cs" />
     <Compile Include="XmlSettingsProvider.cs" />
@@ -199,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Eyedropper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PreviewResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
