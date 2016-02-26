@@ -294,4 +294,13 @@ Check the About Window for more Information</value>
   <data name="Preview_MinFormat" xml:space="preserve">
     <value>mm</value>
   </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>Theme Info</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>Small Icon (SMDH)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>Large Icon (SMDH)</value>
+  </data>
 </root>

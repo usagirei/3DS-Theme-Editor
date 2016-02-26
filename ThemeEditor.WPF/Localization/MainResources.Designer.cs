@@ -508,6 +508,24 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Large Icon (SMDH).
+        /// </summary>
+        public static string Menu_Image_LargeIcon {
+            get {
+                return ResourceManager.GetString("Menu_Image_LargeIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small Icon (SMDH).
+        /// </summary>
+        public static string Menu_Image_SmallIcon {
+            get {
+                return ResourceManager.GetString("Menu_Image_SmallIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Top.
         /// </summary>
         public static string Menu_Image_Top {
@@ -576,6 +594,15 @@ namespace ThemeEditor.WPF.Localization {
         public static string Tab_Flags {
             get {
                 return ResourceManager.GetString("Tab_Flags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme Info.
+        /// </summary>
+        public static string Tab_Info {
+            get {
+                return ResourceManager.GetString("Tab_Info", resourceCulture);
             }
         }
     }

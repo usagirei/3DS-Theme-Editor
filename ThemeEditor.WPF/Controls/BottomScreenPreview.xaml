@@ -49,7 +49,7 @@
             <Path Style="{StaticResource FileStyleFore}" Data="{StaticResource FileGeometry}" />
             <Path Data="{StaticResource FileLabelGeometry}">
                 <Path.Fill>
-                    <ImageBrush ImageSource="../Resources/Icons/app_icn.ico" Stretch="Fill" />
+                    <ImageBrush ImageSource="{Binding Path=Info.LargeIcon.Bitmap}" Stretch="Fill" />
                 </Path.Fill>
             </Path>
         </Canvas>

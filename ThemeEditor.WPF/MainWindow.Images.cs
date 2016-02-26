@@ -9,11 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 using Microsoft.Win32;
 
+using ThemeEditor.Common.Graphics;
 using ThemeEditor.WPF.Localization;
+using ThemeEditor.WPF.Markup;
 
 namespace ThemeEditor.WPF
 {
@@ -52,6 +55,11 @@ namespace ThemeEditor.WPF
                     return ViewModel.Textures.FolderClosed.Exists;
                 case TargetImage.TopAlt:
                     return ViewModel.Textures.TopAlt.Exists;
+
+                case TargetImage.SmallIcon:
+                    return ViewModel.Info.SmallIcon.Exists;
+                case TargetImage.LargeIcon:
+                    return ViewModel.Info.LargeIcon.Exists;
 
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -134,6 +142,12 @@ namespace ThemeEditor.WPF
                     break;
                 case TargetImage.TopAlt:
                     target = ViewModel.Textures.TopAlt.Bitmap;
+                    break;
+                case TargetImage.SmallIcon:
+                    target = ViewModel.Info.SmallIcon.Bitmap;
+                    break;
+                case TargetImage.LargeIcon:
+                    target = ViewModel.Info.LargeIcon.Bitmap;
                     break;
                 default:
                     throw new IndexOutOfRangeException();
@@ -249,28 +263,56 @@ namespace ThemeEditor.WPF
                     switch (target)
                     {
                         case TargetImage.Top:
+                        {
                             ViewModel.Textures.Top.EncodeTexture(args.Image, targetSize.Format);
                             break;
+                        }
                         case TargetImage.Bottom:
+                        {
                             ViewModel.Textures.Bottom.EncodeTexture(args.Image, targetSize.Format);
                             break;
+                        }
                         case TargetImage.FileLarge:
+                        {
                             ViewModel.Textures.FileLarge.EncodeTexture(args.Image, targetSize.Format);
                             break;
+                        }
                         case TargetImage.FileSmall:
+                        {
                             ViewModel.Textures.FileSmall.EncodeTexture(args.Image, targetSize.Format);
                             break;
+                        }
                         case TargetImage.FolderOpen:
+                        {
                             ViewModel.Textures.FolderOpen.EncodeTexture(args.Image, targetSize.Format);
                             break;
+                        }
                         case TargetImage.FolderClosed:
+                        {
                             ViewModel.Textures.FolderClosed.EncodeTexture(args.Image, targetSize.Format);
                             break;
+                        }
                         case TargetImage.TopAlt:
+                        {
                             ViewModel.Textures.TopAlt.EncodeTexture(args.Image, targetSize.Format);
                             break;
+                        }
+                        case TargetImage.SmallIcon:
+                        {
+                            ViewModel.Info.SmallIcon.EncodeTexture(args.Image, targetSize.Format);
+                            break;
+                        }
+                        case TargetImage.LargeIcon:
+                        {
+                            ViewModel.Info.LargeIcon.EncodeTexture(args.Image, targetSize.Format);
+                            var sml = Extensions.CreateResizedImage(args.Image, 24, 24);
+                            ViewModel.Info.SmallIcon.EncodeTexture((BitmapSource) sml, targetSize.Format);
+                            break;
+                        }
                         default:
+                        {
                             throw new ArgumentOutOfRangeException();
+                        }
                     }
                 }
                 catch (InvalidOperationException)
@@ -312,6 +354,20 @@ namespace ThemeEditor.WPF
                 case TargetImage.TopAlt:
                     ViewModel.Textures.TopAlt.ClearTexture();
                     break;
+                case TargetImage.SmallIcon:
+                {
+                    var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 24);
+                    var large = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 24, 24);
+                    ViewModel.Info.SmallIcon.EncodeTexture((BitmapSource) large, RawTexture.DataFormat.Bgr565);
+                    break;
+                }
+                case TargetImage.LargeIcon:
+                {
+                    var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 48);
+                    var large = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 48, 48);
+                    ViewModel.Info.LargeIcon.EncodeTexture((BitmapSource) large, RawTexture.DataFormat.Bgr565);
+                    break;
+                }
                 default:
                     throw new ArgumentOutOfRangeException();
             }

@@ -299,6 +299,13 @@
                         <Separator />
                         <MenuItem Header="32x64 (25x50)" IsEnabled="False" />
                     </MenuItem>
+                    <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FolderClosed}">
+                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
+                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
+                        <Separator />
+                        <MenuItem Header="64x128 (74x64)" IsEnabled="False" />
+                    </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FolderOpen}">
                         <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
                         <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
@@ -306,12 +313,20 @@
                         <Separator />
                         <MenuItem Header="64x128 (82x64)" IsEnabled="False" />
                     </MenuItem>
-                    <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FolderClosed}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
+                    <Separator />
+                    <MenuItem Header="{x:Static locale:MainResources.Menu_Image_LargeIcon}">
+                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
+                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
                         <Separator />
-                        <MenuItem Header="64x128 (74x64)" IsEnabled="False" />
+                        <MenuItem Header="48x48" IsEnabled="False" />
+                    </MenuItem>
+                    <MenuItem Header="{x:Static locale:MainResources.Menu_Image_SmallIcon}">
+                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
+                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
+                        <Separator />
+                        <MenuItem Header="24x24" IsEnabled="False" />
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Experimental">
@@ -320,6 +335,95 @@
                 <MenuItem Command="{Binding Path=AboutCommand}" Header="{x:Static locale:MainResources.Menu_About}" />
             </Menu>
             <TabControl Grid.Row="1">
+                <TabItem Header="{x:Static locale:MainResources.Tab_Info}">
+                    <Grid Margin="3">
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Padding" Value="2" />
+                                <Setter Property="Margin" Value="3" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Padding" Value="2" />
+                                <Setter Property="Margin" Value="3" />
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Margin" Value="3" />
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="387" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="102" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <!--  Author  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="{x:Static locale:ThemeResources.Theme_Info_Author}" />
+                        <TextBox
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            MaxLength="64"
+                            Text="{Binding Path=ViewModel.Info.Author, UpdateSourceTrigger=PropertyChanged}" />
+                        <!--  Short Descr  -->
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="{x:Static locale:ThemeResources.Theme_Info_ShortDesc}" />
+                        <TextBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            MaxLength="64"
+                            Text="{Binding Path=ViewModel.Info.ShortDescription, UpdateSourceTrigger=PropertyChanged}" />
+                        <!--  Long Descr  -->
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="{x:Static locale:ThemeResources.Theme_Info_LongDesc}" />
+                        <TextBox
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            AcceptsReturn="True"
+                            HorizontalScrollBarVisibility="Auto"
+                            MaxLength="128"
+                            MaxLines="4"
+                            MinLines="4"
+                            Text="{Binding Path=ViewModel.Info.LongDescription, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalScrollBarVisibility="Visible" />
+                        <!--  Icons  -->
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Text="{x:Static locale:ThemeResources.Theme_Info_LargeIcon}" />
+                        <Image
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Width="48px"
+                            Height="48px"
+                            Source="{Binding Path=ViewModel.Info.LargeIcon.Bitmap}" />
+                        <TextBlock
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Text="{x:Static locale:ThemeResources.Theme_Info_SmallIcon}" />
+                        <Image
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Width="24px"
+                            Height="24px"
+                            Source="{Binding Path=ViewModel.Info.SmallIcon.Bitmap}" />
+
+                    </Grid>
+                </TabItem>
                 <TabItem Header="{x:Static locale:MainResources.Tab_Colors}">
                     <ScrollViewer HorizontalScrollBarVisibility="Hidden">
                         <ItemsControl Style="{StaticResource ColorsViewModelControlStyle}" ItemsSource="{Binding Path=ViewModel.Colors, Converter={StaticResource ViewModelUnroller}}" />

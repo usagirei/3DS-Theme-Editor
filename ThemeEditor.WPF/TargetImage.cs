@@ -12,6 +12,8 @@ namespace ThemeEditor.WPF
         FileSmall,
         FolderOpen,
         FolderClosed,
-        TopAlt
+        TopAlt,
+        SmallIcon,
+        LargeIcon
     }
 }

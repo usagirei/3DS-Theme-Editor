@@ -9,13 +9,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 using Microsoft.Win32;
 
 using ThemeEditor.Common.Compression;
+using ThemeEditor.Common.SMDH;
 using ThemeEditor.Common.Themes;
 using ThemeEditor.WPF.Localization;
+using ThemeEditor.WPF.Markup;
 using ThemeEditor.WPF.Themes;
 
 namespace ThemeEditor.WPF
@@ -196,6 +199,8 @@ namespace ThemeEditor.WPF
                 if (string.IsNullOrEmpty(result.Path))
                     return result;
 
+                var themeDir = Path.GetDirectoryName(result.Path) ?? ".";
+
                 BusyText = busyLoadingTheme;
                 using (var fs = File.OpenRead(result.Path))
                 using (var ms = new MemoryStream())
@@ -209,10 +214,26 @@ namespace ThemeEditor.WPF
                     }
                     catch
                     {
-                        return result;
+                        // Ignore
                     }
                 }
-
+                
+                var smdhPath = Path.Combine(themeDir, "info.smdh");
+                if (result.Loaded && File.Exists(smdhPath))
+                {
+                    using (var fs = File.OpenRead(smdhPath))
+                    {
+                        try
+                        {
+                            result.Info = SMDH.Read(fs);
+                        }
+                        catch
+                        {
+                            result.Info = null;
+                            
+                        }
+                    }
+                }
                 return result;
             });
             task.Start();
@@ -223,7 +244,19 @@ namespace ThemeEditor.WPF
         {
             if (result.Loaded)
             {
-                ViewModel = new ThemeViewModel(result.Theme);
+                ViewModel = new ThemeViewModel(result.Theme, result.Info);
+
+                if (result.Info == null)
+                {
+                    IconExtension icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 48);
+                    var large = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 48, 48);
+                    icex.Size = 24;
+                    var small = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 24, 24);
+
+                    ViewModel.Info.SmallIcon.Bitmap = (BitmapSource) small;
+                    ViewModel.Info.LargeIcon.Bitmap = (BitmapSource) large;
+                }
+
                 ThemePath = result.Path;
 
                 if (ReloadBGMCommand.CanExecute(null))
@@ -299,9 +332,13 @@ namespace ThemeEditor.WPF
                 PngBitmapEncoder encoder = new PngBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(bmp));
 
-                var path = Path.Combine(themeDir, "preview.png");
-                using (Stream stream = File.Create(path))
+                var previewPath = Path.Combine(themeDir, "preview.png");
+                using (Stream stream = File.Create(previewPath))
                     encoder.Save(stream);
+
+                var infoPath = Path.Combine(themeDir, "info.smdh");
+                using (var stream = File.Create(infoPath))
+                    ViewModel.Info.Save(stream);
 
                 MessageBox.Show(MainResources.Error_ThemeSaved,
                     WINDOW_TITLE,
@@ -365,6 +402,7 @@ namespace ThemeEditor.WPF
             public bool Loaded;
             public string Path;
             public Theme Theme;
+            public SMDH Info;
         }
 
         private class LoadBGMResults

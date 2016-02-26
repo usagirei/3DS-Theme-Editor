@@ -1195,6 +1195,96 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        public static string Theme_Info_Author {
+            get {
+                return ResourceManager.GetString("Theme_Info_Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme Author.
+        /// </summary>
+        public static string Theme_Info_Author_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Info_Author_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Large Icon.
+        /// </summary>
+        public static string Theme_Info_LargeIcon {
+            get {
+                return ResourceManager.GetString("Theme_Info_LargeIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 48px Icon.
+        /// </summary>
+        public static string Theme_Info_LargeIcon_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Info_LargeIcon_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long Description.
+        /// </summary>
+        public static string Theme_Info_LongDesc {
+            get {
+                return ResourceManager.GetString("Theme_Info_LongDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long Description.
+        /// </summary>
+        public static string Theme_Info_LongDesc_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Info_LongDesc_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short Description.
+        /// </summary>
+        public static string Theme_Info_ShortDesc {
+            get {
+                return ResourceManager.GetString("Theme_Info_ShortDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short Description.
+        /// </summary>
+        public static string Theme_Info_ShortDesc_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Info_ShortDesc_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small Icon.
+        /// </summary>
+        public static string Theme_Info_SmallIcon {
+            get {
+                return ResourceManager.GetString("Theme_Info_SmallIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 24px Icon.
+        /// </summary>
+        public static string Theme_Info_SmallIcon_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Info_SmallIcon_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Border.
         /// </summary>
         public static string Theme_Sets_Arrow_Border {

@@ -1,9 +1,11 @@
-﻿using ThemeEditor.Common.SMDH;
+﻿using System.IO;
+
+using ThemeEditor.Common.SMDH;
 using ThemeEditor.WPF.Localization;
 
 namespace ThemeEditor.WPF.Themes
 {
-    class ThemeInfoViewModel : ViewModelBase
+    public class ThemeInfoViewModel : ViewModelBase
     {
         [DisplayName("Theme_Info_Author", typeof(ThemeResources))]
         [Description("Theme_Info_Author_Desc", typeof(ThemeResources))]
@@ -80,6 +82,11 @@ namespace ThemeEditor.WPF.Themes
             SmallIcon.Dispose();
 
             base.Dispose();
+        }
+
+        public void Save(Stream s)
+        {
+            SMDH.Write(Model, s);
         }
     }
 }

@@ -763,4 +763,34 @@
   <data name="Theme_Sets_TopCorner_Text_Desc" xml:space="preserve">
     <value>Text Color</value>
   </data>
+  <data name="Theme_Info_Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="Theme_Info_Author_Desc" xml:space="preserve">
+    <value>Theme Author</value>
+  </data>
+  <data name="Theme_Info_LargeIcon" xml:space="preserve">
+    <value>Large Icon</value>
+  </data>
+  <data name="Theme_Info_LargeIcon_Desc" xml:space="preserve">
+    <value>48px Icon</value>
+  </data>
+  <data name="Theme_Info_LongDesc" xml:space="preserve">
+    <value>Long Description</value>
+  </data>
+  <data name="Theme_Info_LongDesc_Desc" xml:space="preserve">
+    <value>Long Description</value>
+  </data>
+  <data name="Theme_Info_ShortDesc" xml:space="preserve">
+    <value>Short Description</value>
+  </data>
+  <data name="Theme_Info_ShortDesc_Desc" xml:space="preserve">
+    <value>Short Description</value>
+  </data>
+  <data name="Theme_Info_SmallIcon" xml:space="preserve">
+    <value>Small Icon</value>
+  </data>
+  <data name="Theme_Info_SmallIcon_Desc" xml:space="preserve">
+    <value>24px Icon</value>
+  </data>
 </root>

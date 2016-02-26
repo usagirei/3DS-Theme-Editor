@@ -142,6 +142,18 @@ namespace ThemeEditor.WPF
                         new ImageSize(128, 64, RawTexture.DataFormat.Bgr888),
                     }
                 },
+                {
+                    TargetImage.SmallIcon, new List<ImageSize>
+                    {
+                        new ImageSize(24, 24, RawTexture.DataFormat.Bgr565),
+                    }
+                },
+                {
+                    TargetImage.LargeIcon, new List<ImageSize>
+                    {
+                        new ImageSize(48, 48, RawTexture.DataFormat.Bgr565),
+                    }
+                },
             };
         }
 
