@@ -646,4 +646,34 @@
   <data name="Theme_Sets_TopCorner_Text_Desc" xml:space="preserve">
     <value>Cor do Texto</value>
   </data>
+  <data name="Theme_Info_Author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="Theme_Info_Author_Desc" xml:space="preserve">
+    <value>Autor do Tema</value>
+  </data>
+  <data name="Theme_Info_LargeIcon" xml:space="preserve">
+    <value>Ícone Grande</value>
+  </data>
+  <data name="Theme_Info_LargeIcon_Desc" xml:space="preserve">
+    <value>Ícone 48px</value>
+  </data>
+  <data name="Theme_Info_LongDesc" xml:space="preserve">
+    <value>Descrição Longa</value>
+  </data>
+  <data name="Theme_Info_LongDesc_Desc" xml:space="preserve">
+    <value>Descrição Longa</value>
+  </data>
+  <data name="Theme_Info_ShortDesc" xml:space="preserve">
+    <value>Descrição Curta</value>
+  </data>
+  <data name="Theme_Info_ShortDesc_Desc" xml:space="preserve">
+    <value>Descrição Curta</value>
+  </data>
+  <data name="Theme_Info_SmallIcon" xml:space="preserve">
+    <value>Ícone Pequeno</value>
+  </data>
+  <data name="Theme_Info_SmallIcon_Desc" xml:space="preserve">
+    <value>Ícone 24px</value>
+  </data>
 </root>

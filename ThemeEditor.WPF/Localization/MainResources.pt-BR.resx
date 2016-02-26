@@ -294,4 +294,13 @@ Verifique a Janela "Sobre" para mais Informações.</value>
   <data name="Preview_MinFormat" xml:space="preserve">
     <value>mm</value>
   </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>Informações</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>Ícone Pequeno</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>Ícone Grande</value>
+  </data>
 </root>
