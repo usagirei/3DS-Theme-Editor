@@ -10,217 +10,23 @@
              mc:Ignorable="d"
              d:DesignHeight="240" d:DesignWidth="320">
     <UserControl.Resources>
-        <templating:BooleanConverter x:Key="FolderVisibilityConverter"
-                                     TrueValue="{x:Static Visibility.Visible}"
-                                     FalseValue="{x:Static Visibility.Hidden}" />
-        <!-- Rows Base-->
-        <system:Double x:Key="Row1">110</system:Double>
-        <system:Double x:Key="Row2">164</system:Double>
-        <!-- Columns Base-->
-        <system:Double x:Key="Column1">54</system:Double>
-        <system:Double x:Key="Column2">107</system:Double>
-        <system:Double x:Key="Column3">160</system:Double>
-        <system:Double x:Key="Column4">213</system:Double>
-        <system:Double x:Key="Column5">266</system:Double>
-        <!-- Cursor -->
-        <CombinedGeometry x:Key="CursorGeometry" GeometryCombineMode="Exclude">
-            <CombinedGeometry.Geometry1>
-                <GeometryGroup>
-                    <RectangleGeometry Rect="-27,-27,54,54" RadiusX="6" RadiusY="6" />
-                    <RectangleGeometry Rect="-23,-23,46,46" RadiusX="4" RadiusY="4" />
-                </GeometryGroup>
-            </CombinedGeometry.Geometry1>
-            <CombinedGeometry.Geometry2>
-                <RectangleGeometry Rect="-27,-27,54,54">
-                    <RectangleGeometry.Transform>
-                        <RotateTransform Angle="45" />
-                    </RectangleGeometry.Transform>
-                </RectangleGeometry>
-            </CombinedGeometry.Geometry2>
-        </CombinedGeometry>
-        <Style TargetType="{x:Type Path}" x:Key="CursorStyleBase">
-            <Style.Setters>
-                <Setter Property="SnapsToDevicePixels" Value="False" />
-                <Setter Property="UseLayoutRounding" Value="False" />
-                <Setter Property="RenderTransform">
-                    <Setter.Value>
-                        <ScaleTransform />
-                    </Setter.Value>
-                </Setter>
-            </Style.Setters>
-            <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="True">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard DesiredFrameRate="15">
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="(Path.RenderTransform).(ScaleTransform.ScaleX)"
-                                    To="1.05" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever" />
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="(Path.RenderTransform).(ScaleTransform.ScaleY)"
-                                    To="1.05" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <Trigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard DesiredFrameRate="15">
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="(Path.RenderTransform).(ScaleTransform.ScaleX)"
-                                    To="1" Duration="0" />
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="(Path.RenderTransform).(ScaleTransform.ScaleY)"
-                                    To="1" Duration="0" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.ExitActions>
-                </Trigger>
-                <DataTrigger Binding="{Binding Path=Flags.CursorColor}"
-                             Value="True">
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <SolidColorBrush Color="{Binding Path=Colors.Cursor.Main}" />
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Stroke">
-                        <Setter.Value>
-                            <SolidColorBrush Color="{Binding Path=Colors.Cursor.Shading}" />
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type Path}" BasedOn="{StaticResource CursorStyleBase}" x:Key="CursorStyleSolid">
-            <Style.Setters>
-                <Setter Property="Fill" Value="#39eda6" />
-                <Setter Property="Stroke" Value="#33e19a" />
-            </Style.Setters>
-        </Style>
-        <Style TargetType="{x:Type Path}" BasedOn="{StaticResource CursorStyleBase}" x:Key="CursorStyleGlow">
-            <Style.Setters>
-                <Setter Property="Fill" Value="#39eda6" />
-                <Setter Property="Stroke" Value="#39eda6" />
-                <Setter Property="StrokeThickness" Value="2" />
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <BlurEffect RenderingBias="Performance" />
-                    </Setter.Value>
-                </Setter>
-            </Style.Setters>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Path=Flags.CursorColor}"
-                             Value="True">
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <SolidColorBrush Color="{Binding Path=Colors.Cursor.Glow}" />
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Stroke">
-                        <Setter.Value>
-                            <SolidColorBrush Color="{Binding Path=Colors.Cursor.Glow}" />
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-                <Trigger Property="IsEnabled" Value="True">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard DesiredFrameRate="15">
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="Opacity"
-                                    From="0" To="1" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever">
-                                    <DoubleAnimation.EasingFunction>
-                                        <PowerEase Power="0.33" />
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <Trigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard DesiredFrameRate="15">
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.ExitActions>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <!-- Back Button -->
-        <RectangleGeometry x:Key="BackButtonGeometry" Rect="27,47,66,30" RadiusY="8" RadiusX="8" />
-        <Style x:Key="BackButtonStyle" TargetType="{x:Type Path}">
-            <Setter Property="Fill">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#8c8781" Offset="0" />
-                        <GradientStop Color="#4e4b44" Offset="0.3" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="2" Direction="-90" Opacity="0.5" />
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Stroke" Value="#2b2d2a" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Path=Flags.FolderArrowColor}" Value="True">
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="{Binding Path=Colors.FolderArrow.Highlight}" Offset="0" />
-                                <GradientStop Color="{Binding Path=Colors.FolderArrow.Main}" Offset="0.3" />
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Stroke">
-                        <Setter.Value>
-                            <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.Shading}" />
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="{Binding Path=Colors.FolderArrow.Glow}" BlurRadius="8"
-                                              ShadowDepth="2" Direction="-90" Opacity="0.5" />
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <!-- Back Arrow -->
-        <PathGeometry x:Key="BackArrowGeometry">
-            <PathGeometry.Figures>
-                M 7 4
-                L 10 4
-                A 6,6 0 1 1 10,16
-                L 7,16 7,13 10,13
-                A 3,3 0 1 0 10,7
-                L 7,7 7,10 0,5.5 7,0
-                Z
-            </PathGeometry.Figures>
-        </PathGeometry>
-        <Style x:Key="BackArrowStyle" TargetType="{x:Type Path}">
-            <Setter Property="Fill" Value="#ffffff" />
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="#2b2d2a" BlurRadius="2" ShadowDepth="1" Direction="-90" Opacity="1" />
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Path=Flags.FolderArrowColor}" Value="True">
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.ArrowUnpressed}" />
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="{Binding Path=Colors.FolderArrow.ArrowGlow}" BlurRadius="2"
-                                              ShadowDepth="1" Direction="-90" />
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PreviewResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <templating:BooleanConverter x:Key="FolderVisibilityConverter"
+                                         TrueValue="{x:Static Visibility.Visible}"
+                                         FalseValue="{x:Static Visibility.Hidden}" />
+            <!-- Rows Base-->
+            <system:Double x:Key="Row1">110</system:Double>
+            <system:Double x:Key="Row2">164</system:Double>
+            <!-- Columns Base-->
+            <system:Double x:Key="Column1">54</system:Double>
+            <system:Double x:Key="Column2">107</system:Double>
+            <system:Double x:Key="Column3">160</system:Double>
+            <system:Double x:Key="Column4">213</system:Double>
+            <system:Double x:Key="Column5">266</system:Double>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Canvas ClipToBounds="True"
             Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=ShowFolder, Converter={StaticResource FolderVisibilityConverter}}"
@@ -231,7 +37,22 @@
         <Path Data="{StaticResource BackArrowGeometry}" Style="{StaticResource BackArrowStyle}"
               Canvas.Left="51" Canvas.Top="50" />
         <renderers:BottomFolderRenderer Theme="{Binding Path=.}" />
+        <!-- Folder -->
         <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row1}">
+            <Canvas Style="{StaticResource PreviewItemShadowCaster}">
+                <Path Style="{StaticResource FolderStyleBackOpen}" Data="{StaticResource FolderGeometryBackOpen}" />
+            </Canvas>
+            <Canvas>
+                <Canvas.Clip>
+                    <RectangleGeometry Rect="-20,-23,40,17" />
+                </Canvas.Clip>
+                <Path Style="{StaticResource FolderItemStyleBack}" Data="{StaticResource FolderItemGeometry}" />
+                <Path Style="{StaticResource FolderItemStyleFore}" Data="{StaticResource FolderItemGeometry}" />
+            </Canvas>
+            <Path Style="{StaticResource FolderStyleForeOpen}" Data="{StaticResource FolderGeometryForeOpen}" />
+        </Canvas>
+        <!-- Cursor -->
+        <Canvas Canvas.Left="{StaticResource Column3}" Canvas.Top="{StaticResource Row1}">
             <Path Style="{StaticResource CursorStyleSolid}" Data="{StaticResource CursorGeometry}" />
             <Path Style="{StaticResource CursorStyleGlow}" Data="{StaticResource CursorGeometry}" />
         </Canvas>

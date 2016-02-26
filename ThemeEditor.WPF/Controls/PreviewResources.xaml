@@ -1,0 +1,504 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating">
+    <!-- Cursor -->
+    <CombinedGeometry x:Key="CursorGeometry" GeometryCombineMode="Exclude">
+        <CombinedGeometry.Geometry1>
+            <GeometryGroup>
+                <RectangleGeometry Rect="-27,-27,54,54" RadiusX="6" RadiusY="6" />
+                <RectangleGeometry Rect="-23,-23,46,46" RadiusX="4" RadiusY="4" />
+            </GeometryGroup>
+        </CombinedGeometry.Geometry1>
+        <CombinedGeometry.Geometry2>
+            <RectangleGeometry Rect="-27,-27,54,54">
+                <RectangleGeometry.Transform>
+                    <RotateTransform Angle="45" />
+                </RectangleGeometry.Transform>
+            </RectangleGeometry>
+        </CombinedGeometry.Geometry2>
+    </CombinedGeometry>
+    <Style TargetType="{x:Type Path}" x:Key="CursorStyleBase">
+        <Style.Setters>
+            <Setter Property="SnapsToDevicePixels" Value="False" />
+            <Setter Property="UseLayoutRounding" Value="False" />
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform />
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard DesiredFrameRate="15">
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="(Path.RenderTransform).(ScaleTransform.ScaleX)"
+                                    To="1.05" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever" />
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="(Path.RenderTransform).(ScaleTransform.ScaleY)"
+                                    To="1.05" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard DesiredFrameRate="15">
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="(Path.RenderTransform).(ScaleTransform.ScaleX)"
+                                    To="1" Duration="0" />
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="(Path.RenderTransform).(ScaleTransform.ScaleY)"
+                                    To="1" Duration="0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            <DataTrigger Binding="{Binding Path=Flags.CursorColor}"
+                             Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Cursor.Main}" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Cursor.Shading}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Path}" BasedOn="{StaticResource CursorStyleBase}" x:Key="CursorStyleSolid">
+        <Style.Setters>
+            <Setter Property="Fill" Value="#39eda6" />
+            <Setter Property="Stroke" Value="#33e19a" />
+        </Style.Setters>
+    </Style>
+    <Style TargetType="{x:Type Path}" BasedOn="{StaticResource CursorStyleBase}" x:Key="CursorStyleGlow">
+        <Style.Setters>
+            <Setter Property="Fill" Value="#39eda6" />
+            <Setter Property="Stroke" Value="#39eda6" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <BlurEffect RenderingBias="Performance" />
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.CursorColor}"
+                             Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Cursor.Glow}" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Cursor.Glow}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard DesiredFrameRate="15">
+                            <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0" To="1" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever">
+                                <DoubleAnimation.EasingFunction>
+                                    <PowerEase Power="0.33" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard DesiredFrameRate="15">
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Cart -->
+    <GeometryGroup x:Key="NoCartGeometryFore">
+        <CombinedGeometry GeometryCombineMode="Union">
+            <CombinedGeometry.Geometry1>
+                <GeometryGroup>
+                    <RectangleGeometry Rect="-24,-24,24,24" RadiusY="2" RadiusX="2" />
+                    <RectangleGeometry Rect="0,-24,24,24" RadiusY="2" RadiusX="2" />
+                    <RectangleGeometry Rect="0,0,24,24" RadiusY="2" RadiusX="2" />
+                    <RectangleGeometry Rect="-24,0,24,24" RadiusX="8" RadiusY="8" />
+                </GeometryGroup>
+            </CombinedGeometry.Geometry1>
+            <CombinedGeometry.Geometry2>
+                <GeometryGroup FillRule="Nonzero">
+                    <RectangleGeometry Rect="-8,-24,16,48" />
+                    <RectangleGeometry Rect="-24,-8,48,16" />
+                </GeometryGroup>
+            </CombinedGeometry.Geometry2>
+        </CombinedGeometry>
+        <RectangleGeometry Rect="-16,-16,32,32" RadiusX="2" RadiusY="2" />
+    </GeometryGroup>
+    <Style TargetType="{x:Type Path}" x:Key="NoCartStyleFore">
+        <Setter Property="Fill" Value="#d3d3d1" />
+        <Setter Property="Stroke" Value="#b9b9b7" />
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="NoCartStyleBack">
+        <Setter Property="Fill" Value="#e0e0de" />
+
+    </Style>
+
+    <!-- File -->
+    <RectangleGeometry x:Key="FileGeometry" Rect="-24,-24,48,48" RadiusY="8" RadiusX=" 8" />
+    <RectangleGeometry x:Key="FileLabelGeometry" Rect="-19,-19,38,38" RadiusY="3" RadiusX="3" />
+    <Style TargetType="{x:Type Path}" x:Key="FileStyleBack">
+        <Setter Property="Fill" Value="#f6f6f6" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FileColor}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.File.Main}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.FileTexture}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="{Binding Path=Textures.FileLarge.Bitmap}"
+                                            Stretch="Uniform" TileMode="FlipX"
+                                            Viewport="0.5,1,0.5,1" ViewportUnits="RelativeToBoundingBox"
+                                            Viewbox="1,1,34,69" ViewboxUnits="Absolute" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FileStyleFore">
+        <Setter Property="Clip" Value="{StaticResource FileGeometry}" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Stroke">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#f8f8f8" Offset="0" />
+                    <GradientStop Color="#d0d0d0" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <BlurEffect Radius="3" RenderingBias="Performance" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FileColor}" Value="True">
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="{Binding Path=Colors.File.Glow}" Offset="0" />
+                            <GradientStop Color="{Binding Path=Colors.File.Shading}" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.FileTexture}" Value="True">
+                <Setter Property="Stroke" Value="Transparent" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Folder -->
+    <PathGeometry x:Key="FolderGeometryBackBase">
+        M -24 0
+        L -24 -17
+        A 3,3 0 0 1 -21,-20
+        L -5 -20
+        L -3 -17
+        L 21 -17
+        A 3,3 0 0 1 24 -14
+        L 24 0
+    </PathGeometry>
+    <RectangleGeometry x:Key="FolderItemGeometry" Rect="-15,-17,36,36" RadiusX="5" RadiusY="5" />
+    <RectangleGeometry x:Key="FolderGeometryForeClosed" Rect="-24,-14,48,36" RadiusX="3" RadiusY="3" />
+    <PathGeometry x:Key="FolderGeometryForeOpen">
+        M -24 -6
+        l 48 0
+        a 3,3 0 0 1  3,3
+        l -3 22
+        a 3,3 0 0 1 -3 3
+        l -42 0
+        a 3,3 0 0 1 -3 -3
+        l -3 -22
+        a 3,3 0 0 1  3 -3
+        z
+    </PathGeometry>
+    <CombinedGeometry x:Key="FolderGeometryBackClosed" Geometry1="{StaticResource FolderGeometryForeClosed}"
+                              Geometry2="{StaticResource FolderGeometryBackBase}" />
+    <CombinedGeometry x:Key="FolderGeometryBackOpen" Geometry1="{StaticResource FolderGeometryForeOpen}"
+                              Geometry2="{StaticResource FolderGeometryBackBase}" />
+    <Style TargetType="{x:Type Path}" x:Key="FolderStyleBack">
+        <Style.Resources>
+            <templating:ColorBlendConverter x:Key="BlendConverter" Opacity="0.4" />
+            <Color x:Key="FolderBaseColor">#65a8bb</Color>
+        </Style.Resources>
+        <Setter Property="Fill">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop
+                                Color="{Binding Source={StaticResource FolderBaseColor}, Converter={StaticResource BlendConverter}, ConverterParameter={x:Static Colors.White}}"
+                                Offset="0" />
+                    <GradientStop Color="{StaticResource FolderBaseColor}" Offset="0.1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+ <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Stroke">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource FolderBaseColor}" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FolderColor}" Value="True">
+                <DataTrigger.Setters>
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop
+                                            Color="{Binding Path=Colors.Folder.Shading, Converter={StaticResource BlendConverter}, ConverterParameter={x:Static Colors.White}}"
+                                            Offset="0" />
+                                <GradientStop Color="{Binding Path=Colors.Folder.Shading}" Offset="0.1" />
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Stroke">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.Folder.Shading}" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger.Setters>
+
+            </DataTrigger>
+
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FolderStyleFore">
+        <Setter Property="Fill">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0" />
+                    <GradientStop Color="#92e1ee" Offset="0.1" />
+                    <GradientStop Color="#92e1ee" Offset="0.9" />
+                    <GradientStop Color="#65a8bb" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Stroke" Value="#65a8bb" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FolderColor}" Value="True">
+                <DataTrigger.Setters>
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="White" Offset="0" />
+                                <GradientStop Color="{Binding Path=Colors.Folder.Main}" Offset="0.1" />
+                                <GradientStop Color="{Binding Path=Colors.Folder.Main}" Offset="0.9" />
+                                <GradientStop Color="{Binding Path=Colors.Folder.Shading}" Offset="1" />
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Stroke">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Path=Colors.Folder.Shading}" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger.Setters>
+
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.FolderTexture}" Value="True">
+                <DataTrigger.Setters>
+                    <Setter Property="Fill" Value="Transparent" />
+                    <Setter Property="Stroke" Value="Transparent" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FolderStyleBackClosed" BasedOn="{StaticResource FolderStyleBack}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FolderTexture}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="{Binding Path=Textures.FolderClosed.Bitmap}"
+                                            Stretch="Uniform" TileMode="None"
+                                            Viewbox="1,1,72,62" ViewboxUnits="Absolute" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0" />
+            </DataTrigger>
+        </Style.Triggers>
+        <Setter Property="Clip" Value="{StaticResource FolderGeometryBackClosed}" />
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FolderStyleBackOpen" BasedOn="{StaticResource FolderStyleBack}">
+        <Setter Property="Clip" Value="{StaticResource FolderGeometryBackOpen}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FolderTexture}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="{Binding Path=Textures.FolderOpen.Bitmap}"
+                                            Stretch="Uniform" TileMode="None"
+                                            Viewbox="5,1,72,62" ViewboxUnits="Absolute" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FolderStyleForeClosed" BasedOn="{StaticResource FolderStyleFore}">
+        <Setter Property="Clip" Value="{StaticResource FolderGeometryForeClosed}" />
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FolderStyleForeOpen" BasedOn="{StaticResource FolderStyleFore}">
+        <Setter Property="Clip" Value="{StaticResource FolderGeometryForeOpen}" />
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FolderItemStyle">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <RotateTransform Angle="-24" />
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FolderItemStyleBack" BasedOn="{StaticResource FolderItemStyle}">
+        <Setter Property="Fill" Value="#f6f6f6" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FileColor}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.File.Main}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Path}" x:Key="FolderItemStyleFore" BasedOn="{StaticResource FolderItemStyle}">
+        <Setter Property="Clip" Value="{StaticResource FolderItemGeometry}" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Stroke">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#f8f8f8" Offset="0" />
+                    <GradientStop Color="#d0d0d0" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <BlurEffect Radius="3" RenderingBias="Performance" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FileColor}" Value="True">
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="{Binding Path=Colors.File.Glow}" Offset="0" />
+                            <GradientStop Color="{Binding Path=Colors.File.Shading}" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Back Button -->
+    <RectangleGeometry x:Key="BackButtonGeometry" Rect="27,47,66,30" RadiusY="8" RadiusX="8" />
+    <Style x:Key="BackButtonStyle" TargetType="{x:Type Path}">
+        <Setter Property="Fill">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#8c8781" Offset="0" />
+                    <GradientStop Color="#4e4b44" Offset="0.3" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="2" Direction="-90" Opacity="0.5" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Stroke" Value="#2b2d2a" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FolderArrowColor}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="{Binding Path=Colors.FolderArrow.Highlight}" Offset="0" />
+                            <GradientStop Color="{Binding Path=Colors.FolderArrow.Main}" Offset="0.3" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.Shading}" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="{Binding Path=Colors.FolderArrow.Glow}" BlurRadius="8"
+                                                  ShadowDepth="2" Direction="-90" Opacity="0.5" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Back Arrow -->
+    <PathGeometry x:Key="BackArrowGeometry">
+        <PathGeometry.Figures>
+            M 7 4
+                    L 10 4
+                    A 6,6 0 1 1 10,16
+                    L 7,16 7,13 10,13
+                    A 3,3 0 1 0 10,7
+                    L 7,7 7,10 0,5.5 7,0
+                    Z
+        </PathGeometry.Figures>
+    </PathGeometry>
+    <Style x:Key="BackArrowStyle" TargetType="{x:Type Path}">
+        <Setter Property="Fill" Value="#ffffff" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#2b2d2a" BlurRadius="2" ShadowDepth="1" Direction="-90" Opacity="1" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FolderArrowColor}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.ArrowUnpressed}" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="{Binding Path=Colors.FolderArrow.ArrowGlow}" BlurRadius="2"
+                                                  ShadowDepth="1" Direction="-90" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Caster-->
+    <Style TargetType="{x:Type FrameworkElement}" x:Key="PreviewItemShadowCaster">
+        <Setter Property="Effect">
+            <Setter.Value>
+                 <DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="5" Opacity="0.35" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

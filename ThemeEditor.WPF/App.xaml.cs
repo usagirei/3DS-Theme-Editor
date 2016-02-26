@@ -33,9 +33,10 @@ namespace ThemeEditor.WPF
         {
             Settings.Default.Save();
         }
-
+        public string[] LaunchArgs { get; private set; }
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
+            LaunchArgs = e.Args;
 #if DEBUG
             if (e.Args.Length != 0)
             {
