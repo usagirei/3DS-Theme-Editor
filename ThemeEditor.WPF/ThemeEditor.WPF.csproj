@@ -87,6 +87,7 @@
     <Compile Include="Experimental\CWAV\CWAVWindow.xaml.cs">
       <DependentUpon>CWAVWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Themes\ThemeInfoViewModel.cs" />
     <Compile Include="TempFile.cs" />
     <Compile Include="Templating\ComparisonConverter.cs" />
     <Compile Include="ThirdParty.cs" />
