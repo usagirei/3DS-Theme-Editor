@@ -90,7 +90,7 @@
             Grid.ColumnSpan="2"
             FontSize="16">
             <Hyperlink
-                NavigateUri="{Binding Path=UpdateUrl}"
+                NavigateUri="{Binding Path=AppUpdates}"
                 RequestNavigate="HandleLinkClick"
                 TextDecorations="">
                 <Hyperlink.Style>

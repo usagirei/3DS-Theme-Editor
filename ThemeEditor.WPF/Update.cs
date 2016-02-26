@@ -163,6 +163,8 @@ namespace ThemeEditor.WPF
                     })
                                          .ToArray();
 
+                    // You can't delete running processes, but you can safely rename files
+                    // Se use that to our advantage while still keeping a backup of the current version
                     // Move To Backup Location
                     foreach (var file in nFiles)
                     {
