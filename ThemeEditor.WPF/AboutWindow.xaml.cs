@@ -99,7 +99,7 @@ namespace ThemeEditor.WPF
         {
             InitializeComponent();
             UpdateDownloadCommand = new RelayCommandAsync<TempFile>(DownloadUpdate_Execute,
-                () => UpdateAvailable,
+                () => UpdateAvailable && !string.IsNullOrEmpty(Update.UpdatePayloadUrl),
                 null,
                 PostExecute);
         }

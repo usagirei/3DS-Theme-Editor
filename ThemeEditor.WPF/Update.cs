@@ -59,7 +59,9 @@ namespace ThemeEditor.WPF
                                                   tk["browser_download_url"].Value<string>().
                                                                              EndsWith(versionStr + ".zip",
                                                                                  StringComparison.OrdinalIgnoreCase));
-                        UpdatePayloadUrl = asset["browser_download_url"].Value<string>();
+                        if (asset != null)
+                            UpdatePayloadUrl = asset["browser_download_url"].Value<string>();
+
                         versionStr = versionStr.StartsWith("v") ? versionStr.Substring(1) : versionStr;
                         Version version;
                         if (Version.TryParse(versionStr, out version))
@@ -76,6 +78,9 @@ namespace ThemeEditor.WPF
 
         public static async Task<TempFile> DownloadUpdatePayload(Action<long,long> callback)
         {
+            if (string.IsNullOrEmpty(UpdatePayloadUrl))
+                return null;
+
             try
             {
                 const int CHUNK_SIZE = 4096;
