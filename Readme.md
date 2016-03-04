@@ -19,6 +19,7 @@ WPF Based, Theme Editor for Nintendo 3DS
 * **Bottom Screen Render Modes**: Fixed, Slow/Fast Scroll, Flip/Bounce Tiled
 * **Bottom Screen UI Elements**: Folder and Icon Borders, Solid Color and Textured
 * **Experimental CWAV Manager**: Add Sound Effects to your themes, optional support for ctr_WaveConverter (Required for Wav Conversion)
+* **SMDH Generation**: Loads/Creates info.smdh file for CHMM2
 
 #### Localization
 
