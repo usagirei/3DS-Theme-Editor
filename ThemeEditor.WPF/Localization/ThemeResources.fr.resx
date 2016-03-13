@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Theme_Colors_Folder_Desc" xml:space="preserve">
+    <value>Icône du dossier en 3D</value>
+  </data>
+  <data name="Theme_Flags_Folder_Color" xml:space="preserve">
+    <value>Couleur du dossier en 3D</value>
+  </data>
+  <data name="Theme_Colors_Folder" xml:space="preserve">
+    <value>Dossier en 3D</value>
+  </data>
+  <data name="Theme_Flags_File_Color" xml:space="preserve">
+    <value>Couleur de l'icône en 3D</value>
+  </data>
+  <data name="Theme_Colors_File" xml:space="preserve">
+    <value>Icône en 3D</value>
+  </data>
+  <data name="Theme_Colors_File_Desc" xml:space="preserve">
+    <value>Icône des jeux en 3D</value>
+  </data>
+  <data name="Theme_Colors_Arrow" xml:space="preserve">
+    <value>Flèche</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowShadow" xml:space="preserve">
+    <value>Eclat de la flèche</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Border" xml:space="preserve">
+    <value>Bordure</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Border_Desc" xml:space="preserve">
+    <value>Couleur de la Bordure</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Pressed" xml:space="preserve">
+    <value>Pressée</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Pressed_Desc" xml:space="preserve">
+    <value>Couleur quand Pressée</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Unpressed" xml:space="preserve">
+    <value>Relachée</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Unpressed_Desc" xml:space="preserve">
+    <value>Couleur quand relachée</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Glow" xml:space="preserve">
+    <value>Eclat</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Glow_Desc" xml:space="preserve">
+    <value>Couleur de l'Eclat</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Shading" xml:space="preserve">
+    <value>Ombre</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Shading_Desc" xml:space="preserve">
+    <value>Couleur de l'Ombre</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Border" xml:space="preserve">
+    <value>Bordure</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Border_Desc" xml:space="preserve">
+    <value>Couleur de la Bordure</value>
+  </data>
+  <data name="Enum_DrawType_None" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="Enum_DrawType_SolidColor" xml:space="preserve">
+    <value>Couleur Unique</value>
+  </data>
+  <data name="Enum_DrawType_SolidColorTexture" xml:space="preserve">
+    <value>Couleur Unique &amp; Texture</value>
+  </data>
+  <data name="Enum_DrawType_Texture" xml:space="preserve">
+    <value>Texture</value>
+  </data>
+  <data name="Enum_FrameType_FastScroll" xml:space="preserve">
+    <value>Défilement Rapide</value>
+  </data>
+  <data name="Enum_FrameType_PageScroll" xml:space="preserve">
+    <value>Défilement par Pages</value>
+  </data>
+  <data name="Enum_FrameType_Single" xml:space="preserve">
+    <value>Unique</value>
+  </data>
+  <data name="Enum_FrameType_SlowScroll" xml:space="preserve">
+    <value>Défilement lent</value>
+  </data>
+  <data name="Enum_FrameType_BounceScroll" xml:space="preserve">
+    <value>Défilement en Rebonds</value>
+  </data>
+  <data name="Theme_Flags_Sound_Effect_Desc" xml:space="preserve">
+    <value>Active les Effets Audio (Fichiers CWAV)</value>
+  </data>
+  <data name="Theme_Flags_Sound_Effect" xml:space="preserve">
+    <value>Effets Audio</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Highlight" xml:space="preserve">
+    <value>Sélection</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Highlight_Desc" xml:space="preserve">
+    <value>Couleur de la Sélection</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconBottom" xml:space="preserve">
+    <value>Icône (Partie basse)</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconBottom_Desc" xml:space="preserve">
+    <value>Couleur de l'Icône de la partie basse</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconTop" xml:space="preserve">
+    <value>Icône (Partie supérieure)</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconTop_Desc" xml:space="preserve">
+    <value>Couleur de l'Icône de la partie supérieure</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Border" xml:space="preserve">
+    <value>Bordure</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Border_Desc" xml:space="preserve">
+    <value>Couleur de la Bordure</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Highlight" xml:space="preserve">
+    <value>Sélection</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Highlight_Desc" xml:space="preserve">
+    <value>Couleur de la Sélection</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Button" xml:space="preserve">
+    <value>Bouton de la Flèche</value>
+  </data>
+  <data name="Theme_Colors_Folder_Background" xml:space="preserve">
+    <value>Fond du Dossier</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Button_Desc" xml:space="preserve">
+    <value>Bouton avec la Flèche pour changer de page</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Desc" xml:space="preserve">
+    <value>Flèche dans le Bouton pour changer de page</value>
+  </data>
+  <data name="Theme_Colors_Folder_Arrow_Desc" xml:space="preserve">
+    <value>Flèche pour quitter un dossier</value>
+  </data>
+  <data name="Theme_Colors_Folder_Arrow" xml:space="preserve">
+    <value>Flèche du Dossier</value>
+  </data>
+  <data name="Theme_Colors_Game_Text" xml:space="preserve">
+    <value>Texte du jeu</value>
+  </data>
+  <data name="Theme_Colors_Game_Text_Desc" xml:space="preserve">
+    <value>Description du jeu quand le menu est sur une seule ligne</value>
+  </data>
+  <data name="Theme_Colors_Open" xml:space="preserve">
+    <value>Bouton de Lancement</value>
+  </data>
+  <data name="Theme_Colors_Open_Desc" xml:space="preserve">
+    <value>Bouton pour lancer un logiciel/Créer un dossier</value>
+  </data>
+  <data name="Theme_Colors_Top_Background" xml:space="preserve">
+    <value>Fond du haut</value>
+  </data>
+  <data name="Theme_Sets_Top_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_Top_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_Top_Opacity" xml:space="preserve">
+    <value>Opacité</value>
+  </data>
+  <data name="Theme_Sets_Top_Opacity_Desc" xml:space="preserve">
+    <value>Opacité de la Texture</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Text_Desc" xml:space="preserve">
+    <value>Couleur du texte</value>
+  </data>
+  <data name="Theme_Colors_Demo_Text" xml:space="preserve">
+    <value>Texte de la Démo</value>
+  </data>
+  <data name="Theme_Colors_Demo_Text_Desc" xml:space="preserve">
+    <value>Nombre de lancements restants d'une Démo</value>
+  </data>
+  <data name="Theme_Colors_Cursor" xml:space="preserve">
+    <value>Curseur</value>
+  </data>
+  <data name="Theme_Colors_Cursor_Desc" xml:space="preserve">
+    <value>Curseur de sélection de l'écran du dessous</value>
+  </data>
+  <data name="Theme_Colors_Close" xml:space="preserve">
+    <value>Bouton Fermer</value>
+  </data>
+  <data name="Theme_Colors_Close_Desc" xml:space="preserve">
+    <value>Bouton pour fermer une application en cours</value>
+  </data>
+  <data name="Theme_Colors_Folder_Background_Desc" xml:space="preserve">
+    <value>Fond du menu lorsqu'un dossier est ouvert sur l'écran du bas</value>
+  </data>
+  <data name="Theme_Colors_Top_Background_Desc" xml:space="preserve">
+    <value>Couleur de Fond de l'écran du haut</value>
+  </data>
+  <data name="Theme_Colors_Top_Corner" xml:space="preserve">
+    <value>Boutons des coins de l'écran du haut</value>
+  </data>
+  <data name="Theme_Colors_Top_Corner_Desc" xml:space="preserve">
+    <value>Boutons pour prendre des screenshots et des photos</value>
+  </data>
+  <data name="Theme_Flags_Background_Music" xml:space="preserve">
+    <value>Musique de Fond</value>
+  </data>
+  <data name="Theme_Flags_Background_Music_Desc" xml:space="preserve">
+    <value>Active la Musique de Fond (BGM.BCSTM)</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Button_Color" xml:space="preserve">
+    <value>Couleur du Bouton Fléché</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Button_Color_Desc" xml:space="preserve">
+    <value>Active la couleur du Bouton Fléché pour changer les pages</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Color" xml:space="preserve">
+    <value>Couleur de la Flèche</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Color_Desc" xml:space="preserve">
+    <value>Active la couleur de la Flèche du Bouton Fléché pour changer les pages</value>
+  </data>
+  <data name="Theme_Sets_File_Main" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="Theme_Sets_Folder_Main" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="Theme_Sets_Demo_Text" xml:space="preserve">
+    <value>Texte</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Text" xml:space="preserve">
+    <value>Texte</value>
+  </data>
+  <data name="Theme_Sets_Game_Text" xml:space="preserve">
+    <value>Texte</value>
+  </data>
+  <data name="Theme_Flags_File_Texture" xml:space="preserve">
+    <value>Texture du Fichier</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_Demo_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_Game_Main" xml:space="preserve">
+    <value>Fond</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowPressed" xml:space="preserve">
+    <value>Flèche Pressée</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowUnpressed" xml:space="preserve">
+    <value>Flèche Relachée</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowPressed_Desc" xml:space="preserve">
+    <value>Couleur de la Flèche Pressée</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowShadow_Desc" xml:space="preserve">
+    <value>Couleur de l'Eclat de la flèche</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowUnpressed_Desc" xml:space="preserve">
+    <value>Couleur de la Flèche Relachée</value>
+  </data>
+  <data name="Theme_Flags_Folder_Texture_Desc" xml:space="preserve">
+    <value>Active la Texture customisée du Dossier</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_Game_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Sets_Demo_Main_Desc" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Corner" xml:space="preserve">
+    <value>Boutons des coins de l'écran du bas</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Pressed" xml:space="preserve">
+    <value>Fond Pressé</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Pressed_Desc" xml:space="preserve">
+    <value>Couleur du Fond Pressé</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Unpressed" xml:space="preserve">
+    <value>Fond Relâché</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Unpressed_Desc" xml:space="preserve">
+    <value>Couleur du Fond Relâché</value>
+  </data>
+  <data name="Theme_Flags_Demo_Text_Color" xml:space="preserve">
+    <value>Couleur du Texte de la Démo</value>
+  </data>
+  <data name="Theme_Flags_Cursor_Color" xml:space="preserve">
+    <value>Couleurs du Curseur</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Corner_Button_Color" xml:space="preserve">
+    <value>Couleurs des Boutons des coins de l'écran du bas</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Corner_Desc" xml:space="preserve">
+    <value>Paramètres de l'Ecran du Bas et des Boutons pour redimensionner</value>
+  </data>
+  <data name="Theme_Flags_Open_Close_Color_Desc" xml:space="preserve">
+    <value>Active la couleur du Bouton pour Ouvrir/Fermer une application en cours</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Glow" xml:space="preserve">
+    <value>Eclat</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Glow" xml:space="preserve">
+    <value>Eclat</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Glow" xml:space="preserve">
+    <value>Eclat</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Glow_Desc" xml:space="preserve">
+    <value>Couleur de l'Eclat</value>
+  </data>
+  <data name="Theme_Sets_File_Glow" xml:space="preserve">
+    <value>Eclat</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Glow" xml:space="preserve">
+    <value>Eclat</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Glow" xml:space="preserve">
+    <value>Eclat</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Glow_Desc" xml:space="preserve">
+    <value>Couleur de l'Eclat</value>
+  </data>
+  <data name="Theme_Sets_File_Glow_Desc" xml:space="preserve">
+    <value>Couleur de l'Eclat</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Glow_Desc" xml:space="preserve">
+    <value>Couleur de l'Eclat</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Glow_Desc" xml:space="preserve">
+    <value>Couleur de l'Eclat</value>
+  </data>
+  <data name="Theme_Sets_Top_Gradient" xml:space="preserve">
+    <value>Dégradé</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Highlight_Desc" xml:space="preserve">
+    <value>Couleur de la Sélection</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Highlight" xml:space="preserve">
+    <value>Sélection</value>
+  </data>
+  <data name="Theme_Sets_Folder_Main_Desc" xml:space="preserve">
+    <value>Couleur Principale</value>
+  </data>
+  <data name="Theme_Sets_File_Main_Desc" xml:space="preserve">
+    <value>Couleur Principale</value>
+  </data>
+  <data name="Theme_Flags_Open_Close_Color" xml:space="preserve">
+    <value>Couleurs d'Ouvrir / Fermer</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shading" xml:space="preserve">
+    <value>Ombre</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Shading" xml:space="preserve">
+    <value>Ombre</value>
+  </data>
+  <data name="Theme_Sets_File_Shading" xml:space="preserve">
+    <value>Ombre</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Shading" xml:space="preserve">
+    <value>Ombre</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Shading_Desc" xml:space="preserve">
+    <value>Couleur de l'Ombre</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Shading_Desc" xml:space="preserve">
+    <value>Couleur de l'Ombre</value>
+  </data>
+  <data name="Theme_Sets_File_Shading_Desc" xml:space="preserve">
+    <value>Couleur de l'Ombre</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shading_Desc" xml:space="preserve">
+    <value>Couleur de l'Ombre</value>
+  </data>
+  <data name="Theme_Sets_Demo_Text_Desc" xml:space="preserve">
+    <value>Couleur du texte</value>
+  </data>
+  <data name="Theme_Sets_Game_Text_Desc" xml:space="preserve">
+    <value>Couleur du texte</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Stripe" xml:space="preserve">
+    <value>Lignes</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Stripe_Desc" xml:space="preserve">
+    <value>Lignes derrière le bouton pour Ouvrir/Fermer une application en cours</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Inner_Desc" xml:space="preserve">
+    <value>Partie interne du Fond de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Inner" xml:space="preserve">
+    <value>Intérieur du Fond de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Outer" xml:space="preserve">
+    <value>Extérieur du Fond de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Outer_Desc" xml:space="preserve">
+    <value>Partie extérieure du Fond de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Inner_Color" xml:space="preserve">
+    <value>Couleur de l'Intérieur du Fond de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Outer_Color" xml:space="preserve">
+    <value>Couleur de l'Extérieur du Fond de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Cursor_Color_Desc" xml:space="preserve">
+    <value>Active la Couleur du Curseur</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Inner_Color_Desc" xml:space="preserve">
+    <value>Active la Partie interne du Fond de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Outer_Color_Desc" xml:space="preserve">
+    <value>Active la Partie extérieure du Fond de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Folder_Texture" xml:space="preserve">
+    <value>Texture du Dossier</value>
+  </data>
+  <data name="Theme_Flags_Folder_Background_Color" xml:space="preserve">
+    <value>Couleur du Fond du Dossier</value>
+  </data>
+  <data name="Theme_Flags_Folder_Arrow_Color" xml:space="preserve">
+    <value>Couleur de la Flèche du Dossier</value>
+  </data>
+  <data name="Theme_Flags_Game_Text_Color" xml:space="preserve">
+    <value>Couleur du Texte du jeu</value>
+  </data>
+  <data name="Theme_Flags_Top_Draw_Type" xml:space="preserve">
+    <value>Style de l'Ecran du Haut</value>
+  </data>
+  <data name="Theme_Flags_Demo_Text_Color_Desc" xml:space="preserve">
+    <value>Active la Couleur du Texte de la Démo</value>
+  </data>
+  <data name="Theme_Flags_File_Color_Desc" xml:space="preserve">
+    <value>Active la couleur de l'Icône en 3D</value>
+  </data>
+  <data name="Theme_Flags_Folder_Color_Desc" xml:space="preserve">
+    <value>Actve la couleur du Dossier en 3D</value>
+  </data>
+  <data name="Theme_Flags_File_Texture_Desc" xml:space="preserve">
+    <value>Active la Texture customisée de l'Icône</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Glow_Desc" xml:space="preserve">
+    <value>Couleur de l'Eclat extérieur </value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextPressed" xml:space="preserve">
+    <value>Texte pressé</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextUnpressed" xml:space="preserve">
+    <value>Texte relâché</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Draw_Type" xml:space="preserve">
+    <value>Style de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Frame_Type" xml:space="preserve">
+    <value>Type de Défilement de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Top_Frame_Type" xml:space="preserve">
+    <value>Type de Défilement de l'ecran du Haut</value>
+  </data>
+  <data name="Theme_Flags_Top_Background_Color" xml:space="preserve">
+    <value>Couleur du fond de l'écran du haut</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextGlow" xml:space="preserve">
+    <value>Eclat du texte</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextGlow_Desc" xml:space="preserve">
+    <value>Couleur de l'éclat du texte</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextPressed_Desc" xml:space="preserve">
+    <value>Couleur du texte pressé</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextUnpressed_Desc" xml:space="preserve">
+    <value>Couleur du texte relâché</value>
+  </data>
+  <data name="Theme_Flags_Top_Corner_Button_Color" xml:space="preserve">
+    <value>Couleur des Boutons des coins de l'écran du haut</value>
+  </data>
+  <data name="Theme_Flags_Game_Text_Color_Desc" xml:space="preserve">
+    <value>Active la Couleur du Texte du jeu</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Frame_Type_Desc" xml:space="preserve">
+    <value>Séléctionne le Type de Défilement de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Draw_Type_Desc" xml:space="preserve">
+    <value>Séléctionne le Type de Rendu de l'Ecran du Bas</value>
+  </data>
+  <data name="Theme_Flags_Top_Frame_Type_Desc" xml:space="preserve">
+    <value>Séléctionne le Type de Défilement de l'Ecran du Haut</value>
+  </data>
+  <data name="Theme_Flags_Top_Draw_Type_Desc" xml:space="preserve">
+    <value>Séléctionne le Type de Rendu de l'Ecran du Haut</value>
+  </data>
+  <data name="Theme_Flags_Folder_Arrow_Color_Desc" xml:space="preserve">
+    <value>Active la Couleur de la Flèche du Dossier</value>
+  </data>
+  <data name="Theme_Flags_Folder_Background_Color_Desc" xml:space="preserve">
+    <value>Active la Couleur du Fond du Dossier</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Corner_Button_Color_Desc" xml:space="preserve">
+    <value>Active la Couleur du bouton des Paramètres et pour redimensionner</value>
+  </data>
+  <data name="Theme_Flags_Top_Background_Color_Desc" xml:space="preserve">
+    <value>Active la Couleur de Fond de l'écran du haut</value>
+  </data>
+  <data name="Theme_Flags_Top_Corner_Button_Color_Desc" xml:space="preserve">
+    <value>Active la Couleur des Boutons pour prendre des screenshots et des photos</value>
+  </data>
+  <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
+    <value>Fondre en ratio blanc</value>
+  </data>
+</root>

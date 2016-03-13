@@ -29,6 +29,7 @@ Avaiable on the Following Languages:
 * Portuguese (Brazil)
 * Spanish (by dsoldier @ GBATemp)
 * Italian (by RayFirefist @ GBATemp)
+* French (by Kerouz @ GBATemp)
 
 ---
 ### ThemeEditor Common
