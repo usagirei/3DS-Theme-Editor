@@ -56,5 +56,5 @@ using System.Windows.Media;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.0.7.4")]
-[assembly: AssemblyFileVersion("1.0.7.4")]
+[assembly: AssemblyVersion("1.0.7.5")]
+[assembly: AssemblyFileVersion("1.0.7.5")]

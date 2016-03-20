@@ -77,5 +77,8 @@
     <Setting Name="Preview_AnimationToggle" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="Preview_PressedToggle" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

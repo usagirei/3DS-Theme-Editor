@@ -533,6 +533,11 @@
                             Padding="3"
                             IsChecked="{markup:Setting Path=Preview_ModeToggle}"
                             Content="{x:Static locale:MainResources.Control_Preview_Folder}" />
+                        <ToggleButton
+                            Margin="0,3"
+                            Padding="3"
+                            IsChecked="{markup:Setting Path=Preview_PressedToggle}"
+                            Content="{x:Static locale:MainResources.Control_Preview_Pressed}" />
                     </StackPanel>
                     <Canvas x:Name="pre_BottomScreen" Grid.Column="1">
                         <controls:BottomScreenPreview

@@ -24,13 +24,13 @@ namespace ThemeEditor.WPF.Templating
             = DependencyProperty.Register(nameof(FalseValue),
                 typeof(object),
                 typeof(BooleanConverter),
-                new PropertyMetadata(default(object)));
+                new PropertyMetadata(false));
 
         public static readonly DependencyProperty TrueValueProperty
             = DependencyProperty.Register(nameof(TrueValue),
                 typeof(object),
                 typeof(BooleanConverter),
-                new PropertyMetadata(default(object)));
+                new PropertyMetadata(true));
 
         public object FalseValue
         {

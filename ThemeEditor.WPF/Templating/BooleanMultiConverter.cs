@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace ThemeEditor.WPF.Templating
 {
-    class MultiBooleanToVisibilityConverter : DependencyObject, IMultiValueConverter
+    class BooleanMultiConverter : DependencyObject, IMultiValueConverter
     {
         public enum BooleanOperation
         {
@@ -13,17 +13,41 @@ namespace ThemeEditor.WPF.Templating
             Or
         }
 
-        public static readonly DependencyProperty OperationProperty = 
-        DependencyProperty.Register(
-                                                                                                  nameof(Operation),
-            typeof(BooleanOperation),
-            typeof(MultiBooleanToVisibilityConverter),
-            new PropertyMetadata(default(BooleanOperation)));
+        public static readonly DependencyProperty FalseValueProperty
+            = DependencyProperty.Register(nameof(FalseValue),
+                typeof(object),
+                typeof(BooleanMultiConverter),
+                new PropertyMetadata(false));
+
+        public static readonly DependencyProperty OperationProperty
+            = DependencyProperty.Register(
+                                          nameof(Operation),
+                typeof(BooleanOperation),
+                typeof(BooleanMultiConverter),
+                new PropertyMetadata(default(BooleanOperation)));
+
+        public static readonly DependencyProperty TrueValueProperty
+            = DependencyProperty.Register(nameof(TrueValue),
+                typeof(object),
+                typeof(BooleanMultiConverter),
+                new PropertyMetadata(true));
+
+        public object FalseValue
+        {
+            get { return GetValue(FalseValueProperty); }
+            set { SetValue(FalseValueProperty, value); }
+        }
 
         public BooleanOperation Operation
         {
             get { return (BooleanOperation) GetValue(OperationProperty); }
             set { SetValue(OperationProperty, value); }
+        }
+
+        public object TrueValue
+        {
+            get { return GetValue(TrueValueProperty); }
+            set { SetValue(TrueValueProperty, value); }
         }
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -39,9 +63,9 @@ namespace ThemeEditor.WPF.Templating
 
                         temp = (bool) value;
                         if (!temp)
-                            return Visibility.Hidden;
+                            return FalseValue;
                     }
-                    return Visibility.Visible;
+                    return TrueValue;
 
                 case BooleanOperation.Or:
                     foreach (var value in values)
@@ -51,12 +75,13 @@ namespace ThemeEditor.WPF.Templating
 
                         temp = (bool) value;
                         if (temp)
-                            return Visibility.Visible;
+                            return TrueValue;
                     }
-                    return Visibility.Hidden;
+                    return FalseValue;
+                default:
+                    return TrueValue;
             }
 
-            return Visibility.Visible;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

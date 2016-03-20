@@ -330,4 +330,7 @@ Check the About Window for more Information</value>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>Pressed</value>
+  </data>
 </root>

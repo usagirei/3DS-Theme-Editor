@@ -330,4 +330,7 @@ Verifique a Janela "Sobre" para mais Informações.</value>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Opções</value>
   </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>Pressionado</value>
+  </data>
 </root>

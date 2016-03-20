@@ -241,6 +241,15 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pressed.
+        /// </summary>
+        public static string Control_Preview_Pressed {
+            get {
+                return ResourceManager.GetString("Control_Preview_Pressed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
         public static string Control_Toggle_False {

@@ -347,5 +347,18 @@ namespace ThemeEditor.WPF.Properties {
                 this["Preview_AnimationToggle"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(XmlSettingsProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Preview_PressedToggle {
+            get {
+                return ((bool)(this["Preview_PressedToggle"]));
+            }
+            set {
+                this["Preview_PressedToggle"] = value;
+            }
+        }
     }
 }

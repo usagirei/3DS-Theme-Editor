@@ -50,7 +50,9 @@
                     <system:Boolean>True</system:Boolean>
                 </templating:BooleanConverter.FalseValue>
             </templating:BooleanConverter>
-            <templating:MultiBooleanToVisibilityConverter Operation="And" x:Key="BooleanOrConverter" />
+            <templating:BooleanMultiConverter TrueValue="{x:Static Visibility.Visible}"
+                                              FalseValue="{x:Static Visibility.Hidden}"
+                                              Operation="And" x:Key="BooleanOrConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Canvas ClipToBounds="True"
