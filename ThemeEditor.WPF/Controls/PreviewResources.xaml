@@ -579,7 +579,7 @@
                 <Setter Property="Fill">
                     <Setter.Value>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Offset="0" Color="{Binding Path=Colors.FolderArrow.Main}" />
+                            <GradientStop Offset="0" Color="{Binding Path=Colors.FolderArrow.ArrowGlow}" />
                             <GradientStop Offset="0.3" Color="{Binding Path=Colors.FolderArrow.Shading}" />
                         </LinearGradientBrush>
                     </Setter.Value>
