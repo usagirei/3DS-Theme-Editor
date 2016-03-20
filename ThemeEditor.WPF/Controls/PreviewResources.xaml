@@ -568,6 +568,16 @@
                         <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.Shading}" />
                     </Setter.Value>
                 </Setter>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect
+                            Opacity="0.5"
+                            BlurRadius="8"
+                            Direction="-90"
+                            ShadowDepth="2"
+                            Color="{Binding Path=Colors.FolderArrow.Glow}" />
+                    </Setter.Value>
+                </Setter>
             </DataTrigger>
             <DataTrigger Value="True">
                 <DataTrigger.Binding>
@@ -589,16 +599,7 @@
                         <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.Highlight}" />
                     </Setter.Value>
                 </Setter>
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect
-                            Opacity="0.5"
-                            BlurRadius="8"
-                            Direction="-90"
-                            ShadowDepth="2"
-                            Color="{Binding Path=Colors.FolderArrow.Glow}" />
-                    </Setter.Value>
-                </Setter>
+         
             </DataTrigger>
         </Style.Triggers>
     </Style>
