@@ -232,6 +232,15 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string Control_Preview_Options {
+            get {
+                return ResourceManager.GetString("Control_Preview_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
         public static string Control_Toggle_False {
@@ -576,6 +585,78 @@ namespace ThemeEditor.WPF.Localization {
         public static string Preview_MinFormat {
             get {
                 return ResourceManager.GetString("Preview_MinFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cart.
+        /// </summary>
+        public static string Preview_Options_Cart {
+            get {
+                return ResourceManager.GetString("Preview_Options_Cart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column.
+        /// </summary>
+        public static string Preview_Options_Column {
+            get {
+                return ResourceManager.GetString("Preview_Options_Column", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cursor.
+        /// </summary>
+        public static string Preview_Options_Cursor {
+            get {
+                return ResourceManager.GetString("Preview_Options_Cursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string Preview_Options_File {
+            get {
+                return ResourceManager.GetString("Preview_Options_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string Preview_Options_Folder {
+            get {
+                return ResourceManager.GetString("Preview_Options_Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder Preview.
+        /// </summary>
+        public static string Preview_Options_FolderMode {
+            get {
+                return ResourceManager.GetString("Preview_Options_FolderMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Preview.
+        /// </summary>
+        public static string Preview_Options_MainMode {
+            get {
+                return ResourceManager.GetString("Preview_Options_MainMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row.
+        /// </summary>
+        public static string Preview_Options_Row {
+            get {
+                return ResourceManager.GetString("Preview_Options_Row", resourceCulture);
             }
         }
         

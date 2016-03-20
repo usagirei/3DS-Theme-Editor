@@ -38,7 +38,8 @@
             <Style.Resources>
                 <templating:ColorItemConverter x:Key="ColorItemConverter" />
                 <Style TargetType="{x:Type wpfx:ColorPicker}">
-                    <Setter Property="AvailableColorsHeader" Value="{x:Static locale:MainResources.Control_ColorPicker_TopPalette}" />
+                    <Setter Property="AvailableColorsHeader"
+                            Value="{x:Static locale:MainResources.Control_ColorPicker_TopPalette}" />
                     <Setter Property="AvailableColors">
                         <Setter.Value>
                             <Binding
@@ -48,7 +49,8 @@
                                                                 AncestorType=Window}" />
                         </Setter.Value>
                     </Setter>
-                    <Setter Property="StandardColorsHeader" Value="{x:Static locale:MainResources.Control_ColorPicker_BottomPalette}" />
+                    <Setter Property="StandardColorsHeader"
+                            Value="{x:Static locale:MainResources.Control_ColorPicker_BottomPalette}" />
                     <Setter Property="StandardColors">
                         <Setter.Value>
                             <Binding
@@ -97,16 +99,19 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate DataType="{x:Type templating:PropertyListConverter+PropertyProxy}">
-                        <StackPanel Margin="3,0" Opacity="{Binding Path=Value.Enabled, Converter={StaticResource BooleanToOpacityConverter}}">
+                        <StackPanel Margin="3,0"
+                                    Opacity="{Binding Path=Value.Enabled, Converter={StaticResource BooleanToOpacityConverter}}">
                             <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" />
                             <TextBlock FontStyle="Italic" Text="{Binding Path=Description}" />
                             <StackPanel>
-                                <ItemsControl Style="{StaticResource PropertyListControlStyle}" ItemsSource="{Binding Converter={StaticResource ViewModelUnroller}, Path=Value}">
+                                <ItemsControl Style="{StaticResource PropertyListControlStyle}"
+                                              ItemsSource="{Binding Converter={StaticResource ViewModelUnroller}, Path=Value}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel>
                                                 <WrapPanel.Width>
-                                                    <Binding Path="ViewportWidth" RelativeSource="{RelativeSource FindAncestor, AncestorType=ScrollViewer}" />
+                                                    <Binding Path="ViewportWidth"
+                                                             RelativeSource="{RelativeSource FindAncestor, AncestorType=ScrollViewer}" />
                                                 </WrapPanel.Width>
                                             </WrapPanel>
                                         </ItemsPanelTemplate>
@@ -130,7 +135,8 @@
                                     FontWeight="Bold"
                                     Text="{Binding Path=Name}"
                                     TextWrapping="Wrap" />
-                                <ContentControl Style="{StaticResource PropertyControlStyle}" Content="{Binding Path=.}">
+                                <ContentControl Style="{StaticResource PropertyControlStyle}"
+                                                Content="{Binding Path=.}">
                                     <ContentControl.ToolTip>
                                         <TextBlock
                                             FontStyle="Italic"
@@ -149,7 +155,8 @@
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="1">
                             <UniformGrid.Width>
-                                <Binding Path="ViewportWidth" RelativeSource="{RelativeSource FindAncestor, AncestorType=ScrollViewer}" />
+                                <Binding Path="ViewportWidth"
+                                         RelativeSource="{RelativeSource FindAncestor, AncestorType=ScrollViewer}" />
                             </UniformGrid.Width>
                         </UniformGrid>
                     </ItemsPanelTemplate>
@@ -261,70 +268,97 @@
                         </Style>
                     </MenuItem.Resources>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_Top}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.Top}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.Top}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.Top}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.Top}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.Top}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.Top}" />
                         <Separator />
                         <MenuItem Header="1024x256 (1008x240)" IsEnabled="False" />
                         <MenuItem Header="512x256 (412x240)" IsEnabled="False" />
                         <MenuItem Header="64x64" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_TopStatic}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.TopAlt}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.TopAlt}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.TopAlt}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.TopAlt}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.TopAlt}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.TopAlt}" />
                         <Separator />
                         <MenuItem Header="64x64" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_Bottom}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.Bottom}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.Bottom}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.Bottom}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.Bottom}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.Bottom}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.Bottom}" />
                         <Separator />
                         <MenuItem Header="1024x256 (1008x240)" IsEnabled="False" />
                         <MenuItem Header="1024x256 (960x240)" IsEnabled="False" />
                         <MenuItem Header="512x256 (320x240)" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FileLarge}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.FileLarge}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.FileLarge}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.FileLarge}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FileLarge}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FileLarge}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FileLarge}" />
                         <Separator />
                         <MenuItem Header="64x128 (36x72)" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FileSmall}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.FileSmall}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.FileSmall}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.FileSmall}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FileSmall}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FileSmall}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FileSmall}" />
                         <Separator />
                         <MenuItem Header="32x64 (25x50)" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FolderClosed}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FolderClosed}" />
                         <Separator />
                         <MenuItem Header="64x128 (74x64)" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_FolderOpen}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.FolderOpen}" />
                         <Separator />
                         <MenuItem Header="64x128 (82x64)" IsEnabled="False" />
                     </MenuItem>
                     <Separator />
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_LargeIcon}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.LargeIcon}" />
                         <Separator />
                         <MenuItem Header="48x48" IsEnabled="False" />
                     </MenuItem>
                     <MenuItem Header="{x:Static locale:MainResources.Menu_Image_SmallIcon}">
-                        <MenuItem Style="{StaticResource ImportStyle}" CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
-                        <MenuItem Style="{StaticResource RemoveStyle}" CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
-                        <MenuItem Style="{StaticResource ExportStyle}" CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
+                        <MenuItem Style="{StaticResource ImportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
+                        <MenuItem Style="{StaticResource RemoveStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
+                        <MenuItem Style="{StaticResource ExportStyle}"
+                                  CommandParameter="{x:Static local:TargetImage.SmallIcon}" />
                         <Separator />
                         <MenuItem Header="24x24" IsEnabled="False" />
                     </MenuItem>
@@ -426,12 +460,14 @@
                 </TabItem>
                 <TabItem Header="{x:Static locale:MainResources.Tab_Colors}">
                     <ScrollViewer HorizontalScrollBarVisibility="Hidden">
-                        <ItemsControl Style="{StaticResource ColorsViewModelControlStyle}" ItemsSource="{Binding Path=ViewModel.Colors, Converter={StaticResource ViewModelUnroller}}" />
+                        <ItemsControl Style="{StaticResource ColorsViewModelControlStyle}"
+                                      ItemsSource="{Binding Path=ViewModel.Colors, Converter={StaticResource ViewModelUnroller}}" />
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="{x:Static locale:MainResources.Tab_Flags}">
                     <ScrollViewer HorizontalScrollBarVisibility="Hidden">
-                        <ItemsControl Style="{StaticResource FlagsItemsControlStyle}" ItemsSource="{Binding Path=ViewModel.Flags, Converter={StaticResource ViewModelUnroller}}" />
+                        <ItemsControl Style="{StaticResource FlagsItemsControlStyle}"
+                                      ItemsSource="{Binding Path=ViewModel.Flags, Converter={StaticResource ViewModelUnroller}}" />
                     </ScrollViewer>
                 </TabItem>
             </TabControl>
@@ -459,7 +495,7 @@
                 AllowDrop="True">
                 <controls:TopScreenPreview
                     x:Name="pre_TopScreen"
-                    IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}"
+                    IsEnabled="{markup:Setting Path=Preview_AnimationToggle}"
                     Theme="{Binding Path=ViewModel}" />
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="6" ShadowDepth="0" />
@@ -481,27 +517,34 @@
                             HorizontalAlignment="Center"
                             Foreground="White"
                             Text="{x:Static locale:MainResources.Control_Preview_Label}" />
-                        <ToggleButton
-                            x:Name="chk_AnimatePreview"
+                        <Button
                             Margin="0,3"
                             Padding="3"
+                            Content="{x:Static locale:MainResources.Control_Preview_Options}"
+                            Command="{Binding PreviewOptionsCommand}" />
+                        <ToggleButton
+
+                            Margin="0,3"
+                            Padding="3"
+                            IsChecked="{markup:Setting Path=Preview_AnimationToggle}"
                             Content="{x:Static locale:MainResources.Control_Preview_Animate}" />
                         <ToggleButton
-                            x:Name="chk_FolderView"
                             Margin="0,3"
                             Padding="3"
+                            IsChecked="{markup:Setting Path=Preview_ModeToggle}"
                             Content="{x:Static locale:MainResources.Control_Preview_Folder}" />
                     </StackPanel>
                     <Canvas x:Name="pre_BottomScreen" Grid.Column="1">
                         <controls:BottomScreenPreview
-                            HideCursor="{Binding ElementName=chk_FolderView, Path=IsChecked}"
-                            IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}"
+                            HideCursor="{markup:Setting Path=Preview_ModeToggle}"
+                            IsEnabled="{markup:Setting Path=Preview_AnimationToggle}"
                             Theme="{Binding Path=ViewModel}" />
                         <controls:BottomFolderPreview
-                            IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}"
-                            ShowFolder="{Binding ElementName=chk_FolderView, Path=IsChecked}"
+                            IsEnabled="{markup:Setting Path=Preview_AnimationToggle}"
+                            ShowPreview="{markup:Setting Path=Preview_ModeToggle}"
                             Theme="{Binding Path=ViewModel}" />
-                        <controls:BottomOverlaysPreview IsEnabled="{Binding ElementName=chk_AnimatePreview, Path=IsChecked}" Theme="{Binding Path=ViewModel}" />
+                        <controls:BottomOverlaysPreview IsEnabled="{markup:Setting Path=Preview_AnimationToggle}"
+                                                        Theme="{Binding Path=ViewModel}" />
                     </Canvas>
                     <StackPanel Grid.Column="2" Margin="6,0">
                         <TextBlock
@@ -519,10 +562,14 @@
                             Command="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=PlayCommand}">
                             <Button.Style>
                                 <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Content" Value="{x:Static locale:MainResources.Control_AudioPlayer_Play}" />
+                                    <Setter Property="Content"
+                                            Value="{x:Static locale:MainResources.Control_AudioPlayer_Play}" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=IsPlaying, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                                            <Setter Property="Content" Value="{x:Static locale:MainResources.Control_AudioPlayer_Pause}" />
+                                        <DataTrigger
+                                            Binding="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=IsPlaying, UpdateSourceTrigger=PropertyChanged}"
+                                            Value="True">
+                                            <Setter Property="Content"
+                                                    Value="{x:Static locale:MainResources.Control_AudioPlayer_Pause}" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>

@@ -7,6 +7,7 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:renderers="clr-namespace:ThemeEditor.WPF.Controls.Renderers"
              xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
+             xmlns:properties="clr-namespace:ThemeEditor.WPF.Properties"
              mc:Ignorable="d"
              d:DesignHeight="240" d:DesignWidth="320">
     <UserControl.Resources>
@@ -27,6 +28,29 @@
             <system:Double x:Key="Column3">160</system:Double>
             <system:Double x:Key="Column4">213</system:Double>
             <system:Double x:Key="Column5">266</system:Double>
+
+            <templating:SwitchConverter x:Key="RowSelector">
+                <templating:SwitchConverterCase Case="2" Value="{StaticResource Row1}" />
+                <templating:SwitchConverterCase Case="1" Value="{StaticResource Row2}" />
+                <templating:SwitchConverterCase Case="0" Value="{StaticResource Row3}" />
+            </templating:SwitchConverter>
+
+            <templating:SwitchConverter x:Key="ColumnSelector">
+                <templating:SwitchConverterCase Case="0" Value="{StaticResource Column1}" />
+                <templating:SwitchConverterCase Case="1" Value="{StaticResource Column2}" />
+                <templating:SwitchConverterCase Case="2" Value="{StaticResource Column3}" />
+                <templating:SwitchConverterCase Case="3" Value="{StaticResource Column4}" />
+                <templating:SwitchConverterCase Case="4" Value="{StaticResource Column5}" />
+            </templating:SwitchConverter>
+            <templating:BooleanConverter x:Key="BooleanNegateConverter">
+                <templating:BooleanConverter.TrueValue>
+                    <system:Boolean>False</system:Boolean>
+                </templating:BooleanConverter.TrueValue>
+                <templating:BooleanConverter.FalseValue>
+                    <system:Boolean>True</system:Boolean>
+                </templating:BooleanConverter.FalseValue>
+            </templating:BooleanConverter>
+            <templating:MultiBooleanToVisibilityConverter Operation="And" x:Key="BooleanOrConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Canvas ClipToBounds="True"
@@ -35,14 +59,20 @@
         <!-- Background -->
         <renderers:BottomWallpaperRenderer Theme="{Binding Path=.}" IsEnabled="True" />
         <!-- No Cart -->
-        <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row1}">
+        <Canvas
+            Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_CartEnable, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_CartX , Converter={StaticResource ColumnSelector}}"
+            Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_CartY, Converter={StaticResource RowSelector}}">
             <Canvas Style="{StaticResource PreviewItemShadowCaster}">
                 <Path Style="{StaticResource NoCartStyleBack}" Data="{StaticResource FileGeometry}" />
                 <Path Style="{StaticResource NoCartStyleFore}" Data="{StaticResource NoCartGeometryFore}" />
             </Canvas>
         </Canvas>
         <!-- File -->
-        <Canvas Canvas.Left="{StaticResource Column2}" Canvas.Top="{StaticResource Row1}">
+        <Canvas
+            Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FileEnable, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FileX , Converter={StaticResource ColumnSelector}}"
+            Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FileY, Converter={StaticResource RowSelector}}">
             <Canvas Style="{StaticResource PreviewItemShadowCaster}">
                 <Path Style="{StaticResource FileStyleBack}" Data="{StaticResource FileGeometry}" />
             </Canvas>
@@ -54,7 +84,10 @@
             </Path>
         </Canvas>
         <!-- Folder -->
-        <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row2}">
+        <Canvas
+            Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FolderEnable, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FolderX , Converter={StaticResource ColumnSelector}}"
+            Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FolderY, Converter={StaticResource RowSelector}}">
             <Canvas Style="{StaticResource PreviewItemShadowCaster}">
                 <Path Style="{StaticResource FolderStyleBackClosed}" Data="{StaticResource FolderGeometryBackClosed}" />
             </Canvas>
@@ -69,8 +102,16 @@
             <Path Style="{StaticResource FolderStyleForeClosed}" Data="{StaticResource FolderGeometryForeClosed}" />
         </Canvas>
         <!-- Cursor -->
-        <Canvas Canvas.Left="{StaticResource Column3}" Canvas.Top="{StaticResource Row1}"
-                Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=HideCursor, Converter={StaticResource CursorVisibilityConverter}}">
+        <Canvas
+            Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_CursorX , Converter={StaticResource ColumnSelector}}"
+            Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_CursorY, Converter={StaticResource RowSelector}}">
+            <Canvas.Visibility>
+                <MultiBinding Converter="{StaticResource BooleanOrConverter}">
+                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=UserControl}" Path="HideCursor"
+                             Converter="{StaticResource BooleanNegateConverter}" />
+                    <Binding Source="{x:Static properties:Settings.Default}" Path="Preview_Main_CursorEnable" />
+                </MultiBinding>
+            </Canvas.Visibility>
             <Path Style="{StaticResource CursorStyleSolid}" Data="{StaticResource CursorGeometry}" />
             <Path Style="{StaticResource CursorStyleGlow}" Data="{StaticResource CursorGeometry}" />
         </Canvas>

@@ -94,6 +94,11 @@
     <Compile Include="Experimental\CWAV\CWAVWindow.xaml.cs">
       <DependentUpon>CWAVWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PreviewOptionsWindow.xaml.cs">
+      <DependentUpon>PreviewOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templating\BooleanMultiConverter.cs" />
+    <Compile Include="Templating\SwitchConverter.cs" />
     <Compile Include="Themes\ThemeInfoViewModel.cs" />
     <Compile Include="TempFile.cs" />
     <Compile Include="Templating\ColorBlendConverter.cs" />
@@ -235,6 +240,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PreviewOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Templating\DataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,6 +295,7 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Effects\FxBin\WarpEffect.fx" />

@@ -303,4 +303,31 @@ Check the About Window for more Information</value>
   <data name="Menu_Image_LargeIcon" xml:space="preserve">
     <value>Large Icon (SMDH)</value>
   </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>Row</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>Column</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>Cursor</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>Cart</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>Main Preview</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>Folder Preview</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
 </root>

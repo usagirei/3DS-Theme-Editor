@@ -65,6 +65,8 @@ namespace ThemeEditor.WPF
             }
         }
 
+        public ICommand PreviewOptionsCommand { get; }
+
         public ThemeViewModel ViewModel
         {
             get { return (ThemeViewModel) GetValue(ViewModelProperty); }
@@ -86,6 +88,8 @@ namespace ThemeEditor.WPF
                 = new RelayCommand(CWavManager_Execute, CanExecute_ViewModelLoaded);
 
             ExportPreviewCommand = new RelayCommand<PreviewKind>(ExportPreview_Execute);
+
+            PreviewOptionsCommand = new RelayCommand(PreviewOptionsCommand_Execute);
 
             SetupThemeCommands();
             SetupImageCommands();
@@ -258,11 +262,20 @@ namespace ThemeEditor.WPF
             BusyText = null;
         }
 
+        private void PreviewOptionsCommand_Execute()
+        {
+            new PreviewOptionsWindow()
+            {
+                Owner = this,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            }.ShowDialog();
+        }
+
         private BitmapSource RenderPreview(PreviewKind kind)
         {
-            bool wasPreviewing = chk_AnimatePreview.IsChecked.HasValue && chk_AnimatePreview.IsChecked.Value;
+            bool wasPreviewing = Settings.Default.Preview_AnimationToggle;
 
-            chk_AnimatePreview.IsChecked = false;
+            Settings.Default.Preview_AnimationToggle = false;
 
             BitmapSource bmp;
 
@@ -303,7 +316,7 @@ namespace ThemeEditor.WPF
                     return null;
             }
 
-            chk_AnimatePreview.IsChecked = wasPreviewing;
+            Settings.Default.Preview_AnimationToggle = wasPreviewing;
             bmp.Freeze();
             return bmp;
         }

@@ -7,6 +7,8 @@
              xmlns:renderers="clr-namespace:ThemeEditor.WPF.Controls.Renderers"
              xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:markup="clr-namespace:ThemeEditor.WPF.Markup"
+             xmlns:properties="clr-namespace:ThemeEditor.WPF.Properties"
              mc:Ignorable="d"
              d:DesignHeight="240" d:DesignWidth="320">
     <UserControl.Resources>
@@ -17,6 +19,7 @@
             <templating:BooleanConverter x:Key="FolderVisibilityConverter"
                                          TrueValue="{x:Static Visibility.Visible}"
                                          FalseValue="{x:Static Visibility.Hidden}" />
+
             <!-- Rows Base-->
             <system:Double x:Key="Row1">110</system:Double>
             <system:Double x:Key="Row2">164</system:Double>
@@ -26,19 +29,54 @@
             <system:Double x:Key="Column3">160</system:Double>
             <system:Double x:Key="Column4">213</system:Double>
             <system:Double x:Key="Column5">266</system:Double>
+
+            <templating:SwitchConverter x:Key="RowSelector">
+                <templating:SwitchConverterCase Case="1" Value="{StaticResource Row1}" />
+                <templating:SwitchConverterCase Case="0" Value="{StaticResource Row2}" />
+            </templating:SwitchConverter>
+
+            <templating:SwitchConverter x:Key="ColumnSelector">
+                <templating:SwitchConverterCase Case="0" Value="{StaticResource Column1}" />
+                <templating:SwitchConverterCase Case="1" Value="{StaticResource Column2}" />
+                <templating:SwitchConverterCase Case="2" Value="{StaticResource Column3}" />
+                <templating:SwitchConverterCase Case="3" Value="{StaticResource Column4}" />
+                <templating:SwitchConverterCase Case="4" Value="{StaticResource Column5}" />
+            </templating:SwitchConverter>
+
+
         </ResourceDictionary>
     </UserControl.Resources>
     <Canvas ClipToBounds="True"
-            Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=ShowFolder, Converter={StaticResource FolderVisibilityConverter}}"
+            Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=ShowPreview, Converter={StaticResource FolderVisibilityConverter}}"
             DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Theme}"
             Width="320px" Height="240px">
-        <!-- Cursor -->
+        <!-- Arrow -->
         <Path Data="{StaticResource BackButtonGeometry}" Style="{StaticResource BackButtonStyle}" />
         <Path Data="{StaticResource BackArrowGeometry}" Style="{StaticResource BackArrowStyle}"
               Canvas.Left="51" Canvas.Top="50" />
         <renderers:BottomFolderRenderer Theme="{Binding Path=.}" />
+
+        <!-- File -->
+        <Canvas
+            Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_FileEnable, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_FileX , Converter={StaticResource ColumnSelector}}"
+            Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_FileY, Converter={StaticResource RowSelector}}">
+            <Canvas Style="{StaticResource PreviewItemShadowCaster}">
+                <Path Style="{StaticResource FileStyleBack}" Data="{StaticResource FileGeometry}" />
+            </Canvas>
+            <Path Style="{StaticResource FileStyleFore}" Data="{StaticResource FileGeometry}" />
+            <Path Data="{StaticResource FileLabelGeometry}">
+                <Path.Fill>
+                    <ImageBrush ImageSource="{Binding Path=Info.LargeIcon.Bitmap}" Stretch="Fill" />
+                </Path.Fill>
+            </Path>
+        </Canvas>
+
         <!-- Folder -->
-        <Canvas Canvas.Left="{StaticResource Column1}" Canvas.Top="{StaticResource Row1}">
+        <Canvas
+            Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_FolderEnable, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_FolderX , Converter={StaticResource ColumnSelector}}"
+            Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_FolderY, Converter={StaticResource RowSelector}}">
             <Canvas Style="{StaticResource PreviewItemShadowCaster}">
                 <Path Style="{StaticResource FolderStyleBackOpen}" Data="{StaticResource FolderGeometryBackOpen}" />
             </Canvas>
@@ -52,7 +90,10 @@
             <Path Style="{StaticResource FolderStyleForeOpen}" Data="{StaticResource FolderGeometryForeOpen}" />
         </Canvas>
         <!-- Cursor -->
-        <Canvas Canvas.Left="{StaticResource Column3}" Canvas.Top="{StaticResource Row1}">
+        <Canvas
+            Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_CursorEnable, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_CursorX , Converter={StaticResource ColumnSelector}}"
+            Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Folder_CursorY, Converter={StaticResource RowSelector}}">
             <Path Style="{StaticResource CursorStyleSolid}" Data="{StaticResource CursorGeometry}" />
             <Path Style="{StaticResource CursorStyleGlow}" Data="{StaticResource CursorGeometry}" />
         </Canvas>

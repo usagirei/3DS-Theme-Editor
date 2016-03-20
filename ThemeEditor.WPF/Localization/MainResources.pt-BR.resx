@@ -303,4 +303,31 @@ Verifique a Janela "Sobre" para mais Informações.</value>
   <data name="Menu_Image_LargeIcon" xml:space="preserve">
     <value>Ícone Grande</value>
   </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>Linha</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>Coluna</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>Cursor</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>Arquivo</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>Pasta</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>Cartucho</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>Modo Principal</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>Modo Pasta</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>Opções</value>
+  </data>
 </root>

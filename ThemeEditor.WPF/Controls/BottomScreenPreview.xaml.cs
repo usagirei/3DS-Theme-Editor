@@ -6,6 +6,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
+using ThemeEditor.WPF.Properties;
 using ThemeEditor.WPF.Themes;
 
 namespace ThemeEditor.WPF.Controls

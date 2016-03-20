@@ -5,7 +5,76 @@
     <Setting Name="CheckUpdatesOnStartup" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="EXP_ResampleWav" Type="System.Boolean" Scope="User">
+    <Setting Name="EXP_ResampleWav" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_CursorX" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_CursorY" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_CursorEnable" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_FolderX" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_FolderY" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_FolderEnable" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_FileX" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_FileY" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Preview_Folder_FileEnable" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Preview_Main_CursorX" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="Preview_Main_CursorY" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="Preview_Main_CursorEnable" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Preview_Main_FolderX" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Preview_Main_FolderY" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Preview_Main_FolderEnable" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Preview_Main_CartX" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Preview_Main_CartY" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="Preview_Main_CartEnable" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Preview_Main_FileX" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Preview_Main_FileY" Provider="XmlSettingsProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="Preview_Main_FileEnable" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Preview_ModeToggle" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Preview_AnimationToggle" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
