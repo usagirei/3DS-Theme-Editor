@@ -908,9 +908,18 @@ namespace ThemeEditor.Common.Themes
                 s.Write(data, 0, data.Length);
             }
             else if (b.Flags.TopDrawType == TopDrawType.SolidColorTexture
+                     && b.Textures.Top.Format != RawTexture.DataFormat.Invalid)
+            {
+                offsets.Top = (uint) s.Position;
+                var data = b.Textures.Top.Data;
+                s.Write(data, 0, data.Length);
+            }
+
+            // Top Ext
+            if (b.Flags.TopDrawType == TopDrawType.SolidColorTexture
                      && b.Textures.TopExt.Format != RawTexture.DataFormat.Invalid)
             {
-                offsets.TopExt = (uint) s.Position;
+                offsets.TopExt = (uint)s.Position;
                 var data = b.Textures.TopExt.Data;
                 s.Write(data, 0, data.Length);
             }
