@@ -122,7 +122,7 @@ namespace ThemeEditor.WPF
 
         private void AboutWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            CheckLatestVersion();
+             CheckLatestVersion();
         }
 
         private void AboutWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
@@ -138,6 +138,7 @@ namespace ThemeEditor.WPF
             UpdateMessage = hasUpdate
                                 ? "Update Available"
                                 : "You are Updated";
+            CommandManager.InvalidateRequerySuggested();
         }
 
         private async Task<TempFile> DownloadUpdate_Execute()
