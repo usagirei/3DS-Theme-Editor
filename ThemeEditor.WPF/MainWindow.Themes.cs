@@ -110,7 +110,7 @@ namespace ThemeEditor.WPF
                     BusyText = busyPickingFile;
                     var opfl = new OpenFileDialog
                     {
-                        Filter = "3DS Theme File|body_LZ.bin",
+                        Filter = "3DS Theme File|*.bin",
                         Multiselect = false
                     };
                     var dlg = opfl.ShowDialog();
@@ -206,7 +206,7 @@ namespace ThemeEditor.WPF
                 {
                     var svfl = new SaveFileDialog
                     {
-                        Filter = "3DS Theme File|body_LZ.bin",
+                        Filter = "3DS Theme File|*.bin",
                         FileName = "body_lz"
                     };
                     var dlg = svfl.ShowDialog();
