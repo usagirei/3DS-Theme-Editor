@@ -157,7 +157,7 @@ namespace ThemeEditor.WPF.Themes
                 argbData[i + 0] = 255; // b
                 argbData[i + 1] = 255; // g
                 argbData[i + 2] = 255; // r
-                argbData[i + 3] = rgbData[j + 0]; // a
+                argbData[i + 3] = rgbData[j + 0]; // 1-a ?
             }
             return argbData;
         }

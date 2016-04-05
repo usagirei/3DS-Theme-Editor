@@ -4,8 +4,9 @@
 
 using System;
 using System.Linq;
-
+using ThemeEditor.Common.Themes.ColorSets;
 using ThemeEditor.WPF.Localization.Enums;
+using ThemeEditor.WPF.Themes.ColorSets;
 
 namespace ThemeEditor.WPF.Themes
 {
@@ -15,15 +16,15 @@ namespace ThemeEditor.WPF.Themes
 
         private T FilterEnum<T>(T newValue, T oldValue, params T[] valid) where T : struct, IConvertible
         {
-            if (!typeof(T).IsEnum)
+            if (!typeof (T).IsEnum)
                 throw new ArgumentException("Generic Type must be an enumerated type", nameof(T));
             if (valid.Length == 0)
                 return newValue;
             return valid.Contains(newValue)
-                       ? newValue
-                       : valid.Contains(oldValue)
-                             ? oldValue
-                             : valid[0];
+                ? newValue
+                : valid.Contains(oldValue)
+                    ? oldValue
+                    : valid[0];
         }
 
         partial void SetupRules()
@@ -33,12 +34,20 @@ namespace ThemeEditor.WPF.Themes
             SetupRules_FrameTypes();
             SetupRules_Textures();
             SetupRules_ColorToggles();
+            SetupRules_SolidColorOpts();
 
             Rules.Apply(Flags);
             Rules.Apply(Textures);
-            Rules.Apply(Colors);
+            Rules.Apply(Colors.TopBackground);
         }
 
+        private void SetupRules_SolidColorOpts()
+        {
+            Rules.AddRule<TopSolidSetViewModel, bool>(nameof(TopSolidSetViewModel.FadeToWhite),
+                (v, o, n) => { Colors.TopBackground.FadeToWhite |= Flags.TopDrawType != TopDrawType.SolidColorTexture; });
+            Rules.AddRule<TopSolidSetViewModel, bool>(nameof(TopSolidSetViewModel.EnableAlt),
+                (v, o, n) => { Colors.TopBackground.EnableAlt |= Flags.TopDrawType != TopDrawType.SolidColorTexture; });
+        }
 
         private void SetupRules_ColorToggles()
         {
@@ -48,17 +57,19 @@ namespace ThemeEditor.WPF.Themes
                 (nameof(FlagsViewModel.TopCornerButtonColor), (v, o, n) => Colors.TopCorner.Enabled = n);
 
             Rules.AddRule<FlagsViewModel, bool>
-                (nameof(FlagsViewModel.BottomBackgroundInnerColor), (v, o, n) =>
-                {
-                    Validate_Dependency_BottomBackgroundInnerColor(v, o, n);
-                    Colors.BottomBackgroundInner.Enabled = v.BottomBackgroundInnerColor;
-                });
+                (nameof(FlagsViewModel.BottomBackgroundInnerColor),
+                    (v, o, n) =>
+                    {
+                        Validate_Dependency_BottomBackgroundInnerColor(v, o, n);
+                        Colors.BottomBackgroundInner.Enabled = v.BottomBackgroundInnerColor;
+                    });
             Rules.AddRule<FlagsViewModel, bool>
-                (nameof(FlagsViewModel.BottomBackgroundOuterColor), (v, o, n) =>
-                {
-                    Validate_Dependency_BottomBackgroundOuterColor(v, o, n);
-                    Colors.BottomBackgroundOuter.Enabled = v.BottomBackgroundOuterColor;
-                });
+                (nameof(FlagsViewModel.BottomBackgroundOuterColor),
+                    (v, o, n) =>
+                    {
+                        Validate_Dependency_BottomBackgroundOuterColor(v, o, n);
+                        Colors.BottomBackgroundOuter.Enabled = v.BottomBackgroundOuterColor;
+                    });
 
             Rules.AddRule<FlagsViewModel, bool>
                 (nameof(FlagsViewModel.BottomCornerButtonColor), (v, o, n) => Colors.BottomCorner.Enabled = n);
@@ -113,7 +124,9 @@ namespace ThemeEditor.WPF.Themes
             model.BottomBackgroundInnerColor = newValue && model.BottomDrawType == BottomDrawType.SolidColor;
 
             // NOTE: Only Directly Call if Absolutely Sure no Recursion will Ensue!
-            Validate_Dependency_BottomBackgroundOuterColor(model, model.BottomBackgroundOuterColor, model.BottomBackgroundOuterColor);
+            Validate_Dependency_BottomBackgroundOuterColor(model,
+                model.BottomBackgroundOuterColor,
+                model.BottomBackgroundOuterColor);
         }
 
         private void Validate_Dependency_BottomBackgroundOuterColor(FlagsViewModel model, bool oldValue, bool newValue)
@@ -134,12 +147,18 @@ namespace ThemeEditor.WPF.Themes
                 case 512:
                 case 1024:
                     model.BottomDrawType
-                        = FilterEnum(newValue, oldValue, BottomDrawType.None, BottomDrawType.SolidColor, BottomDrawType.Texture);
+                        = FilterEnum(newValue,
+                            oldValue,
+                            BottomDrawType.None,
+                            BottomDrawType.SolidColor,
+                            BottomDrawType.Texture);
                     break;
             }
 
             // NOTE: Only Directly Call if Absolutely Sure no Recursion will Ensue!
-            Validate_Dependency_BottomBackgroundInnerColor(model, model.BottomBackgroundInnerColor, model.BottomBackgroundInnerColor);
+            Validate_Dependency_BottomBackgroundInnerColor(model,
+                model.BottomBackgroundInnerColor,
+                model.BottomBackgroundInnerColor);
             // Inner will Also Validate Outer
             Validate_BottomFrameType(model, model.BottomFrameType, model.BottomFrameType);
         }
@@ -172,14 +191,19 @@ namespace ThemeEditor.WPF.Themes
             }
         }
 
-        private void Validate_Texture_Bottom(TexturesViewModel model, TextureViewModel oldValue, TextureViewModel newValue)
+        private void Validate_Texture_Bottom(TexturesViewModel model,
+            TextureViewModel oldValue,
+            TextureViewModel newValue)
         {
             // NOTE: Avoid Setting other values Directly, Textures are Special Cases
             switch (model.Bottom.Width)
             {
                 case 0:
                     Flags.BottomDrawType
-                        = FilterEnum(Flags.BottomDrawType, BottomDrawType.None, BottomDrawType.None, BottomDrawType.SolidColor);
+                        = FilterEnum(Flags.BottomDrawType,
+                            BottomDrawType.None,
+                            BottomDrawType.None,
+                            BottomDrawType.SolidColor);
                     break;
                 case 512:
                     Flags.BottomFrameType
@@ -251,7 +275,11 @@ namespace ThemeEditor.WPF.Themes
                     break;
                 case 64:
                     model.TopDrawType
-                        = FilterEnum(newValue, oldValue, TopDrawType.None, TopDrawType.SolidColor, TopDrawType.SolidColorTexture);
+                        = FilterEnum(newValue,
+                            oldValue,
+                            TopDrawType.None,
+                            TopDrawType.SolidColor,
+                            TopDrawType.SolidColorTexture);
                     break;
                 case 512:
                 case 1024:

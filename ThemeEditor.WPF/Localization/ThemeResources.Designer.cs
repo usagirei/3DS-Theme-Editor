@@ -2059,6 +2059,42 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Static Image.
+        /// </summary>
+        public static string Theme_Sets_Top_EnableAlt {
+            get {
+                return ResourceManager.GetString("Theme_Sets_Top_EnableAlt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uses Alternative Top Texture.
+        /// </summary>
+        public static string Theme_Sets_Top_EnableAlt_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Sets_Top_EnableAlt_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White Gradient.
+        /// </summary>
+        public static string Theme_Sets_Top_FadeToWhite {
+            get {
+                return ResourceManager.GetString("Theme_Sets_Top_FadeToWhite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gradient Fades to White.
+        /// </summary>
+        public static string Theme_Sets_Top_FadeToWhite_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Sets_Top_FadeToWhite_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gradient.
         /// </summary>
         public static string Theme_Sets_Top_Gradient {

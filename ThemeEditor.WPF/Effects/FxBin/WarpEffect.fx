@@ -1,10 +1,13 @@
-Texture2D Sampler : register(S0);
+sampler2D Input : register(s0);
 
-float Scale : register(C0);
+sampler2D Overlay : register(s1);
 
-float Pinch : register(C1);
+float Scale : register(c0);
 
-SamplerState WrapSampler;
+float Pinch : register(c1);
+
+float Blend : register(c2);
+
 
 float4 main(float2 uv : TEXCOORD) : COLOR
 {
@@ -15,8 +18,8 @@ float4 main(float2 uv : TEXCOORD) : COLOR
 	float dydx = dy / dx;
 	float2 warp = float2(uv.x, (0.5 + (dydx) / Scale));
 
-	//outputColor = tex2D(Sampler, warp);
-	outputColor = Sampler.Sample(WrapSampler, warp);
+	float3 inputColor = tex2D(Input, uv).xyz;
+	float3 overlayColor = tex2D(Overlay, warp).xyz * Blend;
 	
-	return outputColor;
+	return float4(inputColor + overlayColor, 1);
 }

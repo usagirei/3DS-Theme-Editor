@@ -102,7 +102,8 @@ namespace ThemeEditor.WPF.Experimental.CWAV
             {
                 var results = new ExportResults
                 {
-                    Saved = false
+                    Saved = false,
+                    Target =  arg
                 };
                 var svfd = new SaveFileDialog
                 {
@@ -121,10 +122,12 @@ namespace ThemeEditor.WPF.Experimental.CWAV
                         {
                             case 1:
                                 File.WriteAllBytes(svfd.FileName, cWav.CwavData);
+                                results.Path = svfd.FileName;
                                 results.Saved = true;
                                 break;
                             case 2:
                                 File.WriteAllBytes(svfd.FileName, cWav.WavData);
+                                results.Path = svfd.FileName;
                                 results.Saved = true;
                                 break;
                         }

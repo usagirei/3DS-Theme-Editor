@@ -70,6 +70,10 @@
                             DataTemplate="{StaticResource ColorDataTemplate}"
                             PropertyName="Value"
                             PropertyType="{x:Type Color}" />
+                            <templating:Template
+                            DataTemplate="{StaticResource BoolDataTemplate2}"
+                            PropertyName="Value"
+                            PropertyType="{x:Type system:Boolean}" />
                         <templating:Template
                             DataTemplate="{StaticResource FloatDataTemplate}"
                             PropertyName="Value"

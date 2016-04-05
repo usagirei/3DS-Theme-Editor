@@ -11,9 +11,9 @@
     <!-- Colors -->
     <DataTemplate x:Key="ColorDataTemplate"
                   DataType="{x:Type templating:PropertyListConverter+PropertyProxy}">
-        <StackPanel Margin="3">
+        <StackPanel Margin="3" Width="125">
             <TextBlock Text="{Binding Path=Name, StringFormat='\{0\}:'}"
-                       Padding="3" FontSize="10" Width="125"
+                       Padding="3" FontSize="10" 
                        TextTrimming="CharacterEllipsis" />
             <StackPanel Orientation="Horizontal">
                 <xctk:ColorPicker x:Name="PART_PICKER"
@@ -70,8 +70,8 @@
     </DataTemplate>
     <DataTemplate x:Key="FloatDataTemplate"
                   DataType="{x:Type templating:PropertyListConverter+PropertyProxy}">
-        <StackPanel Margin="3">
-            <TextBlock Margin="3" FontSize="10">
+        <StackPanel Margin="3" Width="125">
+            <TextBlock Padding="3" FontSize="10">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0}: {1:f2}">
                         <MultiBinding.Bindings>
@@ -85,7 +85,7 @@
                 Margin="3"
                 Minimum="0" Maximum="1"
                 SmallChange="0.05" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"
-                Width="100" Value="{Binding Path=Value}">
+                Width="115" Value="{Binding Path=Value}">
                 <Slider.ToolTip>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -102,6 +102,29 @@
                 </Slider.ToolTip>
             </Slider>
         </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="BoolDataTemplate2"
+                  DataType="{x:Type templating:PropertyListConverter+PropertyProxy}">
+        <StackPanel Margin="3" Width="125">
+            <TextBlock Padding="3" FontSize="10" Text="{Binding Path=Name}">
+            </TextBlock>
+            <ToggleButton IsChecked="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                          Width="125">
+                <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}">
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Content" Value="{x:Static locale:MainResources.Control_Toggle_True}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Content" Value="{x:Static locale:MainResources.Control_Toggle_False}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+        </StackPanel>
+
     </DataTemplate>
     <!-- Flags -->
     <DataTemplate x:Key="BoolDataTemplate"
@@ -135,4 +158,4 @@
                       DisplayMemberPath="Name" />
         </StackPanel>
     </DataTemplate>
-</ResourceDictionary>
+</ResourceDictionary> 

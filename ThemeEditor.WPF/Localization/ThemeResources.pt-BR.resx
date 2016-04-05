@@ -676,4 +676,16 @@
   <data name="Theme_Info_SmallIcon_Desc" xml:space="preserve">
     <value>Ícone 24px</value>
   </data>
+  <data name="Theme_Sets_Top_FadeToWhite" xml:space="preserve">
+    <value>Gradiente Branco</value>
+  </data>
+  <data name="Theme_Sets_Top_FadeToWhite_Desc" xml:space="preserve">
+    <value>Gradiente para Branco</value>
+  </data>
+  <data name="Theme_Sets_Top_EnableAlt" xml:space="preserve">
+    <value>Mostrar Imagem Estática</value>
+  </data>
+  <data name="Theme_Sets_Top_EnableAlt_Desc" xml:space="preserve">
+    <value>Ativa Imagem Superior Alternativa</value>
+  </data>
 </root>

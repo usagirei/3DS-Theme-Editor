@@ -6,7 +6,6 @@ using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
-
 using ThemeEditor.WPF.Localization.Enums;
 using ThemeEditor.WPF.RenderTools;
 using ThemeEditor.WPF.Themes;
@@ -22,8 +21,8 @@ namespace ThemeEditor.WPF.Controls.Renderers
 
         public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register
             (nameof(Theme),
-                typeof(ThemeViewModel),
-                typeof(BottomWallpaperRenderer),
+                typeof (ThemeViewModel),
+                typeof (BottomWallpaperRenderer),
                 new FrameworkPropertyMetadata(default(ThemeViewModel), FrameworkPropertyMetadataOptions.AffectsRender));
 
         private bool _isListening;
@@ -36,7 +35,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
 
         static BottomWallpaperRenderer()
         {
-            Type ownerType = typeof(BottomWallpaperRenderer);
+            Type ownerType = typeof (BottomWallpaperRenderer);
             IsEnabledProperty
                 .OverrideMetadata(ownerType, new FrameworkPropertyMetadata(false, OnIsEnabledChanged));
 
@@ -45,7 +44,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 {
                     Opacity = key.Opacity
                 },
-                            key.Width));
+                    key.Width));
 
             RenderToolFactory.RegisterTool<SolidColorBrushTool, Brush>
                 (key => new SolidColorBrush(key.Color)
@@ -97,7 +96,9 @@ namespace ThemeEditor.WPF.Controls.Renderers
             {
                 case BottomDrawType.SolidColor:
                 {
-                    OnRender_SolidColor(dc, Theme.Flags.BottomBackgroundInnerColor, Theme.Flags.BottomBackgroundOuterColor);
+                    OnRender_SolidColor(dc,
+                        Theme.Flags.BottomBackgroundInnerColor,
+                        Theme.Flags.BottomBackgroundOuterColor);
                     break;
                 }
                 case BottomDrawType.None:
@@ -231,8 +232,8 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 {
                     // 802 = ...? Eyeballed it until it synced
                     var posMap = _isListening
-                                     ? (Math.Sin(CompositionTargetEx.SecondsFromStart / 3) + 1) * 802
-                                     : 0;
+                        ? (Math.Sin(CompositionTargetEx.SecondsFromStart / 3) + 1) * 802
+                        : 0;
 
                     if (posMap < 1008)
                         dc.DrawImage(bgBitmap, new Rect(-posMap, 0, bgBitmap.Width, bgBitmap.Height));
@@ -242,18 +243,20 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 else if (flipEnable)
                 {
                     var posMap = _isListening
-                                     ? (int) Math.Floor(CompositionTargetEx.SecondsFromStart % 3)
-                                     : 0;
+                        ? (int) Math.Floor(CompositionTargetEx.SecondsFromStart % 3)
+                        : 0;
 
                     dc.DrawImage(bgBitmap, new Rect(-posMap * BOT_SCR_WIDTH, 0, bgBitmap.Width, bgBitmap.Height));
                 }
                 else if (bounceEnable)
                 {
                     var posMap = _isListening
-                                     ? (int) Math.Floor(CompositionTargetEx.SecondsFromStart % 4)
-                                     : 0;
+                        ? (int) Math.Floor(CompositionTargetEx.SecondsFromStart % 4)
+                        : 0;
 
-                    posMap = posMap == 3 ? 1 : posMap;
+                    posMap = posMap == 3
+                        ? 1
+                        : posMap;
                     dc.DrawImage(bgBitmap, new Rect(-posMap * BOT_SCR_WIDTH, 0, bgBitmap.Width, bgBitmap.Height));
                 }
                 else
@@ -303,7 +306,14 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 outerGlow = Theme.Colors.BottomBackgroundOuter.Glow;
             }
 
-            OnRender_BackgroundColor(dc, outerMain, outerEdgeStripes, outerGlow, innerMain, innerEdge, innerGlow, innerShadow);
+            OnRender_BackgroundColor(dc,
+                outerMain,
+                outerEdgeStripes,
+                outerGlow,
+                innerMain,
+                innerEdge,
+                innerGlow,
+                innerShadow);
         }
 
         private void OnRendering(object sender, EventArgs eventArgs)

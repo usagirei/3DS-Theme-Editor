@@ -5,9 +5,6 @@
 using System;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-
-using ThemeEditor.Common.Graphics;
 using ThemeEditor.WPF.Effects;
 using ThemeEditor.WPF.Localization.Enums;
 using ThemeEditor.WPF.RenderTools;
@@ -17,21 +14,18 @@ namespace ThemeEditor.WPF.Controls.Renderers
 {
     internal class TopWallpaperRenderer : FrameworkElement
     {
-        private static readonly TextureViewModel DefaultTopSquares;
-
         private static readonly RenderToolFactory RenderToolFactory = new RenderToolFactory();
         private static readonly Rect ScreenArea;
 
         public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register
             (nameof(Theme),
-                typeof(ThemeViewModel),
-                typeof(TopWallpaperRenderer),
+                typeof (ThemeViewModel),
+                typeof (TopWallpaperRenderer),
                 new FrameworkPropertyMetadata(default(ThemeViewModel), FrameworkPropertyMetadataOptions.AffectsRender));
 
-        private bool _enableWarp;
         private bool _isListening;
 
-        private WarpEffect _warpEffect;
+        //private WarpEffect _warpEffect;
 
         public ThemeViewModel Theme
         {
@@ -43,24 +37,12 @@ namespace ThemeEditor.WPF.Controls.Renderers
         {
             ScreenArea = new Rect(0, 0, 412, 240);
 
-            var defTopAlt = new BitmapImage();
-            defTopAlt.BeginInit();
-            //defTopAlt.StreamSource = (Stream) Extensions.GetResources(@"TopAlt_DefMask\.png").First().Value;
-            defTopAlt.UriSource = new Uri(@"pack://application:,,,/ThemeEditor.WPF;component/Resources/TopAlt_DefMask.png");
-            defTopAlt.CacheOption = BitmapCacheOption.OnLoad;
-            defTopAlt.EndInit();
-
-            var bgrData = defTopAlt.GetBgr24Data();
-            RawTexture rTex = new RawTexture(defTopAlt.PixelWidth, defTopAlt.PixelHeight, RawTexture.DataFormat.A8);
-            rTex.Encode(bgrData);
-            DefaultTopSquares = new TextureViewModel(rTex, null);
-
             RenderToolFactory.RegisterTool<PenTool, Pen>
                 (key => new Pen(new SolidColorBrush(key.Color)
                 {
                     Opacity = key.Opacity
                 },
-                            key.Width));
+                    key.Width));
 
             RenderToolFactory.RegisterTool<SolidColorBrushTool, Brush>
                 (key => new SolidColorBrush(key.Color)
@@ -83,7 +65,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
                     Opacity = key.Opacity
                 });
 
-            Type ownerType = typeof(TopWallpaperRenderer);
+            Type ownerType = typeof (TopWallpaperRenderer);
             IsEnabledProperty
                 .OverrideMetadata(ownerType, new FrameworkPropertyMetadata(false, OnIsEnabledChanged));
 
@@ -94,10 +76,12 @@ namespace ThemeEditor.WPF.Controls.Renderers
             HeightProperty.OverrideMetadata(ownerType,
                 new FrameworkPropertyMetadata(240.0, null, (o, value) => 240.0));
 
+            /*
             EffectProperty.OverrideMetadata(ownerType,
                 new FrameworkPropertyMetadata(default(WarpEffect),
                     null,
                     (o, value) => ((TopWallpaperRenderer) o).GetWarpEffectInstance()));
+                    */
         }
 
         public TopWallpaperRenderer()
@@ -126,21 +110,15 @@ namespace ThemeEditor.WPF.Controls.Renderers
             dc.DrawRectangle(brush3D, null, rect3DR);
         }
 
-        protected override void OnInitialized(EventArgs e)
-        {
-            Effect = _warpEffect;
-        }
-
         protected override void OnRender(DrawingContext dc)
         {
             if (Theme == null)
             {
-                var topTex = DefaultTopSquares.Bitmap;
-                const float OPACITY = 0.5f;
+                //var topTex = DefaultTopSquares.Bitmap;
                 var background = Color.FromArgb(255, 205, 205, 217);
                 const float GRADIENT = 0.5f;
 
-                OnRender_BackgroundSolidTexture(dc, topTex, topTex, OPACITY, background, GRADIENT);
+                OnRender_BackgroundSolid(dc, background, GRADIENT, true);
                 return;
             }
 
@@ -149,7 +127,18 @@ namespace ThemeEditor.WPF.Controls.Renderers
             {
                 case TopDrawType.SolidColor:
                 {
-                    OnRender_BackgroundSolid(dc);
+                    OnRender_BackgroundSolid(dc,
+                        Theme.Colors.TopBackground.Main,
+                        (float) Theme.Colors.TopBackground.Gradient,
+                        true);
+                    break;
+                }
+                case TopDrawType.SolidColorTexture:
+                {
+                    OnRender_BackgroundSolid(dc,
+                        Theme.Colors.TopBackground.Main,
+                        (float) Theme.Colors.TopBackground.Gradient,
+                        Theme.Colors.TopBackground.FadeToWhite);
 
                     break;
                 }
@@ -161,24 +150,10 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 }
                 case TopDrawType.None:
                 {
-                    var topTex = DefaultTopSquares.Bitmap;
-                    const float OPACITY = 0.5f;
                     var background = Color.FromArgb(255, 205, 205, 217);
                     const float GRADIENT = 0.5f;
 
-                    OnRender_BackgroundSolidTexture(dc, topTex, topTex, OPACITY, background, GRADIENT);
-
-                    break;
-                }
-                case TopDrawType.SolidColorTexture:
-                {
-                    var topStatic = Theme.Textures.TopAlt.Bitmap;
-                    var topDynamic = Theme.Textures.Top.Bitmap;
-                    var opacity = Theme.Colors.TopBackground.TextureOpacity;
-                    var background = Theme.Colors.TopBackground.Main;
-                    var gradient = Theme.Colors.TopBackground.Gradient;
-
-                    OnRender_BackgroundSolidTexture(dc, topStatic, topDynamic, (float) opacity, background, (float) gradient);
+                    OnRender_BackgroundSolid(dc, background, GRADIENT, true);
 
                     break;
                 }
@@ -187,10 +162,12 @@ namespace ThemeEditor.WPF.Controls.Renderers
             OnRender_3DCorners(dc);
         }
 
+        /*
         private object GetWarpEffectInstance()
         {
             return _warpEffect ?? (_warpEffect = new WarpEffect());
         }
+        */
 
         private void OnIsEnabledChanged(bool oldValue, bool newValue)
         {
@@ -215,67 +192,20 @@ namespace ThemeEditor.WPF.Controls.Renderers
             }
         }
 
-        private void OnRender_BackgroundSolid(DrawingContext dc)
+        private void OnRender_BackgroundSolid(DrawingContext dc, Color color, float gradient, bool fadeToWhite)
         {
-            SetEnableWarp(false);
-
-            var tss = Theme.Colors.TopBackground;
-            var opaque = tss.Main;
-            var faded = opaque.Blend(Colors.White, (float) tss.Gradient);
+            var opaque = color;
+            var faded = opaque.Blend(fadeToWhite
+                ? Colors.White
+                : Colors.Black,
+                gradient);
             var lgBrush = RenderToolFactory.GetTool<Brush>(new LinearGradientBrushTool(faded, opaque, 90));
             dc.DrawRectangle(lgBrush, null, ScreenArea);
-        }
-
-        private void OnRender_BackgroundSolidTexture(
-            DrawingContext dc,
-            ImageSource topStatic,
-            ImageSource topDynamic,
-            float textureOpacity,
-            Color background,
-            float gradient)
-        {
-            SetEnableWarp(true);
-
-            var opaque = background;
-            var faded = background.Blend(Colors.White, gradient);
-            //LinearGradientBrush lgBrush = new LinearGradientBrush(faded, opaque, 90);
-            var lgBrush = RenderToolFactory.GetTool<Brush>(new LinearGradientBrushTool(faded, opaque, 90));
-            dc.DrawRectangle(lgBrush, null, ScreenArea);
-
-            const int SQ_WIDTH = 66;
-            const int SQ_HEIGHT = 66;
-            const int SQ_X_OFF = SQ_WIDTH / 3;
-            const int SQ_Y_OFF = SQ_HEIGHT / 3;
-
-            var stBrush = RenderToolFactory.GetTool<Brush>
-                (new ImageBrushTool(topStatic,
-                    TileMode.Tile,
-                    new Rect(-SQ_X_OFF, SQ_Y_OFF, SQ_WIDTH, SQ_HEIGHT),
-                    BrushMappingMode.Absolute,
-                    textureOpacity));
-            dc.DrawRectangle(stBrush, null, ScreenArea);
-
-            var off = _isListening
-                          ? CompositionTargetEx.SecondsFromStart * 4
-                          : (int) (SQ_WIDTH / 2);
-
-            // Dynamic Brush is Constantly Changing
-            const float WARP = (float) SQ_WIDTH / SQ_HEIGHT;
-            ImageBrush dyBrush = new ImageBrush(topDynamic)
-            {
-                TileMode = TileMode.Tile,
-                ViewportUnits = BrushMappingMode.Absolute,
-                Viewport = new Rect(off * WARP - SQ_X_OFF, off + SQ_Y_OFF, SQ_WIDTH, SQ_HEIGHT),
-                Opacity = textureOpacity
-            };
-            dc.DrawRectangle(dyBrush, null, ScreenArea);
-
-            OnRender_3DCorners(dc);
         }
 
         private void OnRender_BackgroundTexture(DrawingContext dc, TopFrameType frameType, ImageSource wallpaper)
         {
-            SetEnableWarp(false);
+            //SetEnableWarp(false);
 
             var scrollEnable = frameType == TopFrameType.SlowScroll || frameType == TopFrameType.FastScroll;
 
@@ -284,10 +214,9 @@ namespace ThemeEditor.WPF.Controls.Renderers
             if (scrollEnable)
             {
                 var posMap = _isListening
-                                 ? (Math.Sin(CompositionTargetEx.SecondsFromStart / 3) + 1) * SCR_OFFSET
-                                 : 0;
+                    ? (Math.Sin(CompositionTargetEx.SecondsFromStart / 3) + 1) * SCR_OFFSET
+                    : 0;
                 posMap -= OFFSET_3D;
-
 
                 if (posMap <= OFFSET_3D)
                     dc.DrawImage(wallpaper, new Rect(-posMap - 1008, 0, wallpaper.Width, wallpaper.Height));
@@ -295,7 +224,6 @@ namespace ThemeEditor.WPF.Controls.Renderers
                     dc.DrawImage(wallpaper, new Rect(-posMap, 0, wallpaper.Width, wallpaper.Height));
                 if (posMap + 412 > 1008)
                     dc.DrawImage(wallpaper, new Rect(-posMap + 1007, 0, wallpaper.Width, wallpaper.Height));
-       
             }
             else
             {
@@ -308,24 +236,6 @@ namespace ThemeEditor.WPF.Controls.Renderers
         private void OnRendering(object sender, EventArgs eventArgs)
         {
             InvalidateVisual();
-        }
-
-        private void SetEnableWarp(bool value)
-        {
-            if (_enableWarp == value)
-                return;
-
-            _enableWarp = value;
-            if (_enableWarp)
-            {
-                _warpEffect.Scale = 1.3f;
-                _warpEffect.Pinch = 0.2f;
-            }
-            else
-            {
-                _warpEffect.Pinch = 0;
-                _warpEffect.Scale = 1;
-            }
         }
 
         private void StartListening()

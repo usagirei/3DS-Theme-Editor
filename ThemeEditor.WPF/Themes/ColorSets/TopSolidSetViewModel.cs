@@ -64,6 +64,40 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
+        [Order(3)]
+        [DisplayName("Theme_Sets_Top_EnableAlt", typeof(ThemeResources))]
+        [Description("Theme_Sets_Top_EnableAlt_Desc", typeof(ThemeResources))]
+        public bool EnableAlt
+        {
+            get { return Model.EnableAlt; }
+            set
+            {
+                var oldValue = Model.EnableAlt;
+                var newValue = value;
+                if (oldValue == newValue)
+                    return;
+                Model.EnableAlt = newValue;
+                RaiseViewModelChanged(nameof(EnableAlt), oldValue, value);
+            }
+        }
+
+        [Order(4)]
+        [DisplayName("Theme_Sets_Top_FadeToWhite", typeof(ThemeResources))]
+        [Description("Theme_Sets_Top_FadeToWhite_Desc", typeof(ThemeResources))]
+        public bool FadeToWhite
+        {
+            get { return Model.FadeToWhite ; }
+            set
+            {
+                var oldValue = Model.FadeToWhite;
+                var newValue = value;
+                if (oldValue == newValue)
+                    return;
+                Model.FadeToWhite = newValue;
+                RaiseViewModelChanged(nameof(FadeToWhite), oldValue, value);
+            }
+        }
+
         public TopSolidSetViewModel(TopBackgroundSet model, string tag) : base(model, tag) { }
     }
 }

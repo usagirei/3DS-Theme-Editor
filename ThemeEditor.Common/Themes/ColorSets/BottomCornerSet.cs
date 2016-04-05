@@ -38,8 +38,8 @@ namespace ThemeEditor.Common.Themes.ColorSets
             Main.Write(bw);
             Highlight.Write(bw);
             __.Write(bw);
-            IconTop.Write(bw);
             IconBottom.Write(bw);
+            IconTop.Write(bw);
             _.Write(bw);
         }
     }

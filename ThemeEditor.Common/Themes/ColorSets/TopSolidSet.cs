@@ -10,8 +10,8 @@ namespace ThemeEditor.Common.Themes.ColorSets
 {
     public class TopBackgroundSet
     {
-        public byte _;
-        public byte __;
+        public bool EnableAlt;
+        public bool FadeToWhite;
         public byte Gradient;
         public ColorRgb888 Main;
         public byte TextureOpacity;
@@ -23,8 +23,8 @@ namespace ThemeEditor.Common.Themes.ColorSets
                 Main = ColorRgb888.Read(br),
                 Gradient = br.ReadByte(),
                 TextureOpacity = br.ReadByte(),
-                _ = typeTwo ? br.ReadByte() : (byte) 0,
-                __ = typeTwo ? br.ReadByte() : (byte) 0,
+                EnableAlt = typeTwo && br.ReadBoolean(),
+                FadeToWhite = typeTwo && br.ReadBoolean(),
             };
         }
 
@@ -35,8 +35,8 @@ namespace ThemeEditor.Common.Themes.ColorSets
             bw.Write(TextureOpacity);
             if (!typeTwo)
                 return;
-            bw.Write(_);
-            bw.Write(__);
+            bw.Write(EnableAlt);
+            bw.Write(FadeToWhite);
         }
     }
 }
