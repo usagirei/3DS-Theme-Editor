@@ -2,6 +2,7 @@
 // 3DS Theme Editor - TextPath.cs
 // --------------------------------------------------
 
+using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
@@ -17,10 +18,28 @@ namespace ThemeEditor.WPF.Controls
     /// </summary>
     public class TextPath : Shape
     {
+        public static readonly DependencyProperty FauxBoldProperty = DependencyProperty.Register(
+            "FauxBold",
+            typeof (bool),
+            typeof (TextPath),
+            new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.AffectsRender, FauxBoldPropertyChangedCallback));
+
+        private static void FauxBoldPropertyChangedCallback(DependencyObject snd, DependencyPropertyChangedEventArgs args)
+        {
+            var self = snd as TextPath;
+            self?.CreateTextGeometry();
+        }
+
         /// <summary>
         ///     Data member that holds the generated geometry
         /// </summary>
         private Geometry _textGeometry;
+
+        public bool FauxBold
+        {
+            get { return (bool) GetValue(FauxBoldProperty); }
+            set { SetValue(FauxBoldProperty, value); }
+        }
 
         /// <summary>
         ///     This method is called to retrieve the geometry that defines the shape.
@@ -49,62 +68,79 @@ namespace ThemeEditor.WPF.Controls
                 new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
                 FontSize,
                 Brushes.Black);
-            _textGeometry = formattedText.BuildGeometry(Origin);
+
+            var textGeometry = formattedText.BuildGeometry(Origin);
+            if (FauxBold)
+            {
+                _textGeometry = Geometry.Combine(textGeometry,
+                    textGeometry.GetWidenedPathGeometry(new Pen(Stroke, StrokeThickness)),
+                    GeometryCombineMode.Union,
+                    null);
+            }
+            else
+            {
+                _textGeometry = textGeometry;
+            }
         }
 
         #region Depdendency Properties
 
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text",
-                typeof(string),
-                typeof(TextPath),
+                typeof (string),
+                typeof (TextPath),
                 new FrameworkPropertyMetadata(string.Empty,
                     FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
                     OnPropertyChanged));
 
         public static readonly DependencyProperty OriginPointProperty =
             DependencyProperty.Register("Origin",
-                typeof(Point),
-                typeof(TextPath),
+                typeof (Point),
+                typeof (TextPath),
                 new FrameworkPropertyMetadata(new Point(0, 0),
                     FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
                     OnPropertyChanged));
 
-        public static readonly DependencyProperty FontFamilyProperty = TextElement.FontFamilyProperty.AddOwner(typeof(TextPath),
-            new FrameworkPropertyMetadata(SystemFonts.MessageFontFamily,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure
-                | FrameworkPropertyMetadataOptions.Inherits,
-                OnPropertyChanged));
+        public static readonly DependencyProperty FontFamilyProperty =
+            TextElement.FontFamilyProperty.AddOwner(typeof (TextPath),
+                new FrameworkPropertyMetadata(SystemFonts.MessageFontFamily,
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure
+                    | FrameworkPropertyMetadataOptions.Inherits,
+                    OnPropertyChanged));
 
-        public static readonly DependencyProperty FontSizeProperty = TextElement.FontSizeProperty.AddOwner(typeof(TextPath),
-            new FrameworkPropertyMetadata(SystemFonts.MessageFontSize,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
-                OnPropertyChanged));
+        public static readonly DependencyProperty FontSizeProperty =
+            TextElement.FontSizeProperty.AddOwner(typeof (TextPath),
+                new FrameworkPropertyMetadata(SystemFonts.MessageFontSize,
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure,
+                    OnPropertyChanged));
 
-        public static readonly DependencyProperty FontStretchProperty = TextElement.FontStretchProperty.AddOwner(typeof(TextPath),
-            new FrameworkPropertyMetadata(TextElement.FontStretchProperty.DefaultMetadata.DefaultValue,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure
-                | FrameworkPropertyMetadataOptions.Inherits,
-                OnPropertyChanged));
+        public static readonly DependencyProperty FontStretchProperty =
+            TextElement.FontStretchProperty.AddOwner(typeof (TextPath),
+                new FrameworkPropertyMetadata(TextElement.FontStretchProperty.DefaultMetadata.DefaultValue,
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure
+                    | FrameworkPropertyMetadataOptions.Inherits,
+                    OnPropertyChanged));
 
-        public static readonly DependencyProperty FontStyleProperty = TextElement.FontStyleProperty.AddOwner(typeof(TextPath),
-            new FrameworkPropertyMetadata(SystemFonts.MessageFontStyle,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure
-                | FrameworkPropertyMetadataOptions.Inherits,
-                OnPropertyChanged));
+        public static readonly DependencyProperty FontStyleProperty =
+            TextElement.FontStyleProperty.AddOwner(typeof (TextPath),
+                new FrameworkPropertyMetadata(SystemFonts.MessageFontStyle,
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure
+                    | FrameworkPropertyMetadataOptions.Inherits,
+                    OnPropertyChanged));
 
-        public static readonly DependencyProperty FontWeightProperty = TextElement.FontWeightProperty.AddOwner(typeof(TextPath),
-            new FrameworkPropertyMetadata(SystemFonts.MessageFontWeight,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure
-                | FrameworkPropertyMetadataOptions.Inherits,
-                OnPropertyChanged));
+        public static readonly DependencyProperty FontWeightProperty =
+            TextElement.FontWeightProperty.AddOwner(typeof (TextPath),
+                new FrameworkPropertyMetadata(SystemFonts.MessageFontWeight,
+                    FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure
+                    | FrameworkPropertyMetadataOptions.Inherits,
+                    OnPropertyChanged));
 
         #endregion
 
         #region Property Accessors
 
         [Bindable(true), Category("Appearance")]
-        [TypeConverter(typeof(PointConverter))]
+        [TypeConverter(typeof (PointConverter))]
         public Point Origin
         {
             get { return (Point) GetValue(OriginPointProperty); }
@@ -113,7 +149,7 @@ namespace ThemeEditor.WPF.Controls
 
         [Bindable(true), Category("Appearance")]
         [Localizability(LocalizationCategory.Font)]
-        [TypeConverter(typeof(FontFamilyConverter))]
+        [TypeConverter(typeof (FontFamilyConverter))]
         public FontFamily FontFamily
         {
             get { return (FontFamily) GetValue(FontFamilyProperty); }
@@ -121,7 +157,7 @@ namespace ThemeEditor.WPF.Controls
         }
 
         [Bindable(true), Category("Appearance")]
-        [TypeConverter(typeof(FontSizeConverter))]
+        [TypeConverter(typeof (FontSizeConverter))]
         [Localizability(LocalizationCategory.None)]
         public double FontSize
         {
@@ -130,7 +166,7 @@ namespace ThemeEditor.WPF.Controls
         }
 
         [Bindable(true), Category("Appearance")]
-        [TypeConverter(typeof(FontStretchConverter))]
+        [TypeConverter(typeof (FontStretchConverter))]
         public FontStretch FontStretch
         {
             get { return (FontStretch) GetValue(FontStretchProperty); }
@@ -138,7 +174,7 @@ namespace ThemeEditor.WPF.Controls
         }
 
         [Bindable(true), Category("Appearance")]
-        [TypeConverter(typeof(FontStyleConverter))]
+        [TypeConverter(typeof (FontStyleConverter))]
         public FontStyle FontStyle
         {
             get { return (FontStyle) GetValue(FontStyleProperty); }
@@ -146,7 +182,7 @@ namespace ThemeEditor.WPF.Controls
         }
 
         [Bindable(true), Category("Appearance")]
-        [TypeConverter(typeof(FontWeightConverter))]
+        [TypeConverter(typeof (FontWeightConverter))]
         public FontWeight FontWeight
         {
             get { return (FontWeight) GetValue(FontWeightProperty); }

@@ -1091,7 +1091,7 @@
             <DataTrigger Value="True">
                 <DataTrigger.Binding>
                     <MultiBinding Converter="{StaticResource BooleanAndConverter}">
-                        <Binding Path="Flags.OpenCloseColor" />
+                        <Binding Path="Flags.BottomCornerButtonColor" />
                         <markup:Setting Path="Preview_PressedToggle" />
                     </MultiBinding>
                 </DataTrigger.Binding>
@@ -1119,7 +1119,7 @@
             <DataTrigger Binding="{Binding Path=Flags.BottomCornerButtonColor}" Value="True">
                 <Setter Property="Fill">
                     <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.BottomCorner.IconBottom}" />
+                        <SolidColorBrush Color="{Binding Path=Colors.BottomCorner.IconTop}" />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>

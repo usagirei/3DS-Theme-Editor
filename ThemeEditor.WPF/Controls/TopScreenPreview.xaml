@@ -10,6 +10,7 @@
              xmlns:effects="clr-namespace:ThemeEditor.WPF.Effects"
              xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
              mc:Ignorable="d"
+             
              d:DesignHeight="240" d:DesignWidth="412">
     <UserControl.Resources>
         <local:Ticker x:Key="Ticker" />
@@ -63,10 +64,21 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type controls:TextPath}" x:Key="TopBarText">
+            <Setter Property="Fill" Value="{StaticResource SystemBarText}" />
+            <Setter Property="FontSize" Value="15px" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FauxBold" Value="True" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Stroke" Value="{StaticResource SystemBarStroke}" />
+            <Setter Property="StrokeThickness" Value="1" />
+        </Style>
         <Style TargetType="{x:Type controls:TextPath}" x:Key="TopCornerForegroundText">
             <Style.Setters>
                 <Setter Property="Fill" Value="#3D3D3D" />
                 <Setter Property="Stroke" Value="#3D3D3D" />
+                <Setter Property="FontFamily" Value="Consolas" />
+                <Setter Property="FontSize" Value="12" />
             </Style.Setters>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Flags.TopCornerButtonColor}"
@@ -205,10 +217,7 @@
                          Fill="#D5C500" Stroke="White" StrokeThickness="0.5" />
                 <Path Stroke="White" StrokeThickness="1" Data="{StaticResource CoinGeometry}" />
             </Canvas>
-            <controls:TextPath Canvas.Left="170" Text="300"
-                               FontSize="15" FontWeight="ExtraBold" FontFamily="Segoe UI"
-                               Fill="{StaticResource SystemBarText}" Stroke="{StaticResource SystemBarStroke}"
-                               StrokeThickness="1" />
+            <controls:TextPath Canvas.Left="170" Text="300" Style="{StaticResource TopBarText}" />
             <!-- Right Anchor -->
             <!-- Battery -->
             <Path Canvas.Right="7" Canvas.Top="2"
@@ -237,33 +246,29 @@
                 <!-- Hour -->
                 <controls:TextPath Grid.Column="0" HorizontalAlignment="Left"
                                    Text="{Binding Source={StaticResource Ticker}, Path=HourString, Mode=OneWay}"
-                                   FontSize="15px" FontWeight="ExtraBold" FontFamily="Segoe UI"
-                                   Fill="{StaticResource SystemBarText}" Stroke="{StaticResource SystemBarStroke}"
-                                   StrokeThickness="1" />
+                                   Style="{StaticResource TopBarText}" />
                 <!-- Ticker -->
                 <controls:TextPath Grid.Column="1" HorizontalAlignment="Center"
                                    Text="{Binding Source={StaticResource Ticker}, Path=SepString, Mode=OneWay}"
-                                   FontSize="15px" FontWeight="ExtraBold" FontFamily="Segoe UI" Margin="0,-1,0,0"
-                                   Fill="{StaticResource SystemBarText}" Stroke="{StaticResource SystemBarStroke}"
-                                   StrokeThickness="1" />
+                                   Style="{StaticResource TopBarText}"
+                                   Margin="0,-1,0,0" />
 
                 <controls:TextPath Grid.Column="2" HorizontalAlignment="Right"
                                    Text="{Binding Source={StaticResource Ticker}, Path=MinString, Mode=OneWay}"
-                                   FontSize="15px" FontWeight="ExtraBold" FontFamily="Segoe UI"
-                                   Fill="{StaticResource SystemBarText}" Stroke="{StaticResource SystemBarStroke}"
-                                   StrokeThickness="1" />
+                                   Style="{StaticResource TopBarText}" />
             </Grid>
             <!-- Date -->
 
+
             <controls:TextPath Text="{Binding Source={StaticResource Ticker}, Path=DateString, Mode=OneWay}"
-                               FontSize="15px" FontWeight="ExtraBold" FontFamily="Segoe UI"
-                               Fill="{StaticResource SystemBarText}" Stroke="White" StrokeThickness="1"
+                               Style="{StaticResource TopBarText}"
                                Canvas.Right="95" />
         </Canvas>
         <!-- Bottom Bar -->
         <Canvas Canvas.Left="0" Canvas.Bottom="23"
-                Width="412" Opacity="0.9">
+                Width="412">
             <Path Canvas.Left="0" Style="{StaticResource TopCornerBackground}"
+                  Opacity="0.75"
                   Data="{StaticResource TopCornerGeometry}">
                 <Path.Effect>
                     <DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="3" Opacity="0.5" />
@@ -282,7 +287,7 @@
                         <EllipseGeometry Center="8,8" RadiusY="8" RadiusX="8" />
                     </Path.Data>
                 </Path>
-                <controls:TextPath Canvas.Left="5" Canvas.Top="0" Text="Y"
+                <controls:TextPath Canvas.Left="5" Canvas.Top="1" Text="Y"
                                    Style="{StaticResource TopCornerForegroundText}" />
             </Canvas>
             <!-- Right Camera -->
@@ -302,7 +307,7 @@
                         </PathGeometry>
                     </Path.Data>
                 </Path>
-                <controls:TextPath Text="L" Canvas.Left="4" Canvas.Top="-2" StrokeThickness="0.7"
+                <controls:TextPath Text="L" Canvas.Left="4" Canvas.Top="-1"
                                    Style="{StaticResource TopCornerForegroundText}" />
             </Canvas>
             <!-- R -->
@@ -318,10 +323,10 @@
                         </PathGeometry>
                     </Path.Data>
                 </Path>
-                <controls:TextPath Text="R" Canvas.Left="5" Canvas.Top="-2" StrokeThickness="0.7"
+                <controls:TextPath Text="R" Canvas.Left="5" Canvas.Top="-1"
                                    Style="{StaticResource TopCornerForegroundText}" />
             </Canvas>
-            <controls:TextPath Text="+" Canvas.Right="35" Canvas.Top="3"
+            <controls:TextPath Text="+" Canvas.Right="35" Canvas.Top="4"
                                Style="{StaticResource TopCornerForegroundText}" />
 
         </Canvas>

@@ -5,7 +5,6 @@
 using System;
 using System.Windows;
 using System.Windows.Media;
-using ThemeEditor.WPF.Effects;
 using ThemeEditor.WPF.Localization.Enums;
 using ThemeEditor.WPF.RenderTools;
 using ThemeEditor.WPF.Themes;
@@ -115,7 +114,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
             if (Theme == null)
             {
                 //var topTex = DefaultTopSquares.Bitmap;
-                var background = Color.FromArgb(255, 205, 205, 217);
+                var background = Color.FromArgb(255, 102, 102, 109);
                 const float GRADIENT = 0.5f;
 
                 OnRender_BackgroundSolid(dc, background, GRADIENT, true);
@@ -150,7 +149,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 }
                 case TopDrawType.None:
                 {
-                    var background = Color.FromArgb(255, 205, 205, 217);
+                        var background = Color.FromArgb(255, 102, 102, 109); ;
                     const float GRADIENT = 0.5f;
 
                     OnRender_BackgroundSolid(dc, background, GRADIENT, true);
@@ -195,11 +194,18 @@ namespace ThemeEditor.WPF.Controls.Renderers
         private void OnRender_BackgroundSolid(DrawingContext dc, Color color, float gradient, bool fadeToWhite)
         {
             var opaque = color;
-            var faded = opaque.Blend(fadeToWhite
+            opaque.R = (byte) (opaque.R * 2).Clamp(0, 255);
+            opaque.G = (byte) (opaque.G * 2).Clamp(0, 255);
+            opaque.B = (byte) (opaque.B * 2).Clamp(0, 255);
+            var faded = (fadeToWhite
                 ? Colors.White
-                : Colors.Black,
-                gradient);
-            var lgBrush = RenderToolFactory.GetTool<Brush>(new LinearGradientBrushTool(faded, opaque, 90));
+                : Colors.Black);
+            faded.A = (byte) (gradient * 255).Clamp(0, 255);
+            var fadedT = faded;
+            fadedT.A = 0;
+            var lgBrush = RenderToolFactory.GetTool<Brush>(new LinearGradientBrushTool(faded, fadedT, 90));
+            var scBrush = RenderToolFactory.GetTool<Brush>(new SolidColorBrushTool(opaque));
+            dc.DrawRectangle(scBrush, null, ScreenArea);
             dc.DrawRectangle(lgBrush, null, ScreenArea);
         }
 
