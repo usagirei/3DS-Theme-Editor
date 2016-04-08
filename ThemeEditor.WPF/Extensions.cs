@@ -12,10 +12,9 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 using ThemeEditor.Common.Graphics;
-
 using Color = System.Windows.Media.Color;
+using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace ThemeEditor.WPF
 {
@@ -41,6 +40,30 @@ namespace ThemeEditor.WPF
             return desktopCapture;
         }
 
+        public static BitmapSource ScrCapW(Rectangle area)
+        {
+            var bitmap = ScrCap(area);
+
+            var bitmapData = bitmap.LockBits(
+                new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                System.Drawing.Imaging.ImageLockMode.ReadOnly,
+                PixelFormat.Format32bppArgb);
+
+            var bitmapSource = BitmapSource.Create(
+                bitmapData.Width,
+                bitmapData.Height,
+                96,
+                96,
+                PixelFormats.Bgra32,
+                null,
+                bitmapData.Scan0,
+                bitmapData.Stride * bitmapData.Height,
+                bitmapData.Stride);
+
+            bitmap.UnlockBits(bitmapData);
+            return bitmapSource;
+        }
+
         public static ImageSource CreateResizedImage(ImageSource source, int width, int height, int margin = 0)
         {
             var rect = new Rect(margin, margin, width - margin * 2, height - margin * 2);
@@ -54,8 +77,12 @@ namespace ThemeEditor.WPF
                 drawingContext.DrawDrawing(group);
 
             var resizedImage = new RenderTargetBitmap(
-                width, height,         // Resized dimensions
-                96, 96,                // Default DPI values
+                width,
+                height,
+                // Resized dimensions
+                96,
+                96,
+                // Default DPI values
                 PixelFormats.Default); // Default pixel format
             resizedImage.Render(drawingVisual);
 
