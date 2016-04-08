@@ -244,20 +244,20 @@
                             Header="{x:Static locale:MainResources.Menu_File_SavePreview_Both}" />
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="Send To">
+                    <MenuItem Header="{x:Static locale:MainResources.Menu_SendTo}">
                         <MenuItem StaysOpenOnClick="True">
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock VerticalAlignment="Center" Text="3DS IP:" Margin="0,0,6,0" />
                                     <TextBox VerticalAlignment="Center" Width="100"
-                                             Text="{markup:Setting Path=Console_IP}" />
+                                             Text="{markup:Setting Path=SocketIP}" />
                                 </StackPanel>
                             </MenuItem.Header>
                         </MenuItem>
                         <MenuItem
                             Header="CHMM2"
                             Command="{Binding Path=SendThemeCHMM2Command}"
-                            CommandParameter="{markup:Setting Path=Console_IP}" />
+                            CommandParameter="{markup:Setting Path=SocketIP}" />
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="{x:Static locale:MainResources.Menu_Image}">

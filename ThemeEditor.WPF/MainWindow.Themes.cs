@@ -22,6 +22,7 @@ using ThemeEditor.Common.SMDH;
 using ThemeEditor.Common.Themes;
 using ThemeEditor.WPF.Localization;
 using ThemeEditor.WPF.Markup;
+using ThemeEditor.WPF.Properties;
 using ThemeEditor.WPF.Themes;
 
 namespace ThemeEditor.WPF
@@ -430,7 +431,7 @@ namespace ThemeEditor.WPF
             IsBusy = false;
             if (obj.Sent)
             {
-                MessageBox.Show("Theme Sent Successfuly",
+                MessageBox.Show(MainResources.Message_ThemeSent,
                     WINDOW_TITLE,
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
@@ -441,9 +442,10 @@ namespace ThemeEditor.WPF
 
         private Task<SendThemeResults> SendTheme_Execute(string ip, bool start)
         {
-            var sendingTheme = "Sending Theme...";
-            var connecting = "Estabilishing Conection...";
-            var connectError = "Conection Error";
+            var sendingTheme = MainResources.Busy_Sender_SendingTheme;
+            var connecting = MainResources.Busy_Sender_Connecting;
+            var connectionError = MainResources.Busy_Sender_ConnectionError;
+
             var zipThemeTask = ZipTheme_Execute(ThemePath, false);
             var task = new Task<SendThemeResults>(() =>
             {
@@ -452,43 +454,55 @@ namespace ThemeEditor.WPF
                     IP = ip,
                     Sent = false,
                 };
+
                 IPAddress addr;
                 if (!IPAddress.TryParse(ip, out addr))
                     return result;
 
-                IPEndPoint endPoint = new IPEndPoint(addr, 5000);
-                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                var endPoint = new IPEndPoint(addr, 5000);
+                var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 zipThemeTask.Start();
                 result.Zip = zipThemeTask.Result;
 
-                BusyText = connecting;
-
-                try
+                var tries = 0;
+                var maxTries = Settings.Default.SocketMaxTries;
+                var connected = false;
+                while (!connected)
                 {
-                    socket.Connect(endPoint);
-                }
-                catch (SocketException ex)
-                {
-                    BusyText = ex.Message;
-                    return result;
+                    try
+                    {
+                        BusyText = connecting + $" [{++tries}/{maxTries}]";
+                        socket.Connect(endPoint);
+                        connected = true;
+                    }
+                    catch (SocketException)
+                    {
+                        if (tries >= maxTries)
+                            return result;
+                    }
                 }
 
                 BusyText = sendingTheme;
 
-                byte[] socketBuffer = new byte[255];
+                byte[] socketBuffer = new byte[16];
+
                 socket.Receive(socketBuffer, 11, SocketFlags.None);
                 if (Encoding.ASCII.GetString(socketBuffer, 0, 11) != "YATA SENDER")
                 {
-                    BusyText = connectError;
+                    BusyText = connectionError;
                     socket.Close();
                     return result;
                 }
 
                 var toWrite = result.Zip.Data.Length;
                 var offset = 0;
-                var fLen = (float) result.Zip.Data.Length;
+                var fLen = (float) result.Zip.Data.Length / 100;
 
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                float averageSample = 0;
+                var lastOffset = 0;
                 while (true)
                 {
                     var step = Math.Min(toWrite, 8192);
@@ -496,19 +510,32 @@ namespace ThemeEditor.WPF
                     toWrite -= step;
                     offset += step;
 
-                    BusyText = $"Sending: {offset / fLen:f2}%";
+                    if (sw.ElapsedMilliseconds > 100)
+                    {
+                        float trans = sw.ElapsedMilliseconds;
+                        var delta = (offset - lastOffset);
+                        lastOffset = offset;
+                        averageSample = (averageSample * 0.75f) + (delta / trans * 0.25f);
+
+                        BusyText = $"Sending: {offset / fLen:f2}%" + Environment.NewLine +
+                                   $"Rate: {(int)(averageSample / 1.024)}KB/s";
+                        sw.Restart();
+                    }
+
                     if (toWrite <= 0)
                         break;
                 }
+                sw.Stop();
 
                 socket.Receive(socketBuffer, 9, SocketFlags.None);
                 if (Encoding.ASCII.GetString(socketBuffer, 0, 9) != "YATA TERM")
                 {
-                    BusyText = connectError;
+                    BusyText = connectionError;
                     socket.Close();
                     return result;
                 }
 
+                socket.Close();
                 result.Sent = true;
                 return result;
             });

@@ -53,6 +53,9 @@ namespace ThemeEditor.WPF
                 catch (CultureNotFoundException) {}
             }
 
+            var userDir = "./UserData";
+            Directory.CreateDirectory(userDir);
+
             // Create main application window, starting minimized if specified
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();

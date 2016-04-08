@@ -333,4 +333,19 @@ Check the About Window for more Information</value>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Pressed</value>
   </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>Theme Sent Successfully</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>Sending Theme...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>Estabilishing Connection...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>Connection Error</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>Send To</value>
+  </data>
 </root>

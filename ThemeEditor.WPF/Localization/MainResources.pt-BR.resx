@@ -333,4 +333,19 @@ Verifique a Janela "Sobre" para mais Informações.</value>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Pressionado</value>
   </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>Tema Enviado com Sucesso</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>Enviando Tema...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>Estabelecendo Conexão...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>Erro de Conexão</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>Enviar Para</value>
+  </data>
 </root>

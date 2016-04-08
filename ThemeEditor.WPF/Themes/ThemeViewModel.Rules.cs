@@ -40,7 +40,7 @@ namespace ThemeEditor.WPF.Themes
             Rules.Apply(Flags);
             Rules.Apply(Textures);
             Rules.Apply(Colors.TopBackground);
-            Rules.Apply(Info);
+            //Rules.Apply(Info);
         }
 
         private void SetupRules_SolidColorOpts()

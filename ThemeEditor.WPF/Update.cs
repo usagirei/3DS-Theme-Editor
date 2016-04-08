@@ -153,6 +153,7 @@ namespace ThemeEditor.WPF
                                                    s =>
                                                    !Path.GetFileName(s).Equals("config.xml", StringComparison.OrdinalIgnoreCase))
                                             .Where(s => !s.StartsWith("bak_v"))
+                                            .Where(s => !s.StartsWith("UserData"))
                                             .ToArray();
 
                     var nDir = Path.Combine(cDir, "bak_v" + AppVersion);

@@ -365,12 +365,25 @@ namespace ThemeEditor.WPF.Properties {
         [global::System.Configuration.SettingsProviderAttribute(typeof(XmlSettingsProvider))]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string Console_IP {
+        public string SocketIP {
             get {
-                return ((string)(this["Console_IP"]));
+                return ((string)(this["SocketIP"]));
             }
             set {
-                this["Console_IP"] = value;
+                this["SocketIP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(XmlSettingsProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int SocketMaxTries {
+            get {
+                return ((int)(this["SocketMaxTries"]));
+            }
+            set {
+                this["SocketMaxTries"] = value;
             }
         }
     }

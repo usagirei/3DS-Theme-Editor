@@ -115,6 +115,33 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estabilishing Connection....
+        /// </summary>
+        public static string Busy_Sender_Connecting {
+            get {
+                return ResourceManager.GetString("Busy_Sender_Connecting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection Error.
+        /// </summary>
+        public static string Busy_Sender_ConnectionError {
+            get {
+                return ResourceManager.GetString("Busy_Sender_ConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sending Theme....
+        /// </summary>
+        public static string Busy_Sender_SendingTheme {
+            get {
+                return ResourceManager.GetString("Busy_Sender_SendingTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BGM.
         /// </summary>
         public static string Control_AudioPlayer_Label {
@@ -264,84 +291,6 @@ namespace ThemeEditor.WPF.Localization {
         public static string Control_Toggle_True {
             get {
                 return ResourceManager.GetString("Control_Toggle_True", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Background Music Flag was Enabled:
-        /// - Make sure the BGM.BCSTM file is present on your device when before the Theme, otherwise it&apos;ll crash!.
-        /// </summary>
-        public static string Message_BackgroundMusicLoaded {
-            get {
-                return ResourceManager.GetString("Message_BackgroundMusicLoaded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Image Size.
-        /// </summary>
-        public static string Message_InvalidImageSize {
-            get {
-                return ResourceManager.GetString("Message_InvalidImageSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allowed Sizes.
-        /// </summary>
-        public static string Message_InvalidImageSize_AllowedSizes {
-            get {
-                return ResourceManager.GetString("Message_InvalidImageSize_AllowedSizes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Background Music Flag was Disabled:
-        /// - Background Music Flag is Checked, however no BGM.BCSTM File was found.
-        /// - Place the BGM.BCSTM file alongside the Theme, then press the &quot;Reload BGM&quot; Button to enable it again..
-        /// </summary>
-        public static string Message_NoBackgroundMusicOnLoad {
-            get {
-                return ResourceManager.GetString("Message_NoBackgroundMusicOnLoad", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Background Music Flag is Set:
-        /// - No BGM.BCSTM file is present on the saved path
-        /// - Make sure the BGM.BCSTM file is present on your device before applying the Theme, otherwise it&apos;ll crash!.
-        /// </summary>
-        public static string Message_NoBackgroundMusicOnSave {
-            get {
-                return ResourceManager.GetString("Message_NoBackgroundMusicOnSave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preview Saved.
-        /// </summary>
-        public static string Message_PreviewSaved {
-            get {
-                return ResourceManager.GetString("Message_PreviewSaved", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Theme Saved Successfully.
-        /// </summary>
-        public static string Message_ThemeSaved {
-            get {
-                return ResourceManager.GetString("Message_ThemeSaved", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An Updated Version is Available:
-        ///Check the About Window for more Information.
-        /// </summary>
-        public static string Message_UpdateAvailable {
-            get {
-                return ResourceManager.GetString("Message_UpdateAvailable", resourceCulture);
             }
         }
         
@@ -567,6 +516,102 @@ namespace ThemeEditor.WPF.Localization {
         public static string Menu_Paste {
             get {
                 return ResourceManager.GetString("Menu_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send To.
+        /// </summary>
+        public static string Menu_SendTo {
+            get {
+                return ResourceManager.GetString("Menu_SendTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Background Music Flag was Enabled:
+        /// - Make sure the BGM.BCSTM file is present on your device when before the Theme, otherwise it&apos;ll crash!.
+        /// </summary>
+        public static string Message_BackgroundMusicLoaded {
+            get {
+                return ResourceManager.GetString("Message_BackgroundMusicLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Image Size.
+        /// </summary>
+        public static string Message_InvalidImageSize {
+            get {
+                return ResourceManager.GetString("Message_InvalidImageSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allowed Sizes.
+        /// </summary>
+        public static string Message_InvalidImageSize_AllowedSizes {
+            get {
+                return ResourceManager.GetString("Message_InvalidImageSize_AllowedSizes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Background Music Flag was Disabled:
+        /// - Background Music Flag is Checked, however no BGM.BCSTM File was found.
+        /// - Place the BGM.BCSTM file alongside the Theme, then press the &quot;Reload BGM&quot; Button to enable it again..
+        /// </summary>
+        public static string Message_NoBackgroundMusicOnLoad {
+            get {
+                return ResourceManager.GetString("Message_NoBackgroundMusicOnLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Background Music Flag is Set:
+        /// - No BGM.BCSTM file is present on the saved path
+        /// - Make sure the BGM.BCSTM file is present on your device before applying the Theme, otherwise it&apos;ll crash!.
+        /// </summary>
+        public static string Message_NoBackgroundMusicOnSave {
+            get {
+                return ResourceManager.GetString("Message_NoBackgroundMusicOnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview Saved.
+        /// </summary>
+        public static string Message_PreviewSaved {
+            get {
+                return ResourceManager.GetString("Message_PreviewSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme Saved Successfully.
+        /// </summary>
+        public static string Message_ThemeSaved {
+            get {
+                return ResourceManager.GetString("Message_ThemeSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme Sent Successfully.
+        /// </summary>
+        public static string Message_ThemeSent {
+            get {
+                return ResourceManager.GetString("Message_ThemeSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An Updated Version is Available:
+        ///Check the About Window for more Information.
+        /// </summary>
+        public static string Message_UpdateAvailable {
+            get {
+                return ResourceManager.GetString("Message_UpdateAvailable", resourceCulture);
             }
         }
         
