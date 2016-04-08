@@ -21,7 +21,7 @@
         DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Theme}"
         Width="320" Height="240">
         <!-- Open_Close -->
-        <Canvas Canvas.Top="240" Canvas.Left="0">
+        <Canvas Canvas.Top="240" Canvas.Left="106">
             <Path Data="{StaticResource OpenButtonGeometry}"
                   Style="{StaticResource OpenStyleButton}" />
             <Path Data="{StaticResource OpenButtonGeometry}"
@@ -30,9 +30,26 @@
                   Style="{StaticResource OpenStyleButtonGlow}" />
             <Path Data="{StaticResource OpenButtonGeometry}"
                   Style="{StaticResource OpenStyleButtonStroke}" />
-            <Grid Width="320" Height="26" Canvas.Top="-26">
-                <controls:TextPath Text="Usagi 3DS Theme Editor" Style="{StaticResource OpenStyleTextShadow}" />
-                <controls:TextPath Text="Usagi 3DS Theme Editor" Style="{StaticResource OpenStyleText}" />
+
+
+            <Grid Width="120" Height="26" Canvas.Top="-26" Canvas.Left="5">
+                <controls:TextPath Text="3DS Theme Editor" Style="{StaticResource OpenStyleTextShadow}" />
+                <controls:TextPath Text="3DS Theme Editor" Style="{StaticResource OpenStyleText}" />
+            </Grid>
+        </Canvas>
+        <Canvas Canvas.Top="240" Canvas.Left="0">
+            <Path Data="{StaticResource CloseButtonGeometry}"
+                  Style="{StaticResource CloseStyleButton}" />
+            <Path Data="{StaticResource CloseButtonGeometry}"
+                  Style="{StaticResource CloseStyleButtonGlowBase}" />
+            <Path Data="{StaticResource CloseButtonGeometry}"
+                  Style="{StaticResource CloseStyleButtonGlow}" />
+            <Path Data="{StaticResource CloseButtonGeometry}"
+                  Style="{StaticResource CloseStyleButtonStroke}" />
+
+            <Grid Width="60" Height="26" Canvas.Top="-26" Canvas.Left="45">
+                <controls:TextPath Text="Usagi" Style="{StaticResource CloseStyleTextShadow}" />
+                <controls:TextPath Text="Usagi" Style="{StaticResource CloseStyleText}" />
             </Grid>
         </Canvas>
         <!-- Corners -->

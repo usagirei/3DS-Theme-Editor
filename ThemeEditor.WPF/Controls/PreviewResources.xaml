@@ -319,7 +319,8 @@
         <Setter Property="Fill">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="{Binding Source={StaticResource FolderBaseColor}, Converter={StaticResource BlendConverter}, ConverterParameter={x:Static Colors.White}}" />
+                    <GradientStop Offset="0"
+                                  Color="{Binding Source={StaticResource FolderBaseColor}, Converter={StaticResource BlendConverter}, ConverterParameter={x:Static Colors.White}}" />
                     <GradientStop Offset="0.1" Color="{StaticResource FolderBaseColor}" />
                 </LinearGradientBrush>
             </Setter.Value>
@@ -336,7 +337,8 @@
                     <Setter Property="Fill">
                         <Setter.Value>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Offset="0" Color="{Binding Path=Colors.Folder.Shading, Converter={StaticResource BlendConverter}, ConverterParameter={x:Static Colors.White}}" />
+                                <GradientStop Offset="0"
+                                              Color="{Binding Path=Colors.Folder.Shading, Converter={StaticResource BlendConverter}, ConverterParameter={x:Static Colors.White}}" />
                                 <GradientStop Offset="0.1" Color="{Binding Path=Colors.Folder.Shading}" />
                             </LinearGradientBrush>
                         </Setter.Value>
@@ -599,7 +601,7 @@
                         <SolidColorBrush Color="{Binding Path=Colors.FolderArrow.Highlight}" />
                     </Setter.Value>
                 </Setter>
-         
+
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -656,11 +658,16 @@
     </Style>
 
     <!--  Open Button  -->
-    <RectangleGeometry
-        x:Key="OpenButtonGeometry"
-        RadiusX="10"
-        RadiusY="10"
-        Rect="0,-25,320,50" />
+
+    <CombinedGeometry x:Key="OpenButtonGeometry" GeometryCombineMode="Union">
+        <CombinedGeometry.Geometry1>
+            <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,-25,214,50" />
+        </CombinedGeometry.Geometry1>
+        <CombinedGeometry.Geometry2>
+            <RectangleGeometry Rect="0,-25,20,50" />
+        </CombinedGeometry.Geometry2>
+    </CombinedGeometry>
+
     <Style x:Key="OpenStyleButton" TargetType="Path">
         <Setter Property="Fill">
             <Setter.Value>
@@ -811,27 +818,6 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="OpenStyleTextShadow" TargetType="controls:TextPath">
-        <Setter Property="Margin" Value="0,2,0,0" />
-        <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="Fill" Value="#efede9" />
-        <Style.Triggers>
-            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
-                <Setter Property="Visibility" Value="Hidden" />
-            </DataTrigger>
-            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
-                <Setter Property="Fill">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.Open.TextGlow}" />
-                    </Setter.Value>
-                </Setter>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
     <Style x:Key="OpenStyleText" TargetType="controls:TextPath">
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontWeight" Value="Bold" />
@@ -839,6 +825,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Fill" Value="#3d3d3d" />
+        <Setter Property="Height" Value="18" />
         <Style.Triggers>
             <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
                 <Setter Property="Fill" Value="#efede9" />
@@ -861,6 +848,207 @@
                 <Setter Property="Fill">
                     <Setter.Value>
                         <SolidColorBrush Color="{Binding Path=Colors.Open.TextPressed}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="OpenStyleTextShadow" TargetType="controls:TextPath" BasedOn="{StaticResource OpenStyleText}">
+        <Setter Property="Margin" Value="0,2,0,0" />
+        <Setter Property="Fill" Value="#efede9" />
+        <Style.Triggers>
+            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
+                <Setter Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Open.TextGlow}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  Close Button  -->
+
+    <CombinedGeometry x:Key="CloseButtonGeometry" GeometryCombineMode="Union">
+        <CombinedGeometry.Geometry1>
+            <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,-25,106,50" />
+        </CombinedGeometry.Geometry1>
+        <CombinedGeometry.Geometry2>
+            <RectangleGeometry Rect="86,-25,20,50" />
+        </CombinedGeometry.Geometry2>
+    </CombinedGeometry>
+
+    <Style x:Key="CloseStyleButton" TargetType="Path" BasedOn="{StaticResource OpenStyleButton}">
+        <Setter Property="Fill">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0.25" EndPoint="0,1">
+                    <GradientStop Offset="0" Color="#58554E" />
+                    <GradientStop Offset="1" Color="#4B4841" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0.25" EndPoint="0,1">
+                            <GradientStop Offset="0" Color="#4B4841" />
+                            <GradientStop Offset="1" Color="#58554E" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0.1" EndPoint="0,0.5">
+                            <GradientStop Offset="-0.5" Color="{Binding Path=Colors.Close.Glow}" />
+                            <GradientStop Offset="0.4" Color="{Binding Path=Colors.Close.Unpressed}" />
+                            <GradientStop Offset="0.5" Color="{Binding Path=Colors.Close.Unpressed}" />
+                            <GradientStop Offset="1.5" Color="{Binding Path=Colors.Close.Pressed}" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <MultiBinding Converter="{StaticResource BooleanAndConverter}">
+                        <Binding Path="Flags.OpenCloseColor" />
+                        <markup:Setting Path="Preview_PressedToggle" />
+                    </MultiBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0.1" EndPoint="0,0.5">
+                            <GradientStop Offset="-0.5" Color="{Binding Path=Colors.Close.Pressed}" />
+                            <GradientStop Offset="0.5" Color="{Binding Path=Colors.Close.Pressed}" />
+                            <GradientStop Offset="1.5" Color="{Binding Path=Colors.Close.Unpressed}" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CloseStyleButtonGlow" TargetType="Path" BasedOn="{StaticResource OpenStyleButtonGlow}">
+        <Setter Property="Clip" Value="{StaticResource CloseButtonGeometry}" />
+        <Setter Property="Stroke" Value="#86837C" />
+        <Style.Triggers>
+            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
+                <Setter Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Close.Glow}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <MultiBinding Converter="{StaticResource BooleanAndConverter}">
+                        <Binding Path="Flags.OpenCloseColor" />
+                        <markup:Setting Path="Preview_PressedToggle" />
+                    </MultiBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CloseStyleButtonGlowBase" TargetType="Path" BasedOn="{StaticResource OpenStyleButtonGlowBase}">
+        <Setter Property="Clip" Value="{StaticResource CloseButtonGeometry}" />
+        <Setter Property="Stroke" Value="#4B4841" />
+        <Style.Triggers>
+            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
+                <Setter Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Close.Unpressed}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <MultiBinding Converter="{StaticResource BooleanAndConverter}">
+                        <Binding Path="Flags.OpenCloseColor" />
+                        <markup:Setting Path="Preview_PressedToggle" />
+                    </MultiBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CloseStyleButtonStroke" TargetType="Path" BasedOn="{StaticResource OpenStyleButtonStroke}">
+        <Setter Property="Stroke" Value="#4B4841" />
+        <Style.Triggers>
+            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
+                <Setter Property="Stroke" Value="#58554E" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Close.Pressed}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <MultiBinding Converter="{StaticResource BooleanAndConverter}">
+                        <Binding Path="Flags.OpenCloseColor" />
+                        <markup:Setting Path="Preview_PressedToggle" />
+                    </MultiBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Stroke">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Close.Unpressed}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CloseStyleText" TargetType="controls:TextPath" BasedOn="{StaticResource OpenStyleText}">
+        <Setter Property="Fill" Value="#efede9" />
+        <Style.Triggers>
+            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
+                <Setter Property="Fill" Value="#3d3d3d" />
+                <Setter Property="Margin" Value="0,2,0,0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Close.TextUnpressed}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <MultiBinding Converter="{StaticResource BooleanAndConverter}">
+                        <Binding Path="Flags.OpenCloseColor" />
+                        <markup:Setting Path="Preview_PressedToggle" />
+                    </MultiBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Close.TextPressed}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CloseStyleTextShadow" TargetType="controls:TextPath" BasedOn="{StaticResource OpenStyleTextShadow}">
+        <Setter Property="Fill" Value="#3d3d3d" />
+        <Style.Triggers>
+            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
+                <Setter Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Path=Colors.Close.TextGlow}" />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
@@ -955,7 +1143,8 @@
             <DataTrigger Binding="{Binding Path=Flags.BottomCornerButtonColor}" Value="True">
                 <Setter Property="Fill">
                     <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.BottomCorner.Main, UpdateSourceTrigger=PropertyChanged}" />
+                        <SolidColorBrush
+                            Color="{Binding Path=Colors.BottomCorner.Main, UpdateSourceTrigger=PropertyChanged}" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="Stroke">
@@ -986,7 +1175,8 @@
             <DataTrigger Binding="{Binding Path=Flags.BottomCornerButtonColor}" Value="True">
                 <Setter Property="Fill">
                     <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.BottomCorner.Highlight, UpdateSourceTrigger=PropertyChanged}" />
+                        <SolidColorBrush
+                            Color="{Binding Path=Colors.BottomCorner.Highlight, UpdateSourceTrigger=PropertyChanged}" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="Stroke">
