@@ -29,6 +29,8 @@ namespace ThemeEditor.WPF.Themes
             }
         }
 
+        public RawTexture.DataFormat DataFormat => Model.Format;
+
         public bool Exists => !Model.Format.Equals(RawTexture.DataFormat.Invalid);
 
         public int Height => Model.Height;
