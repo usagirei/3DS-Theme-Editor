@@ -32,7 +32,7 @@
                   Style="{StaticResource OpenStyleButtonStroke}" />
 
 
-            <Grid Width="120" Height="26" Canvas.Top="-26" Canvas.Left="5">
+            <Grid Width="120" Height="26" Canvas.Top="-26" Canvas.Left="10">
                 <controls:TextPath Text="3DS Theme Editor" Style="{StaticResource OpenStyleTextShadow}" />
                 <controls:TextPath Text="3DS Theme Editor" Style="{StaticResource OpenStyleText}" />
             </Grid>

@@ -419,7 +419,8 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="387" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="102" />
@@ -466,23 +467,44 @@
                             Grid.Column="0"
                             Text="{x:Static locale:ThemeResources.Theme_Info_LargeIcon}" />
 
-                        <controls:EyedropperEx Grid.Row="3"
-                                               Grid.Column="1"
-                                               HorizontalAlignment="Left"
-                                               CaptureSize="48,48" CaptureCenter="23,23"
-                                               BitmapFinal="{Binding Path=ViewModel.Info.LargeIcon.Bitmap}" />
+                        <StackPanel Grid.Row="3"
+                                    Grid.Column="1" Orientation="Horizontal">
+                            <Button Content="â" 
+                                    FontFamily="Wingdings"
+                                    Margin="0,3"
+                                    Command="{Binding Path=CopyResizeSMDHIconCommandCommand}">
+                                <Button.CommandParameter>
+                                    <system:Boolean>True</system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                            <controls:EyedropperEx
+                                HorizontalAlignment="Left"
+                                CaptureSize="48,48" CaptureCenter="23,23"
+                                BitmapFinal="{Binding Path=ViewModel.Info.LargeIcon.Bitmap}" />
+                        </StackPanel>
 
                         <TextBlock
                             Grid.Row="4"
                             Grid.Column="0"
                             Text="{x:Static locale:ThemeResources.Theme_Info_SmallIcon}" />
 
-                        <controls:EyedropperEx Grid.Row="4"
-                                               Grid.Column="1"
-                                               HorizontalAlignment="Left"
-                                               VerticalAlignment="Top"
-                                               CaptureSize="24,24" CaptureCenter="11,11"
-                                               BitmapFinal="{Binding Path=ViewModel.Info.SmallIcon.Bitmap}" />
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Row="4"
+                                    Grid.Column="1">
+                            <Button Content="á"
+                                    FontFamily="Wingdings"
+                                    Margin="0,3"
+                                    Command="{Binding Path=CopyResizeSMDHIconCommandCommand}">
+                                <Button.CommandParameter>
+                                    <system:Boolean>False</system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                            <controls:EyedropperEx
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                CaptureSize="24,24" CaptureCenter="11,11"
+                                BitmapFinal="{Binding Path=ViewModel.Info.SmallIcon.Bitmap}" />
+                        </StackPanel>
 
                     </Grid>
                 </TabItem>

@@ -11,9 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 using Microsoft.Win32;
-
 using ThemeEditor.Common.Graphics;
 using ThemeEditor.WPF.Localization;
 using ThemeEditor.WPF.Markup;
@@ -28,6 +26,8 @@ namespace ThemeEditor.WPF
         public ICommand DropTopImageCommand { get; set; }
         public ICommand ExportImageCommand { get; private set; }
         public ICommand RemoveImageCommand { get; private set; }
+
+        public ICommand CopyResizeSMDHIconCommandCommand { get; private set; }
 
         public ICommand ReplaceImageCommand { get; private set; }
 
@@ -69,8 +69,8 @@ namespace ThemeEditor.WPF
         private void DragImage_Execute(DragEventArgs args)
         {
             args.Effects = args.Data.GetDataPresent(DataFormats.FileDrop)
-                               ? DragDropEffects.Copy
-                               : DragDropEffects.None;
+                ? DragDropEffects.Copy
+                : DragDropEffects.None;
             args.Handled = true;
         }
 
@@ -403,6 +403,23 @@ namespace ThemeEditor.WPF
                     image => CanExecute_ViewModelLoaded(),
                     image => PreExecute_SetBusy(),
                     LoadImage_PostExecute);
+
+            CopyResizeSMDHIconCommandCommand =
+                new RelayCommand<bool>(CopySMDHLargeToSmall_Execute);
+        }
+
+        private void CopySMDHLargeToSmall_Execute(bool direction)
+        {
+            if (direction)
+            {
+                var sml = Extensions.CreateResizedImage(ViewModel.Info.LargeIcon.Bitmap, 24, 24);
+                ViewModel.Info.SmallIcon.EncodeTexture((BitmapSource) sml, ViewModel.Info.SmallIcon.DataFormat);
+            }
+            else
+            {
+                var sml = Extensions.CreateResizedImage(ViewModel.Info.SmallIcon.Bitmap, 48, 48);
+                ViewModel.Info.LargeIcon.EncodeTexture((BitmapSource) sml, ViewModel.Info.LargeIcon.DataFormat);
+            }
         }
 
         private class SaveImageResults

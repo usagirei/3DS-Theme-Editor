@@ -40,7 +40,6 @@ namespace ThemeEditor.WPF.Themes
             Rules.Apply(Flags);
             Rules.Apply(Textures);
             Rules.Apply(Colors.TopBackground);
-            //Rules.Apply(Info);
         }
 
         private void SetupRules_SolidColorOpts()
@@ -119,15 +118,6 @@ namespace ThemeEditor.WPF.Themes
 
             Rules.AddRule<TexturesViewModel, TextureViewModel>
                 (nameof(TexturesViewModel.Bottom), Validate_Texture_Bottom);
-
-            Rules.AddRule<ThemeInfoViewModel, TextureViewModel>
-                (nameof(ThemeInfoViewModel.LargeIcon), CreateSmallIconFromLarge);
-        }
-
-        private void CreateSmallIconFromLarge(ThemeInfoViewModel viewmodel, TextureViewModel oldvalue, TextureViewModel newvalue)
-        {
-            var sml = Extensions.CreateResizedImage(viewmodel.LargeIcon.Bitmap, 24, 24);
-            viewmodel.SmallIcon.EncodeTexture((BitmapSource) sml, viewmodel.LargeIcon.DataFormat);
         }
 
         private void Validate_Dependency_BottomBackgroundInnerColor(FlagsViewModel model, bool oldValue, bool newValue)
