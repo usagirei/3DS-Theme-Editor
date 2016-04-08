@@ -168,27 +168,27 @@
   <data name="Control_Toggle_True" xml:space="preserve">
     <value>Abilitato</value>
   </data>
-  <data name="Error_BackgroundMusicLoaded" xml:space="preserve">
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
     <value>Flag colonna sonora attivata:
  - Accertati che il file "BGM.BCSTM" sia presente dentro al dispositivo prima di installare il tema, altrimenti crasherà!</value>
   </data>
-  <data name="Error_InvalidImageSize" xml:space="preserve">
+  <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Grandezza immagine errata</value>
   </data>
-  <data name="Error_InvalidImageSize_AllowedSizes" xml:space="preserve">
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
     <value>Grandezze accettate</value>
   </data>
-  <data name="Error_NoBackgroundMusicOnLoad" xml:space="preserve">
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>Flag colonna sonora disabilitata:
  -Flag colonna sonora verificata, tuttavia non è stato trovato nessun file "BGM.BCSTM".
  -Posiziona il file "BGM.BCSTM" vicino al tema, poi premi il bottone "Ricarica BGM" per riabilitarlo.</value>
   </data>
-  <data name="Error_NoBackgroundMusicOnSave" xml:space="preserve">
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
     <value>Settato flag colonna sonora:
  - Nessun file "BGM.BCSTM" trovato nella directory salvata.
  - Accertati che il file "BGM.BCSTM" sia presente dentro al dispositivo prima di installare il tema, altrimenti crasherà!</value>
   </data>
-  <data name="Error_ThemeSaved" xml:space="preserve">
+  <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Tema salvato con successo</value>
   </data>
   <data name="Menu_Copy" xml:space="preserve">
@@ -275,10 +275,10 @@
   <data name="Menu_File_SavePreview_Both" xml:space="preserve">
     <value>Entrambi</value>
   </data>
-  <data name="Error_PreviewSaved" xml:space="preserve">
+  <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Anteprima salvata</value>
   </data>
-  <data name="Error_UpdateAvailable" xml:space="preserve">
+  <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Una versione aggiornata sembra essere disponibile:
 Controlla nella finestra "Info" per altre informazioni.</value>
   </data>

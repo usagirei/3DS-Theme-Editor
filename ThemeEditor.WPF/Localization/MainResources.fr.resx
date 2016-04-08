@@ -171,17 +171,17 @@
   <data name="Tab_Flags" xml:space="preserve">
     <value>Options</value>
   </data>
-  <data name="Error_BackgroundMusicLoaded" xml:space="preserve">
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
     <value>La Musique de Fond a été activée :
  - Soyez sûr que le fichier BGM.BCSTM est présent sur votre 3DS quand vous appliquez le thème, ou sinon, crash assuré !</value>
   </data>
-  <data name="Error_InvalidImageSize" xml:space="preserve">
+  <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Mauvaise Taille D'Image</value>
   </data>
-  <data name="Error_InvalidImageSize_AllowedSizes" xml:space="preserve">
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
     <value>Tailles Allouées</value>
   </data>
-  <data name="Error_NoBackgroundMusicOnLoad" xml:space="preserve">
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>La Musique de Fond a été désactivée :
  - L'option Musique de Fond a été activée, mais aucun fichier BGM.BCSTM a été trouvé.
  - Placez le fichier BGM.BCSTM a coté de celui du thème, ensuite pressez "Reload BGM" Button to enable it again.</value>
@@ -189,7 +189,7 @@
   <data name="Control_AudioPlayer_Label" xml:space="preserve">
     <value>BGM</value>
   </data>
-  <data name="Error_ThemeSaved" xml:space="preserve">
+  <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Thème bien sauvegardé</value>
   </data>
   <data name="Menu_Image_Bottom" xml:space="preserve">
@@ -234,7 +234,7 @@
   <data name="Control_Preview_Animate" xml:space="preserve">
     <value>Animer</value>
   </data>
-  <data name="Error_UpdateAvailable" xml:space="preserve">
+  <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Une nouvelle version est disponible :
 Vérifiez la fenêtre "A propos" pour plus d'informations</value>
   </data>
@@ -277,7 +277,7 @@ Vérifiez la fenêtre "A propos" pour plus d'informations</value>
   <data name="Menu_File_SavePreview_Both" xml:space="preserve">
     <value>Tous</value>
   </data>
-  <data name="Error_PreviewSaved" xml:space="preserve">
+  <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Prévisualisation sauvegardée</value>
   </data>
   <data name="Preview_HourFormat" xml:space="preserve">
@@ -289,7 +289,7 @@ Vérifiez la fenêtre "A propos" pour plus d'informations</value>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>M/dd (ddd)</value>
   </data>
-  <data name="Error_NoBackgroundMusicOnSave" xml:space="preserve">
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
     <value>La Musique de Fond a été mise :
  - Aucun fichier BGM.BCSTM n'est présent dans le répertoire séléctionné
  - Soyez sûr que le fichier BGM.BCSTM est présent sur votre 3DS quand vous appliquez le thème, ou sinon, crash assuré !</value>

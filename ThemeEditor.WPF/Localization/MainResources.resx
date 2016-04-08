@@ -168,27 +168,27 @@
   <data name="Control_Toggle_True" xml:space="preserve">
     <value>Enabled</value>
   </data>
-  <data name="Error_BackgroundMusicLoaded" xml:space="preserve">
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
     <value>The Background Music Flag was Enabled:
  - Make sure the BGM.BCSTM file is present on your device when before the Theme, otherwise it'll crash!</value>
   </data>
-  <data name="Error_InvalidImageSize" xml:space="preserve">
+  <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Invalid Image Size</value>
   </data>
-  <data name="Error_InvalidImageSize_AllowedSizes" xml:space="preserve">
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
     <value>Allowed Sizes</value>
   </data>
-  <data name="Error_NoBackgroundMusicOnLoad" xml:space="preserve">
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>The Background Music Flag was Disabled:
  - Background Music Flag is Checked, however no BGM.BCSTM File was found.
  - Place the BGM.BCSTM file alongside the Theme, then press the "Reload BGM" Button to enable it again.</value>
   </data>
-  <data name="Error_NoBackgroundMusicOnSave" xml:space="preserve">
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
     <value>The Background Music Flag is Set:
  - No BGM.BCSTM file is present on the saved path
  - Make sure the BGM.BCSTM file is present on your device before applying the Theme, otherwise it'll crash!</value>
   </data>
-  <data name="Error_ThemeSaved" xml:space="preserve">
+  <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Theme Saved Successfully</value>
   </data>
   <data name="Menu_Copy" xml:space="preserve">
@@ -275,10 +275,10 @@
   <data name="Menu_File_SavePreview_Both" xml:space="preserve">
     <value>Both</value>
   </data>
-  <data name="Error_PreviewSaved" xml:space="preserve">
+  <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Preview Saved</value>
   </data>
-  <data name="Error_UpdateAvailable" xml:space="preserve">
+  <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>An Updated Version is Available:
 Check the About Window for more Information</value>
   </data>

@@ -19,7 +19,7 @@ namespace ThemeEditor.WPF
                 AudioPlayer.Instance.SetAudioData(result.BGMData);
                 if (!ViewModel.Flags.BackgroundMusic)
                 {
-                    MessageBox.Show(MainResources.Error_BackgroundMusicLoaded,
+                    MessageBox.Show(MainResources.Message_BackgroundMusicLoaded,
                         WINDOW_TITLE,
                         MessageBoxButton.OK,
                         MessageBoxImage.Warning);
@@ -31,7 +31,7 @@ namespace ThemeEditor.WPF
                 AudioPlayer.Instance.ClearAudioData();
                 if (ViewModel.Flags.BackgroundMusic)
                 {
-                    MessageBox.Show(MainResources.Error_NoBackgroundMusicOnLoad,
+                    MessageBox.Show(MainResources.Message_NoBackgroundMusicOnLoad,
                         WINDOW_TITLE,
                         MessageBoxButton.OK,
                         MessageBoxImage.Warning);

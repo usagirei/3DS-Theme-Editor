@@ -247,8 +247,8 @@ namespace ThemeEditor.WPF
 
         private void LoadImage_PostExecute(LoadImageResults args)
         {
-            var errInvalidSize = MainResources.Error_InvalidImageSize;
-            var errValidSize = MainResources.Error_InvalidImageSize_AllowedSizes;
+            var errInvalidSize = MainResources.Message_InvalidImageSize;
+            var errValidSize = MainResources.Message_InvalidImageSize_AllowedSizes;
             if (args.Loaded)
             {
                 var bmp = args.Image;

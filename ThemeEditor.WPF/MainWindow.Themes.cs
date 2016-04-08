@@ -360,7 +360,7 @@ namespace ThemeEditor.WPF
                 using (var stream = File.Create(infoPath))
                     ViewModel.Info.Save(stream);
 
-                MessageBox.Show(MainResources.Error_ThemeSaved,
+                MessageBox.Show(MainResources.Message_ThemeSaved,
                     WINDOW_TITLE,
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
@@ -369,7 +369,7 @@ namespace ThemeEditor.WPF
                 {
                     if (!File.Exists(Path.Combine(themeDir, BGM_FILE_NAME)))
                     {
-                        MessageBox.Show(MainResources.Error_NoBackgroundMusicOnSave,
+                        MessageBox.Show(MainResources.Message_NoBackgroundMusicOnSave,
                             WINDOW_TITLE,
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning);

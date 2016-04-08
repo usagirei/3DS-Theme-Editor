@@ -240,7 +240,7 @@ namespace ThemeEditor.WPF
             using (var fs = File.Open(outPath, FileMode.Create))
                 encoder.Save(fs);
 
-            MessageBox.Show(MainResources.Error_PreviewSaved, WINDOW_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(MainResources.Message_PreviewSaved, WINDOW_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private async void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
@@ -249,7 +249,7 @@ namespace ThemeEditor.WPF
             {
                 bool hasUpdates = await Update.CheckUpdateAvailable();
                 if (hasUpdates)
-                    MessageBox.Show(MainResources.Error_UpdateAvailable,
+                    MessageBox.Show(MainResources.Message_UpdateAvailable,
                         WINDOW_TITLE,
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);

@@ -271,27 +271,27 @@ namespace ThemeEditor.WPF.Localization {
         ///   Looks up a localized string similar to The Background Music Flag was Enabled:
         /// - Make sure the BGM.BCSTM file is present on your device when before the Theme, otherwise it&apos;ll crash!.
         /// </summary>
-        public static string Error_BackgroundMusicLoaded {
+        public static string Message_BackgroundMusicLoaded {
             get {
-                return ResourceManager.GetString("Error_BackgroundMusicLoaded", resourceCulture);
+                return ResourceManager.GetString("Message_BackgroundMusicLoaded", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Invalid Image Size.
         /// </summary>
-        public static string Error_InvalidImageSize {
+        public static string Message_InvalidImageSize {
             get {
-                return ResourceManager.GetString("Error_InvalidImageSize", resourceCulture);
+                return ResourceManager.GetString("Message_InvalidImageSize", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Allowed Sizes.
         /// </summary>
-        public static string Error_InvalidImageSize_AllowedSizes {
+        public static string Message_InvalidImageSize_AllowedSizes {
             get {
-                return ResourceManager.GetString("Error_InvalidImageSize_AllowedSizes", resourceCulture);
+                return ResourceManager.GetString("Message_InvalidImageSize_AllowedSizes", resourceCulture);
             }
         }
         
@@ -300,9 +300,9 @@ namespace ThemeEditor.WPF.Localization {
         /// - Background Music Flag is Checked, however no BGM.BCSTM File was found.
         /// - Place the BGM.BCSTM file alongside the Theme, then press the &quot;Reload BGM&quot; Button to enable it again..
         /// </summary>
-        public static string Error_NoBackgroundMusicOnLoad {
+        public static string Message_NoBackgroundMusicOnLoad {
             get {
-                return ResourceManager.GetString("Error_NoBackgroundMusicOnLoad", resourceCulture);
+                return ResourceManager.GetString("Message_NoBackgroundMusicOnLoad", resourceCulture);
             }
         }
         
@@ -311,27 +311,27 @@ namespace ThemeEditor.WPF.Localization {
         /// - No BGM.BCSTM file is present on the saved path
         /// - Make sure the BGM.BCSTM file is present on your device before applying the Theme, otherwise it&apos;ll crash!.
         /// </summary>
-        public static string Error_NoBackgroundMusicOnSave {
+        public static string Message_NoBackgroundMusicOnSave {
             get {
-                return ResourceManager.GetString("Error_NoBackgroundMusicOnSave", resourceCulture);
+                return ResourceManager.GetString("Message_NoBackgroundMusicOnSave", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Preview Saved.
         /// </summary>
-        public static string Error_PreviewSaved {
+        public static string Message_PreviewSaved {
             get {
-                return ResourceManager.GetString("Error_PreviewSaved", resourceCulture);
+                return ResourceManager.GetString("Message_PreviewSaved", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Theme Saved Successfully.
         /// </summary>
-        public static string Error_ThemeSaved {
+        public static string Message_ThemeSaved {
             get {
-                return ResourceManager.GetString("Error_ThemeSaved", resourceCulture);
+                return ResourceManager.GetString("Message_ThemeSaved", resourceCulture);
             }
         }
         
@@ -339,9 +339,9 @@ namespace ThemeEditor.WPF.Localization {
         ///   Looks up a localized string similar to An Updated Version is Available:
         ///Check the About Window for more Information.
         /// </summary>
-        public static string Error_UpdateAvailable {
+        public static string Message_UpdateAvailable {
             get {
-                return ResourceManager.GetString("Error_UpdateAvailable", resourceCulture);
+                return ResourceManager.GetString("Message_UpdateAvailable", resourceCulture);
             }
         }
         

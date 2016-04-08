@@ -180,33 +180,33 @@
   <data name="Control_Toggle_True" xml:space="preserve">
     <value>Activado</value>
   </data>
-  <data name="Error_BackgroundMusicLoaded" xml:space="preserve">
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
     <value>La Música de Fondo ha sido Activada:
  - Asegúrate de que el archivo BGM.BCSTM este presente en tu dispositivo antes de instalar el tema, de lo contrario se congelara!.</value>
   </data>
-  <data name="Error_InvalidImageSize" xml:space="preserve">
+  <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Tamaño de Imagen Invalido</value>
   </data>
-  <data name="Error_InvalidImageSize_AllowedSizes" xml:space="preserve">
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
     <value>Tamaños Permitidos</value>
   </data>
-  <data name="Error_NoBackgroundMusicOnLoad" xml:space="preserve">
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>La Música de Fondo ha sido Desactivada:
  - La Opción de "Música de fondo" ha sido activada, sin embargo, el archivo BGM.BCSTM no se ha encontrado.
  - Coloca el archivo BGM.BCSTM junto al Tema, después presiona el botón "Recargar Música de Fondo" para activarlo de nuevo.</value>
   </data>
-  <data name="Error_NoBackgroundMusicOnSave" xml:space="preserve">
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
     <value>La Música de Fondo ha sido Fijada:
  - El archivo BGM.BCSTM no esta presente en la ruta guardada.
  - Asegúrate de que el archivo BGM.BCSTM este presente en tu dispositivo antes de instalar el tema, de lo contrario se congelara!.</value>
   </data>
-  <data name="Error_PreviewSaved" xml:space="preserve">
+  <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Vista Previa Guardada</value>
   </data>
-  <data name="Error_ThemeSaved" xml:space="preserve">
+  <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Tema Guardado Exitosamente</value>
   </data>
-  <data name="Error_UpdateAvailable" xml:space="preserve">
+  <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Hay una actualización disponible:
 Verifica la Ventana "Acerca de" para mas información</value>
   </data>
