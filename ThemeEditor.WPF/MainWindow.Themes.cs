@@ -5,15 +5,18 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 using Microsoft.Win32;
-
 using ThemeEditor.Common.Compression;
 using ThemeEditor.Common.SMDH;
 using ThemeEditor.Common.Themes;
@@ -41,6 +44,8 @@ namespace ThemeEditor.WPF
         public GestureCommandWrapper SaveAsThemeCommandWrapper { get; private set; }
         public GestureCommandWrapper SaveThemeCommandWrapper { get; private set; }
 
+        public ICommand SendThemeCHMM2Command { get; private set; }
+
         public string ThemePath
         {
             get { return _themePath; }
@@ -58,7 +63,9 @@ namespace ThemeEditor.WPF
             return ThemePath != null;
         }
 
-        private Task<LoadThemeResults> LoadNullTheme_Execute()
+        private Task<LoadThemeResults> LoadNullTheme_Execute() => LoadNullTheme_Execute(true);
+
+        private Task<LoadThemeResults> LoadNullTheme_Execute(bool start)
         {
             var busyLoadingTheme = MainResources.Busy_LoadingTheme;
             var task = new Task<LoadThemeResults>(() =>
@@ -89,11 +96,14 @@ namespace ThemeEditor.WPF
 
                 return result;
             });
-            task.Start();
+            if (start)
+                task.Start();
             return task;
         }
 
-        private Task<LoadThemeResults> LoadTheme_Execute(string path)
+        private Task<LoadThemeResults> LoadTheme_Execute(string path) => LoadTheme_Execute(path, true);
+
+        private Task<LoadThemeResults> LoadTheme_Execute(string path, bool start)
         {
             var busyPickingFile = MainResources.Busy_PickingFile;
             var busyLoadingTheme = MainResources.Busy_LoadingTheme;
@@ -139,7 +149,7 @@ namespace ThemeEditor.WPF
                         // Ignore
                     }
                 }
-                
+
                 var smdhPath = Path.Combine(themeDir, "info.smdh");
                 if (result.Loaded && File.Exists(smdhPath))
                 {
@@ -152,13 +162,13 @@ namespace ThemeEditor.WPF
                         catch
                         {
                             result.Info = null;
-                            
                         }
                     }
                 }
                 return result;
             });
-            task.Start();
+            if (start)
+                task.Start();
             return task;
         }
 
@@ -175,8 +185,8 @@ namespace ThemeEditor.WPF
                     icex.Size = 24;
                     var small = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 24, 24);
 
-                    ViewModel.Info.SmallIcon.Bitmap = (BitmapSource) small;
                     ViewModel.Info.LargeIcon.Bitmap = (BitmapSource) large;
+                    ViewModel.Info.SmallIcon.Bitmap = (BitmapSource) small;
                 }
 
                 ThemePath = result.Path;
@@ -187,7 +197,9 @@ namespace ThemeEditor.WPF
             IsBusy = false;
         }
 
-        private Task<SaveThemeResults> SaveTheme_Execute(string path)
+        private Task<SaveThemeResults> SaveTheme_Execute(string path) => SaveTheme_Execute(path, true);
+
+        private Task<SaveThemeResults> SaveTheme_Execute(string path, bool start)
         {
             var viewModel = ViewModel;
             var busyPickingFile = MainResources.Busy_PickingFile;
@@ -238,7 +250,93 @@ namespace ThemeEditor.WPF
                 return result;
             },
                 TaskCreationOptions.LongRunning);
-            task.Start();
+            if (start)
+                task.Start();
+            return task;
+        }
+
+        private Task<ZipThemeResults> ZipTheme_Execute(string bgmPath) => ZipTheme_Execute(bgmPath, true);
+
+        private Task<ZipThemeResults> ZipTheme_Execute(string bgmPath, bool start)
+        {
+            var viewModel = ViewModel;
+            var busySavingTheme = MainResources.Busy_SavingTheme;
+            var bmpPreview = RenderPreview(PreviewKind.Both);
+
+            var task = new Task<ZipThemeResults>(() =>
+            {
+                BusyText = busySavingTheme;
+
+                var results = new ZipThemeResults
+                {
+                    Saved = false,
+                    BGMPath = bgmPath,
+                    Data = null
+                };
+
+                var themeName = viewModel.Info.ShortDescription;
+                var rnd = new Random();
+                if (string.IsNullOrEmpty(themeName))
+                {
+                    var bytes = new byte[4];
+                    rnd.NextBytes(bytes);
+                    themeName = "3DSThemeEditor-" + BitConverter.ToString(bytes);
+                }
+                themeName = Regex.Replace(themeName, "[^ -~]+", "_");
+                using (var ms = new MemoryStream())
+                {
+                    using (var arch = new ZipArchive(ms, ZipArchiveMode.Create))
+                    {
+                        var bodyLz = arch.CreateEntry($"{themeName}/body_LZ.bin");
+                        using (var tgt = bodyLz.Open())
+                        using (var srcDec = new MemoryStream())
+                        using (var srcCom = new MemoryStream())
+                        {
+                            viewModel.Save(srcDec);
+
+                            viewModel.Save(srcDec);
+                            srcDec.Position = 0;
+                            LZ11.Compress(srcDec, srcDec.Length, srcCom, true);
+                            srcCom.Position = 0;
+
+                            srcCom.CopyTo(tgt);
+                        }
+
+                        var info = arch.CreateEntry($"{themeName}/info.smdh");
+                        using (var tgt = info.Open())
+                            viewModel.Info.Save(tgt);
+
+                        var preview = arch.CreateEntry($"{themeName}/preview.png");
+                        using (var tgt = preview.Open())
+                        using (var src = new MemoryStream())
+                        {
+                            var encoder = new PngBitmapEncoder();
+                            encoder.Frames.Add(BitmapFrame.Create(bmpPreview));
+
+                            encoder.Save(src);
+                            src.Position = 0;
+
+                            src.CopyTo(tgt);
+                        }
+
+                        if (viewModel.Flags.BackgroundMusic)
+                        {
+                            var bgm = arch.CreateEntry($"{themeName}/BGM.BCSTM");
+                            using (var src = File.OpenRead(results.BGMPath))
+                            using (var tgt = bgm.Open())
+                                src.CopyTo(tgt);
+                        }
+                    }
+                    results.Data = ms.ToArray();
+                    results.Saved = true;
+                    File.WriteAllBytes(@"C:\Temp\theme.zip", results.Data);
+                }
+
+                return results;
+            },
+                TaskCreationOptions.LongRunning);
+            if (start)
+                task.Start();
             return task;
         }
 
@@ -304,12 +402,20 @@ namespace ThemeEditor.WPF
                 PreExecute_SetBusy,
                 LoadTheme_PostExecute);
 
+            var sendChmm2Command = new RelayCommandAsync<string, SendThemeResults>(SendTheme_Execute,
+                str => CanExecute_ViewModelLoaded(),
+                str => PreExecute_SetBusy(),
+                SendTheme_PostExecute);
+
             LoadThemeCommandWrapper
                 = new GestureCommandWrapper(loadCommand, new KeyGesture(Key.O, ModifierKeys.Control));
             SaveThemeCommandWrapper
                 = new GestureCommandWrapper(saveCommand, new KeyGesture(Key.S, ModifierKeys.Control));
             SaveAsThemeCommandWrapper
-                = new GestureCommandWrapper(saveAsCommand, new KeyGesture(Key.S, ModifierKeys.Control | ModifierKeys.Shift));
+                = new GestureCommandWrapper(saveAsCommand,
+                    new KeyGesture(Key.S, ModifierKeys.Control | ModifierKeys.Shift));
+
+            SendThemeCHMM2Command = sendChmm2Command;
 
             NewThemeCommandWrapper = new GestureCommandWrapper(newCommand, new KeyGesture(Key.N, ModifierKeys.Control));
 
@@ -317,16 +423,106 @@ namespace ThemeEditor.WPF
                 CanExecute_LoadedFromFile,
                 PreExecute_SetBusy,
                 LoadBGM_PostExecute);
+        }
 
+        private void SendTheme_PostExecute(SendThemeResults obj)
+        {
+            IsBusy = false;
+            if (obj.Sent)
+            {
+                MessageBox.Show("Theme Sent Successfuly",
+                    WINDOW_TITLE,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+        }
 
+        private Task<SendThemeResults> SendTheme_Execute(string ip) => SendTheme_Execute(ip, true);
+
+        private Task<SendThemeResults> SendTheme_Execute(string ip, bool start)
+        {
+            var sendingTheme = "Sending Theme...";
+            var connecting = "Estabilishing Conection...";
+            var connectError = "Conection Error";
+            var zipThemeTask = ZipTheme_Execute(ThemePath, false);
+            var task = new Task<SendThemeResults>(() =>
+            {
+                var result = new SendThemeResults
+                {
+                    IP = ip,
+                    Sent = false,
+                };
+                IPAddress addr;
+                if (!IPAddress.TryParse(ip, out addr))
+                    return result;
+
+                IPEndPoint endPoint = new IPEndPoint(addr, 5000);
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+                zipThemeTask.Start();
+                result.Zip = zipThemeTask.Result;
+
+                BusyText = connecting;
+
+                try
+                {
+                    socket.Connect(endPoint);
+                }
+                catch (SocketException ex)
+                {
+                    BusyText = ex.Message;
+                    return result;
+                }
+
+                BusyText = sendingTheme;
+
+                byte[] socketBuffer = new byte[255];
+                socket.Receive(socketBuffer, 11, SocketFlags.None);
+                if (Encoding.ASCII.GetString(socketBuffer, 0, 11) != "YATA SENDER")
+                {
+                    BusyText = connectError;
+                    socket.Close();
+                    return result;
+                }
+
+                var toWrite = result.Zip.Data.Length;
+                var offset = 0;
+                var fLen = (float) result.Zip.Data.Length;
+
+                while (true)
+                {
+                    var step = Math.Min(toWrite, 8192);
+                    socket.Send(result.Zip.Data, offset, step, 0);
+                    toWrite -= step;
+                    offset += step;
+
+                    BusyText = $"Sending: {offset / fLen:f2}%";
+                    if (toWrite <= 0)
+                        break;
+                }
+
+                socket.Receive(socketBuffer, 9, SocketFlags.None);
+                if (Encoding.ASCII.GetString(socketBuffer, 0, 9) != "YATA TERM")
+                {
+                    BusyText = connectError;
+                    socket.Close();
+                    return result;
+                }
+
+                result.Sent = true;
+                return result;
+            });
+            if (start)
+                task.Start();
+            return task;
         }
 
         private class LoadThemeResults
         {
+            public SMDH Info;
             public bool Loaded;
             public string Path;
             public Theme Theme;
-            public SMDH Info;
         }
 
         private class LoadBGMResults
@@ -335,10 +531,18 @@ namespace ThemeEditor.WPF
             public bool Loaded;
         }
 
-        private class ConvertBGMResults
+        private class ZipThemeResults
         {
-            public string Path;
-            public bool Loaded;
+            public string BGMPath;
+            public byte[] Data;
+            public bool Saved;
+        }
+
+        private class SendThemeResults
+        {
+            public string IP;
+            public bool Sent;
+            public ZipThemeResults Zip;
         }
 
         private class SaveThemeResults

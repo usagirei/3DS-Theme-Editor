@@ -360,5 +360,18 @@ namespace ThemeEditor.WPF.Properties {
                 this["Preview_PressedToggle"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(XmlSettingsProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string Console_IP {
+            get {
+                return ((string)(this["Console_IP"]));
+            }
+            set {
+                this["Console_IP"] = value;
+            }
+        }
     }
 }

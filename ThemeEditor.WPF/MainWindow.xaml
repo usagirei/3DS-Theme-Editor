@@ -29,9 +29,14 @@
     </Window.Title>
     <Window.Resources>
         <templating:BooleanConverter
-            x:Key="BooleanToOpacityConverter"
-            FalseValue="0.5"
-            TrueValue="1.0" />
+            x:Key="BooleanToOpacityConverter">
+            <templating:BooleanConverter.TrueValue>
+                <system:Double>1.0</system:Double>
+            </templating:BooleanConverter.TrueValue>
+            <templating:BooleanConverter.FalseValue>
+                <system:Double>0.5</system:Double>
+            </templating:BooleanConverter.FalseValue>
+        </templating:BooleanConverter>
         <templating:PropertyListConverter x:Key="ViewModelUnroller" />
         <templating:DynamicTemplateSelector x:Key="TemplateSelector" />
         <Style x:Key="PropertyListControlStyle" TargetType="ItemsControl">
@@ -70,7 +75,7 @@
                             DataTemplate="{StaticResource ColorDataTemplate}"
                             PropertyName="Value"
                             PropertyType="{x:Type Color}" />
-                            <templating:Template
+                        <templating:Template
                             DataTemplate="{StaticResource BoolDataTemplate2}"
                             PropertyName="Value"
                             PropertyType="{x:Type system:Boolean}" />
@@ -238,6 +243,22 @@
                             CommandParameter="{x:Static local:PreviewKind.Both}"
                             Header="{x:Static locale:MainResources.Menu_File_SavePreview_Both}" />
                     </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Send To">
+                        <MenuItem StaysOpenOnClick="True">
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Text="3DS IP:" Margin="0,0,6,0" />
+                                    <TextBox VerticalAlignment="Center" Width="100"
+                                             Text="{markup:Setting Path=Console_IP}" />
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem
+                            Header="CHMM2"
+                            Command="{Binding Path=SendThemeCHMM2Command}"
+                            CommandParameter="{markup:Setting Path=Console_IP}" />
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="{x:Static locale:MainResources.Menu_Image}">
                     <MenuItem.Resources>
@@ -386,8 +407,9 @@
                                 <Setter Property="Margin" Value="3" />
                                 <Setter Property="VerticalAlignment" Value="Top" />
                             </Style>
-                            <Style TargetType="{x:Type Image}">
+                            <Style TargetType="{x:Type controls:EyedropperEx}">
                                 <Setter Property="Margin" Value="3" />
+                                <Setter Property="Padding" Value="3" />
                                 <Setter Property="VerticalAlignment" Value="Top" />
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                             </Style>
@@ -443,22 +465,24 @@
                             Grid.Row="3"
                             Grid.Column="0"
                             Text="{x:Static locale:ThemeResources.Theme_Info_LargeIcon}" />
-                        <Image
-                            Grid.Row="3"
-                            Grid.Column="1"
-                            Width="48px"
-                            Height="48px"
-                            Source="{Binding Path=ViewModel.Info.LargeIcon.Bitmap}" />
+
+                        <controls:EyedropperEx Grid.Row="3"
+                                               Grid.Column="1"
+                                               HorizontalAlignment="Left"
+                                               CaptureSize="48,48" CaptureCenter="23,23"
+                                               BitmapFinal="{Binding Path=ViewModel.Info.LargeIcon.Bitmap}" />
+
                         <TextBlock
                             Grid.Row="4"
                             Grid.Column="0"
                             Text="{x:Static locale:ThemeResources.Theme_Info_SmallIcon}" />
-                        <Image
-                            Grid.Row="4"
-                            Grid.Column="1"
-                            Width="24px"
-                            Height="24px"
-                            Source="{Binding Path=ViewModel.Info.SmallIcon.Bitmap}" />
+
+                        <controls:EyedropperEx Grid.Row="4"
+                                               Grid.Column="1"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Top"
+                                               CaptureSize="24,24" CaptureCenter="11,11"
+                                               BitmapFinal="{Binding Path=ViewModel.Info.SmallIcon.Bitmap}" />
 
                     </Grid>
                 </TabItem>

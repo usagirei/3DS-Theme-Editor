@@ -80,5 +80,8 @@
     <Setting Name="Preview_PressedToggle" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="Console_IP" Provider="XmlSettingsProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
