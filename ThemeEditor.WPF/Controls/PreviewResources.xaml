@@ -5,6 +5,7 @@
     xmlns:markup="clr-namespace:ThemeEditor.WPF.Markup"
     xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating">
 
+
     <templating:BooleanMultiConverter x:Key="BooleanAndConverter" Operation="And" />
 
     <!--  Cursor  -->
@@ -1254,10 +1255,14 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <Point x:Key="BottomCornerButtonGradientStartPoint">0,-0.5</Point>
+    <Point x:Key="BottomCornerButtonGradientStartPoint2">0,-1</Point>
+
     <Style x:Key="IconStyle" TargetType="Path">
         <Setter Property="Fill">
             <Setter.Value>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <LinearGradientBrush StartPoint="{StaticResource BottomCornerButtonGradientStartPoint}" EndPoint="0,1">
                     <GradientStop Offset="0" Color="#95b0d3" />
                     <GradientStop Offset="1" Color="#829cc4" />
                 </LinearGradientBrush>
@@ -1270,7 +1275,8 @@
             <DataTrigger Binding="{Binding Path=Flags.BottomCornerButtonColor}" Value="True">
                 <Setter Property="Fill">
                     <Setter.Value>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <LinearGradientBrush StartPoint="{StaticResource BottomCornerButtonGradientStartPoint}"
+                                             EndPoint="0,1">
                             <GradientStop Offset="0" Color="{Binding Path=Colors.BottomCorner.IconTop}" />
                             <GradientStop Offset="1" Color="{Binding Path=Colors.BottomCorner.IconBottom}" />
                         </LinearGradientBrush>
@@ -1293,10 +1299,18 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
     <Style x:Key="IconGlowStyle" TargetType="Path">
-        <Setter Property="Fill" Value="#95b0d3" />
+        <Setter Property="Fill">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="{StaticResource BottomCornerButtonGradientStartPoint2}"
+                                     EndPoint="0,1">
+                    <GradientStop Offset="0" Color="#00ffffff" />
+                    <GradientStop Offset="1" Color="#27FFFFFF" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Opacity" Value="0.9" />
-        <Setter Property="Visibility" Value="Hidden" />
         <Setter Property="Effect">
             <Setter.Value>
                 <BlurEffect Radius="5" RenderingBias="Performance" />
@@ -1304,12 +1318,30 @@
         </Setter>
         <Style.Triggers>
             <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
-                <Setter Property="Visibility" Value="Visible" />
-            </DataTrigger>
-            <DataTrigger Binding="{Binding Path=Flags.BottomCornerButtonColor}" Value="True">
                 <Setter Property="Fill">
                     <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.BottomCorner.IconTop}" />
+                        <LinearGradientBrush StartPoint="{StaticResource BottomCornerButtonGradientStartPoint2}"
+                                             EndPoint="0,1">
+                            <GradientStop Offset="0" Color="#829cc4" />
+                            <GradientStop Offset="1" Color="#95b0d3" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <MultiBinding Converter="{StaticResource BooleanAndConverter}">
+                        <Binding Path="Flags.BottomCornerButtonColor" />
+                        <markup:Setting Path="Preview_PressedToggle" />
+                    </MultiBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="{StaticResource BottomCornerButtonGradientStartPoint2}"
+                                             EndPoint="0,1">
+                            <GradientStop Offset="0" Color="{Binding Path=Colors.BottomCorner.IconBottom}" />
+                            <GradientStop Offset="1" Color="{Binding Path=Colors.BottomCorner.IconTop}" />
+                        </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
