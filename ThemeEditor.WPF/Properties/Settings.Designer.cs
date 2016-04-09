@@ -386,5 +386,18 @@ namespace ThemeEditor.WPF.Properties {
                 this["SocketMaxTries"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(XmlSettingsProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Preview_CloseToggle {
+            get {
+                return ((bool)(this["Preview_CloseToggle"]));
+            }
+            set {
+                this["Preview_CloseToggle"] = value;
+            }
+        }
     }
 }

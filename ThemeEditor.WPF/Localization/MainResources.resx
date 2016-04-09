@@ -348,4 +348,7 @@ Check the About Window for more Information</value>
   <data name="Menu_SendTo" xml:space="preserve">
     <value>Send To</value>
   </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>"Close"</value>
+  </data>
 </root>

@@ -241,6 +241,15 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Close&quot;.
+        /// </summary>
+        public static string Control_Preview_CloseButton {
+            get {
+                return ResourceManager.GetString("Control_Preview_CloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder.
         /// </summary>
         public static string Control_Preview_Folder {

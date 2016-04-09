@@ -348,4 +348,7 @@ Verifique a Janela "Sobre" para mais Informações.</value>
   <data name="Menu_SendTo" xml:space="preserve">
     <value>Enviar Para</value>
   </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>"Fechar"</value>
+  </data>
 </root>

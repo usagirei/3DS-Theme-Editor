@@ -16,6 +16,7 @@ namespace ThemeEditor.WPF.Markup
             SetBinding();
         }
 
+
         public void SetBinding()
         {
             Source = Settings.Default;

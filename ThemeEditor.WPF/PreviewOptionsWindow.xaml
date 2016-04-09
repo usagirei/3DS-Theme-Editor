@@ -313,6 +313,9 @@
             <ToggleButton
                 IsChecked="{markup:Setting Path=Preview_PressedToggle}"
                 Content="{x:Static locale:MainResources.Control_Preview_Pressed}" />
+                 <ToggleButton
+                IsChecked="{markup:Setting Path=Preview_CloseToggle}"
+                Content="{x:Static locale:MainResources.Control_Preview_CloseButton}" />
         </StackPanel>
     </StackPanel>
 </Window>

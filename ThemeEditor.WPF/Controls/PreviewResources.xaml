@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:ThemeEditor.WPF.Controls"
     xmlns:markup="clr-namespace:ThemeEditor.WPF.Markup"
-    xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating">
+    xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
+    xmlns:properties="clr-namespace:ThemeEditor.WPF.Properties">
 
 
     <templating:BooleanMultiConverter x:Key="BooleanAndConverter" Operation="And" />
@@ -660,10 +661,18 @@
 
     <!--  Open Button  -->
 
-    <CombinedGeometry x:Key="OpenButtonGeometry" GeometryCombineMode="Union">
-        <CombinedGeometry.Geometry1>
+    <templating:BooleanConverter x:Key="OpenButtonGeometrySwitcher">
+        <templating:BooleanConverter.FalseValue>
+            <RectangleGeometry RadiusX="10" RadiusY="10" Rect="-106,-25,320,50" />
+        </templating:BooleanConverter.FalseValue>
+        <templating:BooleanConverter.TrueValue>
             <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,-25,214,50" />
-        </CombinedGeometry.Geometry1>
+        </templating:BooleanConverter.TrueValue>
+    </templating:BooleanConverter>
+
+    <CombinedGeometry x:Key="OpenButtonGeometry"
+                      GeometryCombineMode="Union"
+                      Geometry1="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_CloseToggle, Converter={StaticResource OpenButtonGeometrySwitcher}}">
         <CombinedGeometry.Geometry2>
             <RectangleGeometry Rect="0,-25,20,50" />
         </CombinedGeometry.Geometry2>
@@ -873,12 +882,29 @@
 
     <!--  Close Button  -->
 
-    <CombinedGeometry x:Key="CloseButtonGeometry" GeometryCombineMode="Union">
-        <CombinedGeometry.Geometry1>
-            <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,-25,106,50" />
-        </CombinedGeometry.Geometry1>
+
+    <templating:BooleanConverter x:Key="CloseButtonGeometrySwitcher">
+        <templating:BooleanConverter.FalseValue>
+            <RectangleGeometry Rect="0,0,0,0" />
+        </templating:BooleanConverter.FalseValue>
+        <templating:BooleanConverter.TrueValue>
+            <CombinedGeometry GeometryCombineMode="Union">
+                <CombinedGeometry.Geometry1>
+                    <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,-25,106,50" />
+                </CombinedGeometry.Geometry1>
+                <CombinedGeometry.Geometry2>
+                    <RectangleGeometry Rect="86,-25,20,50" />
+                </CombinedGeometry.Geometry2>
+            </CombinedGeometry>
+        </templating:BooleanConverter.TrueValue>
+    </templating:BooleanConverter>
+
+
+    <CombinedGeometry x:Key="CloseButtonGeometry"
+                      GeometryCombineMode="Union"
+                      Geometry1="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_CloseToggle, Converter={StaticResource CloseButtonGeometrySwitcher}}">
         <CombinedGeometry.Geometry2>
-            <RectangleGeometry Rect="86,-25,20,50" />
+            <RectangleGeometry Rect="0,0,0,0" />
         </CombinedGeometry.Geometry2>
     </CombinedGeometry>
 
@@ -1011,14 +1037,23 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
     <Style x:Key="CloseStyleText" TargetType="controls:TextPath" BasedOn="{StaticResource OpenStyleText}">
         <Setter Property="Fill" Value="#efede9" />
         <Style.Triggers>
-            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
+
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <markup:Setting Path="Preview_PressedToggle" />
+
+                </DataTrigger.Binding>
                 <Setter Property="Fill" Value="#3d3d3d" />
                 <Setter Property="Margin" Value="0,2,0,0" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <Binding Path="Flags.OpenCloseColor" />
+                </DataTrigger.Binding>
                 <Setter Property="Fill">
                     <Setter.Value>
                         <SolidColorBrush Color="{Binding Path=Colors.Close.TextUnpressed}" />
@@ -1043,10 +1078,15 @@
     <Style x:Key="CloseStyleTextShadow" TargetType="controls:TextPath" BasedOn="{StaticResource OpenStyleTextShadow}">
         <Setter Property="Fill" Value="#3d3d3d" />
         <Style.Triggers>
+
             <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
                 <Setter Property="Visibility" Value="Hidden" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
+            <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                    <Binding Path="Flags.OpenCloseColor" />
+
+                </DataTrigger.Binding>
                 <Setter Property="Fill">
                     <Setter.Value>
                         <SolidColorBrush Color="{Binding Path=Colors.Close.TextGlow}" />

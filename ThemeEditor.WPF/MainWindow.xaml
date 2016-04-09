@@ -469,7 +469,7 @@
 
                         <StackPanel Grid.Row="3"
                                     Grid.Column="1" Orientation="Horizontal">
-                            <Button Content="â" 
+                            <Button Content="â"
                                     FontFamily="Wingdings"
                                     Margin="0,3"
                                     Command="{Binding Path=CopyResizeSMDHIconCommandCommand}">
@@ -588,6 +588,11 @@
                             Padding="3"
                             IsChecked="{markup:Setting Path=Preview_PressedToggle}"
                             Content="{x:Static locale:MainResources.Control_Preview_Pressed}" />
+                        <ToggleButton
+                            Margin="0,3"
+                            Padding="3"
+                            IsChecked="{markup:Setting Path=Preview_CloseToggle}"
+                            Content="{x:Static locale:MainResources.Control_Preview_CloseButton}" />
                     </StackPanel>
                     <Canvas x:Name="pre_BottomScreen" Grid.Column="1">
                         <controls:BottomScreenPreview
