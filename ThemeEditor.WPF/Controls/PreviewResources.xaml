@@ -1346,7 +1346,7 @@
                 <LinearGradientBrush StartPoint="{StaticResource BottomCornerButtonGradientStartPoint2}"
                                      EndPoint="0,1">
                     <GradientStop Offset="0" Color="#00ffffff" />
-                    <GradientStop Offset="1" Color="#27FFFFFF" />
+                    <GradientStop Offset="1" Color="#13FFFFFF" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
