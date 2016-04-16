@@ -182,12 +182,12 @@ namespace ThemeEditor.WPF
                 if (result.Info == null)
                 {
                     IconExtension icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 48);
-                    var large = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 48, 48);
+                    var large = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(48, 48);
                     icex.Size = 24;
-                    var small = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 24, 24);
+                    var small = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(24, 24);
 
-                    ViewModel.Info.LargeIcon.Bitmap = (BitmapSource) large;
-                    ViewModel.Info.SmallIcon.Bitmap = (BitmapSource) small;
+                    ViewModel.Info.LargeIcon.Bitmap = large;
+                    ViewModel.Info.SmallIcon.Bitmap = small;
                 }
 
                 ThemePath = result.Path;

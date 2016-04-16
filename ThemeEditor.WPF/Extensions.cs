@@ -64,7 +64,18 @@ namespace ThemeEditor.WPF
             return bitmapSource;
         }
 
-        public static ImageSource CreateResizedImage(ImageSource source, int width, int height, int margin = 0)
+        public static uint NextPowerOfTwo(this uint x)
+        {
+            x--;
+            x |= (x >> 1);
+            x |= (x >> 2);
+            x |= (x >> 4);
+            x |= (x >> 8);
+            x |= (x >> 16);
+            return (x + 1);
+        }
+
+        public static BitmapSource CreateResizedImage(this BitmapSource source, int width, int height, int margin = 0)
         {
             var rect = new Rect(margin, margin, width - margin * 2, height - margin * 2);
 
@@ -75,6 +86,42 @@ namespace ThemeEditor.WPF
             var drawingVisual = new DrawingVisual();
             using (var drawingContext = drawingVisual.RenderOpen())
                 drawingContext.DrawDrawing(group);
+
+            var resizedImage = new RenderTargetBitmap(
+                width,
+                height,
+                // Resized dimensions
+                96,
+                96,
+                // Default DPI values
+                PixelFormats.Default); // Default pixel format
+            resizedImage.Render(drawingVisual);
+
+            return BitmapFrame.Create(resizedImage);
+        }
+
+        public static BitmapSource CreateResizedNextPot(this BitmapSource source)
+        {
+            int potW = (int)((uint)source.PixelWidth).NextPowerOfTwo();
+            int potH = (int)((uint)source.PixelHeight).NextPowerOfTwo();
+
+            if (source.PixelWidth == potW && source.PixelHeight == potH)
+                return source;
+
+            var bmpPot = source.CreateResizedImageNoScale(0, 0, potW, potH);
+
+            return bmpPot;
+        }
+
+        public static BitmapSource CreateResizedImageNoScale(this BitmapSource source, int x, int y, int width, int height)
+        {
+            var minH = Math.Min(source.PixelHeight, height);
+            var minW = Math.Min(source.PixelWidth, width);
+            var rect = new Rect(x, y, minW, minH);
+
+            var drawingVisual = new DrawingVisual();
+            using (var drawingContext = drawingVisual.RenderOpen())
+                drawingContext.DrawImage(source, rect);
 
             var resizedImage = new RenderTargetBitmap(
                 width,

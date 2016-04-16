@@ -39,6 +39,7 @@ namespace ThemeEditor.WPF
             {
                 case TargetImage.Top:
                     return ViewModel.Textures.Top.Exists;
+
                 case TargetImage.Bottom:
                     return ViewModel.Textures.Bottom.Exists;
 
@@ -230,8 +231,29 @@ namespace ThemeEditor.WPF
                             bmp.EndInit();
                             bmp.Freeze();
 
+                            BitmapSource bmpSrc;
+
+                            switch (targetImage)
+                            {
+                                case TargetImage.Bottom:
+                                case TargetImage.Top:
+                                case TargetImage.FileLarge:
+                                case TargetImage.FileSmall:
+                                case TargetImage.FolderOpen:
+                                case TargetImage.FolderClosed:
+                                case TargetImage.TopAlt:
+                                    bmpSrc = bmp.CreateResizedNextPot();
+                                    bmpSrc.Freeze();
+                                    break;
+                                case TargetImage.SmallIcon:
+                                case TargetImage.LargeIcon:
+                                default:
+                                    bmpSrc = bmp;
+                                    break;
+                            }
+
                             results.Loaded = true;
-                            results.Image = bmp;
+                            results.Image = bmpSrc;
                         }
                     }
                     catch
@@ -357,15 +379,15 @@ namespace ThemeEditor.WPF
                 case TargetImage.SmallIcon:
                 {
                     var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 24);
-                    var large = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 24, 24);
-                    ViewModel.Info.SmallIcon.EncodeTexture((BitmapSource) large, RawTexture.DataFormat.Bgr565);
+                    var large = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(24, 24);
+                    ViewModel.Info.SmallIcon.EncodeTexture( large, RawTexture.DataFormat.Bgr565);
                     break;
                 }
                 case TargetImage.LargeIcon:
                 {
                     var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 48);
-                    var large = Extensions.CreateResizedImage((ImageSource) icex.ProvideValue(null), 48, 48);
-                    ViewModel.Info.LargeIcon.EncodeTexture((BitmapSource) large, RawTexture.DataFormat.Bgr565);
+                    var large = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(48, 48);
+                    ViewModel.Info.LargeIcon.EncodeTexture(large, RawTexture.DataFormat.Bgr565);
                     break;
                 }
                 default:
@@ -375,37 +397,17 @@ namespace ThemeEditor.WPF
 
         partial void SetupImageCommands()
         {
-            RemoveImageCommand
-                = new RelayCommand<TargetImage>(RemoveImage_Execute,
-                    CanExecute_ImageExists);
-            ReplaceImageCommand
-                = new RelayCommandAsync<TargetImage, LoadImageResults>(LoadImage_Execute,
-                    image => CanExecute_ViewModelLoaded(),
-                    image => PreExecute_SetBusy(),
-                    LoadImage_PostExecute);
-            ExportImageCommand
-                = new RelayCommandAsync<TargetImage, SaveImageResults>(ExportImage_Execute,
-                    CanExecute_ImageExists,
-                    image => PreExecute_SetBusy(),
-                    ExportImage_PostExecute);
+            RemoveImageCommand = new RelayCommand<TargetImage>(RemoveImage_Execute, CanExecute_ImageExists);
+            ReplaceImageCommand = new RelayCommandAsync<TargetImage, LoadImageResults>(LoadImage_Execute, image => CanExecute_ViewModelLoaded(), image => PreExecute_SetBusy(), LoadImage_PostExecute);
+            ExportImageCommand = new RelayCommandAsync<TargetImage, SaveImageResults>(ExportImage_Execute, CanExecute_ImageExists, image => PreExecute_SetBusy(), ExportImage_PostExecute);
 
-            DragImageCommand
-                = new RelayCommand<DragEventArgs>(DragImage_Execute, image => CanExecute_ViewModelLoaded());
+            DragImageCommand = new RelayCommand<DragEventArgs>(DragImage_Execute, image => CanExecute_ViewModelLoaded());
 
-            DropTopImageCommand =
-                new RelayCommandAsync<DragEventArgs, LoadImageResults>(e => DropImage_Execute(e, TargetImage.Top),
-                    image => CanExecute_ViewModelLoaded(),
-                    image => PreExecute_SetBusy(),
-                    LoadImage_PostExecute);
+            DropTopImageCommand = new RelayCommandAsync<DragEventArgs, LoadImageResults>(e => DropImage_Execute(e, TargetImage.Top), image => CanExecute_ViewModelLoaded(), image => PreExecute_SetBusy(), LoadImage_PostExecute);
 
-            DropBottomImageCommand =
-                new RelayCommandAsync<DragEventArgs, LoadImageResults>(e => DropImage_Execute(e, TargetImage.Bottom),
-                    image => CanExecute_ViewModelLoaded(),
-                    image => PreExecute_SetBusy(),
-                    LoadImage_PostExecute);
+            DropBottomImageCommand = new RelayCommandAsync<DragEventArgs, LoadImageResults>(e => DropImage_Execute(e, TargetImage.Bottom), image => CanExecute_ViewModelLoaded(), image => PreExecute_SetBusy(), LoadImage_PostExecute);
 
-            CopyResizeSMDHIconCommandCommand =
-                new RelayCommand<bool>(CopySMDHLargeToSmall_Execute);
+            CopyResizeSMDHIconCommandCommand = new RelayCommand<bool>(CopySMDHLargeToSmall_Execute);
         }
 
         private void CopySMDHLargeToSmall_Execute(bool direction)
@@ -431,7 +433,7 @@ namespace ThemeEditor.WPF
 
         private class LoadImageResults
         {
-            public BitmapImage Image;
+            public BitmapSource Image;
             public bool Loaded;
             public TargetImage Target;
         }
