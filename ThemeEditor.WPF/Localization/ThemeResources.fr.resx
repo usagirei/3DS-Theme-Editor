@@ -666,4 +666,40 @@
   <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
     <value>Fondre en ratio blanc</value>
   </data>
+  <data name="Theme_Info_Author" xml:space="preserve">
+    <value>Auteur</value>
+  </data>
+  <data name="Theme_Info_SmallIcon_Desc" xml:space="preserve">
+    <value>Icône de 24px</value>
+  </data>
+  <data name="Theme_Info_LargeIcon_Desc" xml:space="preserve">
+    <value>Icône de 48px</value>
+  </data>
+  <data name="Theme_Sets_Top_FadeToWhite_Desc" xml:space="preserve">
+    <value>Dégradé vers le blanc</value>
+  </data>
+  <data name="Theme_Info_LargeIcon" xml:space="preserve">
+    <value>Grande Icône</value>
+  </data>
+  <data name="Theme_Info_LongDesc_Desc" xml:space="preserve">
+    <value>Longue description</value>
+  </data>
+  <data name="Theme_Info_LongDesc" xml:space="preserve">
+    <value>Longue description</value>
+  </data>
+  <data name="Theme_Info_ShortDesc_Desc" xml:space="preserve">
+    <value>Courte description</value>
+  </data>
+  <data name="Theme_Info_ShortDesc" xml:space="preserve">
+    <value>Courte description</value>
+  </data>
+  <data name="Theme_Sets_Top_EnableAlt" xml:space="preserve">
+    <value>Montrer une image statique</value>
+  </data>
+  <data name="Theme_Info_SmallIcon" xml:space="preserve">
+    <value>Petite Icône</value>
+  </data>
+  <data name="Theme_Info_Author_Desc" xml:space="preserve">
+    <value>Auteur du Thème</value>
+  </data>
 </root>

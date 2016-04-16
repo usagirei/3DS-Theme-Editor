@@ -294,4 +294,58 @@ Vérifiez la fenêtre "A propos" pour plus d'informations</value>
  - Aucun fichier BGM.BCSTM n'est présent dans le répertoire séléctionné
  - Soyez sûr que le fichier BGM.BCSTM est présent sur votre 3DS quand vous appliquez le thème, ou sinon, crash assuré !</value>
   </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>Informations du Thème</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>Petite Icône (SMDH)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>Grande Icône (SMDH)</value>
+  </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>Rangée</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>Colonne</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>Curseur</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>Fichier</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>Dossier</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>Cartouche</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>Prévisualisation Générale</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>Prévisualisation du Dossier</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>Pressé</value>
+  </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>Envoi du Thème Réussi</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>Envoi du Thème...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>Connexion en cours...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>Erreur de connexion</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>Envoyer à</value>
+  </data>
 </root>
