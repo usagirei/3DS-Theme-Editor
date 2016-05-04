@@ -1041,13 +1041,11 @@
     <Style x:Key="CloseStyleText" TargetType="controls:TextPath" BasedOn="{StaticResource OpenStyleText}">
         <Setter Property="Fill" Value="#efede9" />
         <Style.Triggers>
-
             <DataTrigger Value="True">
                 <DataTrigger.Binding>
                     <markup:Setting Path="Preview_PressedToggle" />
-
                 </DataTrigger.Binding>
-                <Setter Property="Fill" Value="#3d3d3d" />
+                <Setter Property="Fill" Value="#A8A8A8" />
                 <Setter Property="Margin" Value="0,2,0,0" />
             </DataTrigger>
             <DataTrigger Value="True">
@@ -1076,24 +1074,7 @@
         </Style.Triggers>
     </Style>
     <Style x:Key="CloseStyleTextShadow" TargetType="controls:TextPath" BasedOn="{StaticResource OpenStyleTextShadow}">
-        <Setter Property="Fill" Value="#3d3d3d" />
-        <Style.Triggers>
-
-            <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
-                <Setter Property="Visibility" Value="Hidden" />
-            </DataTrigger>
-            <DataTrigger Value="True">
-                <DataTrigger.Binding>
-                    <Binding Path="Flags.OpenCloseColor" />
-
-                </DataTrigger.Binding>
-                <Setter Property="Fill">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.Close.TextGlow}" />
-                    </Setter.Value>
-                </Setter>
-            </DataTrigger>
-        </Style.Triggers>
+        <Setter Property="Visibility" Value="Hidden" />
     </Style>
 
     <!--  Corners  -->
