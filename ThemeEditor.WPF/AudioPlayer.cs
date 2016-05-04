@@ -70,6 +70,9 @@ namespace ThemeEditor.WPF
         public void SetAudioData(byte[] wavData)
         {
             ClearAudioData();
+            HasData = false;
+            if (wavData?.Length == 0)
+                return;
 
             var wavStream = new MemoryStream(wavData);
             _waveProvider = new WaveFileReader(wavStream);

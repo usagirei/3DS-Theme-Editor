@@ -294,8 +294,6 @@ namespace ThemeEditor.WPF
                         using (var srcCom = new MemoryStream())
                         {
                             viewModel.Save(srcDec);
-
-                            viewModel.Save(srcDec);
                             srcDec.Position = 0;
                             LZ11.Compress(srcDec, srcDec.Length, srcCom, true);
                             srcCom.Position = 0;
@@ -330,7 +328,10 @@ namespace ThemeEditor.WPF
                     }
                     results.Data = ms.ToArray();
                     results.Saved = true;
+
+#if DEBUG
                     File.WriteAllBytes(@"C:\Temp\theme.zip", results.Data);
+#endif
                 }
 
                 return results;
@@ -446,7 +447,8 @@ namespace ThemeEditor.WPF
             var connecting = MainResources.Busy_Sender_Connecting;
             var connectionError = MainResources.Busy_Sender_ConnectionError;
 
-            var zipThemeTask = ZipTheme_Execute(ThemePath, false);
+            var bgmPath = Path.Combine(Path.GetDirectoryName(ThemePath), BGM_FILE_NAME);
+            var zipThemeTask = ZipTheme_Execute(bgmPath, false);
             var task = new Task<SendThemeResults>(() =>
             {
                 var result = new SendThemeResults
