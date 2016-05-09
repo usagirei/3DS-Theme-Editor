@@ -16,6 +16,7 @@
     Height="600"
     d:DataContext="{d:DesignInstance local:MainWindow}"
     Loaded="MainWindow_OnLoaded"
+    Closed="MainWindow_OnClosed"
     ResizeMode="CanMinimize"
     SnapsToDevicePixels="True"
     UseLayoutRounding="True"
@@ -39,6 +40,11 @@
         </templating:BooleanConverter>
         <templating:PropertyListConverter x:Key="ViewModelUnroller" />
         <templating:DynamicTemplateSelector x:Key="TemplateSelector" />
+        <templating:ValueConverterGroup x:Key="PathToFileNameConverterL1">
+            <templating:PathToFileNameConverter Level="1" />
+            <templating:EscapeStringUnderscoreCoverter />
+
+        </templating:ValueConverterGroup>
         <Style x:Key="PropertyListControlStyle" TargetType="ItemsControl">
             <Style.Resources>
                 <templating:ColorItemConverter x:Key="ColorItemConverter" />
@@ -220,6 +226,20 @@
                         Command="{Binding Path=LoadThemeCommandWrapper.Command}"
                         Header="{x:Static locale:MainResources.Menu_File_Open}"
                         InputGestureText="{Binding Path=LoadThemeCommandWrapper.GestureText}" />
+                    <MenuItem
+                        Header="Recent..."
+                        ItemsSource="{Binding Path=RecentsList}">
+                        <MenuItem.ItemContainerStyle>
+                            <Style TargetType="{x:Type MenuItem}">
+                                <Setter Property="Header"
+                                        Value="{Binding Path=., Converter={StaticResource PathToFileNameConverterL1}}" />
+                                <Setter Property="ToolTip" Value="{Binding}" />
+                                <Setter Property="Command"
+                                        Value="{Binding Path=DataContext.LoadThemeCommandWrapper.Command, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type MenuItem}, AncestorLevel=1}}" />
+                                <Setter Property="CommandParameter" Value="{Binding}" />
+                            </Style>
+                        </MenuItem.ItemContainerStyle>
+                    </MenuItem>
                     <Separator />
                     <MenuItem
                         Command="{Binding Path=SaveThemeCommandWrapper.Command}"

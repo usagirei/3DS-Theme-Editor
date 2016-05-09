@@ -2,16 +2,17 @@
 // 3DS Theme Editor - MainWindow.xaml.cs
 // --------------------------------------------------
 
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 using Microsoft.Win32;
-
 using ThemeEditor.Common.Graphics;
 using ThemeEditor.WPF.Experimental.CWAV;
 using ThemeEditor.WPF.Localization;
@@ -29,8 +30,8 @@ namespace ThemeEditor.WPF
 
         public static readonly DependencyProperty ViewModelProperty
             = DependencyProperty.Register(nameof(ViewModel),
-                typeof(ThemeViewModel),
-                typeof(MainWindow),
+                typeof (ThemeViewModel),
+                typeof (MainWindow),
                 new PropertyMetadata(default(ThemeViewModel), OnThemePropertyChangedCallback));
 
         private string _busyText;
@@ -67,6 +68,8 @@ namespace ThemeEditor.WPF
 
         public ICommand PreviewOptionsCommand { get; }
 
+        public ObservableCollection<string> RecentsList { get; set; }
+
         public ThemeViewModel ViewModel
         {
             get { return (ThemeViewModel) GetValue(ViewModelProperty); }
@@ -81,6 +84,9 @@ namespace ThemeEditor.WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            //TODO: Finish MRU List
+            RecentsList = new ObservableCollection<string>();
 
             AboutCommand = new RelayCommand(AboutCommand_Execute);
 
@@ -97,79 +103,7 @@ namespace ThemeEditor.WPF
             DataContext = this;
         }
 
-        private static void InitValidSizes()
-        {
-            _validImageSizes = new Dictionary<TargetImage, List<ImageSize>>
-            {
-                {
-                    TargetImage.Top, new List<ImageSize>
-                    {
-                        new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565),
-                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
-                        new ImageSize(64, 64, RawTexture.DataFormat.A8),
-                    }
-                },
-                {
-                    TargetImage.Bottom, new List<ImageSize>
-                    {
-                        new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565),
-                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
-                    }
-                },
-                {
-                    TargetImage.TopAlt, new List<ImageSize>
-                    {
-                        new ImageSize(64, 64, RawTexture.DataFormat.A8),
-                    }
-                },
-                {
-                    TargetImage.FileSmall, new List<ImageSize>
-                    {
-                        new ImageSize(32, 64, RawTexture.DataFormat.Bgr888),
-                    }
-                },
-                {
-                    TargetImage.FileLarge, new List<ImageSize>
-                    {
-                        new ImageSize(64, 128, RawTexture.DataFormat.Bgr888),
-                    }
-                },
-                {
-                    TargetImage.FolderClosed, new List<ImageSize>
-                    {
-                        new ImageSize(128, 64, RawTexture.DataFormat.Bgr888),
-                    }
-                },
-                {
-                    TargetImage.FolderOpen, new List<ImageSize>
-                    {
-                        new ImageSize(128, 64, RawTexture.DataFormat.Bgr888),
-                    }
-                },
-                {
-                    TargetImage.SmallIcon, new List<ImageSize>
-                    {
-                        new ImageSize(24, 24, RawTexture.DataFormat.Bgr565),
-                    }
-                },
-                {
-                    TargetImage.LargeIcon, new List<ImageSize>
-                    {
-                        new ImageSize(48, 48, RawTexture.DataFormat.Bgr565),
-                    }
-                },
-            };
-        }
-
-        private static void OnThemePropertyChangedCallback(DependencyObject elem, DependencyPropertyChangedEventArgs args)
-        {
-            ((ThemeViewModel) args.OldValue)?.Dispose();
-        }
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void AboutCommand_Execute()
         {
@@ -243,8 +177,16 @@ namespace ThemeEditor.WPF
             MessageBox.Show(MainResources.Message_PreviewSaved, WINDOW_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        private void MainWindow_OnClosed(object sender, EventArgs e)
+        {
+            Settings.Default.MRU_List = RecentsList.ToArray();
+        }
+
         private async void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
+            if (Settings.Default.MRU_List != null)
+                foreach (var s in Settings.Default.MRU_List)
+                    RecentsList.Add(s);
             if (Settings.Default.CheckUpdatesOnStartup)
             {
                 bool hasUpdates = await Update.CheckUpdateAvailable();
@@ -352,6 +294,95 @@ namespace ThemeEditor.WPF
 
         partial void SetupThemeCommands();
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private void UpdateRecentsList(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return;
+
+            int idx;
+            if ((idx = RecentsList.IndexOf(path)) != -1)
+            {
+                RecentsList.RemoveAt(idx);
+            }
+            RecentsList.Insert(0, path);
+            while (RecentsList.Count > 10)
+            {
+                RecentsList.RemoveAt(10);
+            }
+        }
+
+        private static void InitValidSizes()
+        {
+            _validImageSizes = new Dictionary<TargetImage, List<ImageSize>>
+            {
+                {
+                    TargetImage.Top, new List<ImageSize>
+                    {
+                        new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565),
+                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
+                        new ImageSize(64, 64, RawTexture.DataFormat.A8),
+                    }
+                },
+                {
+                    TargetImage.Bottom, new List<ImageSize>
+                    {
+                        new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565),
+                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
+                    }
+                },
+                {
+                    TargetImage.TopAlt, new List<ImageSize>
+                    {
+                        new ImageSize(64, 64, RawTexture.DataFormat.A8),
+                    }
+                },
+                {
+                    TargetImage.FileSmall, new List<ImageSize>
+                    {
+                        new ImageSize(32, 64, RawTexture.DataFormat.Bgr888),
+                    }
+                },
+                {
+                    TargetImage.FileLarge, new List<ImageSize>
+                    {
+                        new ImageSize(64, 128, RawTexture.DataFormat.Bgr888),
+                    }
+                },
+                {
+                    TargetImage.FolderClosed, new List<ImageSize>
+                    {
+                        new ImageSize(128, 64, RawTexture.DataFormat.Bgr888),
+                    }
+                },
+                {
+                    TargetImage.FolderOpen, new List<ImageSize>
+                    {
+                        new ImageSize(128, 64, RawTexture.DataFormat.Bgr888),
+                    }
+                },
+                {
+                    TargetImage.SmallIcon, new List<ImageSize>
+                    {
+                        new ImageSize(24, 24, RawTexture.DataFormat.Bgr565),
+                    }
+                },
+                {
+                    TargetImage.LargeIcon, new List<ImageSize>
+                    {
+                        new ImageSize(48, 48, RawTexture.DataFormat.Bgr565),
+                    }
+                },
+            };
+        }
+
+        private static void OnThemePropertyChangedCallback(DependencyObject elem, DependencyPropertyChangedEventArgs args)
+        {
+            ((ThemeViewModel) args.OldValue)?.Dispose();
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

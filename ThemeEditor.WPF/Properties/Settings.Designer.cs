@@ -399,5 +399,17 @@ namespace ThemeEditor.WPF.Properties {
                 this["Preview_CloseToggle"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(XmlSettingsProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public string[] MRU_List {
+            get {
+                return ((string[])(this["MRU_List"]));
+            }
+            set {
+                this["MRU_List"] = value;
+            }
+        }
     }
 }

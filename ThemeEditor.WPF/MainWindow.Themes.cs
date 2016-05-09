@@ -179,6 +179,9 @@ namespace ThemeEditor.WPF
             {
                 ViewModel = new ThemeViewModel(result.Theme, result.Info);
 
+                var path = result.Path;
+                UpdateRecentsList(path);
+
                 if (result.Info == null)
                 {
                     IconExtension icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 48);

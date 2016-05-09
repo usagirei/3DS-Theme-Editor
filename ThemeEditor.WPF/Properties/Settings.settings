@@ -89,5 +89,8 @@
     <Setting Name="Preview_CloseToggle" Provider="XmlSettingsProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="MRU_List"  Provider="XmlSettingsProvider"  Type="System.String[]" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

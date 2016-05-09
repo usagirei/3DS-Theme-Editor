@@ -105,7 +105,10 @@
       <DependentUpon>PreviewOptionsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Templating\BooleanMultiConverter.cs" />
+    <Compile Include="Templating\EscapeStringUnderscoreCoverter.cs" />
+    <Compile Include="Templating\PathToFileNameConverter.cs" />
     <Compile Include="Templating\SwitchConverter.cs" />
+    <Compile Include="Templating\ValueConverterGroup.cs" />
     <Compile Include="Themes\ThemeInfoViewModel.cs" />
     <Compile Include="TempFile.cs" />
     <Compile Include="Templating\ColorBlendConverter.cs" />
