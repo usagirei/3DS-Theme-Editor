@@ -285,17 +285,17 @@ namespace ThemeEditor.WPF.Themes
         [Order("Theme_Flags_Game_Text_Color_Order", typeof(ThemeResources))]
         [DisplayName("Theme_Flags_Game_Text_Color", typeof(ThemeResources))]
         [Description("Theme_Flags_Game_Text_Color_Desc", typeof(ThemeResources))]
-        public bool GameTextColor
+        public GameTextDrawType GameTextDrawType
         {
-            get { return Model.GameTextColor; }
+            get { return (GameTextDrawType) (uint) Model.GameTextDrawType; }
             set
             {
-                var oldValue = Model.GameTextColor;
-                var newValue = value;
+                var oldValue = (uint) Model.GameTextDrawType;
+                var newValue = (uint) value;
                 if (oldValue == newValue)
                     return;
-                Model.GameTextColor = newValue;
-                RaiseViewModelChanged(nameof(GameTextColor), oldValue, value);
+                Model.GameTextDrawType = (Common.Themes.Enums.GameTextDrawType) newValue;
+                RaiseViewModelChanged(nameof(GameTextDrawType), oldValue, value);
             }
         }
 

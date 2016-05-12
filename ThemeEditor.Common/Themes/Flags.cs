@@ -26,7 +26,7 @@ namespace ThemeEditor.Common.Themes
         public bool FolderBackgroundColor;
         public bool FolderColor;
         public bool FolderTexture;
-        public bool GameTextColor;
+        public GameTextDrawType GameTextDrawType;
         public bool OpenCloseColor;
         public bool SoundEffect;
         public bool TopCornerButtonColor;

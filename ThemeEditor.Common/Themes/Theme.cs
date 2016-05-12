@@ -223,7 +223,7 @@ namespace ThemeEditor.Common.Themes
                 flags.OpenCloseColor = br.ReadUInt32() > 0;
 
                 s.Position = 0x78;
-                flags.GameTextColor = br.ReadUInt32() > 0;
+                flags.GameTextDrawType = (GameTextDrawType) br.ReadUInt32();
 
                 s.Position = 0x80;
                 flags.BottomBackgroundInnerColor = br.ReadUInt32() > 0;
@@ -476,7 +476,7 @@ namespace ThemeEditor.Common.Themes
 
                 // Game Text
 #if SKIP_COLOR_NOT_SET
-                if (flags.GameTextColor)
+                if (flags.GameTextDrawType)
 #endif
 
                 {
@@ -732,7 +732,7 @@ namespace ThemeEditor.Common.Themes
                 bw.Write((uint) cOff.Open);
                 bw.Write((uint) cOff.Close);
                 // Game Text
-                bw.Write((uint) (body.Flags.GameTextColor ? 1 : 0));
+                bw.Write((uint) body.Flags.GameTextDrawType);
                 bw.Write((uint) cOff.GameText);
                 // Bottom Solid
                 bw.Write((uint) (body.Flags.BottomBackgroundInnerColor ? 1 : 0));
@@ -829,7 +829,7 @@ namespace ThemeEditor.Common.Themes
                 }
                 // Game Text
 #if SKIP_COLOR_NOT_SET
-                if (b.Flags.GameTextColor)
+                if (b.Flags.GameTextDrawType)
 #endif
                 {
                     offsets.GameText = (uint) s.Position;

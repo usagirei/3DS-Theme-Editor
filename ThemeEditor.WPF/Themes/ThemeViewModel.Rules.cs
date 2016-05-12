@@ -90,8 +90,8 @@ namespace ThemeEditor.WPF.Themes
                 (nameof(FlagsViewModel.ArrowButtonColor), (v, o, n) => Colors.ArrowButton.Enabled = n);
             Rules.AddRule<FlagsViewModel, bool>
                 (nameof(FlagsViewModel.ArrowColor), (v, o, n) => Colors.Arrow.Enabled = n);
-            Rules.AddRule<FlagsViewModel, bool>
-                (nameof(FlagsViewModel.GameTextColor), (v, o, n) => Colors.GameText.Enabled = n);
+            Rules.AddRule<FlagsViewModel, GameTextDrawType>
+                (nameof(FlagsViewModel.GameTextDrawType), (v, o, n) => Colors.GameText.Enabled = n == GameTextDrawType.Colored);
             Rules.AddRule<FlagsViewModel, bool>
                 (nameof(FlagsViewModel.DemoTextColor), (v, o, n) => Colors.DemoText.Enabled = n);
         }

@@ -98,6 +98,7 @@
     <Compile Include="Experimental\CWAV\CWAVWindow.xaml.cs">
       <DependentUpon>CWAVWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Localization\Enums\GameTextDrawType.cs" />
     <Compile Include="MainWindow.BGM.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
