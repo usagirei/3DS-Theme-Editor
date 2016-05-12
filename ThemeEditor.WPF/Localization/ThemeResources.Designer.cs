@@ -142,6 +142,33 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string Enum_GameText_Color {
+            get {
+                return ResourceManager.GetString("Enum_GameText_Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden.
+        /// </summary>
+        public static string Enum_GameText_Hidden {
+            get {
+                return ResourceManager.GetString("Enum_GameText_Hidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string Enum_GameText_None {
+            get {
+                return ResourceManager.GetString("Enum_GameText_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arrow.
         /// </summary>
         public static string Theme_Colors_Arrow {

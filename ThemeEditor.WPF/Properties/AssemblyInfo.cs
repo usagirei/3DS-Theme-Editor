@@ -13,12 +13,8 @@ using System.Windows.Media;
 
 [assembly: AssemblyTitle("Usagi 3DS Theme Editor")]
 [assembly: AssemblyDescription("WPF Based 3DS Theme Editor ")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Usagirei")]
 [assembly: AssemblyProduct("3DS Theme Editor")]
-[assembly: AssemblyCopyright("Copyright © Usagirei 2016")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 [assembly: DisableDpiAwareness]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -45,16 +41,4 @@ using System.Windows.Media;
     // app, or any theme specific resource dictionaries)
     )]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.0.8.4")]
-[assembly: AssemblyFileVersion("1.0.8.4")]

@@ -688,4 +688,13 @@
   <data name="Theme_Sets_Top_EnableAlt_Desc" xml:space="preserve">
     <value>Ativa Imagem Superior Alternativa</value>
   </data>
+  <data name="Enum_GameText_Color" xml:space="preserve">
+    <value>Usar</value>
+  </data>
+  <data name="Enum_GameText_None" xml:space="preserve">
+    <value>Não Usar</value>
+  </data>
+  <data name="Enum_GameText_Hidden" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
 </root>
