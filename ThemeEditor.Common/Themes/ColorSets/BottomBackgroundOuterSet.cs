@@ -10,25 +10,33 @@ namespace ThemeEditor.Common.Themes.ColorSets
 {
     public class BottomBackgroundOuterSet
     {
-        public ColorRgb888 Glow;
+        /*
+         * Data Order:
+         * 
+         * Dark
+         * Main
+         * Light 
+         */
+
+        public ColorRgb888 Light;
         public ColorRgb888 Main;
-        public ColorRgb888 Stripe;
+        public ColorRgb888 Dark;
 
         public static BottomBackgroundOuterSet Read(BinaryReader br)
         {
             return new BottomBackgroundOuterSet
             {
-                Stripe = ColorRgb888.Read(br),
+                Dark = ColorRgb888.Read(br),
                 Main = ColorRgb888.Read(br),
-                Glow = ColorRgb888.Read(br)
+                Light = ColorRgb888.Read(br)
             };
         }
 
         public void Write(BinaryWriter bw)
         {
-            Stripe.Write(bw);
+            Dark.Write(bw);
             Main.Write(bw);
-            Glow.Write(bw);
+            Light.Write(bw);
         }
     }
 }

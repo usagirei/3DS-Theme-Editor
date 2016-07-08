@@ -35,14 +35,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_Game_Text_Desc", typeof(ThemeResources))]
         public Color Text
         {
-            get { return Model.Text.ToMediaColor(); }
+            get { return Model.TextMain.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Text;
+                var oldValue = Model.TextMain;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Text = newValue;
+                Model.TextMain = newValue;
                 RaiseViewModelChanged(nameof(Text), oldValue, value);
             }
         }

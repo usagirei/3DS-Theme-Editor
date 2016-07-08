@@ -10,6 +10,14 @@ namespace ThemeEditor.Common.Themes.ColorSets
 {
     public class ArrowSet
     {
+        /*
+        * Data Order:
+        * 
+        * Dark
+        * Main
+        * Glow
+        */
+
         public ColorRgb888 Border;
         public ColorRgb888 Pressed;
         public ColorRgb888 Unpressed;

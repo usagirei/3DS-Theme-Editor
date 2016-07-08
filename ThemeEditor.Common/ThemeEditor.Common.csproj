@@ -90,6 +90,7 @@
     <Compile Include="Themes\Enums\BottomDrawType.cs" />
     <Compile Include="Themes\Enums\BottomFrameType.cs" />
     <Compile Include="Themes\Enums\GameTextDrawType.cs" />
+    <Compile Include="Themes\Enums\PreferredRowType.cs" />
     <Compile Include="Themes\Enums\TopDrawType.cs" />
     <Compile Include="Themes\Enums\TopFrameType.cs" />
     <Compile Include="Themes\Flags.cs" />

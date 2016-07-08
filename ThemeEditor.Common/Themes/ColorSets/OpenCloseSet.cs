@@ -8,48 +8,65 @@ using ThemeEditor.Common.Graphics;
 
 namespace ThemeEditor.Common.Themes.ColorSets
 {
+    /*
+    * Data Order:
+    * 
+    * TextShadow Pos (float)
+    * 
+    * Dark 
+    * Main 
+    * Light 
+    * Shadow (Alpha)
+    * 
+    * Glow
+    * TextShadow
+    * TextMain
+    * TextSelected
+    */
+
     public class OpenCloseSet
     {
-        public ColorArgb8888 _;
-        public ColorRgb888 __;
-
-        public ColorArgb8888 ___;
         public ColorRgb888 ____;
+
+        public float TextShadowPos;
         public ColorRgb888 Glow;
-        public ColorRgb888 Pressed;
-        public ColorRgb888 TextGlow;
-        public ColorRgb888 TextPressed;
-        public ColorRgb888 TextUnpressed;
-        public ColorRgb888 Unpressed;
+        public ColorArgb8888 Shadow;
+        public ColorRgb888 Light;
+        public ColorRgb888 Dark;
+        public ColorRgb888 TextShadow;
+        public ColorRgb888 TextSelected;
+        public ColorRgb888 TextMain;
+        public ColorRgb888 Main;
 
         public static OpenCloseSet Read(BinaryReader br)
         {
             return new OpenCloseSet
             {
-                _ = ColorArgb8888.Read(br),
-                Pressed = ColorRgb888.Read(br),
-                Unpressed = ColorRgb888.Read(br),
+                TextShadowPos = br.ReadSingle(),
+                Dark = ColorRgb888.Read(br),
+                Main = ColorRgb888.Read(br),
+                Light = ColorRgb888.Read(br),
+                Shadow = ColorArgb8888.Read(br),
                 Glow = ColorRgb888.Read(br),
-                __ = ColorRgb888.Read(br),
-                ___ = ColorArgb8888.Read(br),
-                TextGlow = ColorRgb888.Read(br),
-                TextUnpressed = ColorRgb888.Read(br),
-                TextPressed = ColorRgb888.Read(br),
-                ____ = ColorRgb888.Read(br),
+                TextShadow = ColorRgb888.Read(br),
+                TextMain = ColorRgb888.Read(br),
+                TextSelected = ColorRgb888.Read(br),
+                ____ = ColorRgb888.Read(br), // Padding to 16
             };
         }
 
         public void Write(BinaryWriter bw)
         {
-            _.Write(bw);
-            Pressed.Write(bw);
-            Unpressed.Write(bw);
+            //TextShadowPos.Write(bw);
+            bw.Write(TextShadowPos);
+            Dark.Write(bw);
+            Main.Write(bw);
+            Light.Write(bw);
+            Shadow.Write(bw);
             Glow.Write(bw);
-            __.Write(bw);
-            ___.Write(bw);
-            TextGlow.Write(bw);
-            TextUnpressed.Write(bw);
-            TextPressed.Write(bw);
+            TextShadow.Write(bw);
+            TextMain.Write(bw);
+            TextSelected.Write(bw);
             ____.Write(bw);
         }
     }

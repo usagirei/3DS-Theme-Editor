@@ -16,14 +16,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomCorner_Border_Desc", typeof(ThemeResources))]
         public Color Border
         {
-            get { return Model.Border.ToMediaColor(); }
+            get { return Model.BaseDark.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Border;
+                var oldValue = Model.BaseDark;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Border = newValue;
+                Model.BaseDark = newValue;
                 RaiseViewModelChanged(nameof(Border), oldValue, value);
             }
         }
@@ -33,14 +33,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomCorner_Highlight_Desc", typeof(ThemeResources))]
         public Color Highlight
         {
-            get { return Model.Highlight.ToMediaColor(); }
+            get { return Model.BaseLight.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Highlight;
+                var oldValue = Model.BaseLight;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Highlight = newValue;
+                Model.BaseLight = newValue;
                 RaiseViewModelChanged(nameof(Highlight), oldValue, value);
             }
         }
@@ -50,14 +50,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomCorner_IconBottom_Desc", typeof(ThemeResources))]
         public Color IconBottom
         {
-            get { return Model.IconBottom.ToMediaColor(); }
+            get { return Model.IconMain.ToMediaColor(); }
             set
             {
-                var oldValue = Model.IconBottom;
+                var oldValue = Model.IconMain;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.IconBottom = newValue;
+                Model.IconMain = newValue;
                 RaiseViewModelChanged(nameof(IconBottom), oldValue, value);
             }
         }
@@ -67,14 +67,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomCorner_IconTop_Desc", typeof(ThemeResources))]
         public Color IconTop
         {
-            get { return Model.IconTop.ToMediaColor(); }
+            get { return Model.IconLight.ToMediaColor(); }
             set
             {
-                var oldValue = Model.IconTop;
+                var oldValue = Model.IconLight;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.IconTop = newValue;
+                Model.IconLight = newValue;
                 RaiseViewModelChanged(nameof(IconTop), oldValue, value);
             }
         }
@@ -84,14 +84,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomCorner_Main_Desc", typeof(ThemeResources))]
         public Color Main
         {
-            get { return Model.Main.ToMediaColor(); }
+            get { return Model.BaseMain.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Main;
+                var oldValue = Model.BaseMain;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Main = newValue;
+                Model.BaseMain = newValue;
                 RaiseViewModelChanged(nameof(Main), oldValue, value);
             }
         }

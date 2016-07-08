@@ -35,14 +35,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_Folder_Shading_Desc", typeof(ThemeResources))]
         public Color Shading
         {
-            get { return Model.Shading.ToMediaColor(); }
+            get { return Model.Dark.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Shading;
+                var oldValue = Model.Dark;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Shading = newValue;
+                Model.Dark = newValue;
                 RaiseViewModelChanged(nameof(Shading), oldValue, value);
             }
         }

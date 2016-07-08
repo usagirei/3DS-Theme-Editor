@@ -17,14 +17,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         public Color ArrowGlow
 
         {
-            get { return Model.ArrowGlow.ToMediaColor(); }
+            get { return Model.ArrowShadow.ToMediaColor(); }
             set
             {
-                var oldValue = Model.ArrowGlow;
+                var oldValue = Model.ArrowShadow;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.ArrowGlow = newValue;
+                Model.ArrowShadow = newValue;
                 RaiseViewModelChanged(nameof(ArrowGlow), oldValue, value);
             }
         }
@@ -35,14 +35,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         public Color ArrowPressed
 
         {
-            get { return Model.ArrowPressed.ToMediaColor(); }
+            get { return Model.ArrowSelected.ToMediaColor(); }
             set
             {
-                var oldValue = Model.ArrowPressed;
+                var oldValue = Model.ArrowSelected;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.ArrowPressed = newValue;
+                Model.ArrowSelected = newValue;
                 RaiseViewModelChanged(nameof(ArrowPressed), oldValue, value);
             }
         }
@@ -53,14 +53,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         public Color ArrowUnpressed
 
         {
-            get { return Model.ArrowUnpressed.ToMediaColor(); }
+            get { return Model.ArrowMain.ToMediaColor(); }
             set
             {
-                var oldValue = Model.ArrowUnpressed;
+                var oldValue = Model.ArrowMain;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.ArrowUnpressed = newValue;
+                Model.ArrowMain = newValue;
                 RaiseViewModelChanged(nameof(ArrowUnpressed), oldValue, value);
             }
         }
@@ -70,14 +70,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_FolderArrow_Glow_Desc", typeof(ThemeResources))]
         public Color Glow
         {
-            get { return Model.Glow.ToMediaColor(); }
+            get { return Model.Shadow.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Glow;
+                var oldValue = Model.Shadow;
                 var newValue = value.ToColorArgb8888();
                 if (oldValue == newValue)
                     return;
-                Model.Glow = newValue;
+                Model.Shadow = newValue;
                 RaiseViewModelChanged(nameof(Glow), oldValue, value);
             }
         }
@@ -87,14 +87,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_FolderArrow_Highlight_Desc", typeof(ThemeResources))]
         public Color Highlight
         {
-            get { return Model.Highlight.ToMediaColor(); }
+            get { return Model.Light.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Highlight;
+                var oldValue = Model.Light;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Highlight = newValue;
+                Model.Light = newValue;
                 RaiseViewModelChanged(nameof(Highlight), oldValue, value);
             }
         }
@@ -123,14 +123,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_FolderArrow_Shading_Desc", typeof(ThemeResources))]
         public Color Shading
         {
-            get { return Model.Shading.ToMediaColor(); }
+            get { return Model.Dark.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Shading;
+                var oldValue = Model.Dark;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Shading = newValue;
+                Model.Dark = newValue;
                 RaiseViewModelChanged(nameof(Shading), oldValue, value);
             }
         }

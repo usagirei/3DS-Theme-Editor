@@ -16,14 +16,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_OpenClose_Glow_Desc", typeof(ThemeResources))]
         public Color Glow
         {
-            get { return Model.Glow.ToMediaColor(); }
+            get { return Model.Light.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Glow;
+                var oldValue = Model.Light;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Glow = newValue;
+                Model.Light = newValue;
                 RaiseViewModelChanged(nameof(Glow), oldValue, value);
             }
         }
@@ -35,14 +35,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_OpenClose_Pressed_Desc", typeof(ThemeResources))]
         public Color Pressed
         {
-            get { return Model.Pressed.ToMediaColor(); }
+            get { return Model.Dark.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Pressed;
+                var oldValue = Model.Dark;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Pressed = newValue;
+                Model.Dark = newValue;
                 RaiseViewModelChanged(nameof(Pressed), oldValue, value);
             }
         }
@@ -52,14 +52,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_OpenClose_TextGlow_Desc", typeof(ThemeResources))]
         public Color TextGlow
         {
-            get { return Model.TextGlow.ToMediaColor(); }
+            get { return Model.TextShadow.ToMediaColor(); }
             set
             {
-                var oldValue = Model.TextGlow;
+                var oldValue = Model.TextShadow;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.TextGlow = newValue;
+                Model.TextShadow = newValue;
                 RaiseViewModelChanged(nameof(TextGlow), oldValue, value);
             }
         }
@@ -69,14 +69,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_OpenClose_TextPressed_Desc", typeof(ThemeResources))]
         public Color TextPressed
         {
-            get { return Model.TextPressed.ToMediaColor(); }
+            get { return Model.TextSelected.ToMediaColor(); }
             set
             {
-                var oldValue = Model.TextPressed;
+                var oldValue = Model.TextSelected;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.TextPressed = newValue;
+                Model.TextSelected = newValue;
                 RaiseViewModelChanged(nameof(TextPressed), oldValue, value);
             }
         }
@@ -87,14 +87,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         public Color TextUnpressed
 
         {
-            get { return Model.TextUnpressed.ToMediaColor(); }
+            get { return Model.TextMain.ToMediaColor(); }
             set
             {
-                var oldValue = Model.TextUnpressed;
+                var oldValue = Model.TextMain;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.TextUnpressed = newValue;
+                Model.TextMain = newValue;
                 RaiseViewModelChanged(nameof(TextUnpressed), oldValue, value);
             }
         }
@@ -104,14 +104,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_OpenClose_Unpressed_Desc", typeof(ThemeResources))]
         public Color Unpressed
         {
-            get { return Model.Unpressed.ToMediaColor(); }
+            get { return Model.Main.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Unpressed;
+                var oldValue = Model.Main;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Unpressed = newValue;
+                Model.Main = newValue;
                 RaiseViewModelChanged(nameof(Unpressed), oldValue, value);
             }
         }

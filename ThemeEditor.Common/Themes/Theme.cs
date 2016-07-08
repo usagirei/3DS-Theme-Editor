@@ -187,6 +187,12 @@ namespace ThemeEditor.Common.Themes
             var flags = new Flags();
             using (var br = new BinaryReader(s, Encoding.ASCII, true))
             {
+                s.Position = 0x00;
+                flags.Version = br.ReadUInt32();
+
+                s.Position = 0x04;
+                flags.PreferredRow = (PreferredRowType)br.ReadByte();
+
                 s.Position = 0x05;
                 flags.BackgroundMusic = br.ReadByte() > 0;
 

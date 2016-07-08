@@ -16,14 +16,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_ArrowButton_Glow_Desc", typeof(ThemeResources))]
         public Color Glow
         {
-            get { return Model.Glow.ToMediaColor(); }
+            get { return Model.Light.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Glow;
+                var oldValue = Model.Light;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Glow = newValue;
+                Model.Light = newValue;
                 RaiseViewModelChanged(nameof(Glow), oldValue, value);
             }
         }
@@ -52,14 +52,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_ArrowButton_Shading_Desc", typeof(ThemeResources))]
         public Color Shading
         {
-            get { return Model.Shading.ToMediaColor(); }
+            get { return Model.Dark.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Shading;
+                var oldValue = Model.Dark;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Shading = newValue;
+                Model.Dark = newValue;
                 RaiseViewModelChanged(nameof(Shading), oldValue, value);
             }
         }

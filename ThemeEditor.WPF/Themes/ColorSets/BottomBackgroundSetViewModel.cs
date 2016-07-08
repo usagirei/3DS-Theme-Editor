@@ -16,14 +16,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomInner_Border_Desc", typeof(ThemeResources))]
         public Color Border
         {
-            get { return Model.Border.ToMediaColor(); }
+            get { return Model.Light.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Border;
+                var oldValue = Model.Light;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Border = newValue;
+                Model.Light = newValue;
                 RaiseViewModelChanged(nameof(Border), oldValue, value);
             }
         }
@@ -33,14 +33,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomInner_Highlight_Desc", typeof(ThemeResources))]
         public Color Highlight
         {
-            get { return Model.Highlight.ToMediaColor(); }
+            get { return Model.Dark.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Highlight;
+                var oldValue = Model.Dark;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Highlight = newValue;
+                Model.Dark = newValue;
                 RaiseViewModelChanged(nameof(Highlight), oldValue, value);
             }
         }
@@ -69,14 +69,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomInner_Glow_Desc", typeof(ThemeResources))]
         public Color Glow
         {
-            get { return Model.Glow.ToMediaColor(); }
+            get { return Model.Shadow.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Glow;
+                var oldValue = Model.Shadow;
                 var newValue = value.ToColorArgb8888();
                 if (oldValue == newValue)
                     return;
-                Model.Glow = newValue;
+                Model.Shadow = newValue;
                 RaiseViewModelChanged(nameof(Glow), oldValue, value);
             }
         }

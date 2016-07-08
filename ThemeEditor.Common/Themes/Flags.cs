@@ -8,6 +8,9 @@ namespace ThemeEditor.Common.Themes
 {
     public class Flags
     {
+        public uint Version;
+        public PreferredRowType PreferredRow;
+
         public bool ArrowButtonColor;
         public bool ArrowColor;
         public bool BackgroundMusic;

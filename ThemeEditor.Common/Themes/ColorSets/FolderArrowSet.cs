@@ -10,45 +10,62 @@ namespace ThemeEditor.Common.Themes.ColorSets
 {
     public class FolderArrowSet
     {
-        public ColorArgb8888 _;
-        public ColorRgb888 __;
+        /*
+        * Data Order:
+        * 
+        * TextShadow Pos (float)
+        * 
+        * Dark 
+        * Main 
+        * Light 
+        * Shadow (Alpha)
+        * 
+        * Glow
+        * TextShadow
+        * TextMain
+        * TextSelected
+        */
+
         public ColorRgb888 ___;
-        public ColorRgb888 ArrowGlow;
-        public ColorRgb888 ArrowPressed;
-        public ColorRgb888 ArrowUnpressed;
-        public ColorArgb8888 Glow;
-        public ColorRgb888 Highlight;
+
+        public float ArrowShadowPos;
+        public ColorRgb888 Glow;
+        public ColorRgb888 ArrowShadow;
+        public ColorRgb888 ArrowSelected;
+        public ColorRgb888 ArrowMain;
+        public ColorArgb8888 Shadow;
+        public ColorRgb888 Light;
         public ColorRgb888 Main;
-        public ColorRgb888 Shading;
+        public ColorRgb888 Dark;
 
         public static FolderArrowSet Read(BinaryReader br)
         {
             return new FolderArrowSet
             {
-                _ = ColorArgb8888.Read(br),
-                Shading = ColorRgb888.Read(br),
+                ArrowShadowPos = br.ReadSingle(),
+                Dark = ColorRgb888.Read(br),
                 Main = ColorRgb888.Read(br),
-                Highlight = ColorRgb888.Read(br),
-                Glow = ColorArgb8888.Read(br),
-                __ = ColorRgb888.Read(br),
-                ArrowGlow = ColorRgb888.Read(br),
-                ArrowUnpressed = ColorRgb888.Read(br),
-                ArrowPressed = ColorRgb888.Read(br),
-                ___ = ColorRgb888.Read(br)
+                Light = ColorRgb888.Read(br),
+                Shadow = ColorArgb8888.Read(br),
+                Glow = ColorRgb888.Read(br),
+                ArrowShadow = ColorRgb888.Read(br),
+                ArrowMain = ColorRgb888.Read(br),
+                ArrowSelected = ColorRgb888.Read(br),
+                ___ = ColorRgb888.Read(br) // Padding
             };
         }
 
         public void Write(BinaryWriter bw)
         {
-            _.Write(bw);
-            Shading.Write(bw);
+            bw.Write(ArrowShadowPos);
+            Dark.Write(bw);
             Main.Write(bw);
-            Highlight.Write(bw);
+            Light.Write(bw);
+            Shadow.Write(bw);
             Glow.Write(bw);
-            __.Write(bw);
-            ArrowGlow.Write(bw);
-            ArrowUnpressed.Write(bw);
-            ArrowPressed.Write(bw);
+            ArrowShadow.Write(bw);
+            ArrowMain.Write(bw);
+            ArrowSelected.Write(bw);
             ___.Write(bw);
         }
     }

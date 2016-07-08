@@ -16,14 +16,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomOuter_Glow_Desc", typeof(ThemeResources))]
         public Color Glow
         {
-            get { return Model.Glow.ToMediaColor(); }
+            get { return Model.Light.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Glow;
+                var oldValue = Model.Light;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Glow = newValue;
+                Model.Light = newValue;
                 RaiseViewModelChanged(nameof(Glow), oldValue, value);
             }
         }
@@ -52,14 +52,14 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Description("Theme_Sets_BottomOuter_Stripe_Desc", typeof(ThemeResources))]
         public Color Stripe
         {
-            get { return Model.Stripe.ToMediaColor(); }
+            get { return Model.Dark.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Stripe;
+                var oldValue = Model.Dark;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Stripe = newValue;
+                Model.Dark = newValue;
                 RaiseViewModelChanged(nameof(Stripe), oldValue, value);
             }
         }

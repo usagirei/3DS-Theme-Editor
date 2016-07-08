@@ -10,37 +10,54 @@ namespace ThemeEditor.Common.Themes.ColorSets
 {
     public class BottomCorner
     {
-        public ColorRgb888 _;
-        public ColorRgb888 __;
-        public ColorRgb888 Border;
-        public ColorRgb888 Highlight;
-        public ColorRgb888 IconBottom;
-        public ColorRgb888 IconTop;
-        public ColorRgb888 Main;
+        /*
+        * Data Order:
+        * 
+        * :Base
+        * Dark 
+        * Main 
+        * Light 
+        * Shadow
+        * 
+        * :Icon
+        * Main
+        * Light
+        * TextMain
+        */
+
+        public ColorRgb888 BaseShadow;
+        public ColorRgb888 IconTextMain;
+        public ColorRgb888 BaseDark;
+        public ColorRgb888 BaseLight;
+        public ColorRgb888 IconMain;
+        public ColorRgb888 IconLight;
+        public ColorRgb888 BaseMain;
 
         public static BottomCorner Read(BinaryReader br)
         {
             return new BottomCorner
             {
-                Border = ColorRgb888.Read(br),
-                Main = ColorRgb888.Read(br),
-                Highlight = ColorRgb888.Read(br),
-                _ = ColorRgb888.Read(br),
-                IconBottom = ColorRgb888.Read(br),
-                IconTop = ColorRgb888.Read(br),
-                __ = ColorRgb888.Read(br),
+                BaseDark = ColorRgb888.Read(br),
+                BaseMain = ColorRgb888.Read(br),
+                BaseLight = ColorRgb888.Read(br),
+                BaseShadow = ColorRgb888.Read(br),
+
+                IconMain = ColorRgb888.Read(br),
+                IconLight = ColorRgb888.Read(br),
+                IconTextMain = ColorRgb888.Read(br),
             };
         }
 
         public void Write(BinaryWriter bw)
         {
-            Border.Write(bw);
-            Main.Write(bw);
-            Highlight.Write(bw);
-            __.Write(bw);
-            IconBottom.Write(bw);
-            IconTop.Write(bw);
-            _.Write(bw);
+            BaseDark.Write(bw);
+            BaseMain.Write(bw);
+            BaseLight.Write(bw);
+            BaseShadow.Write(bw);
+
+            IconMain.Write(bw);
+            IconLight.Write(bw);
+            IconTextMain.Write(bw);
         }
     }
 }
