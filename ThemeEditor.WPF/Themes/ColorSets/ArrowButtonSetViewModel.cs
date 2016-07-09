@@ -64,6 +64,23 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
+#if DEBUG
+        public Color Shadow
+        {
+            get { return Model.Shadow.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Shadow;
+                var newValue = value.ToColorArgb8888();
+                if (oldValue == newValue)
+                    return;
+                Model.Shadow = newValue;
+                RaiseViewModelChanged(nameof(Shadow), oldValue, value);
+            }
+        }
+
+#endif
+
         public ArrowButtonSetViewModel(ArrowButtonSet model, string tag) : base(model, tag) {}
     }
 }

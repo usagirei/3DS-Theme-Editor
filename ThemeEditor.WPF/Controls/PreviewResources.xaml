@@ -4,10 +4,15 @@
     xmlns:controls="clr-namespace:ThemeEditor.WPF.Controls"
     xmlns:markup="clr-namespace:ThemeEditor.WPF.Markup"
     xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
-    xmlns:properties="clr-namespace:ThemeEditor.WPF.Properties">
+    xmlns:properties="clr-namespace:ThemeEditor.WPF.Properties"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
 
+    <system:Double x:Key="ZeroDouble">0</system:Double>
     <templating:BooleanMultiConverter x:Key="BooleanAndConverter" Operation="And" />
+    <templating:ThicknessConverter x:Key="ShadowPositionConverter" Sides="Bottom" Multiplier="1.2"/>
+    <templating:ComparisonConverter x:Key="ShadowDirectionConverter" Mode="LessThan" FalseValue="90" TrueValue="-90" />
+    <templating:MathConverter x:Key="ShadowDepthConverter" Function="Abs"/>
 
     <!--  Cursor  -->
     <CombinedGeometry x:Key="CursorGeometry" GeometryCombineMode="Exclude">
@@ -260,8 +265,8 @@
                 <Setter Property="Stroke">
                     <Setter.Value>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Offset="0" Color="{Binding Path=Colors.File.Glow}" />
-                            <GradientStop Offset="1" Color="{Binding Path=Colors.File.Shading}" />
+                            <GradientStop Offset="0" Color="{Binding Path=Colors.File.Light}" />
+                            <GradientStop Offset="1" Color="{Binding Path=Colors.File.Dark}" />
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
@@ -340,14 +345,14 @@
                         <Setter.Value>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <GradientStop Offset="0"
-                                              Color="{Binding Path=Colors.Folder.Shading, Converter={StaticResource BlendConverter}, ConverterParameter={x:Static Colors.White}}" />
-                                <GradientStop Offset="0.1" Color="{Binding Path=Colors.Folder.Shading}" />
+                                              Color="{Binding Path=Colors.Folder.Dark, Converter={StaticResource BlendConverter}, ConverterParameter={x:Static Colors.White}}" />
+                                <GradientStop Offset="0.1" Color="{Binding Path=Colors.Folder.Dark}" />
                             </LinearGradientBrush>
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Stroke">
                         <Setter.Value>
-                            <SolidColorBrush Color="{Binding Path=Colors.Folder.Shading}" />
+                            <SolidColorBrush Color="{Binding Path=Colors.Folder.Dark}" />
                         </Setter.Value>
                     </Setter>
                 </DataTrigger.Setters>
@@ -375,16 +380,16 @@
                     <Setter Property="Fill">
                         <Setter.Value>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Offset="0" Color="White" />
+                                <GradientStop Offset="0" Color="{Binding Path=Colors.Folder.Light}" />
                                 <GradientStop Offset="0.1" Color="{Binding Path=Colors.Folder.Main}" />
                                 <GradientStop Offset="0.9" Color="{Binding Path=Colors.Folder.Main}" />
-                                <GradientStop Offset="1" Color="{Binding Path=Colors.Folder.Shading}" />
+                                <GradientStop Offset="1" Color="{Binding Path=Colors.Folder.Dark}" />
                             </LinearGradientBrush>
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Stroke">
                         <Setter.Value>
-                            <SolidColorBrush Color="{Binding Path=Colors.Folder.Shading}" />
+                            <SolidColorBrush Color="{Binding Path=Colors.Folder.Dark}" />
                         </Setter.Value>
                     </Setter>
                 </DataTrigger.Setters>
@@ -423,6 +428,7 @@
         x:Key="FolderStyleBackOpen"
         BasedOn="{StaticResource FolderStyleBack}"
         TargetType="{x:Type Path}">
+
         <Setter Property="Clip" Value="{StaticResource FolderGeometryBackOpen}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Flags.FolderTexture}" Value="True">
@@ -500,8 +506,8 @@
                 <Setter Property="Stroke">
                     <Setter.Value>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Offset="0" Color="{Binding Path=Colors.File.Glow}" />
-                            <GradientStop Offset="1" Color="{Binding Path=Colors.File.Shading}" />
+                            <GradientStop Offset="0" Color="{Binding Path=Colors.File.Light}" />
+                            <GradientStop Offset="1" Color="{Binding Path=Colors.File.Dark}" />
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
@@ -579,7 +585,7 @@
                             BlurRadius="8"
                             Direction="-90"
                             ShadowDepth="2"
-                            Color="{Binding Path=Colors.FolderArrow.Glow}" />
+                            Color="{Binding Path=Colors.FolderArrow.Shadow}" />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
@@ -635,8 +641,8 @@
                     <Setter.Value>
                         <DropShadowEffect
                             BlurRadius="2"
-                            Direction="-90"
-                            ShadowDepth="1"
+                            Direction="{Binding Path=Colors.FolderArrow.ShadowPosition, Converter={StaticResource ShadowDirectionConverter}, ConverterParameter={StaticResource ZeroDouble}}"
+                            ShadowDepth="{Binding Path=Colors.FolderArrow.ShadowPosition, Converter={StaticResource ShadowDepthConverter}}"
                             Color="{Binding Path=Colors.FolderArrow.ArrowGlow}" />
                     </Setter.Value>
                 </Setter>
@@ -702,7 +708,7 @@
                 <Setter Property="Fill">
                     <Setter.Value>
                         <LinearGradientBrush StartPoint="0,0.1" EndPoint="0,0.5">
-                            <GradientStop Offset="-0.5" Color="{Binding Path=Colors.Open.Glow}" />
+                            <GradientStop Offset="-0.5" Color="{Binding Path=Colors.Open.Light}" />
                             <GradientStop Offset="0.4" Color="{Binding Path=Colors.Open.Unpressed}" />
                             <GradientStop Offset="0.5" Color="{Binding Path=Colors.Open.Unpressed}" />
                             <GradientStop Offset="1.5" Color="{Binding Path=Colors.Open.Pressed}" />
@@ -753,7 +759,7 @@
             <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
                 <Setter Property="Stroke">
                     <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.Open.Glow}" />
+                        <SolidColorBrush Color="{Binding Path=Colors.Open.Light}" />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
@@ -836,6 +842,7 @@
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Fill" Value="#3d3d3d" />
         <Setter Property="Height" Value="18" />
+        <Setter Property="Visibility" Value="Visible" />
         <Style.Triggers>
             <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
                 <Setter Property="Fill" Value="#efede9" />
@@ -866,6 +873,8 @@
     <Style x:Key="OpenStyleTextShadow" TargetType="controls:TextPath" BasedOn="{StaticResource OpenStyleText}">
         <Setter Property="Margin" Value="0,2,0,0" />
         <Setter Property="Fill" Value="#efede9" />
+        <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="SnapsToDevicePixels" Value="False" />
         <Style.Triggers>
             <DataTrigger Binding="{markup:Setting Path=Preview_PressedToggle}" Value="True">
                 <Setter Property="Visibility" Value="Hidden" />
@@ -873,9 +882,10 @@
             <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
                 <Setter Property="Fill">
                     <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.Open.TextGlow}" />
+                        <SolidColorBrush Color="{Binding Path=Colors.Open.TextShadow}" />
                     </Setter.Value>
                 </Setter>
+                <Setter Property="Margin" Value="{Binding Path=Colors.Open.ShadowPosition, Converter={StaticResource ShadowPositionConverter}}"></Setter>
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -932,7 +942,7 @@
                 <Setter Property="Fill">
                     <Setter.Value>
                         <LinearGradientBrush StartPoint="0,0.1" EndPoint="0,0.5">
-                            <GradientStop Offset="-0.5" Color="{Binding Path=Colors.Close.Glow}" />
+                            <GradientStop Offset="-0.5" Color="{Binding Path=Colors.Close.Light}" />
                             <GradientStop Offset="0.4" Color="{Binding Path=Colors.Close.Unpressed}" />
                             <GradientStop Offset="0.5" Color="{Binding Path=Colors.Close.Unpressed}" />
                             <GradientStop Offset="1.5" Color="{Binding Path=Colors.Close.Pressed}" />
@@ -969,7 +979,7 @@
             <DataTrigger Binding="{Binding Path=Flags.OpenCloseColor}" Value="True">
                 <Setter Property="Stroke">
                     <Setter.Value>
-                        <SolidColorBrush Color="{Binding Path=Colors.Close.Glow}" />
+                        <SolidColorBrush Color="{Binding Path=Colors.Close.Light}" />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
@@ -1508,5 +1518,40 @@
                     Color="Black" />
             </Setter.Value>
         </Setter>
+
+    </Style>
+    <Style x:Key="PreviewFileShadowCaster" 
+           BasedOn="{StaticResource PreviewItemShadowCaster}" 
+           TargetType="{x:Type FrameworkElement}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FileColor}" Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect
+                    Opacity="0.35"
+                    BlurRadius="5"
+                    ShadowDepth="0"
+                    Color="{Binding Path=Colors.File.Shadow}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="PreviewFolderShadowCaster" 
+           BasedOn="{StaticResource PreviewItemShadowCaster}" 
+           TargetType="{x:Type FrameworkElement}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Flags.FolderColor}" Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect
+                    Opacity="0.35"
+                    BlurRadius="5"
+                    ShadowDepth="0"
+                    Color="{Binding Path=Colors.Folder.Shadow}" />
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

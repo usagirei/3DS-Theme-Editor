@@ -83,7 +83,7 @@
             </TextBlock>
             <Slider
                 Margin="3"
-                Minimum="0" Maximum="1"
+                Minimum="{Binding Path=RangeMin}" Maximum="{Binding Path=RangeMax}"
                 SmallChange="0.05" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"
                 Width="115" Value="{Binding Path=Value}">
                 <Slider.ToolTip>

@@ -2,6 +2,7 @@
 // 3DS Theme Editor - OpenCloseSetViewModel.cs
 // --------------------------------------------------
 
+using System;
 using System.Windows.Media;
 
 using ThemeEditor.Common.Themes.ColorSets;
@@ -11,24 +12,59 @@ namespace ThemeEditor.WPF.Themes.ColorSets
 {
     public sealed class OpenCloseSetViewModel : ViewModelBase
     {
-        [Order(3)]
-        [DisplayName("Theme_Sets_OpenClose_Glow", typeof(ThemeResources))]
-        [Description("Theme_Sets_OpenClose_Glow_Desc", typeof(ThemeResources))]
-        public Color Glow
+
+
+        private new OpenCloseSet Model => (OpenCloseSet) base.Model;
+
+#if DEBUG
+
+        public Color Shadow
         {
-            get { return Model.Light.ToMediaColor(); }
+            get { return Model.Shadow.ToMediaColor(); }
             set
             {
-                var oldValue = Model.Light;
+                var oldValue = Model.Shadow;
+                var newValue = value.ToColorArgb8888();
+                if (oldValue == newValue)
+                    return;
+                Model.Shadow = newValue;
+                RaiseViewModelChanged(nameof(Shadow), oldValue, value);
+            }
+        }
+
+        public Color Glow
+        {
+            get { return Model.Glow.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Glow;
                 var newValue = value.ToColorRgb888();
                 if (oldValue == newValue)
                     return;
-                Model.Light = newValue;
+                Model.Glow = newValue;
                 RaiseViewModelChanged(nameof(Glow), oldValue, value);
             }
         }
 
-        private new OpenCloseSet Model => (OpenCloseSet) base.Model;
+#endif
+
+        [Order(7)]
+        [Range(-3, 3)]
+        [DisplayName("Theme_Sets_OpenClose_ShadowPos", typeof(ThemeResources))]
+        [Description("Theme_Sets_OpenClose_ShadowPos_Desc", typeof(ThemeResources))]
+        public double ShadowPosition
+        {
+            get { return Model.TextShadowPos; }
+            set
+            {
+                var oldValue = Model.TextShadowPos;
+                var newValue = (float)value;
+                if (Math.Abs(oldValue - newValue) < 0.001f)
+                    return;
+                Model.TextShadowPos = newValue;
+                RaiseViewModelChanged(nameof(ShadowPosition), oldValue, value);
+            }
+        }
 
         [Order(1)]
         [DisplayName("Theme_Sets_OpenClose_Pressed", typeof(ThemeResources))]
@@ -47,10 +83,48 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
+        [Order(2)]
+        [DisplayName("Theme_Sets_OpenClose_Unpressed", typeof(ThemeResources))]
+        [Description("Theme_Sets_OpenClose_Unpressed_Desc", typeof(ThemeResources))]
+        public Color Unpressed
+        {
+            get { return Model.Main.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Main;
+                var newValue = value.ToColorRgb888();
+                if (oldValue == newValue)
+                    return;
+                Model.Main = newValue;
+                RaiseViewModelChanged(nameof(Unpressed), oldValue, value);
+            }
+        }
+
+        [Order(3)]
+        [DisplayName("Theme_Sets_OpenClose_Light", typeof(ThemeResources))]
+        [Description("Theme_Sets_OpenClose_Light_Desc", typeof(ThemeResources))]
+        public Color Light
+        {
+            get { return Model.Light.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Light;
+                var newValue = value.ToColorRgb888();
+                if (oldValue == newValue)
+                    return;
+                Model.Light = newValue;
+                RaiseViewModelChanged(nameof(Light), oldValue, value);
+            }
+        }
+
+
+
+
+
         [Order(6)]
-        [DisplayName("Theme_Sets_OpenClose_TextGlow", typeof(ThemeResources))]
-        [Description("Theme_Sets_OpenClose_TextGlow_Desc", typeof(ThemeResources))]
-        public Color TextGlow
+        [DisplayName("Theme_Sets_OpenClose_TextShadow", typeof(ThemeResources))]
+        [Description("Theme_Sets_OpenClose_TextShadow_Desc", typeof(ThemeResources))]
+        public Color TextShadow
         {
             get { return Model.TextShadow.ToMediaColor(); }
             set
@@ -60,7 +134,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
                 if (oldValue == newValue)
                     return;
                 Model.TextShadow = newValue;
-                RaiseViewModelChanged(nameof(TextGlow), oldValue, value);
+                RaiseViewModelChanged(nameof(TextShadow), oldValue, value);
             }
         }
 
@@ -99,22 +173,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        [Order(2)]
-        [DisplayName("Theme_Sets_OpenClose_Unpressed", typeof(ThemeResources))]
-        [Description("Theme_Sets_OpenClose_Unpressed_Desc", typeof(ThemeResources))]
-        public Color Unpressed
-        {
-            get { return Model.Main.ToMediaColor(); }
-            set
-            {
-                var oldValue = Model.Main;
-                var newValue = value.ToColorRgb888();
-                if (oldValue == newValue)
-                    return;
-                Model.Main = newValue;
-                RaiseViewModelChanged(nameof(Unpressed), oldValue, value);
-            }
-        }
+
 
         public OpenCloseSetViewModel(OpenCloseSet model, string tag) : base(model, tag) { }
     }

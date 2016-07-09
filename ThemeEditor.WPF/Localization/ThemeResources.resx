@@ -717,10 +717,10 @@
   <data name="Theme_Sets_Game_Text_Desc" xml:space="preserve">
     <value>Text Color</value>
   </data>
-  <data name="Theme_Sets_OpenClose_Glow" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
     <value>Glow</value>
   </data>
-  <data name="Theme_Sets_OpenClose_Glow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_Light_Desc" xml:space="preserve">
     <value>Glow Color</value>
   </data>
   <data name="Theme_Sets_OpenClose_Pressed" xml:space="preserve">
@@ -729,10 +729,10 @@
   <data name="Theme_Sets_OpenClose_Pressed_Desc" xml:space="preserve">
     <value>Background Pressed Color</value>
   </data>
-  <data name="Theme_Sets_OpenClose_TextGlow" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_TextShadow" xml:space="preserve">
     <value>Text Glow</value>
   </data>
-  <data name="Theme_Sets_OpenClose_TextGlow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_TextShadow_Desc" xml:space="preserve">
     <value>Text Glow Color</value>
   </data>
   <data name="Theme_Sets_OpenClose_TextPressed" xml:space="preserve">
@@ -757,7 +757,7 @@
     <value>Gradient</value>
   </data>
   <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
-    <value>Fade to White Ratio</value>
+    <value>Fade to Color Ratio</value>
   </data>
   <data name="Theme_Sets_Top_Main" xml:space="preserve">
     <value>Background</value>
@@ -766,10 +766,10 @@
     <value>Background Color</value>
   </data>
   <data name="Theme_Sets_Top_Opacity" xml:space="preserve">
-    <value>Opacity</value>
+    <value>Main Opacity</value>
   </data>
   <data name="Theme_Sets_Top_Opacity_Desc" xml:space="preserve">
-    <value>Texture Opacity</value>
+    <value>Main Texture Opacity</value>
   </data>
   <data name="Theme_Sets_TopCorner_Main" xml:space="preserve">
     <value>Background</value>
@@ -813,17 +813,17 @@
   <data name="Theme_Info_SmallIcon_Desc" xml:space="preserve">
     <value>24px Icon</value>
   </data>
-  <data name="Theme_Sets_Top_FadeToWhite" xml:space="preserve">
-    <value>White Gradient</value>
+  <data name="Theme_Sets_Top_FadeToValue" xml:space="preserve">
+    <value>Gradient Color</value>
   </data>
-  <data name="Theme_Sets_Top_FadeToWhite_Desc" xml:space="preserve">
-    <value>Gradient Fades to White</value>
+  <data name="Theme_Sets_Top_FadeToValue_Desc" xml:space="preserve">
+    <value>Gradient Fade Value</value>
   </data>
-  <data name="Theme_Sets_Top_EnableAlt" xml:space="preserve">
-    <value>Show Static Image</value>
+  <data name="Theme_Sets_Top_AltOpacity" xml:space="preserve">
+    <value>Alt Opacity</value>
   </data>
-  <data name="Theme_Sets_Top_EnableAlt_Desc" xml:space="preserve">
-    <value>Uses Alternative Top Texture</value>
+  <data name="Theme_Sets_Top_AltOpacity_Desc" xml:space="preserve">
+    <value>Alt Texture Opacity</value>
   </data>
   <data name="Enum_GameText_Color" xml:space="preserve">
     <value>Enabled</value>

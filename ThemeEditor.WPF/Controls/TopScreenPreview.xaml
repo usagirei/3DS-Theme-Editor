@@ -9,6 +9,7 @@
              xmlns:renderers="clr-namespace:ThemeEditor.WPF.Controls.Renderers"
              xmlns:effects="clr-namespace:ThemeEditor.WPF.Effects"
              xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
+             xmlns:enums="clr-namespace:ThemeEditor.WPF.Localization.Enums"
              mc:Ignorable="d"
              
              d:DesignHeight="240" d:DesignWidth="412">
@@ -164,37 +165,41 @@
             </CombinedGeometry>
             <EllipseGeometry Center="8,8" RadiusY="3" RadiusX="3" />
         </GeometryGroup>
-        <templating:BooleanConverter x:Key="BooleanToWeightConverter">
-            <templating:BooleanConverter.TrueValue>
-                <system:Single>1</system:Single>
-            </templating:BooleanConverter.TrueValue>
-            <templating:BooleanConverter.FalseValue>
-                <system:Single>-1</system:Single>
-            </templating:BooleanConverter.FalseValue>
-        </templating:BooleanConverter>
     </UserControl.Resources>
     <Canvas ClipToBounds="True"
             DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Theme}"
             Width="412px" Height="240px">
         <!-- Background -->
-        <renderers:TopWallpaperRenderer x:Name="TopBackground" Theme="{Binding Path=.}" IsEnabled="True" />
-        <renderers:TopWallpaperOverlaysRenderer x:Name="TopOverlay" Theme="{Binding Path=.}" IsEnabled="True" />
-        <!-- Merge Renderer -->
-        <Rectangle Fill="Fuchsia" Width="412" Height="240">
-            <Rectangle.Effect>
-                <effects:WarpEffect Scale="1.3" Pinch="0.2"
-                                    BlendWeight="{Binding Path=Colors.TopBackground.FadeToWhite, Converter={StaticResource BooleanToWeightConverter}}">
+        <renderers:TopWallpaperRenderer x:Name="TopBackground" Theme="{Binding Path=.}" IsEnabled="True">
+            <renderers:TopWallpaperRenderer.Resources>
+                <ImageBrush ImageSource="../Resources/TOPALT_DEFMASK.png" x:Key="TopDefBrush"/>
+                <templating:NullConverter x:Key="TextureDefaulter" NullValue="../Resources/TOPALT_DEFMASK.png" />
 
-                    <effects:WarpEffect.Input>
-                        <VisualBrush Visual="{Binding ElementName=TopBackground}" />
-                    </effects:WarpEffect.Input>
-                    <effects:WarpEffect.OverlayBrush>
-                        <VisualBrush Visual="{Binding ElementName=TopOverlay}" />
-                    </effects:WarpEffect.OverlayBrush>
+                <ImageBrush ImageSource="{Binding Path=Textures.Top.Bitmap, Converter={StaticResource TextureDefaulter}}" x:Key="TopBrush"/>
+                <ImageBrush ImageSource="{Binding Path=Textures.TopAlt.Bitmap, Converter={StaticResource TextureDefaulter}}" x:Key="TopAltBrush"/>
+
+                <templating:SwitchConverter x:Key="TextureMovSwitchConverter" DefaultValue="{StaticResource TopDefBrush}">
+                    <templating:SwitchConverterCase Case="{x:Static enums:TopDrawType.SolidColorTexture}" Value="{StaticResource TopBrush}" />
+                </templating:SwitchConverter>
+                <templating:SwitchConverter x:Key="TextureFixSwitchConverter" DefaultValue="{StaticResource TopDefBrush}">
+                    <templating:SwitchConverterCase Case="{x:Static enums:TopDrawType.SolidColorTexture}" Value="{StaticResource TopAltBrush}" />
+                </templating:SwitchConverter>
+            </renderers:TopWallpaperRenderer.Resources>
+            <renderers:TopWallpaperRenderer.Effect>
+                <effects:WarpEffect 
+                    Offset="{Binding ElementName=TopBackground, Path=ShaderOffset, UpdateSourceTrigger=PropertyChanged}" 
+                    Enable="{Binding ElementName=TopBackground, Path=ShaderEnable, UpdateSourceTrigger=PropertyChanged}" 
+                    Aspect="2"
+                    PatternOpacity="{Binding Path=Colors.TopBackground.TextureOpacity}"
+                    AlternateOpacity="{Binding Path=Colors.TopBackground.AlternateOpacity}"
+                    GrayLevel="{Binding Path=Colors.TopBackground.GradientColor}"
+                    Gradient="{Binding Path=Colors.TopBackground.Gradient}"
+                    FixedBrush="{Binding Path=Flags.TopDrawType, Converter={StaticResource TextureFixSwitchConverter}}"
+                    MovingBrush="{Binding Path=Flags.TopDrawType, Converter={StaticResource TextureMovSwitchConverter}}"
+                    >
                 </effects:WarpEffect>
-            </Rectangle.Effect>
-        </Rectangle>
-
+            </renderers:TopWallpaperRenderer.Effect>
+        </renderers:TopWallpaperRenderer>
 
         <!-- System Bar -->
         <Canvas Width="412px" Height="20px">

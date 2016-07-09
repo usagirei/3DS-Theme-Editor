@@ -45,7 +45,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        [Order(4)]
+        [Order(3)]
         [DisplayName("Theme_Sets_BottomCorner_IconBottom", typeof(ThemeResources))]
         [Description("Theme_Sets_BottomCorner_IconBottom_Desc", typeof(ThemeResources))]
         public Color IconBottom
@@ -62,7 +62,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        [Order(5)]
+        [Order(4)]
         [DisplayName("Theme_Sets_BottomCorner_IconTop", typeof(ThemeResources))]
         [Description("Theme_Sets_BottomCorner_IconTop_Desc", typeof(ThemeResources))]
         public Color IconTop
@@ -95,6 +95,38 @@ namespace ThemeEditor.WPF.Themes.ColorSets
                 RaiseViewModelChanged(nameof(Main), oldValue, value);
             }
         }
+
+#if DEBUG
+
+        public Color BaseShadow
+        {
+            get { return Model.BaseShadow.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.BaseShadow;
+                var newValue = value.ToColorRgb888();
+                if (oldValue == newValue)
+                    return;
+                Model.BaseShadow = newValue;
+                RaiseViewModelChanged(nameof(BaseShadow), oldValue, value);
+            }
+        }
+
+        public Color IconTextMain
+        {
+            get { return Model.IconTextMain.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.IconTextMain;
+                var newValue = value.ToColorRgb888();
+                if (oldValue == newValue)
+                    return;
+                Model.IconTextMain = newValue;
+                RaiseViewModelChanged(nameof(IconTextMain), oldValue, value);
+            }
+        }
+
+#endif
 
         private new BottomCorner Model => (BottomCorner) base.Model;
 

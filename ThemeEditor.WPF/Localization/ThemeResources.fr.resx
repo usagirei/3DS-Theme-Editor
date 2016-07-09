@@ -465,13 +465,13 @@
   <data name="Theme_Sets_FolderArrow_Glow" xml:space="preserve">
     <value>Eclat</value>
   </data>
-  <data name="Theme_Sets_OpenClose_Glow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_Light_Desc" xml:space="preserve">
     <value>Couleur de l'Eclat</value>
   </data>
   <data name="Theme_Sets_File_Glow" xml:space="preserve">
     <value>Eclat</value>
   </data>
-  <data name="Theme_Sets_OpenClose_Glow" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
     <value>Eclat</value>
   </data>
   <data name="Theme_Sets_BottomOuter_Glow" xml:space="preserve">
@@ -618,10 +618,10 @@
   <data name="Theme_Flags_Top_Background_Color" xml:space="preserve">
     <value>Couleur du fond de l'écran du haut</value>
   </data>
-  <data name="Theme_Sets_OpenClose_TextGlow" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_TextShadow" xml:space="preserve">
     <value>Eclat du texte</value>
   </data>
-  <data name="Theme_Sets_OpenClose_TextGlow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_TextShadow_Desc" xml:space="preserve">
     <value>Couleur de l'éclat du texte</value>
   </data>
   <data name="Theme_Sets_OpenClose_TextPressed_Desc" xml:space="preserve">
@@ -663,9 +663,6 @@
   <data name="Theme_Flags_Top_Corner_Button_Color_Desc" xml:space="preserve">
     <value>Active la Couleur des Boutons pour prendre des screenshots et des photos</value>
   </data>
-  <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
-    <value>Fondre en ratio blanc</value>
-  </data>
   <data name="Theme_Info_Author" xml:space="preserve">
     <value>Auteur</value>
   </data>
@@ -674,9 +671,6 @@
   </data>
   <data name="Theme_Info_LargeIcon_Desc" xml:space="preserve">
     <value>Icône de 48px</value>
-  </data>
-  <data name="Theme_Sets_Top_FadeToWhite_Desc" xml:space="preserve">
-    <value>Dégradé vers le blanc</value>
   </data>
   <data name="Theme_Info_LargeIcon" xml:space="preserve">
     <value>Grande Icône</value>
@@ -692,9 +686,6 @@
   </data>
   <data name="Theme_Info_ShortDesc" xml:space="preserve">
     <value>Courte description</value>
-  </data>
-  <data name="Theme_Sets_Top_EnableAlt" xml:space="preserve">
-    <value>Montrer une image statique</value>
   </data>
   <data name="Theme_Info_SmallIcon" xml:space="preserve">
     <value>Petite Icône</value>

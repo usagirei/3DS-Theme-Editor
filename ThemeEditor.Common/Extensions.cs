@@ -24,5 +24,14 @@ namespace ThemeEditor.Common
             Buffer.BlockCopy(strData, 0, buf, 0, Math.Min(strData.Length, buf.Length));
             bw.Write(buf);
         }
+
+        public static T Clamp<T>(this T value, T min, T max) where T : IComparable<T>
+        {
+            return value.CompareTo(min) < 0
+                ? min
+                : (value.CompareTo(max) > 0
+                    ? max
+                    : value);
+        }
     }
 }

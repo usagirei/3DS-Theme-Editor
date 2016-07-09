@@ -3,6 +3,8 @@
 // --------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using ThemeEditor.WPF.Localization.Enums;
@@ -11,25 +13,47 @@ using ThemeEditor.WPF.Themes;
 
 namespace ThemeEditor.WPF.Controls.Renderers
 {
-    internal class TopWallpaperRenderer : FrameworkElement
+    internal class TopWallpaperRenderer : FrameworkElement, INotifyPropertyChanged
     {
         private static readonly RenderToolFactory RenderToolFactory = new RenderToolFactory();
         private static readonly Rect ScreenArea;
 
         public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register
             (nameof(Theme),
-                typeof (ThemeViewModel),
-                typeof (TopWallpaperRenderer),
+                typeof(ThemeViewModel),
+                typeof(TopWallpaperRenderer),
                 new FrameworkPropertyMetadata(default(ThemeViewModel), FrameworkPropertyMetadataOptions.AffectsRender));
 
         private bool _isListening;
+        private float _shaderEnable;
+        private float _shaderOffset;
 
         //private WarpEffect _warpEffect;
 
         public ThemeViewModel Theme
         {
-            get { return (ThemeViewModel) GetValue(ThemeProperty); }
+            get { return (ThemeViewModel)GetValue(ThemeProperty); }
             set { SetValue(ThemeProperty, value); }
+        }
+
+        public float ShaderOffset
+        {
+            get { return _shaderOffset; }
+            set
+            {
+                _shaderOffset = value;
+                OnPropertyChanged(nameof(ShaderOffset));
+            }
+        }
+
+        public float ShaderEnable
+        {
+            get { return _shaderEnable; }
+            set
+            {
+                _shaderEnable = value;
+                OnPropertyChanged(nameof(ShaderEnable));
+            }
         }
 
         static TopWallpaperRenderer()
@@ -64,7 +88,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
                     Opacity = key.Opacity
                 });
 
-            Type ownerType = typeof (TopWallpaperRenderer);
+            Type ownerType = typeof(TopWallpaperRenderer);
             IsEnabledProperty
                 .OverrideMetadata(ownerType, new FrameworkPropertyMetadata(false, OnIsEnabledChanged));
 
@@ -95,8 +119,8 @@ namespace ThemeEditor.WPF.Controls.Renderers
             {
                 return;
             }
-            bool oldValue = (bool) args.OldValue;
-            bool newValue = (bool) args.NewValue;
+            bool oldValue = (bool)args.OldValue;
+            bool newValue = (bool)args.NewValue;
             target.OnIsEnabledChanged(oldValue, newValue);
         }
 
@@ -114,10 +138,9 @@ namespace ThemeEditor.WPF.Controls.Renderers
             if (Theme == null)
             {
                 //var topTex = DefaultTopSquares.Bitmap;
-                var background = Color.FromArgb(255, 102, 102, 109);
-                const float GRADIENT = 0.5f;
+                var background = Color.FromArgb(255, 204, 204, 217);
 
-                OnRender_BackgroundSolid(dc, background, GRADIENT, true);
+                OnRender_BackgroundSolid(dc, background);
                 return;
             }
 
@@ -125,37 +148,25 @@ namespace ThemeEditor.WPF.Controls.Renderers
             switch (drawType)
             {
                 case TopDrawType.SolidColor:
-                {
-                    OnRender_BackgroundSolid(dc,
-                        Theme.Colors.TopBackground.Main,
-                        (float) Theme.Colors.TopBackground.Gradient,
-                        true);
-                    break;
-                }
                 case TopDrawType.SolidColorTexture:
-                {
-                    OnRender_BackgroundSolid(dc,
-                        Theme.Colors.TopBackground.Main,
-                        (float) Theme.Colors.TopBackground.Gradient,
-                        Theme.Colors.TopBackground.FadeToWhite);
-
-                    break;
-                }
+                    {
+                        OnRender_BackgroundSolid(dc, Theme.Colors.TopBackground.Main);
+                        break;
+                    }
                 case TopDrawType.Texture:
-                {
-                    OnRender_BackgroundTexture(dc, Theme.Flags.TopFrameType, Theme.Textures.Top.Bitmap);
-
-                    break;
-                }
+                    {
+                        OnRender_BackgroundTexture(dc, Theme.Flags.TopFrameType, Theme.Textures.Top.Bitmap);
+                        
+                        break;
+                    }
                 case TopDrawType.None:
-                {
-                        var background = Color.FromArgb(255, 102, 102, 109); ;
-                    const float GRADIENT = 0.5f;
+                    {
+                        var background = Color.FromArgb(255, 204, 204, 217); ;
 
-                    OnRender_BackgroundSolid(dc, background, GRADIENT, true);
-
-                    break;
-                }
+                        OnRender_BackgroundSolid(dc, background);
+                        
+                        break;
+                    }
             }
 
             OnRender_3DCorners(dc);
@@ -191,27 +202,32 @@ namespace ThemeEditor.WPF.Controls.Renderers
             }
         }
 
-        private void OnRender_BackgroundSolid(DrawingContext dc, Color color, float gradient, bool fadeToWhite)
+        private void OnRender_BackgroundSolid(DrawingContext dc, Color color)
         {
+            ShaderEnable = 1;
+            ShaderOffset = IsEnabled
+                ? (float) (CompositionTargetEx.SecondsFromStart / 10.0f)
+                : 0;
+
             var opaque = color;
-            opaque.R = (byte) (opaque.R * 2).Clamp(0, 255);
-            opaque.G = (byte) (opaque.G * 2).Clamp(0, 255);
-            opaque.B = (byte) (opaque.B * 2).Clamp(0, 255);
-            var faded = (fadeToWhite
-                ? Colors.White
-                : Colors.Black);
-            faded.A = (byte) (gradient * 255).Clamp(0, 255);
-            var fadedT = faded;
-            fadedT.A = 0;
-            var lgBrush = RenderToolFactory.GetTool<Brush>(new LinearGradientBrushTool(faded, fadedT, 90));
+            ////opaque.R = (byte) (opaque.R * 2).Clamp(0, 255);
+            ////opaque.G = (byte) (opaque.G * 2).Clamp(0, 255);
+            ////opaque.B = (byte) (opaque.B * 2).Clamp(0, 255);
+            //var faded = (fadeToWhite
+            //    ? Colors.White
+            //    : Colors.Black);
+            //faded.A = (byte)(gradient * 255).Clamp(0, 255);
+            //var fadedT = faded;
+            //fadedT.A = 0;
+            //var lgBrush = RenderToolFactory.GetTool<Brush>(new LinearGradientBrushTool(faded, fadedT, 90));
             var scBrush = RenderToolFactory.GetTool<Brush>(new SolidColorBrushTool(opaque));
             dc.DrawRectangle(scBrush, null, ScreenArea);
-            dc.DrawRectangle(lgBrush, null, ScreenArea);
+            //dc.DrawRectangle(lgBrush, null, ScreenArea);
         }
 
         private void OnRender_BackgroundTexture(DrawingContext dc, TopFrameType frameType, ImageSource wallpaper)
         {
-            //SetEnableWarp(false);
+            ShaderEnable = 0;
 
             var scrollEnable = frameType == TopFrameType.SlowScroll || frameType == TopFrameType.FastScroll;
 
@@ -268,6 +284,14 @@ namespace ThemeEditor.WPF.Controls.Renderers
                 return;
             if (args.ViewModel.Tag == Theme.Tag)
                 InvalidateVisual();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

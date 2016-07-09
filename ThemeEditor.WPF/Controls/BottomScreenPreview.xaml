@@ -30,17 +30,49 @@
             <system:Double x:Key="Column5">266</system:Double>
 
             <templating:SwitchConverter x:Key="RowSelector">
-                <templating:SwitchConverterCase Case="2" Value="{StaticResource Row1}" />
-                <templating:SwitchConverterCase Case="1" Value="{StaticResource Row2}" />
-                <templating:SwitchConverterCase Case="0" Value="{StaticResource Row3}" />
+                <templating:SwitchConverterCase Value="{StaticResource Row1}">
+                    <templating:SwitchConverterCase.Case>
+                        <system:Int32>2</system:Int32>
+                    </templating:SwitchConverterCase.Case>
+                </templating:SwitchConverterCase>
+                <templating:SwitchConverterCase  Value="{StaticResource Row2}">
+                    <templating:SwitchConverterCase.Case>
+                        <system:Int32>1</system:Int32>
+                    </templating:SwitchConverterCase.Case>
+                </templating:SwitchConverterCase>
+                <templating:SwitchConverterCase  Value="{StaticResource Row3}">
+                    <templating:SwitchConverterCase.Case>
+                        <system:Int32>0</system:Int32>
+                    </templating:SwitchConverterCase.Case>
+                </templating:SwitchConverterCase>
             </templating:SwitchConverter>
 
             <templating:SwitchConverter x:Key="ColumnSelector">
-                <templating:SwitchConverterCase Case="0" Value="{StaticResource Column1}" />
-                <templating:SwitchConverterCase Case="1" Value="{StaticResource Column2}" />
-                <templating:SwitchConverterCase Case="2" Value="{StaticResource Column3}" />
-                <templating:SwitchConverterCase Case="3" Value="{StaticResource Column4}" />
-                <templating:SwitchConverterCase Case="4" Value="{StaticResource Column5}" />
+                <templating:SwitchConverterCase Value="{StaticResource Column1}">
+                    <templating:SwitchConverterCase.Case>
+                        <system:Int32>0</system:Int32>
+                    </templating:SwitchConverterCase.Case>
+                </templating:SwitchConverterCase>
+                <templating:SwitchConverterCase Value="{StaticResource Column2}">
+                    <templating:SwitchConverterCase.Case>
+                        <system:Int32>1</system:Int32>
+                    </templating:SwitchConverterCase.Case>
+                </templating:SwitchConverterCase>
+                <templating:SwitchConverterCase Value="{StaticResource Column3}">
+                    <templating:SwitchConverterCase.Case>
+                        <system:Int32>2</system:Int32>
+                    </templating:SwitchConverterCase.Case>
+                </templating:SwitchConverterCase>
+                <templating:SwitchConverterCase Value="{StaticResource Column4}">
+                    <templating:SwitchConverterCase.Case>
+                        <system:Int32>3</system:Int32>
+                    </templating:SwitchConverterCase.Case>
+                </templating:SwitchConverterCase>
+                <templating:SwitchConverterCase Value="{StaticResource Column5}">
+                    <templating:SwitchConverterCase.Case>
+                        <system:Int32>4</system:Int32>
+                    </templating:SwitchConverterCase.Case>
+                </templating:SwitchConverterCase>
             </templating:SwitchConverter>
             <templating:BooleanConverter x:Key="BooleanNegateConverter">
                 <templating:BooleanConverter.TrueValue>
@@ -75,7 +107,7 @@
             Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FileEnable, Converter={StaticResource BooleanToVisibilityConverter}}"
             Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FileX , Converter={StaticResource ColumnSelector}}"
             Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FileY, Converter={StaticResource RowSelector}}">
-            <Canvas Style="{StaticResource PreviewItemShadowCaster}">
+            <Canvas Style="{StaticResource PreviewFileShadowCaster}">
                 <Path Style="{StaticResource FileStyleBack}" Data="{StaticResource FileGeometry}" />
             </Canvas>
             <Path Style="{StaticResource FileStyleFore}" Data="{StaticResource FileGeometry}" />
@@ -90,7 +122,7 @@
             Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FolderEnable, Converter={StaticResource BooleanToVisibilityConverter}}"
             Canvas.Left="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FolderX , Converter={StaticResource ColumnSelector}}"
             Canvas.Top="{Binding Source={x:Static properties:Settings.Default}, Path=Preview_Main_FolderY, Converter={StaticResource RowSelector}}">
-            <Canvas Style="{StaticResource PreviewItemShadowCaster}">
+            <Canvas Style="{StaticResource PreviewFolderShadowCaster}">
                 <Path Style="{StaticResource FolderStyleBackClosed}" Data="{StaticResource FolderGeometryBackClosed}" />
             </Canvas>
 

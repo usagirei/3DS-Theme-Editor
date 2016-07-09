@@ -88,7 +88,6 @@
     <Compile Include="Controls\BottomScreenOverlays.xaml.cs">
       <DependentUpon>BottomScreenOverlays.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Renderers\TopWallpaperOverlaysRenderer.cs" />
     <Compile Include="CrashWindow.xaml.cs">
       <DependentUpon>CrashWindow.xaml</DependentUpon>
     </Compile>
@@ -99,6 +98,7 @@
       <DependentUpon>CWAVWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Localization\Enums\GameTextDrawType.cs" />
+    <Compile Include="Localization\RangeAttribute.cs" />
     <Compile Include="MainWindow.BGM.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -107,8 +107,12 @@
     </Compile>
     <Compile Include="Templating\BooleanMultiConverter.cs" />
     <Compile Include="Templating\EscapeStringUnderscoreCoverter.cs" />
+    <Compile Include="Templating\MathConverter.cs" />
+    <Compile Include="Templating\NullConverter.cs" />
+    <Compile Include="Templating\PasstroughConverter.cs" />
     <Compile Include="Templating\PathToFileNameConverter.cs" />
     <Compile Include="Templating\SwitchConverter.cs" />
+    <Compile Include="Templating\ThicknessConverter.cs" />
     <Compile Include="Templating\ValueConverterGroup.cs" />
     <Compile Include="Themes\ThemeInfoViewModel.cs" />
     <Compile Include="TempFile.cs" />

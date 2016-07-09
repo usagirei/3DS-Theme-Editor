@@ -47,6 +47,38 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
+#if DEBUG
+
+        public Color Shadow
+        {
+            get { return Model.Shadow.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Shadow;
+                var newValue = value.ToColorArgb8888();
+                if (oldValue == newValue)
+                    return;
+                Model.Shadow = newValue;
+                RaiseViewModelChanged(nameof(Shadow), oldValue, value);
+            }
+        }
+
+        public Color Light
+        {
+            get { return Model.Light.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Light;
+                var newValue = value.ToColorRgb888();
+                if (oldValue == newValue)
+                    return;
+                Model.Light = newValue;
+                RaiseViewModelChanged(nameof(Light), oldValue, value);
+            }
+        }
+
+#endif
+
         public GameTextSetViewModel(GameTextSet model, string tag) : base(model, tag) { }
     }
 }

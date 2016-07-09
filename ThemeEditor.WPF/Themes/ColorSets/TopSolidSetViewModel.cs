@@ -2,6 +2,7 @@
 // 3DS Theme Editor - TopSolidSetViewModel.cs
 // --------------------------------------------------
 
+using System;
 using System.Windows.Media;
 
 using ThemeEditor.Common.Themes.ColorSets;
@@ -11,22 +12,8 @@ namespace ThemeEditor.WPF.Themes.ColorSets
 {
     public sealed class TopSolidSetViewModel : ViewModelBase
     {
-        [Order(1)]
-        [DisplayName("Theme_Sets_Top_Gradient", typeof(ThemeResources))]
-        [Description("Theme_Sets_Top_Gradient_Desc", typeof(ThemeResources))]
-        public double Gradient
-        {
-            get { return Model.Gradient / 255.0; }
-            set
-            {
-                var oldValue = Model.Gradient;
-                var newValue = (byte) (value * 255).Clamp(0, 255);
-                if (oldValue == newValue)
-                    return;
-                Model.Gradient = newValue;
-                RaiseViewModelChanged(nameof(Gradient), oldValue, value);
-            }
-        }
+        private const float EPSILON = 1 / 255f;
+        private new TopBackgroundSet Model => (TopBackgroundSet) base.Model;
 
         [Order(0)]
         [DisplayName("Theme_Sets_Top_Main", typeof(ThemeResources))]
@@ -45,7 +32,23 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        private new TopBackgroundSet Model => (TopBackgroundSet) base.Model;
+        [Order(1)]
+        [DisplayName("Theme_Sets_Top_Gradient", typeof(ThemeResources))]
+        [Description("Theme_Sets_Top_Gradient_Desc", typeof(ThemeResources))]
+        public double Gradient
+        {
+            get { return Model.Gradient / 255.0; }
+            set
+            {
+                var oldValue = Model.Gradient;
+                var newValue = (byte) (value * 255).Clamp(0, 255);
+                if (oldValue == newValue)
+                    return;
+                Model.Gradient = newValue;
+                RaiseViewModelChanged(nameof(Gradient), oldValue, value);
+            }
+        }
+
 
         [Order(2)]
         [DisplayName("Theme_Sets_Top_Opacity", typeof(ThemeResources))]
@@ -65,36 +68,36 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         }
 
         [Order(3)]
-        [DisplayName("Theme_Sets_Top_EnableAlt", typeof(ThemeResources))]
-        [Description("Theme_Sets_Top_EnableAlt_Desc", typeof(ThemeResources))]
-        public bool EnableAlt
+        [DisplayName("Theme_Sets_Top_AltOpacity", typeof(ThemeResources))]
+        [Description("Theme_Sets_Top_AltOpacity_Desc", typeof(ThemeResources))]
+        public double AlternateOpacity
         {
-            get { return Model.EnableAlt; }
+            get { return Model.AlternateOpacity / 255.0; }
             set
             {
-                var oldValue = Model.EnableAlt;
-                var newValue = value;
-                if (oldValue == newValue)
+                var oldValue = Model.AlternateOpacity;
+                var newValue = (byte)(value * 255).Clamp(0, 255);
+                if (Math.Abs(oldValue - newValue) < EPSILON)
                     return;
-                Model.EnableAlt = newValue;
-                RaiseViewModelChanged(nameof(EnableAlt), oldValue, value);
+                Model.AlternateOpacity = newValue;
+                RaiseViewModelChanged(nameof(AlternateOpacity), oldValue, value);
             }
         }
 
         [Order(4)]
-        [DisplayName("Theme_Sets_Top_FadeToWhite", typeof(ThemeResources))]
-        [Description("Theme_Sets_Top_FadeToWhite_Desc", typeof(ThemeResources))]
-        public bool FadeToWhite
+        [DisplayName("Theme_Sets_Top_FadeToValue", typeof(ThemeResources))]
+        [Description("Theme_Sets_Top_FadeToValue_Desc", typeof(ThemeResources))]
+        public double GradientColor
         {
-            get { return Model.FadeToWhite ; }
+            get { return Model.GradientColor / 255.0; }
             set
             {
-                var oldValue = Model.FadeToWhite;
-                var newValue = value;
-                if (oldValue == newValue)
+                var oldValue = Model.GradientColor;
+                var newValue = (byte)(value * 255).Clamp(0, 255);
+                if (Math.Abs(oldValue - newValue) < EPSILON)
                     return;
-                Model.FadeToWhite = newValue;
-                RaiseViewModelChanged(nameof(FadeToWhite), oldValue, value);
+                Model.GradientColor = newValue;
+                RaiseViewModelChanged(nameof(GradientColor), oldValue, value);
             }
         }
 

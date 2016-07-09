@@ -19,20 +19,31 @@ namespace ThemeEditor.WPF.Templating
 
         public List<SwitchConverterCase> Cases
         {
-            get { return (List<SwitchConverterCase>) GetValue(CasesProperty); }
+            get { return (List<SwitchConverterCase>)GetValue(CasesProperty); }
             set { SetValue(CasesProperty, value); }
         }
 
-        public SwitchConverter ()
+        public static readonly DependencyProperty DefaultValueProperty = DependencyProperty.Register(
+            nameof(DefaultValue),
+            typeof (object),
+            typeof (SwitchConverter),
+            new PropertyMetadata((object)null));
+
+        public object DefaultValue
+        {
+            get { return GetValue(DefaultValueProperty); }
+            set { SetValue(DefaultValueProperty, value); }
+        }
+
+        public SwitchConverter()
         {
             Cases = new List<SwitchConverterCase>();
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is int))
-                return null;
-            return Cases.FirstOrDefault(@case => @case.Case == (int) value)?.Value;
+            var rv = Cases.FirstOrDefault(@case => @case.Case.Equals(value))?.Value;
+            return rv ?? DefaultValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -41,9 +52,10 @@ namespace ThemeEditor.WPF.Templating
         }
     }
 
+    [ContentProperty(nameof(Value))]
     public class SwitchConverterCase
     {
-        public int Case { get; set; }
+        public object Case { get; set; }
         public object Value { get; set; }
 
         public SwitchConverterCase() { }

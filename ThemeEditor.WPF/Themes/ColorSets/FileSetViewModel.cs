@@ -14,7 +14,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Order(3)]
         [DisplayName("Theme_Sets_File_Glow", typeof(ThemeResources))]
         [Description("Theme_Sets_File_Glow_Desc", typeof(ThemeResources))]
-        public Color Glow
+        public Color Light
         {
             get { return Model.Light.ToMediaColor(); }
             set
@@ -24,7 +24,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
                 if (oldValue == newValue)
                     return;
                 Model.Light = newValue;
-                RaiseViewModelChanged(nameof(Glow), oldValue, value);
+                RaiseViewModelChanged(nameof(Light), oldValue, value);
             }
         }
 
@@ -50,7 +50,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Order(0)]
         [DisplayName("Theme_Sets_File_Shading", typeof(ThemeResources))]
         [Description("Theme_Sets_File_Shading_Desc", typeof(ThemeResources))]
-        public Color Shading
+        public Color Dark
         {
             get { return Model.Dark.ToMediaColor(); }
             set
@@ -60,7 +60,21 @@ namespace ThemeEditor.WPF.Themes.ColorSets
                 if (oldValue == newValue)
                     return;
                 Model.Dark = newValue;
-                RaiseViewModelChanged(nameof(Shading), oldValue, value);
+                RaiseViewModelChanged(nameof(Dark), oldValue, value);
+            }
+        }
+
+        public Color Shadow
+        {
+            get { return Model.Shadow.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Shadow;
+                var newValue = value.ToColorArgb8888();
+                if (oldValue == newValue)
+                    return;
+                Model.Shadow = newValue;
+                RaiseViewModelChanged(nameof(Shadow), oldValue, value);
             }
         }
 

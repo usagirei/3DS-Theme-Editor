@@ -1980,18 +1980,18 @@ namespace ThemeEditor.WPF.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Glow.
         /// </summary>
-        public static string Theme_Sets_OpenClose_Glow {
+        public static string Theme_Sets_OpenClose_Light {
             get {
-                return ResourceManager.GetString("Theme_Sets_OpenClose_Glow", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_OpenClose_Light", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Glow Color.
         /// </summary>
-        public static string Theme_Sets_OpenClose_Glow_Desc {
+        public static string Theme_Sets_OpenClose_Light_Desc {
             get {
-                return ResourceManager.GetString("Theme_Sets_OpenClose_Glow_Desc", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_OpenClose_Light_Desc", resourceCulture);
             }
         }
         
@@ -2016,18 +2016,18 @@ namespace ThemeEditor.WPF.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Text Glow.
         /// </summary>
-        public static string Theme_Sets_OpenClose_TextGlow {
+        public static string Theme_Sets_OpenClose_TextShadow {
             get {
-                return ResourceManager.GetString("Theme_Sets_OpenClose_TextGlow", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_OpenClose_TextShadow", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Text Glow Color.
         /// </summary>
-        public static string Theme_Sets_OpenClose_TextGlow_Desc {
+        public static string Theme_Sets_OpenClose_TextShadow_Desc {
             get {
-                return ResourceManager.GetString("Theme_Sets_OpenClose_TextGlow_Desc", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_OpenClose_TextShadow_Desc", resourceCulture);
             }
         }
         
@@ -2086,38 +2086,38 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Static Image.
+        ///   Looks up a localized string similar to Alt Opacity.
         /// </summary>
-        public static string Theme_Sets_Top_EnableAlt {
+        public static string Theme_Sets_Top_AltOpacity {
             get {
-                return ResourceManager.GetString("Theme_Sets_Top_EnableAlt", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_Top_AltOpacity", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uses Alternative Top Texture.
+        ///   Looks up a localized string similar to Alt Texture Opacity.
         /// </summary>
-        public static string Theme_Sets_Top_EnableAlt_Desc {
+        public static string Theme_Sets_Top_AltOpacity_Desc {
             get {
-                return ResourceManager.GetString("Theme_Sets_Top_EnableAlt_Desc", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_Top_AltOpacity_Desc", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to White Gradient.
+        ///   Looks up a localized string similar to Gradient Color.
         /// </summary>
-        public static string Theme_Sets_Top_FadeToWhite {
+        public static string Theme_Sets_Top_FadeToValue {
             get {
-                return ResourceManager.GetString("Theme_Sets_Top_FadeToWhite", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_Top_FadeToValue", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gradient Fades to White.
+        ///   Looks up a localized string similar to Gradient Fade Value.
         /// </summary>
-        public static string Theme_Sets_Top_FadeToWhite_Desc {
+        public static string Theme_Sets_Top_FadeToValue_Desc {
             get {
-                return ResourceManager.GetString("Theme_Sets_Top_FadeToWhite_Desc", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_Top_FadeToValue_Desc", resourceCulture);
             }
         }
         
@@ -2131,7 +2131,7 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fade to White Ratio.
+        ///   Looks up a localized string similar to Fade to Color Ratio.
         /// </summary>
         public static string Theme_Sets_Top_Gradient_Desc {
             get {
@@ -2158,7 +2158,7 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opacity.
+        ///   Looks up a localized string similar to Main Opacity.
         /// </summary>
         public static string Theme_Sets_Top_Opacity {
             get {
@@ -2167,7 +2167,7 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Texture Opacity.
+        ///   Looks up a localized string similar to Main Texture Opacity.
         /// </summary>
         public static string Theme_Sets_Top_Opacity_Desc {
             get {

@@ -49,6 +49,9 @@ namespace ThemeEditor.WPF.Templating
 
             public int Order { get; }
 
+            public double RangeMin { get; }
+            public double RangeMax { get; }
+
             public object Value
             {
                 get
@@ -70,10 +73,12 @@ namespace ThemeEditor.WPF.Templating
 
             public PropertyProxy(PropertyInfo pi, object target)
             {
-                Name = pi.GetCustomAttribute<DisplayNameAttribute>(false)?.DisplayName ?? pi.Name;
+                Name = pi.GetCustomAttribute<DisplayNameAttribute>(false)?.DisplayName ?? pi.Name.ToUpper();
                 Description = pi.GetCustomAttribute<DescriptionAttribute>(false)?.Description ?? "";
                 Order = pi.GetCustomAttribute<OrderAttribute>(false)?.Order ?? int.MaxValue;
                 Visible = pi.GetCustomAttribute<VisibleAttribute>(false)?.Visible ?? true;
+                RangeMin = pi.GetCustomAttribute<RangeAttribute>(false)?.Minimum ?? 0;
+                RangeMax = pi.GetCustomAttribute<RangeAttribute>(false)?.Maximum ?? 1;
 
                 Property = pi;
                 Target = target;

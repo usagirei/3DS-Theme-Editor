@@ -600,10 +600,10 @@
   <data name="Theme_Sets_Game_Text_Desc" xml:space="preserve">
     <value>Colore Testo</value>
   </data>
-  <data name="Theme_Sets_OpenClose_Glow" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
     <value>"Glow"</value>
   </data>
-  <data name="Theme_Sets_OpenClose_Glow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_Light_Desc" xml:space="preserve">
     <value>Colore "Glow"</value>
   </data>
   <data name="Theme_Sets_OpenClose_Pressed" xml:space="preserve">
@@ -612,10 +612,10 @@
   <data name="Theme_Sets_OpenClose_Pressed_Desc" xml:space="preserve">
     <value>Colore Bottone Premuto</value>
   </data>
-  <data name="Theme_Sets_OpenClose_TextGlow" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_TextShadow" xml:space="preserve">
     <value>"Glow" Testo</value>
   </data>
-  <data name="Theme_Sets_OpenClose_TextGlow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_TextShadow_Desc" xml:space="preserve">
     <value>Colore "Glow" Testo</value>
   </data>
   <data name="Theme_Sets_OpenClose_TextPressed" xml:space="preserve">
@@ -638,9 +638,6 @@
   </data>
   <data name="Theme_Sets_Top_Gradient" xml:space="preserve">
     <value>Gradazione</value>
-  </data>
-  <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
-    <value>Sbiadirsi al Bianco</value>
   </data>
   <data name="Theme_Sets_Top_Main" xml:space="preserve">
     <value>Sfondo</value>

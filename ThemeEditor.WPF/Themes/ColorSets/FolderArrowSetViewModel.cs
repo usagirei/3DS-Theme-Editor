@@ -2,6 +2,7 @@
 // 3DS Theme Editor - FolderArrowSetViewModel.cs
 // --------------------------------------------------
 
+using System;
 using System.Windows.Media;
 
 using ThemeEditor.Common.Themes.ColorSets;
@@ -68,7 +69,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         [Order(4)]
         [DisplayName("Theme_Sets_FolderArrow_Glow", typeof(ThemeResources))]
         [Description("Theme_Sets_FolderArrow_Glow_Desc", typeof(ThemeResources))]
-        public Color Glow
+        public Color Shadow
         {
             get { return Model.Shadow.ToMediaColor(); }
             set
@@ -78,7 +79,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
                 if (oldValue == newValue)
                     return;
                 Model.Shadow = newValue;
-                RaiseViewModelChanged(nameof(Glow), oldValue, value);
+                RaiseViewModelChanged(nameof(Shadow), oldValue, value);
             }
         }
 
@@ -132,6 +133,43 @@ namespace ThemeEditor.WPF.Themes.ColorSets
                     return;
                 Model.Dark = newValue;
                 RaiseViewModelChanged(nameof(Shading), oldValue, value);
+            }
+        }
+
+
+#if DEBUG
+
+        public Color Glow
+        {
+            get { return Model.Glow.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Glow;
+                var newValue = value.ToColorRgb888();
+                if (oldValue == newValue)
+                    return;
+                Model.Glow = newValue;
+                RaiseViewModelChanged(nameof(Glow), oldValue, value);
+            }
+        }
+
+#endif
+
+        [Order(7)]
+        [Range(-3, 3)]
+        [DisplayName("Theme_Sets_FolderArrow_ShadowPos", typeof(ThemeResources))]
+        [Description("Theme_Sets_FolderArrow_ShadowPos_Desc", typeof(ThemeResources))]
+        public double ShadowPosition
+        {
+            get { return Model.ArrowShadowPos; }
+            set
+            {
+                var oldValue = Model.ArrowShadowPos;
+                var newValue = (float)value;
+                if (Math.Abs(oldValue - newValue) < 0.001f)
+                    return;
+                Model.ArrowShadowPos = newValue;
+                RaiseViewModelChanged(nameof(ShadowPosition), oldValue, value);
             }
         }
 

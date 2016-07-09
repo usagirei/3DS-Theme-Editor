@@ -44,10 +44,14 @@ namespace ThemeEditor.WPF.Themes
 
         private void SetupRules_SolidColorOpts()
         {
-            Rules.AddRule<TopSolidSetViewModel, bool>(nameof(TopSolidSetViewModel.FadeToWhite),
-                (v, o, n) => { Colors.TopBackground.FadeToWhite |= Flags.TopDrawType != TopDrawType.SolidColorTexture; });
-            Rules.AddRule<TopSolidSetViewModel, bool>(nameof(TopSolidSetViewModel.EnableAlt),
-                (v, o, n) => { Colors.TopBackground.EnableAlt |= Flags.TopDrawType != TopDrawType.SolidColorTexture; });
+            Rules.AddRule<TopSolidSetViewModel, double>(nameof(TopSolidSetViewModel.GradientColor),
+                (v, o, n) => { Colors.TopBackground.GradientColor = Flags.TopDrawType != TopDrawType.SolidColorTexture ? 1 : n; });
+            Rules.AddRule<TopSolidSetViewModel, double>(nameof(TopSolidSetViewModel.AlternateOpacity),
+                (v, o, n) => { Colors.TopBackground.AlternateOpacity = Flags.TopDrawType != TopDrawType.SolidColorTexture ? 1 : n; });
+            Rules.AddRule<TopSolidSetViewModel, double>(nameof(TopSolidSetViewModel.TextureOpacity),
+                (v, o, n) => { Colors.TopBackground.TextureOpacity = Flags.TopDrawType == TopDrawType.None ? 0.25 : n; });
+            Rules.AddRule<TopSolidSetViewModel, double>(nameof(TopSolidSetViewModel.Gradient),
+                (v, o, n) => { Colors.TopBackground.Gradient = Flags.TopDrawType == TopDrawType.None ? 0.75 : n; });
         }
 
         private void SetupRules_ColorToggles()

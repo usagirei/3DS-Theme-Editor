@@ -153,9 +153,6 @@
   <data name="Theme_Sets_Top_Main" xml:space="preserve">
     <value>Fondo</value>
   </data>
-  <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
-    <value>Descolorar a Blanco</value>
-  </data>
   <data name="Theme_Sets_Top_Gradient" xml:space="preserve">
     <value>Degradado</value>
   </data>
@@ -177,10 +174,10 @@
   <data name="Theme_Sets_OpenClose_TextPressed" xml:space="preserve">
     <value>Texto Presionado</value>
   </data>
-  <data name="Theme_Sets_OpenClose_TextGlow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_TextShadow_Desc" xml:space="preserve">
     <value>Color del Brillo del Texto</value>
   </data>
-  <data name="Theme_Sets_OpenClose_TextGlow" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_TextShadow" xml:space="preserve">
     <value>Brillo del Texto</value>
   </data>
   <data name="Theme_Sets_OpenClose_Pressed_Desc" xml:space="preserve">
@@ -189,10 +186,10 @@
   <data name="Theme_Sets_OpenClose_Pressed" xml:space="preserve">
     <value>Fondo Presionado</value>
   </data>
-  <data name="Theme_Sets_OpenClose_Glow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_Light_Desc" xml:space="preserve">
     <value>Color del Brillo</value>
   </data>
-  <data name="Theme_Sets_OpenClose_Glow" xml:space="preserve">
+  <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
     <value>Brillo</value>
   </data>
   <data name="Theme_Sets_Game_Text_Desc" xml:space="preserve">

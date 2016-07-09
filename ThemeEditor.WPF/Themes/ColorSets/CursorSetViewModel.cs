@@ -64,6 +64,24 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
+#if DEBUG
+
+        public Color Light
+        {
+            get { return Model.Light.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Light;
+                var newValue = value.ToColorRgb888();
+                if (oldValue == newValue)
+                    return;
+                Model.Light = newValue;
+                RaiseViewModelChanged(nameof(Light), oldValue, value);
+            }
+        }
+
+#endif
+
         public CursorSetViewModel(CursorSet model, string tag) : base(model, tag) { }
     }
 }

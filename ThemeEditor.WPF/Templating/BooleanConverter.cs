@@ -5,31 +5,18 @@ using System.Windows.Data;
 
 namespace ThemeEditor.WPF.Templating
 {
-    public class PasstroughConverter : IMultiValueConverter
-{
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-        {
-            return values.Clone();
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-}
-
     public class BooleanConverter : DependencyObject, IValueConverter
     {
         public static readonly DependencyProperty FalseValueProperty
             = DependencyProperty.Register(nameof(FalseValue),
-                typeof(object),
-                typeof(BooleanConverter),
+                typeof (object),
+                typeof (BooleanConverter),
                 new PropertyMetadata(false));
 
         public static readonly DependencyProperty TrueValueProperty
             = DependencyProperty.Register(nameof(TrueValue),
-                typeof(object),
-                typeof(BooleanConverter),
+                typeof (object),
+                typeof (BooleanConverter),
                 new PropertyMetadata(true));
 
         public object FalseValue
@@ -48,8 +35,8 @@ namespace ThemeEditor.WPF.Templating
         {
             if (value is bool)
                 return (bool) value
-                           ? TrueValue
-                           : FalseValue;
+                    ? TrueValue
+                    : FalseValue;
             return null;
         }
 

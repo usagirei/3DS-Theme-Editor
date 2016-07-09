@@ -143,6 +143,8 @@ namespace ThemeEditor.WPF
                         LZ11.Decompress(fs, fs.Length, ms);
                         ms.Position = 0;
                         result.Theme = Theme.Read(ms);
+                        ms.Seek(0, SeekOrigin.Begin);
+                        File.WriteAllBytes("dump.bin", ms.ToArray());
                         result.Loaded = true;
                     }
                     catch
