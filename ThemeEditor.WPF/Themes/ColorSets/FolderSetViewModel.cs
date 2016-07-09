@@ -66,8 +66,8 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         }
 
         [Order(1)]
-        [DisplayName("Theme_Sets_Folder_Shading", typeof(ThemeResources))]
-        [Description("Theme_Sets_Folder_Shading_Desc", typeof(ThemeResources))]
+        [DisplayName("Theme_Sets_Folder_Dark", typeof(ThemeResources))]
+        [Description("Theme_Sets_Folder_Dark_Desc", typeof(ThemeResources))]
         public Color Dark
         {
             get { return Model.Dark.ToMediaColor(); }

@@ -1728,18 +1728,18 @@ namespace ThemeEditor.WPF.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Glow.
         /// </summary>
-        public static string Theme_Sets_File_Glow {
+        public static string Theme_Sets_File_Light {
             get {
-                return ResourceManager.GetString("Theme_Sets_File_Glow", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_File_Light", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Glow Color.
         /// </summary>
-        public static string Theme_Sets_File_Glow_Desc {
+        public static string Theme_Sets_File_Light_Desc {
             get {
-                return ResourceManager.GetString("Theme_Sets_File_Glow_Desc", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_File_Light_Desc", resourceCulture);
             }
         }
         
@@ -1764,18 +1764,18 @@ namespace ThemeEditor.WPF.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Shading.
         /// </summary>
-        public static string Theme_Sets_File_Shading {
+        public static string Theme_Sets_File_Dark {
             get {
-                return ResourceManager.GetString("Theme_Sets_File_Shading", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_File_Dark", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Shading Color.
         /// </summary>
-        public static string Theme_Sets_File_Shading_Desc {
+        public static string Theme_Sets_File_Dark_Desc {
             get {
-                return ResourceManager.GetString("Theme_Sets_File_Shading_Desc", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_File_Dark_Desc", resourceCulture);
             }
         }
         
@@ -1800,18 +1800,18 @@ namespace ThemeEditor.WPF.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Shading.
         /// </summary>
-        public static string Theme_Sets_Folder_Shading {
+        public static string Theme_Sets_Folder_Dark {
             get {
-                return ResourceManager.GetString("Theme_Sets_Folder_Shading", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_Folder_Dark", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Shading Color.
         /// </summary>
-        public static string Theme_Sets_Folder_Shading_Desc {
+        public static string Theme_Sets_Folder_Dark_Desc {
             get {
-                return ResourceManager.GetString("Theme_Sets_Folder_Shading_Desc", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_Folder_Dark_Desc", resourceCulture);
             }
         }
         
@@ -1962,18 +1962,18 @@ namespace ThemeEditor.WPF.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Foreground.
         /// </summary>
-        public static string Theme_Sets_Game_Text {
+        public static string Theme_Sets_Game_TextMain {
             get {
-                return ResourceManager.GetString("Theme_Sets_Game_Text", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_Game_TextMain", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Text Color.
         /// </summary>
-        public static string Theme_Sets_Game_Text_Desc {
+        public static string Theme_Sets_Game_TextMain_Desc {
             get {
-                return ResourceManager.GetString("Theme_Sets_Game_Text_Desc", resourceCulture);
+                return ResourceManager.GetString("Theme_Sets_Game_TextMain_Desc", resourceCulture);
             }
         }
         

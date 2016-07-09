@@ -11,9 +11,9 @@ namespace ThemeEditor.WPF.Themes.ColorSets
 {
     public sealed class FileSetViewModel : ViewModelBase
     {
-        [Order(3)]
-        [DisplayName("Theme_Sets_File_Glow", typeof(ThemeResources))]
-        [Description("Theme_Sets_File_Glow_Desc", typeof(ThemeResources))]
+        [Order(2)]
+        [DisplayName("Theme_Sets_File_Light", typeof(ThemeResources))]
+        [Description("Theme_Sets_File_Light_Desc", typeof(ThemeResources))]
         public Color Light
         {
             get { return Model.Light.ToMediaColor(); }
@@ -48,8 +48,8 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         private new FileSet Model => (FileSet) base.Model;
 
         [Order(0)]
-        [DisplayName("Theme_Sets_File_Shading", typeof(ThemeResources))]
-        [Description("Theme_Sets_File_Shading_Desc", typeof(ThemeResources))]
+        [DisplayName("Theme_Sets_File_Dark", typeof(ThemeResources))]
+        [Description("Theme_Sets_File_Dark_Desc", typeof(ThemeResources))]
         public Color Dark
         {
             get { return Model.Dark.ToMediaColor(); }
@@ -64,6 +64,9 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
+        [Order(3)]
+        [DisplayName("Theme_Sets_File_Shadow", typeof(ThemeResources))]
+        [Description("Theme_Sets_File_Shadow_Desc", typeof(ThemeResources))]
         public Color Shadow
         {
             get { return Model.Shadow.ToMediaColor(); }

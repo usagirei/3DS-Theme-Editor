@@ -66,6 +66,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
 
 #if DEBUG
 
+        /* Barely Visible, Even on pure black*/
         public Color Light
         {
             get { return Model.Light.ToMediaColor(); }

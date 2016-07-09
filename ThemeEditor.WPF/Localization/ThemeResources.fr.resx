@@ -366,7 +366,7 @@
   <data name="Theme_Sets_TopCorner_Text" xml:space="preserve">
     <value>Texte</value>
   </data>
-  <data name="Theme_Sets_Game_Text" xml:space="preserve">
+  <data name="Theme_Sets_Game_TextMain" xml:space="preserve">
     <value>Texte</value>
   </data>
   <data name="Theme_Flags_File_Texture" xml:space="preserve">
@@ -468,7 +468,7 @@
   <data name="Theme_Sets_OpenClose_Light_Desc" xml:space="preserve">
     <value>Couleur de l'Eclat</value>
   </data>
-  <data name="Theme_Sets_File_Glow" xml:space="preserve">
+  <data name="Theme_Sets_File_Light" xml:space="preserve">
     <value>Eclat</value>
   </data>
   <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
@@ -480,7 +480,7 @@
   <data name="Theme_Sets_FolderArrow_Glow_Desc" xml:space="preserve">
     <value>Couleur de l'Eclat</value>
   </data>
-  <data name="Theme_Sets_File_Glow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_File_Light_Desc" xml:space="preserve">
     <value>Couleur de l'Eclat</value>
   </data>
   <data name="Theme_Sets_BottomInner_Glow_Desc" xml:space="preserve">
@@ -507,13 +507,13 @@
   <data name="Theme_Flags_Open_Close_Color" xml:space="preserve">
     <value>Couleurs d'Ouvrir / Fermer</value>
   </data>
-  <data name="Theme_Sets_Folder_Shading" xml:space="preserve">
+  <data name="Theme_Sets_Folder_Dark" xml:space="preserve">
     <value>Ombre</value>
   </data>
   <data name="Theme_Sets_FolderArrow_Shading" xml:space="preserve">
     <value>Ombre</value>
   </data>
-  <data name="Theme_Sets_File_Shading" xml:space="preserve">
+  <data name="Theme_Sets_File_Dark" xml:space="preserve">
     <value>Ombre</value>
   </data>
   <data name="Theme_Sets_Cursor_Shading" xml:space="preserve">
@@ -525,16 +525,16 @@
   <data name="Theme_Sets_FolderArrow_Shading_Desc" xml:space="preserve">
     <value>Couleur de l'Ombre</value>
   </data>
-  <data name="Theme_Sets_File_Shading_Desc" xml:space="preserve">
+  <data name="Theme_Sets_File_Dark_Desc" xml:space="preserve">
     <value>Couleur de l'Ombre</value>
   </data>
-  <data name="Theme_Sets_Folder_Shading_Desc" xml:space="preserve">
+  <data name="Theme_Sets_Folder_Dark_Desc" xml:space="preserve">
     <value>Couleur de l'Ombre</value>
   </data>
   <data name="Theme_Sets_Demo_Text_Desc" xml:space="preserve">
     <value>Couleur du texte</value>
   </data>
-  <data name="Theme_Sets_Game_Text_Desc" xml:space="preserve">
+  <data name="Theme_Sets_Game_TextMain_Desc" xml:space="preserve">
     <value>Couleur du texte</value>
   </data>
   <data name="Theme_Sets_BottomOuter_Stripe" xml:space="preserve">

@@ -31,8 +31,8 @@ namespace ThemeEditor.WPF.Themes.ColorSets
         private new GameTextSet Model => (GameTextSet) base.Model;
 
         [Order(1)]
-        [DisplayName("Theme_Sets_Game_Text", typeof(ThemeResources))]
-        [Description("Theme_Sets_Game_Text_Desc", typeof(ThemeResources))]
+        [DisplayName("Theme_Sets_Game_TextMain", typeof(ThemeResources))]
+        [Description("Theme_Sets_Game_TextMain_Desc", typeof(ThemeResources))]
         public Color Text
         {
             get { return Model.TextMain.ToMediaColor(); }
@@ -44,6 +44,23 @@ namespace ThemeEditor.WPF.Themes.ColorSets
                     return;
                 Model.TextMain = newValue;
                 RaiseViewModelChanged(nameof(Text), oldValue, value);
+            }
+        }
+
+        [Order(3)]
+        [DisplayName("Theme_Sets_Game_Light", typeof(ThemeResources))]
+        [Description("Theme_Sets_Game_Light_Desc", typeof(ThemeResources))]
+        public Color Light
+        {
+            get { return Model.Light.ToMediaColor(); }
+            set
+            {
+                var oldValue = Model.Light;
+                var newValue = value.ToColorRgb888();
+                if (oldValue == newValue)
+                    return;
+                Model.Light = newValue;
+                RaiseViewModelChanged(nameof(Light), oldValue, value);
             }
         }
 
@@ -63,19 +80,7 @@ namespace ThemeEditor.WPF.Themes.ColorSets
             }
         }
 
-        public Color Light
-        {
-            get { return Model.Light.ToMediaColor(); }
-            set
-            {
-                var oldValue = Model.Light;
-                var newValue = value.ToColorRgb888();
-                if (oldValue == newValue)
-                    return;
-                Model.Light = newValue;
-                RaiseViewModelChanged(nameof(Light), oldValue, value);
-            }
-        }
+
 
 #endif
 

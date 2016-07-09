@@ -633,10 +633,10 @@
   <data name="Theme_Sets_Demo_Text_Desc" xml:space="preserve">
     <value>Text Color</value>
   </data>
-  <data name="Theme_Sets_File_Glow" xml:space="preserve">
+  <data name="Theme_Sets_File_Light" xml:space="preserve">
     <value>Glow</value>
   </data>
-  <data name="Theme_Sets_File_Glow_Desc" xml:space="preserve">
+  <data name="Theme_Sets_File_Light_Desc" xml:space="preserve">
     <value>Glow Color</value>
   </data>
   <data name="Theme_Sets_File_Main" xml:space="preserve">
@@ -645,10 +645,10 @@
   <data name="Theme_Sets_File_Main_Desc" xml:space="preserve">
     <value>Main Color</value>
   </data>
-  <data name="Theme_Sets_File_Shading" xml:space="preserve">
+  <data name="Theme_Sets_File_Dark" xml:space="preserve">
     <value>Shading</value>
   </data>
-  <data name="Theme_Sets_File_Shading_Desc" xml:space="preserve">
+  <data name="Theme_Sets_File_Dark_Desc" xml:space="preserve">
     <value>Shading Color</value>
   </data>
   <data name="Theme_Sets_Folder_Main" xml:space="preserve">
@@ -657,10 +657,10 @@
   <data name="Theme_Sets_Folder_Main_Desc" xml:space="preserve">
     <value>Main Color</value>
   </data>
-  <data name="Theme_Sets_Folder_Shading" xml:space="preserve">
+  <data name="Theme_Sets_Folder_Dark" xml:space="preserve">
     <value>Shading</value>
   </data>
-  <data name="Theme_Sets_Folder_Shading_Desc" xml:space="preserve">
+  <data name="Theme_Sets_Folder_Dark_Desc" xml:space="preserve">
     <value>Shading Color</value>
   </data>
   <data name="Theme_Sets_FolderArrow_ArrowPressed" xml:space="preserve">
@@ -711,10 +711,10 @@
   <data name="Theme_Sets_Game_Main_Desc" xml:space="preserve">
     <value>Background Color</value>
   </data>
-  <data name="Theme_Sets_Game_Text" xml:space="preserve">
+  <data name="Theme_Sets_Game_TextMain" xml:space="preserve">
     <value>Foreground</value>
   </data>
-  <data name="Theme_Sets_Game_Text_Desc" xml:space="preserve">
+  <data name="Theme_Sets_Game_TextMain_Desc" xml:space="preserve">
     <value>Text Color</value>
   </data>
   <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
