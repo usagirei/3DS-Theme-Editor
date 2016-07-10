@@ -26,6 +26,7 @@ namespace ThemeEditor.WPF.Controls
             set { SetValue(ThemeProperty, value); }
         }
 
+
         public TopScreenPreview()
         {
             InitializeComponent();

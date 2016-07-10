@@ -563,10 +563,17 @@
                 markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropTopImageCommand}"
                 markup:DragDropBehaviour.DragEnterCommand="{Binding Path=DragImageCommand}"
                 AllowDrop="True">
-                <controls:TopScreenPreview
-                    x:Name="pre_TopScreen"
-                    IsEnabled="{markup:Setting Path=Preview_AnimationToggle}"
-                    Theme="{Binding Path=ViewModel}" />
+                <Canvas Width="412">
+                    <controls:TopScreenPreview
+                        x:Name="pre_TopScreen"
+                        IsEnabled="{markup:Setting Path=Preview_AnimationToggle}"
+                        Theme="{Binding Path=ViewModel}" />
+
+                    <controls:TopFolderPreview
+                        IsEnabled="{markup:Setting Path=Preview_AnimationToggle}"
+                        ShowPreview="{markup:Setting Path=Preview_ModeToggle}"
+                        Theme="{Binding Path=ViewModel}" />
+                </Canvas>
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="6" ShadowDepth="0" />
                 </Border.Effect>

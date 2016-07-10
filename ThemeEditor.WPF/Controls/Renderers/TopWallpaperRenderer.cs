@@ -124,6 +124,7 @@ namespace ThemeEditor.WPF.Controls.Renderers
             target.OnIsEnabledChanged(oldValue, newValue);
         }
 
+
         private static void OnRender_3DCorners(DrawingContext dc)
         {
             var rect3DL = new Rect(0, 0, 6, 240);

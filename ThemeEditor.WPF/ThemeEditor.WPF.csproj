@@ -88,6 +88,9 @@
     <Compile Include="Controls\BottomScreenOverlays.xaml.cs">
       <DependentUpon>BottomScreenOverlays.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TopFolderPreview.xaml.cs">
+      <DependentUpon>TopFolderPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CrashWindow.xaml.cs">
       <DependentUpon>CrashWindow.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,7 @@
     <Compile Include="MainWindow.BGM.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Markup\ObjMeshExtension.cs" />
     <Compile Include="PreviewOptionsWindow.xaml.cs">
       <DependentUpon>PreviewOptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -239,6 +243,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TopFolderPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CrashWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -351,6 +359,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\empty_body_lz.bin" />
+    <Resource Include="Resources\cart.obj" />
+    <Resource Include="Resources\folder.obj" />
     <None Include="Resources\Icons\body_lz_icn.ico" />
   </ItemGroup>
   <ItemGroup>

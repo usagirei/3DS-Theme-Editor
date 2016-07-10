@@ -10,6 +10,7 @@
              xmlns:effects="clr-namespace:ThemeEditor.WPF.Effects"
              xmlns:templating="clr-namespace:ThemeEditor.WPF.Templating"
              xmlns:enums="clr-namespace:ThemeEditor.WPF.Localization.Enums"
+             xmlns:markup="clr-namespace:ThemeEditor.WPF.Markup"
              mc:Ignorable="d"
              
              d:DesignHeight="240" d:DesignWidth="412">
@@ -165,6 +166,7 @@
             </CombinedGeometry>
             <EllipseGeometry Center="8,8" RadiusY="3" RadiusX="3" />
         </GeometryGroup>
+        
     </UserControl.Resources>
     <Canvas ClipToBounds="True"
             DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Theme}"
@@ -269,6 +271,7 @@
                                Style="{StaticResource TopBarText}"
                                Canvas.Right="95" />
         </Canvas>
+
         <!-- Bottom Bar -->
         <Canvas Canvas.Left="0" Canvas.Bottom="23"
                 Width="412">
@@ -336,5 +339,4 @@
 
         </Canvas>
     </Canvas>
-
 </UserControl>
