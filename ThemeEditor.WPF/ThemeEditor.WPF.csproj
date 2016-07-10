@@ -359,7 +359,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\empty_body_lz.bin" />
-    <Resource Include="Resources\cart.obj" />
+    <Resource Include="Resources\file.obj" />
     <Resource Include="Resources\folder.obj" />
     <None Include="Resources\Icons\body_lz_icn.ico" />
   </ItemGroup>

@@ -91,7 +91,7 @@
                             </GeometryModel3D.Material>
                         </GeometryModel3D>
                         <GeometryModel3D
-                            Geometry="{markup:ObjMesh 'pack://application:,,,/ThemeEditor.WPF;component/Resources/cart.obj'}">
+                            Geometry="{markup:ObjMesh 'pack://application:,,,/ThemeEditor.WPF;component/Resources/file.obj'}">
                             <GeometryModel3D.Material>
                                 <MaterialGroup>
                                     <DiffuseMaterial Brush="White">
