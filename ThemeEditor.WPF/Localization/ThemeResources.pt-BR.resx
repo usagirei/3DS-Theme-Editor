@@ -697,4 +697,34 @@
   <data name="Enum_GameText_Hidden" xml:space="preserve">
     <value>Esconder</value>
   </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos" xml:space="preserve">
+    <value>Posição da Sombra</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos_Desc" xml:space="preserve">
+    <value>Posição Vertical da Sombra</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light" xml:space="preserve">
+    <value>Brilho</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light_Desc" xml:space="preserve">
+    <value>Brilho na Frente da Pasta</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow" xml:space="preserve">
+    <value>Sombra</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow_Desc" xml:space="preserve">
+    <value>Sombra em baixo da Pasta</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow" xml:space="preserve">
+    <value>Sombra</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow_Desc" xml:space="preserve">
+    <value>Sombra em baixo do Icone</value>
+  </data>
+  <data name="Theme_Sets_Game_Light" xml:space="preserve">
+    <value>Brilho</value>
+  </data>
+  <data name="Theme_Sets_Game_Light_Desc" xml:space="preserve">
+    <value>Brilho</value>
+  </data>
 </root>

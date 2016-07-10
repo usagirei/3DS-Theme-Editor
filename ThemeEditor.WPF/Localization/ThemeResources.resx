@@ -834,4 +834,34 @@
   <data name="Enum_GameText_None" xml:space="preserve">
     <value>Disabled</value>
   </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos" xml:space="preserve">
+    <value>Shadow Position</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos_Desc" xml:space="preserve">
+    <value>Shadow Position (Vertical)</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light_Desc" xml:space="preserve">
+    <value>Folder Face Highlight</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow" xml:space="preserve">
+    <value>Shadow</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow_Desc" xml:space="preserve">
+    <value>Shadow under Folder</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow" xml:space="preserve">
+    <value>Shadow</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow_Desc" xml:space="preserve">
+    <value>Shadow under Icon</value>
+  </data>
+  <data name="Theme_Sets_Game_Light" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Theme_Sets_Game_Light_Desc" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
 </root>
