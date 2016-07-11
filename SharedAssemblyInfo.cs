@@ -12,7 +12,7 @@
 // [assembly: AssemblyVersion("1.0.*")]
 
 // Shared (File) Version
-[assembly: AssemblyFileVersion("1.0.10.0")]
+[assembly: AssemblyFileVersion("1.0.10.1")]
 [assembly: AssemblyCompany("Usagirei")]
 [assembly: AssemblyCopyright("Copyright © Usagirei 2016")]
 [assembly: AssemblyCulture("")]
@@ -30,5 +30,5 @@
 
 // ThemeEditor.WPF
 #if WPF_EDITOR
-[assembly: AssemblyVersion("1.0.10.0")]
+[assembly: AssemblyVersion("1.0.10.1")]
 #endif

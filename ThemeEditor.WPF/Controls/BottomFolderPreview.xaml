@@ -61,12 +61,12 @@
                 </templating:SwitchConverterCase>
                 <templating:SwitchConverterCase Value="{StaticResource Column4}">
                     <templating:SwitchConverterCase.Case>
-                        <system:Int32>4</system:Int32>
+                        <system:Int32>3</system:Int32>
                     </templating:SwitchConverterCase.Case>
                 </templating:SwitchConverterCase>
                 <templating:SwitchConverterCase Value="{StaticResource Column5}">
                     <templating:SwitchConverterCase.Case>
-                        <system:Int32>5</system:Int32>
+                        <system:Int32>4</system:Int32>
                     </templating:SwitchConverterCase.Case>
                 </templating:SwitchConverterCase>
             </templating:SwitchConverter>
