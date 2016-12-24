@@ -99,8 +99,11 @@ namespace ThemeEditor.WPF
                             bmp.EndInit();
                             bmp.Freeze();
 
+                            var potBmp = bmp.CreateResizedNextPot();
+                            potBmp.Freeze();
+
                             results.Loaded = true;
-                            results.Image = bmp;
+                            results.Image = potBmp;
                         }
                     }
                     catch
@@ -404,7 +407,6 @@ namespace ThemeEditor.WPF
             DragImageCommand = new RelayCommand<DragEventArgs>(DragImage_Execute, image => CanExecute_ViewModelLoaded());
 
             DropTopImageCommand = new RelayCommandAsync<DragEventArgs, LoadImageResults>(e => DropImage_Execute(e, TargetImage.Top), image => CanExecute_ViewModelLoaded(), image => PreExecute_SetBusy(), LoadImage_PostExecute);
-
             DropBottomImageCommand = new RelayCommandAsync<DragEventArgs, LoadImageResults>(e => DropImage_Execute(e, TargetImage.Bottom), image => CanExecute_ViewModelLoaded(), image => PreExecute_SetBusy(), LoadImage_PostExecute);
 
             CopyResizeSMDHIconCommandCommand = new RelayCommand<bool>(CopySMDHLargeToSmall_Execute);
