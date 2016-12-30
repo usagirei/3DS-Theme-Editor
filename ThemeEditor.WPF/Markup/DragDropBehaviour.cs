@@ -13,13 +13,24 @@ namespace ThemeEditor.WPF.Markup
             = DependencyProperty.RegisterAttached("DragDropCommand",
                 typeof(ICommand),
                 typeof(DragDropBehaviour),
-                new PropertyMetadata(default(ICommand), OnPreviewDropChanged));
+                new PropertyMetadata(default(ICommand), OnDropChanged));
 
         public static readonly DependencyProperty DragEnterCommandProperty
             = DependencyProperty.RegisterAttached("DragEnterCommand",
                 typeof(ICommand),
                 typeof(DragDropBehaviour),
                 new PropertyMetadata(default(ICommand), OnDragEnterChanged));
+
+        public static readonly DependencyProperty DragLeaveCommandProperty
+            = DependencyProperty.RegisterAttached("DragLeaveCommand",
+                typeof(ICommand),
+                typeof(DragDropBehaviour),
+                new PropertyMetadata(default(ICommand), OnDragLeaveChanged));
+
+        public static ICommand GetDragLeaveCommand(DependencyObject element)
+        {
+            return (ICommand)element.GetValue(DragLeaveCommandProperty);
+        }
 
         public static ICommand GetDragDropCommand(DependencyObject element)
         {
@@ -29,6 +40,11 @@ namespace ThemeEditor.WPF.Markup
         public static ICommand GetDragEnterCommand(DependencyObject element)
         {
             return (ICommand) element.GetValue(DragEnterCommandProperty);
+        }
+
+        public static void SetDragLeaveCommand(DependencyObject element, ICommand value)
+        {
+            element.SetValue(DragLeaveCommandProperty, value);
         }
 
         public static void SetDragDropCommand(DependencyObject element, ICommand value)
@@ -70,16 +86,32 @@ namespace ThemeEditor.WPF.Markup
             args.Handled = true;
         }
 
-        private static void OnPreviewDropChanged(
-            DependencyObject elem
-            ,
-            DependencyPropertyChangedEventArgs args)
+        private static void OnDropChanged(DependencyObject elem, DependencyPropertyChangedEventArgs args)
         {
             var uiElement = elem as UIElement;
             if (uiElement == null)
                 return;
 
             uiElement.PreviewDrop += OnDrop;
+        }
+
+        private static void OnDragLeave(object sender, DragEventArgs args)
+        {
+            var command = GetDragLeaveCommand((DependencyObject)sender);
+            if (command?.CanExecute(args) ?? false)
+                command.Execute(args);
+            else
+                args.Effects = DragDropEffects.None;
+            args.Handled = true;
+        }
+
+        private static void OnDragLeaveChanged(DependencyObject elem, DependencyPropertyChangedEventArgs args)
+        {
+            var uiElement = elem as UIElement;
+            if (uiElement == null)
+                return;
+
+            uiElement.PreviewDragLeave += OnDragLeave;
         }
     }
 }
