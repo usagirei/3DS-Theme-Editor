@@ -35,12 +35,15 @@ namespace ThemeEditor.WPF
 
         private string _themePath;
 
+        public ICommand ConvertBGMCommand { get; private set; }
+
+        public ICommand DragThemeCommand { get; set; }
+        public ICommand DropThemeCommand { get; set; }
+
         public GestureCommandWrapper LoadThemeCommandWrapper { get; private set; }
         public GestureCommandWrapper NewThemeCommandWrapper { get; private set; }
 
         public ICommand ReloadBGMCommand { get; private set; }
-
-        public ICommand ConvertBGMCommand { get; private set; }
 
         public GestureCommandWrapper SaveAsThemeCommandWrapper { get; private set; }
         public GestureCommandWrapper SaveThemeCommandWrapper { get; private set; }
@@ -416,6 +419,12 @@ namespace ThemeEditor.WPF
                 str => PreExecute_SetBusy(),
                 SendTheme_PostExecute);
 
+            DragThemeCommand = new RelayCommand<DragEventArgs>(DragTheme_Execute);
+            DropThemeCommand = new RelayCommandAsync<DragEventArgs, LoadThemeResults>(DropTheme_Execute,
+                null,
+                arg => PreExecute_SetBusy(),
+                LoadTheme_PostExecute);
+
             LoadThemeCommandWrapper
                 = new GestureCommandWrapper(loadCommand, new KeyGesture(Key.O, ModifierKeys.Control));
             SaveThemeCommandWrapper
@@ -432,6 +441,28 @@ namespace ThemeEditor.WPF
                 CanExecute_LoadedFromFile,
                 PreExecute_SetBusy,
                 LoadBGM_PostExecute);
+        }
+
+        private Task<LoadThemeResults> DropTheme_Execute(DragEventArgs args)
+        {
+            return LoadTheme_Execute(((string[]) args.Data.GetData(DataFormats.FileDrop))[0], true);
+        }
+
+        private void DragTheme_Execute(DragEventArgs args)
+        {
+            args.Effects = DragDropEffects.None;
+            var hasFileDrop = args.Data.GetDataPresent(DataFormats.FileDrop);
+            if (hasFileDrop)
+            {
+                var file = args.Data.GetData(DataFormats.FileDrop) as string[];
+                if (file?.Length != 1)
+                    return;
+                var ext = Path.GetExtension(file[0]);
+                var isBin = ".bin".Equals(ext, StringComparison.OrdinalIgnoreCase);
+                if (isBin)
+                    args.Effects = DragDropEffects.Copy;
+            }
+            args.Handled = true;
         }
 
         private void SendTheme_PostExecute(SendThemeResults obj)
@@ -527,7 +558,7 @@ namespace ThemeEditor.WPF
                         averageSample = (averageSample * 0.75f) + (delta / trans * 0.25f);
 
                         BusyText = $"Sending: {offset / fLen:f2}%" + Environment.NewLine +
-                                   $"Rate: {(int)(averageSample / 1.024)}KB/s";
+                                   $"Rate: {(int) (averageSample / 1.024)}KB/s";
                         sw.Restart();
                     }
 

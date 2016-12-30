@@ -495,7 +495,12 @@
                     Command="{Binding Path=AboutCommand}"
                     Header="{x:Static locale:MainResources.Menu_About}" />
             </Menu>
-            <TabControl Grid.Row="1">
+            <TabControl
+                Grid.Row="1"
+                markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropThemeCommand}"
+                markup:DragDropBehaviour.DragEnterCommand="{Binding Path=DragThemeCommand}"
+                markup:DragDropBehaviour.DragOverCommand="{Binding Path=DragThemeCommand}"
+                AllowDrop="True">
                 <TabItem Header="{x:Static locale:MainResources.Tab_Info}">
                     <Grid Margin="3">
                         <Grid.Resources>
@@ -794,49 +799,50 @@
                         <Setter Property="AllowDrop" Value="True" />
                         <Setter Property="Focusable" Value="False" />
                         <Setter Property="markup:DragDropBehaviour.DragEnterCommand" Value="{Binding Path=DragImageCommand}" />
+                        <Setter Property="markup:DragDropBehaviour.DragOverCommand" Value="{Binding Path=DragImageCommand}" />
                     </Style>
                 </StackPanel.Resources>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropTopImageCommand}"
-                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_Top}, Converter={StaticResource StripStringUnderscoreCoverter}}"
-                    CommandParameter="{x:Static local:TargetImage.Top}">
+                    CommandParameter="{x:Static local:TargetImage.Top}"
+                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_Top}, Converter={StaticResource StripStringUnderscoreCoverter}}">
                     <Image Source="/ThemeEditor.WPF;component/Resources/DROP_TOP.png" />
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropTopAltImageCommand}"
-                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_TopStatic}, Converter={StaticResource StripStringUnderscoreCoverter}}"
-                    CommandParameter="{x:Static local:TargetImage.TopAlt}">
+                    CommandParameter="{x:Static local:TargetImage.TopAlt}"
+                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_TopStatic}, Converter={StaticResource StripStringUnderscoreCoverter}}">
                     <Image Source="/ThemeEditor.WPF;component/Resources/DROP_TOPALT.png" />
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropBottomImageCommand}"
-                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_Bottom}, Converter={StaticResource StripStringUnderscoreCoverter}}"
-                    CommandParameter="{x:Static local:TargetImage.Bottom}">
+                    CommandParameter="{x:Static local:TargetImage.Bottom}"
+                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_Bottom}, Converter={StaticResource StripStringUnderscoreCoverter}}">
                     <Image Source="/ThemeEditor.WPF;component/Resources/DROP_BOTTOM.png" />
                 </Button>
                 <Separator />
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropFileLargeImageCommand}"
-                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FileLarge}, Converter={StaticResource StripStringUnderscoreCoverter}}"
-                    CommandParameter="{x:Static local:TargetImage.FileLarge}">
+                    CommandParameter="{x:Static local:TargetImage.FileLarge}"
+                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FileLarge}, Converter={StaticResource StripStringUnderscoreCoverter}}">
                     <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FILELARGE.png" />
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropFileSmallImageCommand}"
-                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FileSmall}, Converter={StaticResource StripStringUnderscoreCoverter}}"
-                    CommandParameter="{x:Static local:TargetImage.FileSmall}">
+                    CommandParameter="{x:Static local:TargetImage.FileSmall}"
+                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FileSmall}, Converter={StaticResource StripStringUnderscoreCoverter}}">
                     <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FILESMALL.png" />
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropFolderClosedImageCommand}"
-                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FolderClosed}, Converter={StaticResource StripStringUnderscoreCoverter}}"
-                    CommandParameter="{x:Static local:TargetImage.FolderClosed}">
+                    CommandParameter="{x:Static local:TargetImage.FolderClosed}"
+                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FolderClosed}, Converter={StaticResource StripStringUnderscoreCoverter}}">
                     <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FOLDERCLOSED.png" />
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropFolderOpenImageCommand}"
-                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FolderOpen}, Converter={StaticResource StripStringUnderscoreCoverter}}"
-                    CommandParameter="{x:Static local:TargetImage.FolderOpen}">
+                    CommandParameter="{x:Static local:TargetImage.FolderOpen}"
+                    ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FolderOpen}, Converter={StaticResource StripStringUnderscoreCoverter}}">
                     <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FOLDEROPEN.png" />
                 </Button>
             </StackPanel>
