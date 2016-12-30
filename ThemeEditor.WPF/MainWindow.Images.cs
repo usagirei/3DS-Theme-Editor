@@ -3,6 +3,7 @@
 // --------------------------------------------------
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,21 @@ namespace ThemeEditor.WPF
 {
     partial class MainWindow
     {
-        public ICommand DragImageCommand { get; set; }
-        public ICommand DropBottomImageCommand { get; set; }
-
-        public ICommand DropTopImageCommand { get; set; }
-        public ICommand ExportImageCommand { get; private set; }
-        public ICommand RemoveImageCommand { get; private set; }
+        static readonly string[] VALID_IMAGE_EXT = {".jpg", ".jpeg", ".png", ".bmp"};
 
         public ICommand CopyResizeSMDHIconCommandCommand { get; private set; }
+        public ICommand DragImageCommand { get; set; }
+
+        public ICommand DropBottomImageCommand { get; set; }
+        public ICommand DropTopImageCommand { get; set; }
+        public ICommand DropTopAltImageCommand { get; set; }
+        public ICommand DropFileLargeImageCommand { get; set; }
+        public ICommand DropFileSmallImageCommand { get; set; }
+        public ICommand DropFolderOpenImageCommand { get; set; }
+        public ICommand DropFolderClosedImageCommand { get; set; }
+
+        public ICommand ExportImageCommand { get; private set; }
+        public ICommand RemoveImageCommand { get; private set; }
 
         public ICommand ReplaceImageCommand { get; private set; }
 
@@ -69,10 +77,18 @@ namespace ThemeEditor.WPF
 
         private void DragImage_Execute(DragEventArgs args)
         {
-            args.Effects = args.Data.GetDataPresent(DataFormats.FileDrop)
-                ? DragDropEffects.Copy
-                : DragDropEffects.None;
             args.Handled = true;
+            args.Effects = DragDropEffects.None;
+            var hasFileDrop = args.Data.GetDataPresent(DataFormats.FileDrop);
+            if (hasFileDrop)
+            {
+                var file = args.Data.GetData(DataFormats.FileDrop) as string[];
+                if (file?.Length != 1)
+                    return;
+                var ext = Path.GetExtension(file[0]);
+                if (VALID_IMAGE_EXT.Contains(ext, StringComparer.OrdinalIgnoreCase))
+                    args.Effects = DragDropEffects.Copy;
+            }
         }
 
         private Task<LoadImageResults> DropImage_Execute(DragEventArgs args, TargetImage target)
@@ -383,7 +399,7 @@ namespace ThemeEditor.WPF
                 {
                     var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 24);
                     var large = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(24, 24);
-                    ViewModel.Info.SmallIcon.EncodeTexture( large, RawTexture.DataFormat.Bgr565);
+                    ViewModel.Info.SmallIcon.EncodeTexture(large, RawTexture.DataFormat.Bgr565);
                     break;
                 }
                 case TargetImage.LargeIcon:
@@ -400,14 +416,37 @@ namespace ThemeEditor.WPF
 
         partial void SetupImageCommands()
         {
+            // Menus
+
             RemoveImageCommand = new RelayCommand<TargetImage>(RemoveImage_Execute, CanExecute_ImageExists);
-            ReplaceImageCommand = new RelayCommandAsync<TargetImage, LoadImageResults>(LoadImage_Execute, image => CanExecute_ViewModelLoaded(), image => PreExecute_SetBusy(), LoadImage_PostExecute);
-            ExportImageCommand = new RelayCommandAsync<TargetImage, SaveImageResults>(ExportImage_Execute, CanExecute_ImageExists, image => PreExecute_SetBusy(), ExportImage_PostExecute);
+            ReplaceImageCommand = new RelayCommandAsync<TargetImage, LoadImageResults>(LoadImage_Execute,
+                image => CanExecute_ViewModelLoaded(),
+                image => PreExecute_SetBusy(),
+                LoadImage_PostExecute);
+            ExportImageCommand = new RelayCommandAsync<TargetImage, SaveImageResults>(ExportImage_Execute,
+                CanExecute_ImageExists,
+                image => PreExecute_SetBusy(),
+                ExportImage_PostExecute);
+
+            // Drop Targets
 
             DragImageCommand = new RelayCommand<DragEventArgs>(DragImage_Execute, image => CanExecute_ViewModelLoaded());
 
-            DropTopImageCommand = new RelayCommandAsync<DragEventArgs, LoadImageResults>(e => DropImage_Execute(e, TargetImage.Top), image => CanExecute_ViewModelLoaded(), image => PreExecute_SetBusy(), LoadImage_PostExecute);
-            DropBottomImageCommand = new RelayCommandAsync<DragEventArgs, LoadImageResults>(e => DropImage_Execute(e, TargetImage.Bottom), image => CanExecute_ViewModelLoaded(), image => PreExecute_SetBusy(), LoadImage_PostExecute);
+            Func<TargetImage, ICommand> genCommand = target => new RelayCommandAsync<DragEventArgs, LoadImageResults>(
+                e => DropImage_Execute(e, target),
+                image => CanExecute_ViewModelLoaded(),
+                image => PreExecute_SetBusy(),
+                LoadImage_PostExecute);
+
+            DropTopImageCommand = genCommand(TargetImage.Top);
+            DropTopAltImageCommand = genCommand(TargetImage.TopAlt);
+            DropBottomImageCommand = genCommand(TargetImage.Bottom);
+            DropFileLargeImageCommand = genCommand(TargetImage.FileLarge);
+            DropFileSmallImageCommand = genCommand(TargetImage.FileSmall);
+            DropFolderClosedImageCommand = genCommand(TargetImage.FolderClosed);
+            DropFolderOpenImageCommand = genCommand(TargetImage.FolderOpen);
+
+            // SMDH Icon
 
             CopyResizeSMDHIconCommandCommand = new RelayCommand<bool>(CopySMDHLargeToSmall_Execute);
         }

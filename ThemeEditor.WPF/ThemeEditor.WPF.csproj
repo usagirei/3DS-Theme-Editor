@@ -115,6 +115,7 @@
     <Compile Include="Templating\NullConverter.cs" />
     <Compile Include="Templating\PasstroughConverter.cs" />
     <Compile Include="Templating\PathToFileNameConverter.cs" />
+    <Compile Include="Templating\StripStringUnderscoreCoverter.cs" />
     <Compile Include="Templating\SwitchConverter.cs" />
     <Compile Include="Templating\ThicknessConverter.cs" />
     <Compile Include="Templating\ValueConverterGroup.cs" />
@@ -371,6 +372,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WidePicker.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DROP_TOP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DROP_TOPALT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DROP_BOTTOM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DROP_FILELARGE.png" />
+    <Resource Include="Resources\DROP_FILESMALL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DROP_FOLDERCLOSED.png" />
+    <Resource Include="Resources\DROP_FOLDEROPEN.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
