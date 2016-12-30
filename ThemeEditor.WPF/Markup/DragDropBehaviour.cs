@@ -2,6 +2,7 @@
 // 3DS Theme Editor - DropBehaviour.cs
 // --------------------------------------------------
 
+using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -27,9 +28,21 @@ namespace ThemeEditor.WPF.Markup
                 typeof(DragDropBehaviour),
                 new PropertyMetadata(default(ICommand), OnDragLeaveChanged));
 
+        public static readonly DependencyProperty DragOverCommandProperty
+      = DependencyProperty.RegisterAttached("DragOverCommand",
+          typeof(ICommand),
+          typeof(DragDropBehaviour),
+          new PropertyMetadata(default(ICommand), OnDragOverChanged));
+
+
+
         public static ICommand GetDragLeaveCommand(DependencyObject element)
         {
             return (ICommand)element.GetValue(DragLeaveCommandProperty);
+        }
+        public static ICommand GetDragOverCommand(DependencyObject element)
+        {
+            return (ICommand)element.GetValue(DragOverCommandProperty);
         }
 
         public static ICommand GetDragDropCommand(DependencyObject element)
@@ -47,6 +60,11 @@ namespace ThemeEditor.WPF.Markup
             element.SetValue(DragLeaveCommandProperty, value);
         }
 
+        public static void SetDragOverCommand(DependencyObject element, ICommand value)
+        {
+            element.SetValue(DragOverCommandProperty, value);
+        }
+
         public static void SetDragDropCommand(DependencyObject element, ICommand value)
         {
             element.SetValue(DragDropCommandProperty, value);
@@ -61,10 +79,14 @@ namespace ThemeEditor.WPF.Markup
         {
             var command = GetDragEnterCommand((DependencyObject) sender);
             if (command?.CanExecute(args) ?? false)
+            {
                 command.Execute(args);
+            }
             else
+            {
                 args.Effects = DragDropEffects.None;
-            args.Handled = true;
+                args.Handled = true;
+            }
         }
 
         private static void OnDragEnterChanged(DependencyObject elem, DependencyPropertyChangedEventArgs args)
@@ -80,10 +102,37 @@ namespace ThemeEditor.WPF.Markup
         {
             var command = GetDragDropCommand((DependencyObject) sender);
             if (command?.CanExecute(args) ?? false)
+            {
                 command.Execute(args);
+            }
             else
+            {
                 args.Effects = DragDropEffects.None;
-            args.Handled = true;
+                args.Handled = true;
+            }
+        }
+
+        private static void OnDragOverChanged(DependencyObject elem, DependencyPropertyChangedEventArgs args)
+        {
+            var uiElement = elem as UIElement;
+            if (uiElement == null)
+                return;
+
+            uiElement.PreviewDragOver += OnDragOver;
+        }
+
+        private static void OnDragOver(object sender, DragEventArgs args)
+        {
+            var command = GetDragOverCommand((DependencyObject) sender);
+            if (command?.CanExecute(args) ?? false)
+            {
+                command.Execute(args);
+            }
+            else
+            {
+                args.Effects = DragDropEffects.None;
+                args.Handled = true;
+            }
         }
 
         private static void OnDropChanged(DependencyObject elem, DependencyPropertyChangedEventArgs args)
@@ -99,10 +148,14 @@ namespace ThemeEditor.WPF.Markup
         {
             var command = GetDragLeaveCommand((DependencyObject)sender);
             if (command?.CanExecute(args) ?? false)
+            {
                 command.Execute(args);
+            }
             else
+            {
                 args.Effects = DragDropEffects.None;
-            args.Handled = true;
+                args.Handled = true;
+            }
         }
 
         private static void OnDragLeaveChanged(DependencyObject elem, DependencyPropertyChangedEventArgs args)
