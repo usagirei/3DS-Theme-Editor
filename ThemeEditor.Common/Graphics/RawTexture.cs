@@ -27,7 +27,7 @@ namespace ThemeEditor.Common.Graphics
         {
             Width = width;
             Height = height;
-            var tgtSize = (int) format * width * height;
+            var tgtSize = (int)format * width * height;
             Format = format;
             Data = new byte[tgtSize];
         }
@@ -101,6 +101,7 @@ namespace ThemeEditor.Common.Graphics
             return gcm;
         }
 
+
         private static int NextLargestPowerOfTwo(int x)
         {
             x--;
@@ -132,7 +133,7 @@ namespace ThemeEditor.Common.Graphics
             {
                 Width = width;
                 Height = height;
-                var tgtSize = (int) format * width * height;
+                var tgtSize = (int)format * width * height;
                 Format = format;
                 Data = new byte[tgtSize];
             }
@@ -155,6 +156,59 @@ namespace ThemeEditor.Common.Graphics
                     Encode_A8(bgrData);
                     return;
             }
+        }
+
+        public void EdgeBleed(int x, int y, int sx, int sy)
+        {
+            byte[] bgrData = Decode();
+            int eSize = 3; // BGR Data
+
+            void EdgeBleedY(int r, int y0, int y1)
+            {
+                if (y0 > y1)
+                {
+                    int t = y1;
+                    y1 = y0;
+                    y0 = t;
+                }
+
+                int dSize = Width * 3;
+                byte[] line = new byte[dSize];
+                Buffer.BlockCopy(bgrData, r * dSize, line, 0, dSize);
+                for (int i = y0; i <= y1; i++)
+                    Buffer.BlockCopy(line, 0, bgrData, i * dSize, dSize);
+            }
+
+            void EdgeBleedX(int r, int x0, int x1)
+            {
+                byte[] bd = bgrData;
+                int es = eSize;
+                int w = Width;
+
+                if (x0 > x1)
+                {
+                    int t = x1;
+                    x1 = x0;
+                    x0 = t;
+                }
+
+                int dSize = Height * eSize;
+                byte[] line = new byte[dSize];
+                for (int j = 0; j < Height; j++)
+                    Buffer.BlockCopy(bd, (j * w + r) * es, line, j * es, es);
+
+                for (int i = x0; i <= x1; i++)
+                    for (int j = 0; j < Height; j++)
+                        Buffer.BlockCopy(line, j * es, bd, (j * w + i) * es, es);
+
+            }
+
+            EdgeBleedX(x, 0, x);
+            EdgeBleedX(x + sx - 1, x + sx - 1, Width - 1);
+            EdgeBleedY(y, 0, y);
+            EdgeBleedY(y + sy - 1, y + sy - 1, Height - 1);
+
+            Encode(bgrData);
         }
 
         public void Read(Stream s)
@@ -185,8 +239,8 @@ namespace ThemeEditor.Common.Graphics
                 DecToCoord(i % 64, out x, out y);
                 uint tile = i / 64;
 
-                x += (uint) (tile % p) * 8;
-                y += (uint) (tile / p) * 8;
+                x += (uint)(tile % p) * 8;
+                y += (uint)(tile / p) * 8;
 
                 var idx = 3 * (y * Width + x);
 
@@ -210,16 +264,16 @@ namespace ThemeEditor.Common.Graphics
             {
                 int px = (Data[i + 1] << 8 | Data[i]);
 
-                byte r = (byte) (((px >> 11) & 0x1f) << 3); // 5
-                byte g = (byte) (((px >> 5) & 0x3f) << 2); // 6
-                byte b = (byte) (((px >> 0) & 0x1f) << 3); // 5
+                byte r = (byte)(((px >> 11) & 0x1f) << 3); // 5
+                byte g = (byte)(((px >> 5) & 0x3f) << 2); // 6
+                byte b = (byte)(((px >> 0) & 0x1f) << 3); // 5
 
                 uint x, y;
                 DecToCoord(j % 64, out x, out y);
                 uint tile = j / 64;
 
-                x += (uint) (tile % p) * 8;
-                y += (uint) (tile / p) * 8;
+                x += (uint)(tile % p) * 8;
+                y += (uint)(tile / p) * 8;
 
                 var idx = 3 * (y * Width + x);
 
@@ -249,8 +303,8 @@ namespace ThemeEditor.Common.Graphics
                 DecToCoord(j % 64, out x, out y);
                 uint tile = j / 64;
 
-                x += (uint) (tile % p) * 8;
-                y += (uint) (tile / p) * 8;
+                x += (uint)(tile % p) * 8;
+                y += (uint)(tile / p) * 8;
 
                 var idx = 3 * (y * Width + x);
 
@@ -283,8 +337,8 @@ namespace ThemeEditor.Common.Graphics
                 DecToCoord(i % 64, out x, out y);
                 uint tile = i / 64;
 
-                x += (uint) (tile % p) * 8;
-                y += (uint) (tile / p) * 8;
+                x += (uint)(tile % p) * 8;
+                y += (uint)(tile / p) * 8;
 
                 var idx = 3 * (y * Width + x);
                 var g = gscData[idx + 0];
@@ -311,8 +365,8 @@ namespace ThemeEditor.Common.Graphics
                 DecToCoord(j % 64, out x, out y);
                 uint tile = j / 64;
 
-                x += (uint) (tile % p) * 8;
-                y += (uint) (tile / p) * 8;
+                x += (uint)(tile % p) * 8;
+                y += (uint)(tile / p) * 8;
 
                 var idx = 3 * (y * Width + x);
 
@@ -322,8 +376,8 @@ namespace ThemeEditor.Common.Graphics
 
                 int px = (r << 11 | g << 5 | b) & 0xffff;
 
-                Data[k + 0] = (byte) (px >> 0 & 0xFF);
-                Data[k + 1] = (byte) (px >> 8 & 0xFF);
+                Data[k + 0] = (byte)(px >> 0 & 0xFF);
+                Data[k + 1] = (byte)(px >> 8 & 0xFF);
             }
         }
 
@@ -342,8 +396,8 @@ namespace ThemeEditor.Common.Graphics
                 DecToCoord(j % 64, out x, out y);
                 uint tile = j / 64;
 
-                x += (uint) (tile % p) * 8;
-                y += (uint) (tile / p) * 8;
+                x += (uint)(tile % p) * 8;
+                y += (uint)(tile / p) * 8;
 
                 var idx = 3 * (y * Width + x);
 

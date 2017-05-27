@@ -64,6 +64,12 @@ namespace ThemeEditor.WPF.Themes
             Invalidate();
         }
 
+        public void EdgeBleed(int x, int y, int sx, int sy)
+        {
+            Model.EdgeBleed(x, y, sx, sy);
+            Invalidate();
+        }
+
         public void Invalidate()
         {
             var oldBitmap = _src;

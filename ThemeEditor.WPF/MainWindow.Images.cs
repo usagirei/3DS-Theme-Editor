@@ -21,7 +21,7 @@ namespace ThemeEditor.WPF
 {
     partial class MainWindow
     {
-        static readonly string[] VALID_IMAGE_EXT = {".jpg", ".jpeg", ".png", ".bmp"};
+        static readonly string[] VALID_IMAGE_EXT = { ".jpg", ".jpeg", ".png", ".bmp" };
 
         public ICommand CopyResizeSMDHIconCommandCommand { get; private set; }
         public ICommand DragImageCommand { get; set; }
@@ -102,7 +102,7 @@ namespace ThemeEditor.WPF
                 };
                 if (args.Data.GetDataPresent(DataFormats.FileDrop))
                 {
-                    string[] files = (string[]) args.Data.GetData(DataFormats.FileDrop);
+                    string[] files = (string[])args.Data.GetData(DataFormats.FileDrop);
                     var file = files[0];
                     try
                     {
@@ -114,6 +114,9 @@ namespace ThemeEditor.WPF
                             bmp.CacheOption = BitmapCacheOption.OnLoad;
                             bmp.EndInit();
                             bmp.Freeze();
+
+                            results.OriginalWidth = bmp.PixelWidth;
+                            results.OriginalHeight = bmp.PixelHeight;
 
                             var potBmp = bmp.CreateResizedNextPot();
                             potBmp.Freeze();
@@ -250,6 +253,9 @@ namespace ThemeEditor.WPF
                             bmp.EndInit();
                             bmp.Freeze();
 
+                            results.OriginalWidth = bmp.PixelWidth;
+                            results.OriginalHeight = bmp.PixelHeight;
+
                             BitmapSource bmpSrc;
 
                             switch (targetImage)
@@ -304,57 +310,58 @@ namespace ThemeEditor.WPF
                     switch (target)
                     {
                         case TargetImage.Top:
-                        {
-                            ViewModel.Textures.Top.EncodeTexture(args.Image, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Textures.Top.EncodeTexture(args.Image, targetSize.Format);
+                                break;
+                            }
                         case TargetImage.Bottom:
-                        {
-                            ViewModel.Textures.Bottom.EncodeTexture(args.Image, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Textures.Bottom.EncodeTexture(args.Image, targetSize.Format);
+                                break;
+                            }
                         case TargetImage.FileLarge:
-                        {
-                            ViewModel.Textures.FileLarge.EncodeTexture(args.Image, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Textures.FileLarge.EncodeTexture(args.Image, targetSize.Format);
+                                break;
+                            }
                         case TargetImage.FileSmall:
-                        {
-                            ViewModel.Textures.FileSmall.EncodeTexture(args.Image, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Textures.FileSmall.EncodeTexture(args.Image, targetSize.Format);
+                                break;
+                            }
                         case TargetImage.FolderOpen:
-                        {
-                            ViewModel.Textures.FolderOpen.EncodeTexture(args.Image, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Textures.FolderOpen.EncodeTexture(args.Image, targetSize.Format);
+                                break;
+                            }
                         case TargetImage.FolderClosed:
-                        {
-                            ViewModel.Textures.FolderClosed.EncodeTexture(args.Image, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Textures.FolderClosed.EncodeTexture(args.Image, targetSize.Format);
+                                break;
+                            }
                         case TargetImage.TopAlt:
-                        {
-                            ViewModel.Textures.TopAlt.EncodeTexture(args.Image, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Textures.TopAlt.EncodeTexture(args.Image, targetSize.Format);
+                                break;
+                            }
                         case TargetImage.SmallIcon:
-                        {
-                            ViewModel.Info.SmallIcon.EncodeTexture(args.Image, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Info.SmallIcon.EncodeTexture(args.Image, targetSize.Format);
+                                break;
+                            }
                         case TargetImage.LargeIcon:
-                        {
-                            ViewModel.Info.LargeIcon.EncodeTexture(args.Image, targetSize.Format);
-                            var sml = Extensions.CreateResizedImage(args.Image, 24, 24);
-                            ViewModel.Info.SmallIcon.EncodeTexture((BitmapSource) sml, targetSize.Format);
-                            break;
-                        }
+                            {
+                                ViewModel.Info.LargeIcon.EncodeTexture(args.Image, targetSize.Format);
+                                var sml = Extensions.CreateResizedImage(args.Image, 24, 24);
+                                ViewModel.Info.SmallIcon.EncodeTexture((BitmapSource)sml, targetSize.Format);
+                                break;
+                            }
                         default:
-                        {
-                            throw new ArgumentOutOfRangeException();
-                        }
+                            {
+                                throw new ArgumentOutOfRangeException();
+                            }
                     }
+                    ViewModel.Textures.Top.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
                 }
                 catch (InvalidOperationException)
                 {
@@ -396,19 +403,19 @@ namespace ThemeEditor.WPF
                     ViewModel.Textures.TopAlt.ClearTexture();
                     break;
                 case TargetImage.SmallIcon:
-                {
-                    var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 24);
-                    var large = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(24, 24);
-                    ViewModel.Info.SmallIcon.EncodeTexture(large, RawTexture.DataFormat.Bgr565);
-                    break;
-                }
+                    {
+                        var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 24);
+                        var large = ((BitmapSource)icex.ProvideValue(null)).CreateResizedImage(24, 24);
+                        ViewModel.Info.SmallIcon.EncodeTexture(large, RawTexture.DataFormat.Bgr565);
+                        break;
+                    }
                 case TargetImage.LargeIcon:
-                {
-                    var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 48);
-                    var large = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(48, 48);
-                    ViewModel.Info.LargeIcon.EncodeTexture(large, RawTexture.DataFormat.Bgr565);
-                    break;
-                }
+                    {
+                        var icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 48);
+                        var large = ((BitmapSource)icex.ProvideValue(null)).CreateResizedImage(48, 48);
+                        ViewModel.Info.LargeIcon.EncodeTexture(large, RawTexture.DataFormat.Bgr565);
+                        break;
+                    }
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -456,12 +463,12 @@ namespace ThemeEditor.WPF
             if (direction)
             {
                 var sml = Extensions.CreateResizedImage(ViewModel.Info.LargeIcon.Bitmap, 24, 24);
-                ViewModel.Info.SmallIcon.EncodeTexture((BitmapSource) sml, ViewModel.Info.SmallIcon.DataFormat);
+                ViewModel.Info.SmallIcon.EncodeTexture((BitmapSource)sml, ViewModel.Info.SmallIcon.DataFormat);
             }
             else
             {
                 var sml = Extensions.CreateResizedImage(ViewModel.Info.SmallIcon.Bitmap, 48, 48);
-                ViewModel.Info.LargeIcon.EncodeTexture((BitmapSource) sml, ViewModel.Info.LargeIcon.DataFormat);
+                ViewModel.Info.LargeIcon.EncodeTexture((BitmapSource)sml, ViewModel.Info.LargeIcon.DataFormat);
             }
         }
 
@@ -474,6 +481,8 @@ namespace ThemeEditor.WPF
 
         private class LoadImageResults
         {
+            public int OriginalWidth;
+            public int OriginalHeight;
             public BitmapSource Image;
             public bool Loaded;
             public TargetImage Target;

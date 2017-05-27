@@ -34,7 +34,7 @@
                 <system:Double>1.0</system:Double>
             </templating:BooleanConverter.TrueValue>
             <templating:BooleanConverter.FalseValue>
-                <system:Double>0.5</system:Double>
+                <system:Double>0.25</system:Double>
             </templating:BooleanConverter.FalseValue>
         </templating:BooleanConverter>
         <templating:PropertyListConverter x:Key="ViewModelUnroller" />
@@ -486,6 +486,12 @@
                             IsEnabled="False" />
                     </MenuItem>
                 </MenuItem>
+                <MenuItem Header="Metadata">
+                    <MenuItem Header="Export Colors" Command="{Binding Path=ExportMetadataCommand}" CommandParameter="Colors" />
+                    <MenuItem Header="Export Flags" Command="{Binding Path=ExportMetadataCommand}" CommandParameter="Flags" />
+                    <Separator />
+                    <MenuItem Header="Import" Command="{Binding Path=ImportMetadataCommand}" />
+                </MenuItem>
                 <MenuItem Header="Experimental">
                     <MenuItem
                         Command="{Binding Path=CWavManagerCommand}"
@@ -806,44 +812,51 @@
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropTopImageCommand}"
                     CommandParameter="{x:Static local:TargetImage.Top}"
                     ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_Top}, Converter={StaticResource StripStringUnderscoreCoverter}}">
-                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_TOP.png" />
+                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_TOP.png" 
+                           Opacity="{Binding Path=ViewModel.Textures.Top.Exists, Converter={StaticResource BooleanToOpacityConverter}}" />
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropTopAltImageCommand}"
                     CommandParameter="{x:Static local:TargetImage.TopAlt}"
                     ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_TopStatic}, Converter={StaticResource StripStringUnderscoreCoverter}}">
-                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_TOPALT.png" />
+                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_TOPALT.png"
+                           Opacity="{Binding Path=ViewModel.Textures.TopAlt.Exists, Converter={StaticResource BooleanToOpacityConverter}}" />
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropBottomImageCommand}"
                     CommandParameter="{x:Static local:TargetImage.Bottom}"
                     ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_Bottom}, Converter={StaticResource StripStringUnderscoreCoverter}}">
-                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_BOTTOM.png" />
+                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_BOTTOM.png"
+                           Opacity="{Binding Path=ViewModel.Textures.Bottom.Exists, Converter={StaticResource BooleanToOpacityConverter}}"/>
                 </Button>
                 <Separator />
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropFileLargeImageCommand}"
                     CommandParameter="{x:Static local:TargetImage.FileLarge}"
                     ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FileLarge}, Converter={StaticResource StripStringUnderscoreCoverter}}">
-                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FILELARGE.png" />
+                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FILELARGE.png"
+                           Opacity="{Binding Path=ViewModel.Textures.FileLarge.Exists, Converter={StaticResource BooleanToOpacityConverter}}"/>
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropFileSmallImageCommand}"
                     CommandParameter="{x:Static local:TargetImage.FileSmall}"
                     ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FileSmall}, Converter={StaticResource StripStringUnderscoreCoverter}}">
-                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FILESMALL.png" />
+                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FILESMALL.png"
+                           Opacity="{Binding Path=ViewModel.Textures.FileSmall.Exists, Converter={StaticResource BooleanToOpacityConverter}}"/>
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropFolderClosedImageCommand}"
                     CommandParameter="{x:Static local:TargetImage.FolderClosed}"
                     ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FolderClosed}, Converter={StaticResource StripStringUnderscoreCoverter}}">
-                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FOLDERCLOSED.png" />
+                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FOLDERCLOSED.png"
+                           Opacity="{Binding Path=ViewModel.Textures.FolderClosed.Exists, Converter={StaticResource BooleanToOpacityConverter}}"/>
                 </Button>
                 <Button
                     markup:DragDropBehaviour.DragDropCommand="{Binding Path=DropFolderOpenImageCommand}"
                     CommandParameter="{x:Static local:TargetImage.FolderOpen}"
                     ToolTip="{Binding Source={x:Static locale:MainResources.Menu_Image_FolderOpen}, Converter={StaticResource StripStringUnderscoreCoverter}}">
-                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FOLDEROPEN.png" />
+                    <Image Source="/ThemeEditor.WPF;component/Resources/DROP_FOLDEROPEN.png"
+                           Opacity="{Binding Path=ViewModel.Textures.FolderOpen.Exists, Converter={StaticResource BooleanToOpacityConverter}}"/>
                 </Button>
             </StackPanel>
         </Grid>

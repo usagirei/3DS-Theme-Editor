@@ -6,6 +6,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
 using System.Text.RegularExpressions;
@@ -13,6 +15,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ThemeEditor.Common.Graphics;
+using ThemeEditor.WPF.Themes;
 using Color = System.Windows.Media.Color;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
@@ -151,10 +154,10 @@ namespace ThemeEditor.WPF
 
             float newAlpha = alphaFg + alphaBg * (1 - alphaFg);
 
-            byte newR = (byte) ((preRfg + preRbg * (1 - alphaFg)) / newAlpha).Clamp(0, 255);
-            byte newG = (byte) ((preGfg + preGbg * (1 - alphaFg)) / newAlpha).Clamp(0, 255);
-            byte newB = (byte) ((preBfg + preBbg * (1 - alphaFg)) / newAlpha).Clamp(0, 255);
-            byte newA = (byte) (newAlpha * 255).Clamp(0, 255);
+            byte newR = (byte)((preRfg + preRbg * (1 - alphaFg)) / newAlpha).Clamp(0, 255);
+            byte newG = (byte)((preGfg + preGbg * (1 - alphaFg)) / newAlpha).Clamp(0, 255);
+            byte newB = (byte)((preBfg + preBbg * (1 - alphaFg)) / newAlpha).Clamp(0, 255);
+            byte newA = (byte)(newAlpha * 255).Clamp(0, 255);
 
             return Color.FromArgb(newA, newR, newG, newB);
         }
@@ -194,7 +197,7 @@ namespace ThemeEditor.WPF
             var dict = new Dictionary<string, object>();
             foreach (DictionaryEntry res in reader)
             {
-                var path = (string) res.Key;
+                var path = (string)res.Key;
                 if (Regex.IsMatch(path, pattern))
                     dict.Add(path, res.Value);
             }
@@ -220,5 +223,114 @@ namespace ThemeEditor.WPF
         {
             return Color.FromArgb(c.A, c.R, c.G, c.B);
         }
+
+
+        public static Dictionary<string, string> GetMetadata(this ViewModelBase arg, params string[] basePath)
+        {
+            Dictionary<string, string> meta = new Dictionary<string, string>();
+            Stack<string> pathStack = new Stack<string>(basePath);
+            void GetMetadataInner(ViewModelBase ivm)
+            {
+                var props = ivm.GetType().GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+                foreach (var p in props)
+                {
+                    object value = p.GetValue(ivm);
+                    if (value is ViewModelBase)
+                    {
+                        pathStack.Push(p.Name);
+                        GetMetadataInner((ViewModelBase)value);
+                        pathStack.Pop();
+                    }
+                    else if(p.CanRead && p.CanWrite)
+                    {
+                        var pathStr = string.Join(".", pathStack.Reverse()) + "." + p.Name;
+                        if (value is Color || value is Boolean || value is Enum || value is double)
+                        {
+                            meta.Add(pathStr, Convert.ToString(value, CultureInfo.InvariantCulture));
+
+                        }
+                    }
+                }
+            }
+
+            foreach (string p in basePath)
+            {
+                var type = arg.GetType();
+                var info = type.GetProperty(p);
+                if (!typeof(ViewModelBase).IsAssignableFrom(info.PropertyType))
+                    return meta;
+                arg = (ViewModelBase)info.GetValue(arg);
+            }
+            GetMetadataInner(arg);
+            return meta;
+        }
+
+        public static void SetMetadata(this ViewModelBase arg, Dictionary<string, string> metadata, params string[] basePath)
+        {
+
+            void SetMetadataInner(string path, string value)
+            {
+                object cur = arg;
+                var parts = path.Split('.');
+                for (var i = 0; i < parts.Length; i++)
+                {
+                    var part = parts[i];
+                    var type = cur.GetType();
+                    var info = type.GetProperty(part, BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+                    if (info == null)
+                        return;
+                    if (i == parts.Length - 1)
+                    {
+                        try
+                        {
+                            if (info.PropertyType == typeof(Color))
+                            {
+
+                                var col = System.Windows.Media.ColorConverter.ConvertFromString(value);
+                                info.SetValue(cur, col);
+
+                            }
+                            else if (info.PropertyType == typeof(double))
+                            {
+                                if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var res))
+                                    info.SetValue(cur, res);
+                            }
+                            else if (info.PropertyType == typeof(bool))
+                            {
+                                if (bool.TryParse(value, out var res))
+                                    info.SetValue(cur, res);
+                            }
+                            else if (info.PropertyType.IsEnum)
+                            {
+                                if (!Enum.IsDefined(info.PropertyType, value))
+                                    return;
+                                info.SetValue(cur, Enum.Parse(info.PropertyType, value));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            if (!(ex is FormatException) &&
+                                !(ex is ArgumentException))
+                                throw;
+                        }
+
+                    }
+                    else
+                    {
+                        cur = info.GetValue(cur);
+                    }
+                }
+            }
+
+            var append = string.Join(".", basePath);
+            if (append.Length > 0)
+                append += ".";
+
+            foreach (var pair in metadata)
+            {
+                SetMetadataInner(append + pair.Key, pair.Value);
+            }
+        }
+
     }
 }

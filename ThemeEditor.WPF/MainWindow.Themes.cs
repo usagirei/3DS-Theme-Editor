@@ -3,12 +3,14 @@
 // --------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -50,6 +52,10 @@ namespace ThemeEditor.WPF
 
         public ICommand SendThemeCHMM2Command { get; private set; }
 
+        public ICommand ExportMetadataCommand { get; private set; }
+        public ICommand ImportMetadataCommand { get; private set; }
+
+
         public string ThemePath
         {
             get { return _themePath; }
@@ -81,8 +87,17 @@ namespace ThemeEditor.WPF
                 };
 
                 BusyText = busyLoadingTheme;
-                var res = Extensions.GetResources("body_lz\\.bin");
-                using (var fs = (Stream) res.Values.First())
+                Stream fs;
+                if (!File.Exists("default_body_lz.bin"))
+                {
+                    var res = Extensions.GetResources("body_lz\\.bin");
+                    fs = (Stream)res.Values.First();
+                }
+                else
+                {
+                    fs = File.OpenRead("default_body_lz.bin");
+                }
+                using (fs)
                 using (var ms = new MemoryStream())
                 {
                     try
@@ -192,9 +207,9 @@ namespace ThemeEditor.WPF
                 if (result.Info == null)
                 {
                     IconExtension icex = new IconExtension(@"/ThemeEditor.WPF;component/Resources/Icons/app_icn.ico", 48);
-                    var large = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(48, 48);
+                    var large = ((BitmapSource)icex.ProvideValue(null)).CreateResizedImage(48, 48);
                     icex.Size = 24;
-                    var small = ((BitmapSource) icex.ProvideValue(null)).CreateResizedImage(24, 24);
+                    var small = ((BitmapSource)icex.ProvideValue(null)).CreateResizedImage(24, 24);
 
                     ViewModel.Info.LargeIcon.Bitmap = large;
                     ViewModel.Info.SmallIcon.Bitmap = small;
@@ -441,11 +456,138 @@ namespace ThemeEditor.WPF
                 CanExecute_LoadedFromFile,
                 PreExecute_SetBusy,
                 LoadBGM_PostExecute);
+
+            ExportMetadataCommand = new RelayCommandAsync<string, SaveMetadataResults>(SaveMetadata_Execute,
+                str => CanExecute_ViewModelLoaded(),
+                str => PreExecute_SetBusy(),
+                (r) => IsBusy = false);
+
+            ImportMetadataCommand = new RelayCommandAsync<string, LoadMetadataResults>(LoadMetadata_Execute,
+                str => CanExecute_ViewModelLoaded(),
+                str => PreExecute_SetBusy(),
+                ImportMetadata_PostExecute);
+
+        }
+
+        private void ImportMetadata_PostExecute(LoadMetadataResults r)
+        {
+            ViewModel.Rules.Pause();
+            ViewModel.SetMetadata(r.Data);
+            ViewModel.Rules.Apply(ViewModel.Flags);
+            ViewModel.Rules.Apply(ViewModel.Colors);
+            ViewModel.Rules.Resume();
+            IsBusy = false;
+        }
+
+        private Task<LoadMetadataResults> LoadMetadata_Execute(string rootProps)
+        {
+            var viewModel = ViewModel;
+            var busyPickingFile = MainResources.Busy_PickingFile;
+            var busySavingTheme = MainResources.Busy_SavingTheme;
+            string[] splProps = (rootProps ?? String.Empty).Split('.');
+            var task = new Task<LoadMetadataResults>(() =>
+                {
+                    BusyText = busyPickingFile;
+
+                    var result = new LoadMetadataResults()
+                    {
+                        Loaded = false,
+                        Data = new Dictionary<string, string>()
+                    };
+
+                    var opfl = new OpenFileDialog
+                    {
+                        Filter = "Metadata File|*.meta",
+                    };
+                    var dlg = opfl.ShowDialog();
+                    if (dlg.HasValue && !dlg.Value)
+                        return result;
+                    var dataFile = opfl.FileName;
+
+                    BusyText = busySavingTheme;
+
+                    try
+                    {
+                        using (var fs = File.OpenText(dataFile))
+                        {
+                            while (!fs.EndOfStream)
+                            {
+                                string s = fs.ReadLine();
+                                if (s.StartsWith(";"))
+                                    continue;
+                                var kv = s.Split(':');
+                                result.Data.Add(kv[0].Trim(), kv[1].Trim());
+                            }
+                        }
+                        result.Loaded = true;
+                    }
+                    catch
+                    {
+                        //...
+                    }
+
+                    return result;
+                },
+                TaskCreationOptions.LongRunning);
+            task.Start();
+            return task;
+        }
+
+        private Task<SaveMetadataResults> SaveMetadata_Execute(string rootProps)
+        {
+            var viewModel = ViewModel;
+            var busyPickingFile = MainResources.Busy_PickingFile;
+            var busySavingTheme = MainResources.Busy_SavingTheme;
+            string[] splProps = rootProps.Split('.');
+            var task = new Task<SaveMetadataResults>(() =>
+                {
+                    BusyText = busyPickingFile;
+
+                    var result = new SaveMetadataResults()
+                    {
+                        Saved = false,
+                        Path = null
+                    };
+
+
+                    var svfl = new SaveFileDialog
+                    {
+                        Filter = "Metadata File|*.meta",
+                        FileName = splProps.LastOrDefault()?.ToLower() ?? "metadata"
+                    };
+                    var dlg = svfl.ShowDialog();
+                    if (dlg.HasValue && !dlg.Value)
+                        return result;
+                    result.Path = svfl.FileName;
+
+                    BusyText = busySavingTheme;
+
+                    try
+                    {
+                        Dictionary<string, string> data = viewModel.GetMetadata(splProps);
+                        var maxl = data.Keys.Max(s => s.Length);
+                        using (var fs = File.CreateText(result.Path))
+                        {
+                            foreach (var pair in data)
+                                fs.WriteLine("{0}: {1}", pair.Key.PadRight(maxl), pair.Value);
+                        }
+                        result.Saved = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        //...
+                    }
+
+                    return result;
+                },
+                TaskCreationOptions.LongRunning);
+            task.Start();
+            return task;
         }
 
         private Task<LoadThemeResults> DropTheme_Execute(DragEventArgs args)
         {
-            return LoadTheme_Execute(((string[]) args.Data.GetData(DataFormats.FileDrop))[0], true);
+            return LoadTheme_Execute(((string[])args.Data.GetData(DataFormats.FileDrop))[0], true);
         }
 
         private void DragTheme_Execute(DragEventArgs args)
@@ -537,7 +679,7 @@ namespace ThemeEditor.WPF
 
                 var toWrite = result.Zip.Data.Length;
                 var offset = 0;
-                var fLen = (float) result.Zip.Data.Length / 100;
+                var fLen = (float)result.Zip.Data.Length / 100;
 
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
@@ -558,7 +700,7 @@ namespace ThemeEditor.WPF
                         averageSample = (averageSample * 0.75f) + (delta / trans * 0.25f);
 
                         BusyText = $"Sending: {offset / fLen:f2}%" + Environment.NewLine +
-                                   $"Rate: {(int) (averageSample / 1.024)}KB/s";
+                                   $"Rate: {(int)(averageSample / 1.024)}KB/s";
                         sw.Restart();
                     }
 
@@ -613,6 +755,18 @@ namespace ThemeEditor.WPF
         }
 
         private class SaveThemeResults
+        {
+            public string Path;
+            public bool Saved;
+        }
+
+        private class LoadMetadataResults
+        {
+            public Dictionary<string, string> Data;
+            public bool Loaded;
+        }
+
+        private class SaveMetadataResults
         {
             public string Path;
             public bool Saved;

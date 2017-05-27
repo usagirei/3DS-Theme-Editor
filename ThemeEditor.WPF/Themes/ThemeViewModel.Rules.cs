@@ -13,7 +13,7 @@ namespace ThemeEditor.WPF.Themes
 {
     partial class ThemeViewModel
     {
-        private ViewModelRules Rules { get; set; }
+        public ViewModelRules Rules { get; set; }
 
         private T FilterEnum<T>(T newValue, T oldValue, params T[] valid) where T : struct, IConvertible
         {
