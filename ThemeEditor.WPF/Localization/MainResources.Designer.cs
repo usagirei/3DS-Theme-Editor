@@ -520,6 +520,42 @@ namespace ThemeEditor.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Metadata.
+        /// </summary>
+        public static string Menu_Metadata {
+            get {
+                return ResourceManager.GetString("Menu_Metadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Colors.
+        /// </summary>
+        public static string Menu_Metadata_ExportColors {
+            get {
+                return ResourceManager.GetString("Menu_Metadata_ExportColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Flags.
+        /// </summary>
+        public static string Menu_Metadata_ExportFlags {
+            get {
+                return ResourceManager.GetString("Menu_Metadata_ExportFlags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string Menu_Metadata_Import {
+            get {
+                return ResourceManager.GetString("Menu_Metadata_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Paste.
         /// </summary>
         public static string Menu_Paste {

@@ -486,11 +486,11 @@
                             IsEnabled="False" />
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Metadata">
-                    <MenuItem Header="Export Colors" Command="{Binding Path=ExportMetadataCommand}" CommandParameter="Colors" />
-                    <MenuItem Header="Export Flags" Command="{Binding Path=ExportMetadataCommand}" CommandParameter="Flags" />
+                <MenuItem Header="{x:Static locale:MainResources.Menu_Metadata}">
+                    <MenuItem Header="{x:Static locale:MainResources.Menu_Metadata_ExportColors}" Command="{Binding Path=ExportMetadataCommand}" CommandParameter="Colors" />
+                    <MenuItem Header="{x:Static locale:MainResources.Menu_Metadata_ExportFlags}" Command="{Binding Path=ExportMetadataCommand}" CommandParameter="Flags" />
                     <Separator />
-                    <MenuItem Header="Import" Command="{Binding Path=ImportMetadataCommand}" />
+                    <MenuItem Header="{x:Static locale:MainResources.Menu_Metadata_Import}" Command="{Binding Path=ImportMetadataCommand}" />
                 </MenuItem>
                 <MenuItem Header="Experimental">
                     <MenuItem

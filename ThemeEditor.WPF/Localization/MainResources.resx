@@ -351,4 +351,16 @@ Check the About Window for more Information</value>
   <data name="Control_Preview_CloseButton" xml:space="preserve">
     <value>"Close"</value>
   </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>Export Colors</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>Export Flags</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
 </root>

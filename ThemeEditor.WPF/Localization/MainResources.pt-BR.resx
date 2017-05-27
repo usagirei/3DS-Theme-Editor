@@ -351,4 +351,16 @@ Verifique a Janela "Sobre" para mais Informações.</value>
   <data name="Control_Preview_CloseButton" xml:space="preserve">
     <value>"Fechar"</value>
   </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>Metadados</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>Exportar Cores</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>Exportar Opções</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>Importar</value>
+  </data>
 </root>
