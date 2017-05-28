@@ -312,36 +312,43 @@ namespace ThemeEditor.WPF
                         case TargetImage.Top:
                             {
                                 ViewModel.Textures.Top.EncodeTexture(args.Image, targetSize.Format);
+                                ViewModel.Textures.Top.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
                                 break;
                             }
                         case TargetImage.Bottom:
                             {
                                 ViewModel.Textures.Bottom.EncodeTexture(args.Image, targetSize.Format);
+                                ViewModel.Textures.Bottom.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
                                 break;
                             }
                         case TargetImage.FileLarge:
                             {
                                 ViewModel.Textures.FileLarge.EncodeTexture(args.Image, targetSize.Format);
+                                ViewModel.Textures.FileLarge.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
                                 break;
                             }
                         case TargetImage.FileSmall:
                             {
                                 ViewModel.Textures.FileSmall.EncodeTexture(args.Image, targetSize.Format);
+                                ViewModel.Textures.FileSmall.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
                                 break;
                             }
                         case TargetImage.FolderOpen:
                             {
                                 ViewModel.Textures.FolderOpen.EncodeTexture(args.Image, targetSize.Format);
+                                ViewModel.Textures.FolderOpen.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
                                 break;
                             }
                         case TargetImage.FolderClosed:
                             {
                                 ViewModel.Textures.FolderClosed.EncodeTexture(args.Image, targetSize.Format);
+                                ViewModel.Textures.FolderClosed.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
                                 break;
                             }
                         case TargetImage.TopAlt:
                             {
                                 ViewModel.Textures.TopAlt.EncodeTexture(args.Image, targetSize.Format);
+                                ViewModel.Textures.TopAlt.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
                                 break;
                             }
                         case TargetImage.SmallIcon:
@@ -361,7 +368,7 @@ namespace ThemeEditor.WPF
                                 throw new ArgumentOutOfRangeException();
                             }
                     }
-                    ViewModel.Textures.Top.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
+                    
                 }
                 catch (InvalidOperationException)
                 {
